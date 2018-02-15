@@ -1,24 +1,34 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router'
+import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Public, Clients, Girls } from './containers'
+import * as pages from './containers'
 import store from './store'
+import routing from './config/route.js'
+import PublicHeader from 'components/header/public_header.js'
+import PublicFooter from 'components/footer/public_footer.js'
+import { Alert } from 'components'
+import style from './App.css'
 
 class App extends Component {
-
+    printRoutes(route, i) {
+        return (<Route key={i} path={route.path} exact component={pages[route.component]} />)
+    }
+    
     render() {
         const { user } = store.getState()
+        const key = user.token ? 'clients' : 'public'
+        const routes = routing[key]
+        
         return (
             <div className="App">
-                { user.token ? (
-                    <div>
-                        <Route exact path="/" component={Clients} />
-                        <Route exact path="girls" component={Girls} />
-                    </div>
-                 ) : (
-                    <Route exact path="/" component={Public} />
-                 )}
-                
+                <PublicHeader />
+                    <Switch>
+                        {
+                            routes.map((route, i) => this.printRoutes(route, i))
+                        }
+                    </Switch>
+                <PublicFooter />
+                <Alert />
             </div>
         );
     }

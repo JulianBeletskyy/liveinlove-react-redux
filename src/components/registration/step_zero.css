@@ -1,0 +1,30 @@
+:local(input[name='sex']) {
+    opacity: 0;
+    position: absolute;
+    top: -30px;
+}
+
+:local(.gender) {
+    padding-left: 0px;
+    margin-left: 15px;
+}
+
+:local(.spanFemale) {
+    padding-left: 15px;
+}
+
+input[value=male]:checked + .fa-mars {
+    color: black;
+}
+
+input[value=female]:checked + .fa-venus {
+    color: black;
+}
+
+.fa-mars {
+    color: #36A5C0;
+}
+
+.fa-venus {
+    color: #F2395B;
+}

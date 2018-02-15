@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid } from 'react-bootstrap'
+import { Auth, Registration } from 'components'
 
-class Girls extends Component {
+class Home extends Component {
     render() {
         return (
-            <Grid>
-                <h1>Girls</h1>
-            </Grid>
+            <div>
+                <h1>Home</h1>
+                <Auth/>
+            </div>
         );
     }
 }
@@ -18,4 +20,4 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps
-)(Girls);
+)(Home);

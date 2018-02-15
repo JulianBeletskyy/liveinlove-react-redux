@@ -1,0 +1,13 @@
+@font-face {
+    font-family: bebas_neue;
+    src: url(./assets/fonts/bebasneue_regular-webfont.woff);
+}
+
+@font-face {
+    font-family: bebas_neue_bold;
+    src: url(./assets/fonts/bebasneue_bold-webfont.woff);
+}
+
+body .title {
+    font-family: bebas_neue,Helvetica,Arial,sans-serif;
+}

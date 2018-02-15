@@ -1,0 +1,32 @@
+:local(.button) {
+    font-family: bebas_neue;
+    -webkit-font-smoothing: antialiased;
+    -webkit-appearance: none;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    max-width: 100%;
+    vertical-align: middle;
+    outline: none;
+    font-family: 'bebas_neue', Helvetica, Arial, sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 1.142857142857143em;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    -webkit-transition: color 0.4s, background-color 0.4s;
+    -o-transition: color 0.4s, background-color 0.4s;
+    transition: color 0.4s, background-color 0.4s;
+    padding: 0.8125em 40px;
+    color: #fff;
+    background-color: #34dca2;
+    border: 0;
+}
+
+:local(.button:hover) {
+    background-color: #1eaf7d;
+    color: #fff;
+}

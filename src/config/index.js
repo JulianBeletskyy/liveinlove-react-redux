@@ -1,1 +1,1 @@
-export const API_URL = 'http://dereban-api.da/api/v1/'
+export const API_URL = 'http://api.liveinlove.da/api/v1/' //'http://18.217.212.186/api/v1/'
