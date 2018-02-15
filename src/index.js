@@ -9,7 +9,9 @@ import registerServiceWorker from './registerServiceWorker'
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <App />
+            <div>
+                <App />
+            </div>
         </ConnectedRouter>
     </Provider>,
     document.getElementById('root')

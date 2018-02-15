@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid } from 'react-bootstrap'
 
-class Girls extends Component {
+class PublicFooter extends Component {
     render() {
         return (
-            <Grid>
-                <h1>Girls</h1>
-            </Grid>
+            <div>
+                <Grid>
+                    <h1>Footer</h1>
+                </Grid>
+            </div>
         );
     }
 }
@@ -18,4 +20,4 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps
-)(Girls);
+)(PublicFooter);

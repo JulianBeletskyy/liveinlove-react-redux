@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import store from '../../store/'
+import store from 'store/'
 import { FormGroup, ControlLabel, FormControl, Button, Panel} from 'react-bootstrap'
-import { login } from '../../actions/'
-import api from '../../api'
+import { login } from 'actions'
+import Validator from 'validate'
 
 class Auth extends Component {
     constructor(props) {
@@ -12,11 +12,16 @@ class Auth extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const data = {
-            email: this.auth.email.value,
-            password: this.auth.password.value
+        let error = 1;
+        error *= Validator.check(this.auth.email.value, ['required', 'email'], 'Email')
+        error *= Validator.check(this.auth.password.value, ['required'], 'Password')
+        if (error) {
+            const data = {
+                email: this.auth.email.value,
+                password: this.auth.password.value
+            }
+            store.dispatch(login(data))
         }
-        store.dispatch(login(data))
     }
 
     render() {
@@ -24,7 +29,7 @@ class Auth extends Component {
             <Panel>
                 <Panel.Heading>Log In</Panel.Heading>
                 <Panel.Body>
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit} noValidate={true}>
                         <FormGroup>
                             <ControlLabel>Email</ControlLabel>
                             <FormControl 
