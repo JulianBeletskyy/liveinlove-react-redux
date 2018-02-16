@@ -21,10 +21,10 @@ class PublicHeader extends Component {
                 <Navbar.Collapse> 
                     <Nav className={style.navBar} pullRight >
                         <NavDropdown role="presentation" eventKey={1} title="About" id="about-nav-dropdown">
-                          <MenuItem eventKey={1.1}>About Agency</MenuItem>
-                          <MenuItem eventKey={1.2}>How it works?</MenuItem>
-                          <MenuItem eventKey={1.3}>Testimonials</MenuItem>
-                          <MenuItem eventKey={1.3}>Success stories</MenuItem>
+                          <MenuItem eventKey={1.1}><Link to="/about">About Agency</Link></MenuItem>
+                          <MenuItem eventKey={1.2}><Link to="/how-works">How it works?</Link></MenuItem>
+                          <MenuItem eventKey={1.3}><Link to="/testimonials">Testimonials</Link></MenuItem>
+                          <MenuItem eventKey={1.3}><Link to="stories">Success stories</Link></MenuItem>
                         </NavDropdown>
 
                         <li role="presentation">

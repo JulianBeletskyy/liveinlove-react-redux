@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid } from 'react-bootstrap'
+import { Grid, Row, Col } from 'react-bootstrap'
+import style from './style.css';
 
 class PublicFooter extends Component {
     render() {
         return (
-            <div>
+            <div className={style.footer}>
                 <Grid>
-                    <h1>Footer</h1>
+                    <Row>
+                        <Col md={3} sm={12}> 
+                            <div className="title">
+                                footer content
+                            </div>
+                        </Col>
+                    </Row>
                 </Grid>
             </div>
         );
