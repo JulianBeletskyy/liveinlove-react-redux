@@ -106,130 +106,132 @@ class SignUpStart extends Component {
         
         return (
             <form onSubmit={this.getSignUpOne} noValidate={true}>
-                <Col xs={12}>
-                <FormGroup>
-                    <div className="text-center title">
-                        <span className={style.spanMale}>Male</span>
-                            <Radio 
-                                name="sex" 
-                                value="male"
-                                defaultChecked={true}
-                                onChange={this.toggleRole}
-                                inputRef={ref => { this.role.male = ref }}
-                                className={style.gender}
-                                inline
-                            >
-                                <i className="fas fa-mars fa-2x"></i>
-                            </Radio>
-                            
-                        
-                        <Radio 
-                            name="sex" 
-                            value="female"
-                            onChange={this.toggleRole}
-                            inputRef={ref => { this.role.female = ref }}
-                            className={style.gender}
-                            inline
-                        >
-                            <i className="fas fa-venus fa-2x"></i>
-                        </Radio>
-                        <span className={style.spanFemale}>Female</span>
-                    </div>
-                </FormGroup>
-                </Col>
-                <Col xs={12} md={6}>
-                    <Row>
-                        <Col sm={6}>
-                            <FormGroup>
-                                <TextField
-                                    type="text"
-                                    placeholder="First Name"
-                                    inputRef={ref => { this.signup.firstname = ref }}
-                                    value={data.firstname}
-                                    name="First Name"
-                                />
-                            </FormGroup>
-                        </Col>
-                        <Col sm={6}>
-                            <FormGroup sm={6}>
-                                <TextField
-                                    type="text"
-                                    placeholder="Last Name"
-                                    inputRef={ref => { this.signup.lastname = ref }}
-                                    name="Last Name"
-                                />
-                            </FormGroup>
-                        </Col>
-                    </Row>
-                    <FormGroup>
-                        <TextField
-                            type="email"
-                            placeholder="Enter email"
-                            inputRef={ref => { this.signup.email = ref }}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <TextField
-                            type="password"
-                            placeholder="Enter password"
-                            inputRef={ref => { this.signup.password = ref }}
-                        />
-                    </FormGroup>
-                </Col>
-                <Col xs={12} md={6}>
-                    <FormGroup>
+                <Row>
+                    <Col xs={12}>
+                        <FormGroup>
+                            <div className="text-center title">
+                                <span className={style.spanMale}>Male</span>
+                                    <Radio 
+                                        name="sex" 
+                                        value="male"
+                                        defaultChecked={true}
+                                        onChange={this.toggleRole}
+                                        inputRef={ref => { this.role.male = ref }}
+                                        className={style.gender}
+                                        inline
+                                    >
+                                        <i className="fas fa-mars fa-2x"></i>
+                                    </Radio>
+                                    
+                                
+                                <Radio 
+                                    name="sex" 
+                                    value="female"
+                                    onChange={this.toggleRole}
+                                    inputRef={ref => { this.role.female = ref }}
+                                    className={style.gender}
+                                    inline
+                                >
+                                    <i className="fas fa-venus fa-2x"></i>
+                                </Radio>
+                                <span className={style.spanFemale}>Female</span>
+                            </div>
+                        </FormGroup>
+                    </Col>
+                    <Col xs={12} md={6}>
                         <Row>
-                            <Col sm={4}>
-                                <SelectField
-                                    componentClass="select"
-                                    inputRef={ref => { this.signup.birth.month = ref }}
-                                    options={this.monthArray()}
-                                />
+                            <Col sm={6}>
+                                <FormGroup>
+                                    <TextField
+                                        type="text"
+                                        placeholder="First Name"
+                                        inputRef={ref => { this.signup.firstname = ref }}
+                                        value={data.firstname}
+                                        name="First Name"
+                                    />
+                                </FormGroup>
                             </Col>
-                            <Col sm={4}>
-                                <SelectField
-                                    componentClass="select"
-                                    inputRef={ref => { this.signup.birth.day = ref }}
-                                    options={this.dayArray()}
-                                />
-                            </Col>
-                            <Col sm={4}>
-                                <SelectField
-                                    componentClass="select"
-                                    inputRef={ref => { this.signup.birth.year = ref }}
-                                    options={this.yearArray()}
-                                />
+                            <Col sm={6}>
+                                <FormGroup sm={6}>
+                                    <TextField
+                                        type="text"
+                                        placeholder="Last Name"
+                                        inputRef={ref => { this.signup.lastname = ref }}
+                                        name="Last Name"
+                                    />
+                                </FormGroup>
                             </Col>
                         </Row>
-                    </FormGroup>
-                    <FormGroup>
-                        <TextField
-                            type="text"
-                            placeholder="Country"
-                            inputRef={ref => { this.signup.country = ref }}
+                        <FormGroup>
+                            <TextField
+                                type="email"
+                                placeholder="Enter email"
+                                inputRef={ref => { this.signup.email = ref }}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <TextField
+                                type="password"
+                                placeholder="Enter password"
+                                inputRef={ref => { this.signup.password = ref }}
+                            />
+                        </FormGroup>
+                    </Col>
+                    <Col xs={12} md={6}>
+                        <FormGroup>
+                            <Row>
+                                <Col sm={4}>
+                                    <SelectField
+                                        componentClass="select"
+                                        inputRef={ref => { this.signup.birth.month = ref }}
+                                        options={this.monthArray()}
+                                    />
+                                </Col>
+                                <Col sm={4}>
+                                    <SelectField
+                                        componentClass="select"
+                                        inputRef={ref => { this.signup.birth.day = ref }}
+                                        options={this.dayArray()}
+                                    />
+                                </Col>
+                                <Col sm={4}>
+                                    <SelectField
+                                        componentClass="select"
+                                        inputRef={ref => { this.signup.birth.year = ref }}
+                                        options={this.yearArray()}
+                                    />
+                                </Col>
+                            </Row>
+                        </FormGroup>
+                        <FormGroup>
+                            <TextField
+                                type="text"
+                                placeholder="Country"
+                                inputRef={ref => { this.signup.country = ref }}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <TextField
+                                type="text"
+                                placeholder="City"
+                                inputRef={ref => { this.signup.city = ref }}
+                            />
+                        </FormGroup>
+                    </Col>
+                    <Col xs={12} className="text-center">
+                        <CheckboxField
+                            inputRef={ref => { this.signup.terms = ref }}
+                            text='By clicking " Join Us for Free" above you agree to "Terms of Use" & "Privacy Policy"'
                         />
-                    </FormGroup>
-                    <FormGroup>
-                        <TextField
-                            type="text"
-                            placeholder="City"
-                            inputRef={ref => { this.signup.city = ref }}
-                        />
-                    </FormGroup>
-                </Col>
-                <Col xs={12} className="text-center">
-                    <CheckboxField
-                        inputRef={ref => { this.signup.terms = ref }}
-                        text='By clicking " Join Us for Free" above you agree to "Terms of Use" & "Privacy Policy"'
-                    />
-                    <FormGroup>
-                        <Btn
-                            type="submit"
-                            bsStyle="success"
-                            text="Join Us for Free"
-                        />
-                    </FormGroup>
-                </Col>
+                        <FormGroup>
+                            <Btn
+                                type="submit"
+                                bsStyle="success"
+                                text="Join Us for Free"
+                            />
+                        </FormGroup>
+                    </Col>
+                </Row>
             </form>
         );
     }

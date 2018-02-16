@@ -68,21 +68,150 @@ export function sendSignUpStart(data) {
     }
 }
 
-export function getHeight() {
+export function getHeights() {
     return dispatch => {
-        return api.getHeight()
+        return api.getHeights()
             .then(json => {
                 if (json.data) {
-                    return {
-                        type: types.SET_HEIGTHS,
-                        
-                    }
-                    console.log(json.data)
+                    dispatch(setHeights(json.data))
                 }
             })
             .catch(error => {
                 console.log(error)
             })
+    }
+}
+
+export function getWeights() {
+    return dispatch => {
+        return api.getWeights()
+            .then(json => {
+                if (json.data) {
+                    dispatch(setWeights(json.data))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function getEyesColor() {
+    return dispatch => {
+        return api.getEyesColor()
+            .then(json => {
+                if (json.data) {
+                    dispatch(setEyesColor(json.data))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function getHairColor() {
+    return dispatch => {
+        return api.getHairColor()
+            .then(json => {
+                if (json.data) {
+                    dispatch(setHairColor(json.data))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function getHairLength() {
+    return dispatch => {
+        return api.getHairLength()
+            .then(json => {
+                if (json.data) {
+                    dispatch(setHairLength(json.data))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function getEthnicities() {
+    return dispatch => {
+        return api.getEthnicities()
+            .then(json => {
+                if (json.data) {
+                    dispatch(setEthnicities(json.data))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function getMaritalStatus() {
+    return dispatch => {
+        return api.getMaritalStatus()
+            .then(json => {
+                if (json.data) {
+                    dispatch(setMaritalStatus(json.data))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function setHairColor(value) {
+    return {
+        type: types.SET_HAIR_COLOR,
+        value
+    }
+}
+
+export function setWeights(value) {
+    return {
+        type: types.SET_WEIGHTS,
+        value
+    }
+}
+
+export function setEyesColor(value) {
+    return {
+        type: types.SET_EYES_COLOR,
+        value
+    }
+}
+
+export function setHeights(value) {
+    return {
+        type: types.SET_HEIGHTS,
+        value
+    }
+}
+
+export function setHairLength(value) {
+    return {
+        type: types.SET_HAIR_LENGTH,
+        value
+    }
+}
+
+export function setEthnicities(value) {
+    return {
+        type: types.SET_ETHNICITIES,
+        value
+    }
+}
+
+export function setMaritalStatus(value) {
+    return {
+        type: types.SET_MARITAL_STATUS,
+        value
     }
 }
 
@@ -104,5 +233,26 @@ export function removePlaceholder(id) {
     return {
         type: types.REMOVE_ID_TEXTFIELD,
         id
+    }
+}
+
+export function setActiveAthnicity(id) {
+    return {
+        type: types.SET_ACTIVE_ATHNICITY,
+        id
+    }
+}
+
+export function removeActiveAthnicity(id) {
+    return {
+        type: types.REMOVE_ACTIVE_ATHNICITY,
+        id
+    }
+}
+
+export function toggleModal(value) {
+    return {
+        type: types.TOGGLE_MODAL,
+        value
     }
 }

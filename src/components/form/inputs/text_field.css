@@ -33,7 +33,6 @@
 
 :local(.style:focus + .placeholder),
 :local(.placeholder.active) {
-    
     bottom: 32px;
     font-size: 12px;
 }

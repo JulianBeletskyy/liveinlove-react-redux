@@ -9,13 +9,17 @@ class Btn extends Component {
     }
 
     render() {
+        const orientation = this.props.orientation
         return (
             <Button 
                 type={this.props.type} 
                 bsStyle={this.props.bsStyle}
                 bsClass={style.button}
+                onClick={this.props.onClick}
             >
-                {this.props.text}
+                <span className={style.btnText + ' ' + style.right}>{this.props.text}</span>
+                <i className={style.btnIcon + " fas fa-angle-" + orientation}></i>
+                <span className={style.btnHover}></span>
             </Button>
         );
     }

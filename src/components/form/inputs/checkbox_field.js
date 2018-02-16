@@ -11,7 +11,10 @@ class CheckboxField extends Component {
         return (
             <Checkbox 
                 inputRef={this.props.inputRef} 
-                defaultChecked={false}>{this.props.text}</Checkbox>
+                defaultChecked={false}
+            >
+                {this.props.text}
+            </Checkbox>
         );
     }
 }
