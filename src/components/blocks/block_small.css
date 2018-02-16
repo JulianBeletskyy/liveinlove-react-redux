@@ -1,0 +1,17 @@
+:local(.block) {
+    border-radius: 0px;
+    border-width: 1px;
+    border-color: rgb(38, 39, 45);
+    border-style: solid;
+    background: #fff;
+    color: rgb(38, 39, 45);
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+:local(.block.active),
+:local(.block:hover) {
+    cursor: pointer;
+    background:  rgb(38, 39, 45);
+    color: #fff;
+}

@@ -28,9 +28,9 @@ class Registration extends Component {
         }
 
         return (
-            <Grid>
+            <div>
                 { content }
-            </Grid>
+            </div>
         );
     }
 }

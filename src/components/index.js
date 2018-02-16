@@ -4,5 +4,6 @@ import PublicFooter from './footer/public_footer.js'
 import About from './about/about.js'
 import Alert from './alert/alert.js'
 import Registration from './registration'
+import MainModal from './modal/modal.js'
 
-export { Auth, PublicHeader, PublicFooter, About, Alert, Registration }
+export { Auth, PublicHeader, PublicFooter, About, Alert, Registration, MainModal }

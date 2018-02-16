@@ -11,3 +11,15 @@
 body .title {
     font-family: bebas_neue,Helvetica,Arial,sans-serif;
 }
+
+.ethniticy-block {
+    padding: 1px;
+}
+
+.modal-content {
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 0px;
+    border-color: #333333;
+}
+

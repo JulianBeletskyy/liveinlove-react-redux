@@ -17,16 +17,65 @@
     line-height: 1.5;
     text-align: center;
     text-decoration: none;
-    -webkit-transition: color 0.4s, background-color 0.4s;
-    -o-transition: color 0.4s, background-color 0.4s;
-    transition: color 0.4s, background-color 0.4s;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
     padding: 0.8125em 40px;
     color: #fff;
     background-color: #34dca2;
     border: 0;
+    position: relative;
+    overflow: hidden;
 }
 
 :local(.button:hover) {
     background-color: #1eaf7d;
     color: #fff;
+}
+
+:local(.btnHover) {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 2;
+}
+
+:local(.btnIcon) {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 32%;
+    left: -500px;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    transform: translateY(0);
+    line-height: 1;
+    transition: all .3s;
+}
+
+:local(.button:hover .btnIcon) {
+    left: 0;
+}
+
+:local(.btnText) {
+    background: 0 0;
+    cursor: pointer;
+    display: inline-block;
+    outline: 0;
+    text-align: center;
+    position: relative;
+    transition: all .3s;
+    z-index: 1;
+    max-width: 100%;
+    visibility: visible;
+}
+
+:local(.button:hover .btnText) {
+    transform: translateX(500px);
 }
