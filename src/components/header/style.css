@@ -2,7 +2,7 @@
 	width: 100%;
 	background-color: transparent;
 	margin-bottom: 20px;
-	padding: 10px 40px;
+	padding: 10px 0;
 	z-index: 5;
 	border: none;
 }
@@ -62,4 +62,19 @@
 :local(.navBar > li:hover > ul) {
 	visibility: visible;
 	opacity: 1;
+}
+
+:local(.navBar > li > ul > a) {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.42857143;
+  color: #333;
+  white-space: nowrap;
+  text-decoration: none;
+}  
+
+:local(.navBar > li > ul > a:hover) {
+ 	background-color: #e2e2e2;
 }
