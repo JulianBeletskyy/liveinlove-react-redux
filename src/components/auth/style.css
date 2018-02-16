@@ -1,0 +1,13 @@
+:local(.logIn) {
+	margin-top: 70px;
+}
+
+a[href="/pass-recovery"],
+label {
+	letter-spacing: 1px;
+	font-weight: 500;
+}
+
+label > div.checkbox {
+	display: inline-block;
+}

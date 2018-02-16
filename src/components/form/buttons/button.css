@@ -76,6 +76,6 @@
     visibility: visible;
 }
 
-:local(.button:hover .btnText) {
+:local(.button:hover .btnText.right) {
     transform: translateX(500px);
 }

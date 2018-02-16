@@ -23,3 +23,11 @@ body .title {
     border-color: #333333;
 }
 
+.panel {
+	border-radius: 0;
+	border: none;
+}
+
+.modal-lg {
+    width: 60%;
+}

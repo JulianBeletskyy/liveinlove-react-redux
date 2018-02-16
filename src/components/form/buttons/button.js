@@ -17,7 +17,7 @@ class Btn extends Component {
                 bsClass={style.button}
                 onClick={this.props.onClick}
             >
-                <span className={style.btnText}>{this.props.text}</span>
+                <span className={style.btnText + ' ' + style.right}>{this.props.text}</span>
                 <i className={style.btnIcon + " fas fa-angle-" + orientation}></i>
                 <span className={style.btnHover}></span>
             </Button>
