@@ -61,10 +61,6 @@ class Auth extends Component {
                         <FormGroup className="text-center">
                             <Btn type="submit" bsStyle="success" text="Log In"/>
                         </FormGroup>
-
-                        <FormGroup className="text-center title">
-                            Dont have an account? <Link to="/registration">Sign up</Link>
-                        </FormGroup>
                     </form>
                 </Panel.Body>
             </Panel> 

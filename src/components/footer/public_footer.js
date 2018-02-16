@@ -10,7 +10,7 @@ class PublicFooter extends Component {
         return (
             <div className={style.footer} >
                 <Grid fluid>
-                    <Row className={style.borderBottom + ' title'} >
+                    {/*<Row className={style.borderBottom + ' title'} >
                         <Col md={2} xs={6} className={style.footerCol}> 
                             <div>
                                 <Link to="/about">About us</Link>
@@ -86,15 +86,15 @@ class PublicFooter extends Component {
                                 />
                             </div>
                         </Col>
-                    </Row>
+                    </Row>*/}
 
-                    <Row>
+                    <Row className="title">
                         <Col sm={12} md={6}>
-                            Copyright &copy;
+                            Copyright &copy; Liveinlove - All Rights Reserved
                         </Col>
 
-                        <Col sm={12} md={6}>
-                            social
+                        <Col sm={12} md={6} className="text-right">
+                            2018
                         </Col>
                     </Row>
                 </Grid>

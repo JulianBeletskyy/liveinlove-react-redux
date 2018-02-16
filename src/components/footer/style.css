@@ -4,10 +4,10 @@
 	padding-top: 30px;
 	padding-bottom: 30px;
 	letter-spacing: 1px;
-	font-size: 15px;
+	font-size: 14px;
 }
 
-:local(.footerCol) {
+/* :local(.footerCol) {
 	text-align: center;
 }
 
@@ -42,4 +42,4 @@
 	:local(.footerCol:nth-child(odd)) {
 		text-align: left;
 	}
-}
+} */
