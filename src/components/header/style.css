@@ -1,4 +1,65 @@
-:local(.header) {
-    padding: 15px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+:local(.navbarDefault) {
+	width: 100%;
+	background-color: transparent;
+	margin-bottom: 20px;
+	padding: 10px 40px;
+	z-index: 5;
+	border: none;
+}
+
+:local(.navBar > li) {
+	margin-right: 15px;
+	margin-left: 15px;
+}
+
+:local(.navbarDefault .navBar > li > a) {
+	color: white;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 15px;
+	line-height: 1;
+	letter-spacing: 2px;
+	padding-right: 0;
+	padding-left: 0;
+	color: white;
+}
+
+:local(.navBar>li>a:hover),
+:local(.navBar>li>a:focus),
+:local(.nav .open>a), 
+:local(.nav .open>a:focus), 
+:local(.nav .open>a:hover)  {
+	background-color: transparent;
+	color: white;
+}
+
+:local(.navBar > li:hover:after) {
+	width: 100%;
+}
+
+:local(.navBar>li:after) {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #34dca2;
+  -webkit-transition: width .4s;
+  transition: width .4s;
+}
+
+:local(.navBar > li > ul) {
+	transition: opacity 0.3s linear;
+	display: block;
+	visibility: hidden;
+	opacity: 0;
+	border: none;
+	border-radius: 0;
+	letter-spacing: 0.6px;
+}
+
+:local(.navBar > li:hover > ul) {
+	visibility: visible;
+	opacity: 1;
 }
