@@ -8,8 +8,8 @@ const responseHandler = (response) => {
     let ok = response.ok
     promise.then(response => {
         if (response.validate) {
-            for (var k in response.validate) {
-                for (var j in response.validate[k]) {
+            for (let k in response.validate) {
+                for (let j in response.validate[k]) {
                     store.dispatch(setAlert(response.validate[k][j], 'error'))
                 }
             }
@@ -20,8 +20,8 @@ const responseHandler = (response) => {
         }
 
         if (response.errors) {
-            for (var k in response.errors) {
-                for (var j in response.errors[k]) {
+            for (let k in response.errors) {
+                for (let j in response.errors[k]) {
                     store.dispatch(setAlert(response.errors[k][j], 'error'))
                 }
             }
@@ -47,6 +47,19 @@ export default {
 
     signUpStart(data) {
         return fetch(config.API_URL + 'signup/start', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    signUpOne(data) {
+        return fetch(config.API_URL + 'signup/client/step/one', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',

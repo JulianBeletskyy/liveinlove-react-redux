@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { FormControl } from 'react-bootstrap'
 
 class Autocomplete extends Component {
     constructor(props) {

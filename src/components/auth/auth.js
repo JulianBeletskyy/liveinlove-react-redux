@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import store from 'store/'
-import { FormGroup, ControlLabel, FormControl, Button, Panel} from 'react-bootstrap'
+import { FormGroup, Panel} from 'react-bootstrap'
 import { login } from 'actions'
 import { Link } from 'react-router-dom';
 import Validator from 'validate'
-import style from './style.css';
 import TextField from 'components/form/inputs/text_field.js';
-import Btn from 'components/form/buttons/button.js';
+import BtnMain from 'components/form/buttons/main_button.js';
 import Checkbox from 'components/form/inputs/checkbox_field.js';
 
 class Auth extends Component {
@@ -60,7 +59,10 @@ class Auth extends Component {
                         </FormGroup>
 
                         <FormGroup className="text-center">
-                            <Btn type="submit" bsStyle="success" text="Log In"/>
+                            <BtnMain
+                                type="submit"
+                                bsStyle="success"
+                                text="Log In"/>
                         </FormGroup>
 
                         <FormGroup className="text-center">

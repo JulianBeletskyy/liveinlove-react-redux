@@ -52,6 +52,14 @@ export default class Validator {
         return 0
     }
 
+    static reqiredArray(value, name) {
+        if (! value.length) {
+            this.showAlert(name + ' is required', 'error')
+            return 0
+        }
+        return 1
+    }
+
     static checked(value, name) {
         if (!value) {
             this.showAlert('You must agree ' + name, 'error')

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
-import { FormGroup, ControlLabel, FormControl, Button, Row, Col } from 'react-bootstrap'
-import Validator from 'validate'
 import { changeStep } from 'actions'
+import { FormGroup } from 'react-bootstrap'
+import Btn from 'components/form/buttons/button.js'
 
 class SignUpTwo extends Component {
     constructor(props) {
@@ -19,13 +19,26 @@ class SignUpTwo extends Component {
         store.dispatch(changeStep(3))
     }
 
+    prevStep = () => {
+        store.dispatch(changeStep(1))
+    }
+
     render() {
-        const { step, data } = this.props.signup;
         return (
             <form onSubmit={this.getSignUpThree} noValidate={true}>
                 <h1>Upload</h1>
                 <FormGroup className="text-center">
-                    <Button type="submit" bsStyle="success">Get Confirm</Button>
+                    <Btn
+                        type="button"
+                        text="Prev"
+                        orientation="left"
+                        onClick={this.prevStep}
+                    />
+                    <Btn
+                        type="submit"
+                        text="Get Confirm"
+                        orientation="right"
+                    />
                 </FormGroup>
             </form>
         );

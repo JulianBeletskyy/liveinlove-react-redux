@@ -59,12 +59,35 @@ export function sendSignUpStart(data) {
         .then(json => {
             if (json.data) {
                 dispatch(setTempToken(json.data))
+                dispatch(setSignUpData(data))
                 dispatch(changeStep(1))
             }
         })
         .catch(error => {
             console.log(error)
         })
+    }
+}
+
+export function sendSignUpOne(data) {
+    return dispatch => {
+        return api.signUpOne(data)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setSignUpData(data))
+                    dispatch(changeStep(2))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function setSignUpData(data) {
+    return {
+        type: types.SET_SIGN_UP_DATA,
+        data
     }
 }
 

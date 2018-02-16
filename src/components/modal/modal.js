@@ -11,7 +11,6 @@ class MainModal extends Component {
     }
     
     render() {
-        const { showModal } = this.props.signup
         return (
             <Modal 
                 show={this.props.show} 
