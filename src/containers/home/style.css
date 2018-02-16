@@ -1,5 +1,4 @@
 :local(.homeWrapper) {
-	height: 90vh;
 	width: 100%;
 	background-image: url('/assets/img/login-bg.jpg');
 	background-size: cover;
@@ -17,26 +16,6 @@
 	font-size: 18px;
 	letter-spacing: .7px;
 	color: rgba(255,255,255, 1);
-}
-
-:local(.flexRow) {
- 	display: -webkit-flex;
- 	display: -moz-flex;
- 	display: -ms-flex;
- 	display: -o-flex;
- 	display: flex;
-  flex-wrap: wrap;
-}
-
-:local(.flexCol) {
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: -ms-flex;
-	display: -o-flex;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
 }
 
 :local(.shadow) {

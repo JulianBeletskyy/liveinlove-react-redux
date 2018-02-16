@@ -10,12 +10,12 @@ class Home extends Component {
             <div className={style.homeWrapper} >
                 <div className={style.shadow}>
                     <Grid className="title">
-                        <Row className={style.flexRow}>
+                        <Row>
                             <Col md={5} sm={12} >
                                 <Auth/>
                             </Col>
 
-                            <Col md={6} sm={12} mdOffset={1} className={style.flexCol}>
+                            <Col md={6} sm={12} mdOffset={1} >
                                 <div className={style.bigDesc}>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit
                                 </div>

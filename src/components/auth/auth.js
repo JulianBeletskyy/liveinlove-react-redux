@@ -7,6 +7,7 @@ import Validator from 'validate'
 import style from './style.css';
 import TextField from 'components/form/inputs/text_field.js';
 import Btn from 'components/form/buttons/button.js';
+import Checkbox from 'components/form/inputs/checkbox_field.js';
 
 class Auth extends Component {
     constructor(props) {
@@ -52,7 +53,7 @@ class Auth extends Component {
 
                         <FormGroup>
                             <label>
-                                <input type="checkbox"/> Remember me 
+                                <Checkbox></Checkbox> Remember me 
                             </label>
 
                             <Link className="pull-right" to="/pass-recovery">Forgot password?</Link>
