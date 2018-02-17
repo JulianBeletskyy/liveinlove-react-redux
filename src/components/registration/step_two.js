@@ -28,6 +28,7 @@ class SignUpTwo extends Component {
 
     getConfirm = () => {
         console.log(this.props.signup)
+        //let image = await this.refs.crop.cropImage()
     }
 
     prevStep = () => {
@@ -50,7 +51,8 @@ class SignUpTwo extends Component {
                                 // Cropper.js options
                                 aspectRatio={1 / 1}
                                 guides={false}
-                                crop={this._crop.bind(this)} />
+                                crop={this._crop.bind(this)} 
+                            />
                         </div>
                         
                     </Col>
