@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import Validator from 'validate'
 import TextField from 'components/form/inputs/text_field.js';
 import BtnMain from 'components/form/buttons/main_button.js';
-import Checkbox from 'components/form/inputs/checkbox_field.js';
+import CheckboxField from 'components/form/inputs/checkbox_field.js';
+import style from './style.css'
 
 class Auth extends Component {
     constructor(props) {
@@ -24,15 +25,16 @@ class Auth extends Component {
                 email: this.auth.email.value,
                 password: this.auth.password.value
             }
+            console.log(data)
             store.dispatch(login(data))
         }
     }
 
     render() {
         return (
-            <Panel>
-                <Panel.Heading className="title text-center">Log In</Panel.Heading>
-                <Panel.Body className="title">
+            <Panel className={style.loginPanel}>
+                <Panel.Heading className={style.loginHeader + ' title text-center'}>Please Log In</Panel.Heading>
+                <Panel.Body>
                     <form onSubmit={this.handleSubmit} noValidate={true}>
                         <FormGroup>
                             <TextField 
@@ -50,10 +52,10 @@ class Auth extends Component {
                              />
                         </FormGroup>
 
-                        <FormGroup>
-                            <label>
-                                <Checkbox></Checkbox> Remember me 
-                            </label>
+                        <FormGroup className={style.inline + ' title'} >
+                            <CheckboxField 
+                                text='Remember me'
+                            />
 
                             <Link className="pull-right" to="/pass-recovery">Forgot password?</Link>
                         </FormGroup>
@@ -63,10 +65,6 @@ class Auth extends Component {
                                 type="submit"
                                 bsStyle="success"
                                 text="Log In"/>
-                        </FormGroup>
-
-                        <FormGroup className="text-center">
-                            Dont have an account? <Link to="/registration">Sign up</Link>
                         </FormGroup>
                     </form>
                 </Panel.Body>

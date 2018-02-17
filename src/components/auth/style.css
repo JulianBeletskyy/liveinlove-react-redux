@@ -2,12 +2,20 @@
 	margin-top: 70px;
 }
 
-a[href="/pass-recovery"],
-label {
+:local(.loginPanel) {
 	letter-spacing: 1px;
-	font-weight: 500;
 }
 
-label > div.checkbox {
-	display: inline-block;
+:local(.loginPanel > .loginHeader) {
+	font-family: bebas_neue_bold;
+	letter-spacing: 2px;
+	border-radius: 0;
+	background-color: #34dca2;
+	color: white;
+	font-size: 20px;
+	border-bottom: 1px solid #ccc;
+}
+
+:local(.inline > div) {
+	display: inline;
 }

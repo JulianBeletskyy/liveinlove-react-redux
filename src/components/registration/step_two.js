@@ -2,8 +2,11 @@ import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
 import { changeStep } from 'actions'
-import { FormGroup } from 'react-bootstrap'
+import { FormGroup, Row, Col } from 'react-bootstrap'
 import Btn from 'components/form/buttons/button.js'
+import BtnUpload from 'components/form/buttons/button_upload.js'
+import Cropper from 'react-cropper';
+import 'cropperjs/dist/cropper.css'; 
 
 class SignUpTwo extends Component {
     constructor(props) {
@@ -14,9 +17,17 @@ class SignUpTwo extends Component {
         }
     }
 
+    _crop() {
+        this.refs.cropper.getCroppedCanvas().toDataURL()
+    }
+
     getSignUpThree = (event) => {
         event.preventDefault()
-        store.dispatch(changeStep(3))
+        //store.dispatch(changeStep(3))
+    }
+
+    getConfirm = () => {
+        console.log(this.props.signup)
     }
 
     prevStep = () => {
@@ -26,7 +37,24 @@ class SignUpTwo extends Component {
     render() {
         return (
             <form onSubmit={this.getSignUpThree} noValidate={true}>
-                <h1>Upload</h1>
+                <Row>
+                    <Col sm={6}>
+                        <BtnUpload />
+                    </Col>
+                    <Col sm={6}>
+                        <div>
+                            <Cropper
+                                ref='cropper'
+                                src={this.props.signup.avatar}
+                                style={{ height: '200px', width: '200px' }}
+                                // Cropper.js options
+                                aspectRatio={1 / 1}
+                                guides={false}
+                                crop={this._crop.bind(this)} />
+                        </div>
+                        
+                    </Col>
+                </Row>
                 <FormGroup className="text-center">
                     <Btn
                         type="button"
@@ -35,9 +63,10 @@ class SignUpTwo extends Component {
                         onClick={this.prevStep}
                     />
                     <Btn
-                        type="submit"
+                        type="button"
                         text="Get Confirm"
                         orientation="right"
+                        onClick={this.getConfirm}
                     />
                 </FormGroup>
             </form>

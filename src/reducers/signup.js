@@ -2,7 +2,7 @@ import * as types from '../actions/types.js'
 
 const initialState = {
     showModal: false,
-    step: 0,
+    step: 2,
     data: { 
         birth: {},
         match: {},
@@ -15,7 +15,8 @@ const initialState = {
     hairColor: [],
     hairLength: [],
     ethnicities: [],
-    maritalStatus: []
+    maritalStatus: [],
+    avatar: ''
 }
 
 export default function signup(signup = initialState, action = {}) {
@@ -78,6 +79,10 @@ export default function signup(signup = initialState, action = {}) {
             }
             return Object.assign({}, signup, {
                 data: temp
+            });
+        case types.SAVE_IMAGE:
+            return Object.assign({}, signup, {
+                avatar: action.data
             });
         default:
             return signup;

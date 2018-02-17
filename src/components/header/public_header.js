@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import style from './style.css';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 class PublicHeader extends Component {
     render() {
         return (
-            <Navbar className={style.navbarDefault + ' title'} fixedTop>
+            <Navbar className={style.navbarDefault + ' title'} fixedTop fluid>
                  <Navbar.Header>
                     <Navbar.Brand>
                         <Link to="/">
@@ -19,12 +19,12 @@ class PublicHeader extends Component {
                  </Navbar.Header>
 
                 <Navbar.Collapse> 
-                    <Nav className={style.navBar} pullRight >
+                    <ul className={style.navBar + ' nav navbar-nav navbar-right'} >
                         <NavDropdown role="presentation" eventKey={1} title="About" id="about-nav-dropdown">
-                          <MenuItem eventKey={1.1}>About Agency</MenuItem>
-                          <MenuItem eventKey={1.2}>How it works?</MenuItem>
-                          <MenuItem eventKey={1.3}>Testimonials</MenuItem>
-                          <MenuItem eventKey={1.3}>Success stories</MenuItem>
+                          <Link to="/about">About Agency</Link>
+                          <Link to="/how-works">How it works?</Link>
+                          <Link to="/testimonials">Testimonials</Link>
+                          <Link to="stories">Success stories</Link>
                         </NavDropdown>
 
                         <li role="presentation">
@@ -44,10 +44,10 @@ class PublicHeader extends Component {
                         </li>
 
                         <NavDropdown role="presentation" eventKey={2} title="Support" id="support-nav-dropdown">
-                          <MenuItem eventKey={2.1}>Send Request</MenuItem>
-                          <MenuItem eventKey={2.2}>FAQ</MenuItem>
+                          <Link to="/send-request">Send Request</Link>
+                          <Link to="/faq">FAQ</Link>
                         </NavDropdown>
-                    </Nav>
+                    </ul>
                 </Navbar.Collapse> 
             </Navbar>
         );

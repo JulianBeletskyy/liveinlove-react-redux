@@ -84,6 +84,13 @@ export function sendSignUpOne(data) {
     }
 }
 
+export function saveImage(data) {
+    return {
+        type: types.SAVE_IMAGE,
+        data
+    }
+}
+
 export function setSignUpData(data) {
     return {
         type: types.SET_SIGN_UP_DATA,

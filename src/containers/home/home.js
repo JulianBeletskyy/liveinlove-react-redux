@@ -17,13 +17,13 @@ class Home extends Component {
         return (
             <div className={style.homeWrapper} >
                 <div className={style.shadow}>
-                    <Grid className="title">
+                    <Grid fluid>
                         <Row>
                             <Col md={5} sm={12} >
                                 <Auth/>
                             </Col>
 
-                            <Col md={6} sm={12} mdOffset={1} >
+                            <Col md={6} sm={12} mdOffset={1} className="title">
                                 <div className={style.bigDesc}>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit
                                 </div>
