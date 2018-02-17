@@ -71,6 +71,45 @@ export default {
         .catch(error => console.log(error))
     },
 
+    signUpTwo(data) {
+        return fetch(config.API_URL + 'signup/client/step/two', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'multipart/form-data'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    signUpThree(data) {
+        return fetch(config.API_URL + 'signup/client/step/three', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    signUpFinish(data) {
+        return fetch(config.API_URL + 'signup/finish', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(responseHandler)
+            .catch(error => console.log(error))
+    },
+
     getHeights() {
         return fetch(config.API_URL + 'height', {
             method: 'get',
@@ -153,5 +192,17 @@ export default {
         })
         .then(responseHandler)
         .catch(error => console.log(error))
+    },
+
+    getInterests() {
+        return fetch(config.API_URL + 'interests', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(responseHandler)
+            .catch(error => console.log(error))
     }
 }

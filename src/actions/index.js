@@ -84,6 +84,50 @@ export function sendSignUpOne(data) {
     }
 }
 
+export function sendSignUpTwo(data) {
+    return dispatch => {
+        return api.signUpTwo(data)
+            .then(json => {
+                if (json.data) {
+                    console.log(json.data)
+                    dispatch(changeStep(3))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function sendSignUpThree(data) {
+    return dispatch => {
+        return api.signUpThree(data)
+            .then(json => {
+                if (json.data) {
+                    dispatch(sendSignUpFinish({'remember_token': json.data}))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function sendSignUpFinish(data) {
+    return dispatch => {
+        return api.signUpFinish(data)
+            .then(json => {
+                if (json.data) {
+                    console.log(json.data)
+                    dispatch(changeStep(4))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
 export function saveImage(data) {
     return {
         type: types.SAVE_IMAGE,
@@ -196,6 +240,20 @@ export function getMaritalStatus() {
     }
 }
 
+export function getInterests() {
+    return dispatch => {
+        return api.getInterests()
+            .then(json => {
+                if (json.data) {
+                    dispatch(setInterests(json.data))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
 export function setHairColor(value) {
     return {
         type: types.SET_HAIR_COLOR,
@@ -245,6 +303,13 @@ export function setMaritalStatus(value) {
     }
 }
 
+export function setInterests(value) {
+    return {
+        type: types.SET_INTERESTS,
+        value
+    }
+}
+
 export function changeStep(value) {
     return {
         type: types.CHANGE_STEP,
@@ -280,9 +345,37 @@ export function removeActiveAthnicity(id) {
     }
 }
 
-export function toggleModal(value) {
+export function setActiveInterest(id) {
     return {
-        type: types.TOGGLE_MODAL,
+        type: types.SET_ACTIVE_INTEREST,
+        id
+    }
+}
+
+export function removeActiveInterest(id) {
+    return {
+        type: types.REMOVE_ACTIVE_INTEREST,
+        id
+    }
+}
+
+export function toggleModalRegistration(value) {
+    return {
+        type: types.TOGGLE_REGISTRATION,
+        value
+    }
+}
+
+export function toggleTextarea(value) {
+    return {
+        type: types.TOGGLE_TEXTAREA,
+        value
+    }
+}
+
+export function saveFile(value) {
+    return {
+        type: types.SAVE_FILE,
         value
     }
 }

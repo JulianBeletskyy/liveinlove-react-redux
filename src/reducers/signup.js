@@ -2,11 +2,12 @@ import * as types from '../actions/types.js'
 
 const initialState = {
     showModal: false,
-    step: 2,
+    step: 0,
     data: { 
         birth: {},
         match: {},
-        female_ethnicity: []
+        female_ethnicity: [],
+        interest: []
     },
     remember_token: '',
     heights: [],
@@ -16,19 +17,25 @@ const initialState = {
     hairLength: [],
     ethnicities: [],
     maritalStatus: [],
-    avatar: ''
+    interests: [],
+    avatar: '',
+    file: new FormData()
 }
 
 export default function signup(signup = initialState, action = {}) {
     let temp = Object.assign([], signup.data)
     switch (action.type) {
-        case types.TOGGLE_MODAL:
+        /*case types.TOGGLE_MODAL:
             return Object.assign({}, signup, {
                 showModal: action.value
-            });
+            });*/
         case types.SET_SIGN_UP_DATA:
             return Object.assign({}, signup, {
                 data: action.data
+            });
+        case types.SAVE_FILE:
+            return Object.assign({}, signup, {
+                file: action.value
             });
         case types.CHANGE_STEP:
             return Object.assign({}, signup, {
@@ -66,6 +73,10 @@ export default function signup(signup = initialState, action = {}) {
             return Object.assign({}, signup, {
                 maritalStatus: action.value
             });
+        case types.SET_INTERESTS:
+            return Object.assign({}, signup, {
+                interests: action.value
+            });
         case types.SET_ACTIVE_ATHNICITY:
             temp.female_ethnicity.push(action.id)
             return Object.assign({}, signup, {
@@ -75,6 +86,20 @@ export default function signup(signup = initialState, action = {}) {
             for (var k in temp.female_ethnicity) {
                 if (temp.female_ethnicity[k] === action.id) {
                     temp.female_ethnicity.splice(k, 1)
+                }
+            }
+            return Object.assign({}, signup, {
+                data: temp
+            });
+        case types.SET_ACTIVE_INTEREST:
+            temp.interest.push(action.id)
+            return Object.assign({}, signup, {
+                data: temp
+            });
+        case types.REMOVE_ACTIVE_INTEREST:
+            for (var k in temp.interest) {
+                if (temp.interest[k] === action.id) {
+                    temp.interest.splice(k, 1)
                 }
             }
             return Object.assign({}, signup, {
