@@ -1,0 +1,15 @@
+:local(.selectWrapper) {
+ position: relative;
+}
+
+:local(.placeholder) {
+	position: absolute;
+	top: 7px;
+	left: 0;
+	font-family: bebas_neue;
+  font-weight: 400;
+  letter-spacing: 1px;
+  z-index: 0;
+  opacity: 0.5;
+  transition: all 0.2s linear 0s;
+}
