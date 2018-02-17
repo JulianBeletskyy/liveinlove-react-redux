@@ -1,10 +1,18 @@
 import { combineReducers } from 'redux'
 import user from './user.js'
+import alerts from './alerts.js'
+import signup from './signup.js'
+import textField from './text_input.js'
+import ethnicity from './ethnicity.js'
 import { routerReducer } from 'react-router-redux'
 
 const reducer = combineReducers({
     routing: routerReducer,
-    user
+    user,
+    alerts,
+    signup,
+    textField,
+    ethnicity
 })
 
 export default reducer

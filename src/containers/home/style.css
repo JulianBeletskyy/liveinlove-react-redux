@@ -1,0 +1,34 @@
+:local(.homeWrapper) {
+	width: 100%;
+	height: 95vh;
+	background-image: url('/assets/img/login-bg.jpg');
+	background-size: cover;
+	background-repeat: repeat;
+}
+
+:local(.bigDesc) {
+	font-weight: 600;
+	color: rgba(255,255,255,1);
+	font-size: 48px;
+	letter-spacing: 2px;
+}
+
+:local(.smallDesc) {
+	font-size: 18px;
+	letter-spacing: .7px;
+	color: rgba(255,255,255, 1);
+}
+
+:local(.shadow) {
+	padding-top: 150px;
+	padding-bottom: 100px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.25);
+}
+
+@media screen and (max-width: 768px){
+	:local(.homeWrapper) {
+		height: auto;
+	}
+}

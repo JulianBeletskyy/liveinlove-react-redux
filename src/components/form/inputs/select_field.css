@@ -1,0 +1,14 @@
+:local(.select) {
+    font-family: bebas_neue;
+    border-radius: 0px;
+    padding-left: 0;
+    border-top-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    box-shadow:inset 0 0 0 0 #fff;
+}
+
+:local(.select:focus) {
+    box-shadow:inset 0 0 0 0 #fff;
+    box-shadow: 0 0 0 0 #fff;
+}

@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
-import store from '../../store/'
-import { FormGroup, ControlLabel, FormControl, Button, Panel} from 'react-bootstrap'
-import { login } from '../../actions/'
-import api from '../../api'
+import store from 'store/'
+import { FormGroup, Panel} from 'react-bootstrap'
+import { login } from 'actions'
+import { Link } from 'react-router-dom';
+import Validator from 'validate'
+import TextField from 'components/form/inputs/text_field.js';
+import BtnMain from 'components/form/buttons/main_button.js';
+import CheckboxField from 'components/form/inputs/checkbox_field.js';
+import style from './style.css'
 
 class Auth extends Component {
     constructor(props) {
@@ -12,41 +17,58 @@ class Auth extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const data = {
-            email: this.auth.email.value,
-            password: this.auth.password.value
+        let error = 1;
+        error *= Validator.check(this.auth.email.value, ['required', 'email'], 'Email')
+        error *= Validator.check(this.auth.password.value, ['required'], 'Password')
+        if (error) {
+            const data = {
+                email: this.auth.email.value,
+                password: this.auth.password.value
+            }
+            console.log(data)
+            store.dispatch(login(data))
         }
-        store.dispatch(login(data))
     }
 
     render() {
         return (
-            <Panel>
-                <Panel.Heading>Log In</Panel.Heading>
+            <Panel className={style.loginPanel}>
+                <Panel.Heading className={style.loginHeader + ' title text-center'}>Please Log In</Panel.Heading>
                 <Panel.Body>
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit} noValidate={true}>
                         <FormGroup>
-                            <ControlLabel>Email</ControlLabel>
-                            <FormControl 
+                            <TextField 
                                 type="email"
                                 placeholder="Enter email"
                                 inputRef={ref => { this.auth.email = ref }}
                             />
                         </FormGroup>
+
                         <FormGroup>
-                            <ControlLabel>Password</ControlLabel>
-                            <FormControl 
+                            <TextField 
                                 type="password" 
                                 placeholder="Enter password"
                                 inputRef={ref => { this.auth.password = ref }}
                              />
                         </FormGroup>
-                        <FormGroup>
-                            <Button type="submit" bsStyle="success">Log In</Button>
+
+                        <FormGroup className={style.inline + ' title'} >
+                            <CheckboxField 
+                                text='Remember me'
+                            />
+
+                            <Link className="pull-right" to="/pass-recovery">Forgot password?</Link>
+                        </FormGroup>
+
+                        <FormGroup className="text-center">
+                            <BtnMain
+                                type="submit"
+                                bsStyle="success"
+                                text="Log In"/>
                         </FormGroup>
                     </form>
                 </Panel.Body>
-            </Panel>
+            </Panel> 
         );
     }
 }
