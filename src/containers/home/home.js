@@ -19,7 +19,7 @@ class Home extends Component {
                 <div className={style.shadow}>
                     <Grid fluid>
                         <Row>
-                            <Col md={5} sm={12} >
+                            <Col md={4} sm={12} >
                                 <Auth/>
                             </Col>
 
