@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import * as pages from './containers'
 import store from './store'
 import routing from './config/route.js'
-import PublicHeader from 'components/header/public_header.js'
-import PublicFooter from 'components/footer/public_footer.js'
-import { Alert } from 'components'
+import PublicHeader from './components/header/public_header.js'
+import PublicFooter from './components/footer/public_footer.js'
+import { Alert } from './components'
 import style from './App.css'
 
 class App extends Component {

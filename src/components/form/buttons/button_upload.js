@@ -4,11 +4,12 @@ import store from 'store'
 import { Button } from 'react-bootstrap'
 import style from './main_button.css'
 import ImageUploader from 'react-images-upload';
-import { saveImage } from 'actions'
+import { saveImage, saveFile } from 'actions'
 
 class BtnUpload extends Component {
     onDrop = (picture) => {
         if (picture) {
+            store.dispatch(saveFile(picture[0]))
             let reader = new FileReader();
             reader.readAsDataURL(picture[0])
             reader.onload = function() {
