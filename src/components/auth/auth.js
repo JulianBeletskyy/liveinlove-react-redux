@@ -33,7 +33,7 @@ class Auth extends Component {
     render() {
         return (
             <Panel className={style.loginPanel}>
-                <Panel.Heading className={style.loginHeader + ' title text-center'}>Please Log In</Panel.Heading>
+                <Panel.Heading className={style.loginHeader + ' title text-center'}>Log In</Panel.Heading>
                 <Panel.Body>
                     <form onSubmit={this.handleSubmit} noValidate={true}>
                         <FormGroup>

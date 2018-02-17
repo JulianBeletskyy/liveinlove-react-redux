@@ -54,7 +54,8 @@ class SignUpStart extends Component {
                 password: this.signup.password.value,
                 terms: this.signup.terms.checked,
                 match: {},
-                female_ethnicity: []
+                female_ethnicity: this.props.signup.data.female_ethnicity,
+                interest: this.props.signup.data.interest,
             }
             store.dispatch(sendSignUpStart(data))
         }

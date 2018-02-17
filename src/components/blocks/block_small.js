@@ -2,23 +2,47 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import style from './block_small.css'
 import store from 'store/'
-import { setActiveAthnicity, removeActiveAthnicity } from 'actions'
+import { setActiveAthnicity, removeActiveAthnicity, setActiveInterest, removeActiveInterest } from 'actions'
 
 class BlockSmall extends Component {
+    
+
     toggleState = () => {
-        if (this.props.signup.data.female_ethnicity.indexOf(this.props.id) + 1) {
-            store.dispatch(removeActiveAthnicity(this.props.id))
+        let setMethod = setActiveAthnicity
+        let removeMethod = removeActiveAthnicity
+        switch (this.props.type) {
+            case 'female_ethnicity':
+                setMethod = setActiveAthnicity
+                removeMethod = removeActiveAthnicity
+                break;
+            case 'interest': 
+                setMethod = setActiveInterest
+                removeMethod = removeActiveInterest
+                break;
+        }
+        if (this.props.signup.data[this.props.type].indexOf(this.props.id) + 1) {
+            store.dispatch(removeMethod(this.props.id))
         } else {
-            store.dispatch(setActiveAthnicity(this.props.id))
+            store.dispatch(setMethod(this.props.id))
         }
     }
 
     render() {
-        const { female_ethnicity } = this.props.signup.data
+        const { female_ethnicity, interest } = this.props.signup.data
         let className = style.block + ' title'
-        if (female_ethnicity.indexOf(this.props.id) + 1) {
-            className += (' ' + style.active)
+        switch (this.props.type) {
+            case 'female_ethnicity': 
+                if (female_ethnicity.indexOf(this.props.id) + 1) {
+                    className += (' ' + style.active)
+                }
+                break;
+            case 'interest': 
+                if (interest.indexOf(this.props.id) + 1) {
+                    className += (' ' + style.active)
+                }
+                break;
         }
+        
         return (
             <div 
                 className={className}

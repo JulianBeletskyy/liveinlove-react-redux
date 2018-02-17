@@ -35,7 +35,6 @@ class SignUpOne extends Component {
     }
 
     getSignUpTwo = (event) => {
-        console.log(this.signup.match.from.value)
         event.preventDefault()
         let error = 1
         for (let k in this.signup.match) {
@@ -82,6 +81,7 @@ class SignUpOne extends Component {
                     from: this.signup.match.from.value,
                     to: this.signup.match.to.value
                 },
+                interest: this.props.signup.data.interest,
                 remember_token: this.props.signup.remember_token
             }
             
@@ -153,7 +153,7 @@ class SignUpOne extends Component {
     }
 
     printEthnicity = (ethnicity, i) => {
-        return (<Col sm={2} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={ethnicity.value} id={ethnicity.id} /></Col>)
+        return (<Col sm={2} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={ethnicity.value} id={ethnicity.id} type="female_ethnicity"  /></Col>)
     }
 
     render() {
