@@ -4,12 +4,11 @@ import { Button } from 'react-bootstrap'
 import style from './button.css'
 
 class Btn extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
+        let orientationStyle = ''
         const orientation = this.props.orientation
+        orientationStyle = orientation === 'right' ? style.right : style.left
+
         return (
             <Button 
                 type={this.props.type} 
@@ -17,8 +16,8 @@ class Btn extends Component {
                 bsClass={style.button}
                 onClick={this.props.onClick}
             >
-                <span className={style.btnText + ' ' + style.right}>{this.props.text}</span>
-                <i className={style.btnIcon + " fas fa-angle-" + orientation}></i>
+                <span className={style.btnText + ' ' + orientationStyle}>{this.props.text}</span>
+                <i className={style.btnIcon + ' ' + orientationStyle + " fas fa-angle-" + orientation}></i>
                 <span className={style.btnHover}></span>
             </Button>
         );

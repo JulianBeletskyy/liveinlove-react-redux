@@ -17,7 +17,7 @@ export default function textField(textField = initialState, action = {}) {
         case types.REMOVE_ID_TEXTFIELD:
             let index = -1;
             for (var k in temp) {
-                if (temp[k] == action.id) {
+                if (temp[k] === action.id) {
                    index = k
                 }
             }

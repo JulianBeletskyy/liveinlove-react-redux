@@ -31,3 +31,23 @@ body .title {
 .modal-lg {
     width: 60%;
 }
+
+.fileContainer {
+    padding: 0;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.fileContainer .chooseFileButton {
+    background: #34dca2;
+    border-radius: 0;
+    padding: 0.8125em 40px;
+}
+
+.fileContainer .chooseFileButton:hover {
+    background-color: #1eaf7d;
+    color: #fff;
+}
+
+.fileContainer .uploadPictureContainer {
+    display: none;
+}

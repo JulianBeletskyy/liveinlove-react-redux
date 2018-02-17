@@ -5,23 +5,18 @@ import store from 'store/'
 import { setActiveAthnicity, removeActiveAthnicity } from 'actions'
 
 class BlockSmall extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     toggleState = () => {
-        if (this.props.ethnicity.active.indexOf(this.props.id) + 1) {
+        if (this.props.signup.data.female_ethnicity.indexOf(this.props.id) + 1) {
             store.dispatch(removeActiveAthnicity(this.props.id))
         } else {
             store.dispatch(setActiveAthnicity(this.props.id))
         }
-        
     }
 
     render() {
-        const { active } = this.props.ethnicity
+        const { female_ethnicity } = this.props.signup.data
         let className = style.block + ' title'
-        if (active.indexOf(this.props.id) + 1) {
+        if (female_ethnicity.indexOf(this.props.id) + 1) {
             className += (' ' + style.active)
         }
         return (

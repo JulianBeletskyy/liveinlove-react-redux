@@ -14,17 +14,14 @@
 }
 
 input[value=male]:checked + .fa-mars {
-    color: black;
-}
-
-input[value=female]:checked + .fa-venus {
-    color: black;
-}
-
-.fa-mars {
     color: #36A5C0;
 }
 
-.fa-venus {
+input[value=female]:checked + .fa-venus {
     color: #F2395B;
+}
+
+.fa-mars,
+.fa-venus {
+    color: rgb(114, 110, 111);
 }

@@ -2,8 +2,12 @@ import * as types from '../actions/types.js'
 
 const initialState = {
     showModal: false,
-    step: 0,
-    data: {},
+    step: 2,
+    data: { 
+        birth: {},
+        match: {},
+        female_ethnicity: []
+    },
     remember_token: '',
     heights: [],
     weights: [],
@@ -11,14 +15,20 @@ const initialState = {
     hairColor: [],
     hairLength: [],
     ethnicities: [],
-    maritalStatus: []
+    maritalStatus: [],
+    avatar: ''
 }
 
 export default function signup(signup = initialState, action = {}) {
+    let temp = Object.assign([], signup.data)
     switch (action.type) {
         case types.TOGGLE_MODAL:
             return Object.assign({}, signup, {
                 showModal: action.value
+            });
+        case types.SET_SIGN_UP_DATA:
+            return Object.assign({}, signup, {
+                data: action.data
             });
         case types.CHANGE_STEP:
             return Object.assign({}, signup, {
@@ -55,6 +65,24 @@ export default function signup(signup = initialState, action = {}) {
         case types.SET_MARITAL_STATUS:
             return Object.assign({}, signup, {
                 maritalStatus: action.value
+            });
+        case types.SET_ACTIVE_ATHNICITY:
+            temp.female_ethnicity.push(action.id)
+            return Object.assign({}, signup, {
+                data: temp
+            });
+        case types.REMOVE_ACTIVE_ATHNICITY:
+            for (var k in temp.female_ethnicity) {
+                if (temp.female_ethnicity[k] === action.id) {
+                    temp.female_ethnicity.splice(k, 1)
+                }
+            }
+            return Object.assign({}, signup, {
+                data: temp
+            });
+        case types.SAVE_IMAGE:
+            return Object.assign({}, signup, {
+                avatar: action.data
             });
         default:
             return signup;

@@ -11,6 +11,7 @@ class TextField extends Component {
         
         this.input = false
         this.id = Math.round(Math.random() * 999 * 1000)
+        this.handleChange()
     }
 
     thisRef = (ref) => {
@@ -19,7 +20,7 @@ class TextField extends Component {
     }
 
     handleChange = () => {
-        if (this.input.value) {
+        if (this.input.value || this.props.value) {
             store.dispatch(setPlaceholder(this.id))
         } else {
             store.dispatch(removePlaceholder(this.id))
@@ -28,7 +29,7 @@ class TextField extends Component {
 
     render() {
         const { changed } = this.props.textField;
-
+        
         let className = style.placeholder;
         if (changed.indexOf(this.id) >= 0) {
             className += (' ' + style.active)
