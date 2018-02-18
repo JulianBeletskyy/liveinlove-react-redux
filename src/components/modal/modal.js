@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Modal } from 'react-bootstrap'
 import store from 'store/'
-import { toggleModalRegistration } from 'actions'
+import { toggleModal } from 'actions'
 import style from './modal.css'
 import { changeStep } from 'actions';
 
 class MainModal extends Component {
     closeModal = () => {
-        store.dispatch(toggleModalRegistration(false))
+        store.dispatch(toggleModal(false, 'registration'))
         store.dispatch(changeStep(0))
     }
     

@@ -2,17 +2,7 @@ import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup, Row, Col } from 'react-bootstrap'
-import { 
-    changeStep, 
-    getHeights, 
-    getWeights, 
-    getEyesColor, 
-    getHairColor, 
-    getHairLength, 
-    getEthnicities, 
-    getMaritalStatus,
-    sendSignUpOne
-} from 'actions'
+import { changeStep, sendSignUpOne} from 'actions'
 import SelectField from 'components/form/inputs/select_field.js'
 import Btn from 'components/form/buttons/button.js'
 import BlockSmall from 'components/blocks/block_small.js'
@@ -24,14 +14,6 @@ class SignUpOne extends Component {
         this.signup = {
             match: {}
         }
-        
-        store.dispatch(getHeights())
-        store.dispatch(getWeights())
-        store.dispatch(getEyesColor())
-        store.dispatch(getHairColor())
-        store.dispatch(getHairLength())
-        store.dispatch(getEthnicities())
-        store.dispatch(getMaritalStatus())
     }
 
     getSignUpTwo = (event) => {
@@ -54,20 +36,6 @@ class SignUpOne extends Component {
         
         if (error) {
             const data = {
-                first_name: this.props.signup.data.first_name,
-                last_name: this.props.signup.data.last_name,
-                role: this.props.signup.data.role,
-                birth: {
-                    month: this.props.signup.data.birth.month,
-                    day: this.props.signup.data.birth.day,
-                    year: this.props.signup.data.birth.year
-                },
-                country: this.props.signup.data.country,
-                city: this.props.signup.data.city,
-                email: this.props.signup.data.email,
-                password: this.props.signup.data.password,
-                terms: this.props.signup.data.terms,
-
                 height_id: this.signup.height.value,
                 weight_id: this.signup.weight.value,
                 eyes_id: this.signup.eyes.value,
@@ -87,7 +55,6 @@ class SignUpOne extends Component {
             
             store.dispatch(sendSignUpOne(data))
         }
-       
     }
 
     prevStep = () => {

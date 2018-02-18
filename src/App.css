@@ -28,9 +28,12 @@ body .title {
 	border: none;
 }
 
-.modal-lg {
-    width: 60%;
+@media (min-width: 992px) {
+    .modal-lg {
+        width: 60%;
+    }
 }
+
 
 .fileContainer {
     padding: 0;

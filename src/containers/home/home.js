@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { Auth, Registration, MainModal } from 'components'
-import { toggleModalRegistration } from 'actions'
+import { toggleModal } from 'actions'
 import store from 'store/'
 import BtnMain from 'components/form/buttons/main_button.js'
 import style from './style.css';
 
 class Home extends Component {
     showModal = () => {
-        store.dispatch(toggleModalRegistration(true, 'registration'))
+        store.dispatch(toggleModal(true, 'registration'))
     }
 
     render() {

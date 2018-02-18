@@ -3,7 +3,17 @@ import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup, Col, Radio, Row } from 'react-bootstrap'
 import Validator from 'validate'
-import { sendSignUpStart } from 'actions'
+import { 
+    sendSignUpStart, 
+    getHeights, 
+    getWeights, 
+    getEyesColor, 
+    getHairColor, 
+    getHairLength, 
+    getEthnicities, 
+    getMaritalStatus,
+    getInterests 
+} from 'actions'
 import TextField from 'components/form/inputs/text_field.js'
 import SelectField from 'components/form/inputs/select_field.js'
 import Btn from 'components/form/buttons/button.js'
@@ -17,8 +27,24 @@ class SignUpStart extends Component {
             role: 'client',
             birth: {}
         }
-
         this.role = {}
+
+        const getFunc = {
+            heights: () => {store.dispatch(getHeights())},
+            weights: () => {store.dispatch(getWeights())},
+            eyesColor: () => {store.dispatch(getEyesColor())},
+            hairColor: () => {store.dispatch(getHairColor())},
+            hairLength: () => {store.dispatch(getHairLength())},
+            ethnicities: () => {store.dispatch(getEthnicities())},
+            maritalStatus: () => {store.dispatch(getMaritalStatus())},
+            interests: () => {store.dispatch(getInterests())}
+        }
+
+        for (let k in getFunc) {
+            if (! this.props.signup[k].length) {
+                getFunc[k]()
+            }
+        }
     }
 
     getSignUpOne = (event) => {
@@ -52,10 +78,7 @@ class SignUpStart extends Component {
                 city: this.signup.city.value,
                 email: this.signup.email.value,
                 password: this.signup.password.value,
-                terms: this.signup.terms.checked,
-                match: {},
-                female_ethnicity: this.props.signup.data.female_ethnicity,
-                interest: this.props.signup.data.interest,
+                terms: this.signup.terms.checked
             }
             store.dispatch(sendSignUpStart(data))
         }
