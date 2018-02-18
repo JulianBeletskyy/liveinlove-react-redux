@@ -4,7 +4,7 @@ import store from 'store'
 import { FormGroup, Col, Row, FormControl } from 'react-bootstrap'
 import BtnMain from 'components/form/buttons/main_button.js'
 import Btn from 'components/form/buttons/button.js'
-import { getInterests, changeStep, sendSignUpThree } from 'actions'
+import { changeStep, sendSignUpThree } from 'actions'
 import BlockSmall from 'components/blocks/block_small.js'
 import Textarea from 'components/form/inputs/textarea.js'
 import Validator from 'validate'
@@ -13,8 +13,6 @@ class SignUpThree extends Component {
     constructor(props) {
         super(props)
         this.signup = {}
-        
-        store.dispatch(getInterests())
     }
 
     getConfirm = () => {
