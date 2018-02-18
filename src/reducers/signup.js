@@ -2,7 +2,7 @@ import * as types from '../actions/types.js'
 
 const initialState = {
     showModal: false,
-    step: 1,
+    step: 0,
     data: { 
         first_name: '',
         last_name: '',
