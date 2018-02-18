@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
-import { changeStep, sendSignUpTwo, toggleModalRegistration } from 'actions'
+import { changeStep, sendSignUpTwo, toggleModal } from 'actions'
 import { FormGroup, Row, Col } from 'react-bootstrap'
 import BtnMain from 'components/form/buttons/main_button.js'
 import Cropper from 'react-cropper';
@@ -16,7 +16,7 @@ class SignUpConfirm extends Component {
     }
 
     confirm = () => {
-        store.dispatch(toggleModalRegistration(false))
+        store.dispatch(toggleModal(false, 'registration'))
     }
 
     render() {

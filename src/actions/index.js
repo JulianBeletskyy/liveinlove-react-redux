@@ -331,38 +331,27 @@ export function removePlaceholder(id) {
     }
 }
 
-export function setActiveAthnicity(id) {
+export function setActiveBlock(id, key) {
     return {
-        type: types.SET_ACTIVE_ATHNICITY,
-        id
+        type: types.SET_ACTIVE_BLOCK,
+        id,
+        key
     }
 }
 
-export function removeActiveAthnicity(id) {
+export function removeActiveBlock(id, key) {
     return {
-        type: types.REMOVE_ACTIVE_ATHNICITY,
-        id
+        type: types.REMOVE_ACTIVE_BLOCK,
+        id,
+        key
     }
 }
 
-export function setActiveInterest(id) {
+export function toggleModal(value, key) {
     return {
-        type: types.SET_ACTIVE_INTEREST,
-        id
-    }
-}
-
-export function removeActiveInterest(id) {
-    return {
-        type: types.REMOVE_ACTIVE_INTEREST,
-        id
-    }
-}
-
-export function toggleModalRegistration(value) {
-    return {
-        type: types.TOGGLE_REGISTRATION,
-        value
+        type: types.TOGGLE_MODAL,
+        value,
+        key
     }
 }
 
