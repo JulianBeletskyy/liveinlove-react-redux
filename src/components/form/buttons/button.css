@@ -50,13 +50,20 @@
     width: 100%;
     height: 100%;
     top: 32%;
-    left: -500px;
     right: 0;
     bottom: 0;
     opacity: 1;
     transform: translateY(0);
     line-height: 1;
     transition: all .3s;
+}
+
+:local(.btnIcon.right) {
+    left: -500px;
+}
+
+:local(.btnIcon.left) {
+    left: 500px;
 }
 
 :local(.button:hover .btnIcon) {
@@ -78,4 +85,8 @@
 
 :local(.button:hover .btnText.right) {
     transform: translateX(500px);
+}
+
+:local(.button:hover .btnText.left) {
+    transform: translateX(-500px);
 }

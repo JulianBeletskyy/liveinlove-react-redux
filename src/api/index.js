@@ -8,8 +8,8 @@ const responseHandler = (response) => {
     let ok = response.ok
     promise.then(response => {
         if (response.validate) {
-            for (var k in response.validate) {
-                for (var j in response.validate[k]) {
+            for (let k in response.validate) {
+                for (let j in response.validate[k]) {
                     store.dispatch(setAlert(response.validate[k][j], 'error'))
                 }
             }
@@ -20,8 +20,8 @@ const responseHandler = (response) => {
         }
 
         if (response.errors) {
-            for (var k in response.errors) {
-                for (var j in response.errors[k]) {
+            for (let k in response.errors) {
+                for (let j in response.errors[k]) {
                     store.dispatch(setAlert(response.errors[k][j], 'error'))
                 }
             }
@@ -56,6 +56,58 @@ export default {
         })
         .then(responseHandler)
         .catch(error => console.log(error))
+    },
+
+    signUpOne(data) {
+        return fetch(config.API_URL + 'signup/client/step/one', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    signUpTwo(data) {
+        return fetch(config.API_URL + 'signup/client/step/two', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'multipart/form-data'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    signUpThree(data) {
+        return fetch(config.API_URL + 'signup/client/step/three', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    signUpFinish(data) {
+        return fetch(config.API_URL + 'signup/finish', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(responseHandler)
+            .catch(error => console.log(error))
     },
 
     getHeights() {
@@ -140,5 +192,17 @@ export default {
         })
         .then(responseHandler)
         .catch(error => console.log(error))
+    },
+
+    getInterests() {
+        return fetch(config.API_URL + 'interests', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(responseHandler)
+            .catch(error => console.log(error))
     }
 }

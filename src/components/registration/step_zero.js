@@ -1,14 +1,23 @@
 import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
-import { FormGroup, ControlLabel, Col, Radio, Row } from 'react-bootstrap'
+import { FormGroup, Col, Radio, Row } from 'react-bootstrap'
 import Validator from 'validate'
-import { sendSignUpStart } from 'actions'
+import { 
+    sendSignUpStart, 
+    getHeights, 
+    getWeights, 
+    getEyesColor, 
+    getHairColor, 
+    getHairLength, 
+    getEthnicities, 
+    getMaritalStatus,
+    getInterests 
+} from 'actions'
 import TextField from 'components/form/inputs/text_field.js'
 import SelectField from 'components/form/inputs/select_field.js'
 import Btn from 'components/form/buttons/button.js'
 import CheckboxField from 'components/form/inputs/checkbox_field.js'
-import Autocomplete from 'components/form/inputs/autocomplete.js'
 import style from './step_zero.css'
 
 class SignUpStart extends Component {
@@ -19,19 +28,35 @@ class SignUpStart extends Component {
             birth: {}
         }
         this.role = {}
+
+        const getFunc = {
+            heights: () => {store.dispatch(getHeights())},
+            weights: () => {store.dispatch(getWeights())},
+            eyesColor: () => {store.dispatch(getEyesColor())},
+            hairColor: () => {store.dispatch(getHairColor())},
+            hairLength: () => {store.dispatch(getHairLength())},
+            ethnicities: () => {store.dispatch(getEthnicities())},
+            maritalStatus: () => {store.dispatch(getMaritalStatus())},
+            interests: () => {store.dispatch(getInterests())}
+        }
+
+        for (let k in getFunc) {
+            if (! this.props.signup[k].length) {
+                getFunc[k]()
+            }
+        }
     }
 
     getSignUpOne = (event) => {
         event.preventDefault()
         let error = 1
-        
         for (var k in this.signup.birth) {
             if (error) {
                 error *= Validator.check(this.signup.birth[k].value, ['required'], 'Birthday')
             }
         }
-        error *= Validator.check(this.signup.firstname.value, ['required', 'string', 'alphabet'], 'First Name')
-        error *= Validator.check(this.signup.lastname.value, ['required', 'string', 'alphabet'], 'Last Name')
+        error *= Validator.check(this.signup.first_name.value, ['required', 'string', 'alphabet'], 'First Name')
+        error *= Validator.check(this.signup.last_name.value, ['required', 'string', 'alphabet'], 'Last Name')
         error *= Validator.check(this.signup.email.value, ['required', 'email'], 'Email')
         error *= Validator.check(this.signup.password.value, ['required'], 'Password')
         
@@ -41,8 +66,8 @@ class SignUpStart extends Component {
         
         if (error) {
             const data = {
-                firstname: this.signup.firstname.value,
-                lastname: this.signup.lastname.value,
+                first_name: this.signup.first_name.value,
+                last_name: this.signup.last_name.value,
                 role: this.signup.role,
                 birth: {
                     month: this.signup.birth.month.value,
@@ -102,7 +127,7 @@ class SignUpStart extends Component {
     }
 
     render() {
-        const { step, data } = this.props.signup;
+        const { data } = this.props.signup;
         
         return (
             <form onSubmit={this.getSignUpOne} noValidate={true}>
@@ -114,7 +139,7 @@ class SignUpStart extends Component {
                                     <Radio 
                                         name="sex" 
                                         value="male"
-                                        defaultChecked={true}
+                                        defaultChecked={data.role != 'girl'}
                                         onChange={this.toggleRole}
                                         inputRef={ref => { this.role.male = ref }}
                                         className={style.gender}
@@ -127,6 +152,7 @@ class SignUpStart extends Component {
                                 <Radio 
                                     name="sex" 
                                     value="female"
+                                    defaultChecked={data.role == 'girl'}
                                     onChange={this.toggleRole}
                                     inputRef={ref => { this.role.female = ref }}
                                     className={style.gender}
@@ -145,8 +171,8 @@ class SignUpStart extends Component {
                                     <TextField
                                         type="text"
                                         placeholder="First Name"
-                                        inputRef={ref => { this.signup.firstname = ref }}
-                                        value={data.firstname}
+                                        inputRef={ref => { this.signup.first_name = ref }}
+                                        value={data.first_name}
                                         name="First Name"
                                     />
                                 </FormGroup>
@@ -156,8 +182,9 @@ class SignUpStart extends Component {
                                     <TextField
                                         type="text"
                                         placeholder="Last Name"
-                                        inputRef={ref => { this.signup.lastname = ref }}
+                                        inputRef={ref => { this.signup.last_name = ref }}
                                         name="Last Name"
+                                        value={data.last_name}
                                     />
                                 </FormGroup>
                             </Col>
@@ -167,6 +194,7 @@ class SignUpStart extends Component {
                                 type="email"
                                 placeholder="Enter email"
                                 inputRef={ref => { this.signup.email = ref }}
+                                value={data.email}
                             />
                         </FormGroup>
                         <FormGroup>
@@ -174,6 +202,7 @@ class SignUpStart extends Component {
                                 type="password"
                                 placeholder="Enter password"
                                 inputRef={ref => { this.signup.password = ref }}
+                                value={data.password}
                             />
                         </FormGroup>
                     </Col>
@@ -185,6 +214,7 @@ class SignUpStart extends Component {
                                         componentClass="select"
                                         inputRef={ref => { this.signup.birth.month = ref }}
                                         options={this.monthArray()}
+                                        value={data.birth.month}
                                     />
                                 </Col>
                                 <Col sm={4}>
@@ -192,6 +222,7 @@ class SignUpStart extends Component {
                                         componentClass="select"
                                         inputRef={ref => { this.signup.birth.day = ref }}
                                         options={this.dayArray()}
+                                        value={data.birth.day}
                                     />
                                 </Col>
                                 <Col sm={4}>
@@ -199,6 +230,7 @@ class SignUpStart extends Component {
                                         componentClass="select"
                                         inputRef={ref => { this.signup.birth.year = ref }}
                                         options={this.yearArray()}
+                                        value={data.birth.year}
                                     />
                                 </Col>
                             </Row>
@@ -208,6 +240,7 @@ class SignUpStart extends Component {
                                 type="text"
                                 placeholder="Country"
                                 inputRef={ref => { this.signup.country = ref }}
+                                value={data.country}
                             />
                         </FormGroup>
                         <FormGroup>
@@ -215,6 +248,7 @@ class SignUpStart extends Component {
                                 type="text"
                                 placeholder="City"
                                 inputRef={ref => { this.signup.city = ref }}
+                                value={data.city}
                             />
                         </FormGroup>
                     </Col>
@@ -222,12 +256,14 @@ class SignUpStart extends Component {
                         <CheckboxField
                             inputRef={ref => { this.signup.terms = ref }}
                             text='By clicking " Join Us for Free" above you agree to "Terms of Use" & "Privacy Policy"'
+                            value={data.terms}
                         />
                         <FormGroup>
                             <Btn
                                 type="submit"
                                 bsStyle="success"
                                 text="Join Us for Free"
+                                orientation="right"
                             />
                         </FormGroup>
                     </Col>

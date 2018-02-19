@@ -4,14 +4,15 @@ import { Modal } from 'react-bootstrap'
 import store from 'store/'
 import { toggleModal } from 'actions'
 import style from './modal.css'
+import { changeStep } from 'actions';
 
 class MainModal extends Component {
     closeModal = () => {
-        store.dispatch(toggleModal(false))
+        store.dispatch(toggleModal(false, 'registration'))
+        store.dispatch(changeStep(0))
     }
     
     render() {
-        const { showModal } = this.props.signup
         return (
             <Modal 
                 show={this.props.show} 

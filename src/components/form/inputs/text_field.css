@@ -1,6 +1,6 @@
 :local(.wrap) {
-   position: relative;
-    padding-bottom: 5px;
+    position: relative;
+    padding-bottom: 8px;
 }
 
 :local(.style) {
@@ -33,6 +33,6 @@
 
 :local(.style:focus + .placeholder),
 :local(.placeholder.active) {
-    bottom: 32px;
+    bottom: 40px;
     font-size: 12px;
 }

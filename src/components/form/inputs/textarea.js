@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import store from 'store/'
 import { connect } from 'react-redux'
+import store from 'store'
 import { FormControl } from 'react-bootstrap'
-import style from './text_field.css'
-import { setPlaceholder, removePlaceholder } from 'actions'
+import style from './textarea.css'
+import { toggleTextarea } from 'actions'
 
-class TextField extends Component {
+class Textarea extends Component {
     constructor(props) {
         super(props);
-        
+
         this.input = false
-        this.id = Math.round(Math.random() * 999 * 1000)
         this.handleChange()
     }
 
@@ -21,30 +20,28 @@ class TextField extends Component {
 
     handleChange = () => {
         if (this.input.value || this.props.value) {
-            store.dispatch(setPlaceholder(this.id))
+            store.dispatch(toggleTextarea(true))
         } else {
-            store.dispatch(removePlaceholder(this.id))
+            store.dispatch(toggleTextarea(false))
         }
     }
 
     render() {
-        const { changed } = this.props.textField;
-        
-        let className = style.placeholder;
-        if (changed.indexOf(this.id) >= 0) {
-            className += (' ' + style.active)
+        const { changed } = this.props.textarea
+        let className = ''
+        if (changed) {
+            className = style.active
         }
         return (
             <div className={style.wrap}>
-                <FormControl
-                    type={this.props.type}
+                <FormControl 
+                    componentClass="textarea"
                     inputRef={this.thisRef}
-                    name={this.props.name}
-                    className={style.style}
+                    bsClass={style.main + ' form-control'}
                     onChange={this.handleChange}
                     defaultValue={this.props.value}
                 />
-                <div className={className}>{this.props.placeholder}</div>
+                <span className={style.placeholder + ' ' + className}>Message</span>
             </div>
         );
     }
@@ -56,4 +53,4 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps
-)(TextField);
+)(Textarea);

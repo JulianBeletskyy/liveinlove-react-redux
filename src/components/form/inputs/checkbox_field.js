@@ -3,15 +3,11 @@ import { connect } from 'react-redux'
 import { Checkbox } from 'react-bootstrap'
 
 class CheckboxField extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <Checkbox 
                 inputRef={this.props.inputRef} 
-                defaultChecked={false}
+                defaultChecked={this.props.value}
             >
                 {this.props.text}
             </Checkbox>
