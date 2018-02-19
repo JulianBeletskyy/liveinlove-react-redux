@@ -24,6 +24,15 @@
 	color: white;
 }
 
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus, 
+.navbar-default .navbar-nav>.open>a:hover,
+.navbar-default .navbar-nav>li>a:focus, 
+.navbar-default .navbar-nav>li>a:hover {
+	background-color: transparent;
+	color: white; 
+}
+
 :local(.navBar>li>a:hover),
 :local(.navBar>li>a:focus),
 :local(.nav .open>a), 
