@@ -89,11 +89,11 @@ class PublicFooter extends Component {
                     </Row>*/}
 
                     <Row className="title">
-                        <Col sm={12} md={6}>
+                        <Col xs={6}>
                             Copyright &copy; Liveinlove - All Rights Reserved
                         </Col>
 
-                        <Col sm={12} md={6} className="text-right">
+                        <Col xs={6} className="text-right">
                             2018
                         </Col>
                     </Row>
