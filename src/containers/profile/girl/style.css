@@ -1,4 +1,0 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Grid, Modal, Row, Col } from 'react-bootstrap'
-import style from './style.css';
