@@ -41,7 +41,7 @@ class Textarea extends Component {
                     onChange={this.handleChange}
                     defaultValue={this.props.value}
                 />
-                <span className={style.placeholder + ' ' + className}>Message</span>
+                <span className={style.placeholder + ' ' + className}>{this.props.placeholder}</span>
             </div>
         );
     }

@@ -68,6 +68,14 @@ export default class Validator {
         return 1
     }
 
+    static integer(value, name) {
+        if (!Number.isInteger(Number(value))) {
+            this.showAlert(name + ' is incorrect', 'error')
+            return 0
+        }
+        return 1
+    }
+
     static isEmptyObject(object) {
         return !object || Object.keys(object).length === 0;
     }
@@ -79,11 +87,7 @@ export default class Validator {
     static isValidString(value, min = 0, max = 255) {
         return this.isString(value) && value.length >= min && value.length <= max;
     }
-
-    static isInteger(value) {
-        return !Number.isInteger(Number(value));
-    }
-
+    
     static isNumeric(value) {
         return !Number.isNaN(Number(value));
     }

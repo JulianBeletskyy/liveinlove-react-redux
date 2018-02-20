@@ -6,7 +6,9 @@ import Girls from './girls/girls.js'
 import Services from './services/services.js'
 import SuccessStories from './success_stories/success_stories.js'
 import Support from './support/support.js'
+import Activate from './activate/activate.js'
 import GirlProfile from './profile/girl.js'
 import ClientProfile from './profile/client.js'
 
-export { NotFound, Home, About, Girls, Services, SuccessStories, Support, Blog, GirlProfile, ClientProfile }
+export { NotFound, Home, About, Girls, Services, SuccessStories, Support, Blog, Activate, GirlProfile, ClientProfile }
+

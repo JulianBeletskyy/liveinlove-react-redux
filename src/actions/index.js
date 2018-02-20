@@ -53,6 +53,21 @@ export function removeAlert() {
     }
 }
 
+export function activateUser(hash) {
+    return dispatch => {
+        return api.activateUser(hash)
+        .then(json => {
+            if (json.data == '') {
+                return true
+                window.location.href = '/profile'
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
 export function sendSignUpStart(data) {
     return dispatch => {
         return api.signUpStart(data)
@@ -75,7 +90,8 @@ export function sendSignUpOne(data) {
             .then(json => {
                 if (json.data) {
                     dispatch(setSignUpData(data))
-                    dispatch(changeStep(2))
+                    const step = data.route == 'client' ? 2 : 5
+                    dispatch(changeStep(step))
                 }
             })
             .catch(error => {
@@ -84,13 +100,28 @@ export function sendSignUpOne(data) {
     }
 }
 
-export function sendSignUpTwo(data) {
+export function sendSignUpTwo(data, step) {
     return dispatch => {
         return api.signUpTwo(data)
             .then(json => {
                 if (json.data) {
+                    dispatch(changeStep(step))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function sendSignUpTwoGirl(data) {
+    return dispatch => {
+        return api.signUpTwoGirl(data)
+            .then(json => {
+                if (json.data) {
                     console.log(json.data)
-                    dispatch(changeStep(3))
+                    dispatch(setSignUpData(data))
+                    dispatch(changeStep(2))
                 }
             })
             .catch(error => {
@@ -104,7 +135,25 @@ export function sendSignUpThree(data) {
         return api.signUpThree(data)
             .then(json => {
                 if (json.data) {
-                    dispatch(sendSignUpFinish({'remember_token': json.data}))
+                    dispatch(sendSignUpFinish({
+                        'remember_token': json.data,
+                        'url': window.location.href + 'activate/{hash}'
+                    }))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function sendSignUpThreeGirl(data) {
+    return dispatch => {
+        return api.signUpThreeGirl(data)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setSignUpData(data))
+                    dispatch(changeStep(3))
                 }
             })
             .catch(error => {
@@ -254,6 +303,56 @@ export function getInterests() {
     }
 }
 
+export function getReligions() {
+    return dispatch => {
+        return api.getReligions()
+            .then(json => {
+                if (json.data) {
+                    dispatch(setReligions(json.data))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function getWantChildren() {
+    return dispatch => {
+        return api.getWantChildren()
+            .then(json => {
+                if (json.data) {
+                    dispatch(setWantChildren(json.data))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function getOptionsSignUp(type) {
+    return dispatch => {
+        return api.getOptionsSignUp(type)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setOptionsSignUp(json.data, type))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function setOptionsSignUp(value, option) {
+    return {
+        type: types.SET_OPTIONS_SIGN_UP,
+        value,
+        option
+    }
+}
+
 export function setHairColor(value) {
     return {
         type: types.SET_HAIR_COLOR,
@@ -306,6 +405,20 @@ export function setMaritalStatus(value) {
 export function setInterests(value) {
     return {
         type: types.SET_INTERESTS,
+        value
+    }
+}
+
+export function setReligions(value) {
+    return {
+        type: types.SET_RELIGIONS,
+        value
+    }
+}
+
+export function setWantChildren(value) {
+    return {
+        type: types.SET_WANT_CHILDREN,
         value
     }
 }

@@ -32,10 +32,19 @@ class SignUpOne extends Component {
         error *= Validator.check(this.signup.ethnicity.value, ['required'], 'Ethnicity')
         error *= Validator.check(this.signup.marital.value, ['required'], 'Marital')
         error *= Validator.check(this.signup.children.value, ['required'], 'Children')
-        error *= Validator.check(this.props.signup.data.female_ethnicity, ['reqiredArray'], 'Ethnicity Match')
+
+        if (this.props.signup.data.role == 'client') {
+            error *= Validator.check(this.props.signup.data.female_ethnicity, ['reqiredArray'], 'Ethnicity Match')
+        } else {
+            console.log(this.signup.want_children.value)
+            error *= Validator.check(this.signup.want_children.value, ['required'], 'Want Children')
+            error *= Validator.check(this.signup.religion.value, ['required'], 'Religions')
+        }
+
         
         if (error) {
             const data = {
+                route: this.props.signup.data.role,
                 height_id: this.signup.height.value,
                 weight_id: this.signup.weight.value,
                 eyes_id: this.signup.eyes.value,
@@ -50,6 +59,8 @@ class SignUpOne extends Component {
                     to: this.signup.match.to.value
                 },
                 interest: this.props.signup.data.interest,
+                want_children_id: this.signup.want_children ? this.signup.want_children.value : '',
+                religion_id: this.signup.religion ? this.signup.religion.value : '',
                 remember_token: this.props.signup.remember_token
             }
             
@@ -90,6 +101,8 @@ class SignUpOne extends Component {
             case 'hairColor': name = 'Hair Color'; break;
             case 'eyesColor': name = 'Eyes Color'; break;
             case 'maritalStatus': name = 'Marital Status'; break;
+            case 'religions': name = 'Religions'; break;
+            case 'want_children': name = 'Do You Want Children?'; break;
             default: name = ''; break;
         }
         let temp = [{ 'value': '', 'name': name }]
@@ -202,9 +215,20 @@ class SignUpOne extends Component {
                                 value={data.children}
                             />
                         </FormGroup>
+                        {data.role == 'girl' ? 
+                        (<FormGroup>
+                            <SelectField
+                                componentClass="select"
+                                inputRef={ref => { this.signup.religion = ref }}
+                                options={this.getArray('religions')}
+                                value={data.religion_id}
+                            />
+                        </FormGroup>)
+                        : ''}
+
                     </Col>
                     <Col xs={12} className="text-center">
-                        <h3 className="title">Seeking A Female</h3>
+                        {data.role == 'client' ? <h3 className="title">Seeking A Female</h3> : <h3 className="title">Seeking A Male</h3>}
                     </Col>
                     <Col xs={12} md={6}>
                         <FormGroup>
@@ -235,8 +259,17 @@ class SignUpOne extends Component {
                         <Row>
                             <Col sm={12}>
                             {
+                                data.role == 'client' ?
                                 ethnicities.map((ethnicity, i) => this.printEthnicity(ethnicity, i))
+                                :
+                                    <SelectField
+                                        componentClass="select"
+                                        inputRef={ref => { this.signup.want_children = ref }}
+                                        options={this.getArray('want_children')}
+                                        value={data.want_children_id}
+                                    />
                             }
+                            
                             </Col>
                         </Row>
                     </Col>
