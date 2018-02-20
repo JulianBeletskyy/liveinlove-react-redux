@@ -20,3 +20,7 @@
 :local(.inline > div) {
 	display: inline;
 }
+
+:local(.inline input[type=checkbox]) {
+	margin-top: 2.5px;
+}

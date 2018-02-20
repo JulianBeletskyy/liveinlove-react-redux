@@ -16,7 +16,7 @@ class Home extends Component {
         const { registration } = this.props.modals
         return (
             <div className={style.homeWrapper} >
-                <div className={style.shadow}>
+                <div className="shadow">
                     <Grid fluid>
                         <Row>
                             <Col md={3} sm={12} >

@@ -1,6 +1,6 @@
 :local(.homeWrapper) {
 	width: 100%;
-	height: 95vh;
+	height: 93.5vh;
 	background-image: url('/assets/img/login-bg.jpg');
 	background-size: cover;
 	background-repeat: repeat;
@@ -17,14 +17,6 @@
 	font-size: 18px;
 	letter-spacing: .7px;
 	color: rgba(255,255,255, 1);
-}
-
-:local(.shadow) {
-	padding-top: 150px;
-	padding-bottom: 100px;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0,0,0,0.25);
 }
 
 @media screen and (max-width: 768px){
