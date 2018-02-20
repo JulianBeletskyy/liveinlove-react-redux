@@ -6,6 +6,7 @@ import 'whatwg-fetch'
 const responseHandler = (response) => {
     let promise = response.json()
     let ok = response.ok
+    
     promise.then(response => {
         if (response.validate) {
             for (let k in response.validate) {
@@ -15,7 +16,7 @@ const responseHandler = (response) => {
             }
         }
 
-        if (response.message && ! response.validate) {
+        if (response.message && (! response.validate || response.validate == null)) {
             store.dispatch(setAlert(response.message, ok ? 'success' : 'error'))
         }
 
@@ -45,6 +46,18 @@ export default {
         .catch(error => console.log(error))
     },
 
+    activateUser(hash) {
+        return fetch(config.API_URL + 'activate/' + hash, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
     signUpStart(data) {
         return fetch(config.API_URL + 'signup/start', {
             method: 'post',
@@ -59,7 +72,8 @@ export default {
     },
 
     signUpOne(data) {
-        return fetch(config.API_URL + 'signup/client/step/one', {
+        console.log(data)
+        return fetch(config.API_URL + 'signup/' + data.route + '/step/one', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -72,11 +86,31 @@ export default {
     },
 
     signUpTwo(data) {
+        let formData = new FormData()
+        formData.append('avatar', data.avatar)
+        formData.append('height', data.height)
+        formData.append('width', data.width)
+        formData.append('x', data.x)
+        formData.append('y', data.y)
+        formData.append('remember_token', data.remember_token)
+
         return fetch(config.API_URL + 'signup/client/step/two', {
             method: 'post',
             headers: {
+                //'Content-Type': 'multipart/form-data'
+            },
+            body: formData
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    signUpTwoGirl(data) {
+        return fetch(config.API_URL + 'signup/girl/step/two', {
+            method: 'post',
+            headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         })
@@ -85,7 +119,20 @@ export default {
     },
 
     signUpThree(data) {
-        return fetch(config.API_URL + 'signup/client/step/three', {
+        return fetch(config.API_URL + 'signup/last', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    signUpThreeGirl(data) {
+        return fetch(config.API_URL + 'signup/girl/step/four', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -108,6 +155,18 @@ export default {
         })
             .then(responseHandler)
             .catch(error => console.log(error))
+    },
+
+    getOptionsSignUp(type) {
+        return fetch(config.API_URL + type, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
     },
 
     getHeights() {
@@ -202,7 +261,31 @@ export default {
                 'Content-Type': 'application/json'
             }
         })
-            .then(responseHandler)
-            .catch(error => console.log(error))
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    getReligions() {
+        return fetch(config.API_URL + 'religions', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    getWantChildren() {
+        return fetch(config.API_URL + 'want_children', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
     }
 }

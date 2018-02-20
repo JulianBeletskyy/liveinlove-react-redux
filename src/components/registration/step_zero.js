@@ -12,11 +12,22 @@ import {
     getHairLength, 
     getEthnicities, 
     getMaritalStatus,
-    getInterests 
+    getInterests,
+    getReligions,
+    getWantChildren,
+    getOptionsSignUp
+    /*getEducation,
+    getSmoke,
+    getPrimaryLanguage,
+    getEnglishLanguage,
+    getRussianLanguage,
+    getDrink*/
 } from 'actions'
 import TextField from 'components/form/inputs/text_field.js'
 import SelectField from 'components/form/inputs/select_field.js'
 import Btn from 'components/form/buttons/button.js'
+import BtnGoogle from 'components/form/buttons/button_google.js'
+import BtnFacebook from 'components/form/buttons/button_facebook.js'
 import CheckboxField from 'components/form/inputs/checkbox_field.js'
 import style from './step_zero.css'
 
@@ -28,7 +39,7 @@ class SignUpStart extends Component {
             birth: {}
         }
         this.role = {}
-
+        
         const getFunc = {
             heights: () => {store.dispatch(getHeights())},
             weights: () => {store.dispatch(getWeights())},
@@ -37,9 +48,17 @@ class SignUpStart extends Component {
             hairLength: () => {store.dispatch(getHairLength())},
             ethnicities: () => {store.dispatch(getEthnicities())},
             maritalStatus: () => {store.dispatch(getMaritalStatus())},
-            interests: () => {store.dispatch(getInterests())}
+            interests: () => {store.dispatch(getInterests())},
+            religions: () => {store.dispatch(getReligions())},
+            want_children: () => {store.dispatch(getWantChildren())},
+            
+            education: () => {store.dispatch(getOptionsSignUp('education'))},
+            smoke: () => {store.dispatch(getOptionsSignUp('smoke'))},
+            primary_language: () => {store.dispatch(getOptionsSignUp('primary_language'))},
+            language_level: () => {store.dispatch(getOptionsSignUp('language_level'))},
+            drink: () => {store.dispatch(getOptionsSignUp('drink'))}
         }
-
+        
         for (let k in getFunc) {
             if (! this.props.signup[k].length) {
                 getFunc[k]()
@@ -82,6 +101,19 @@ class SignUpStart extends Component {
             }
             store.dispatch(sendSignUpStart(data))
         }
+    }
+
+    facebookSignUp = () => {
+        window.FB.login(function(response) {
+            window.FB.api('/me', {fields: ['first_name, last_name, email, picture, gender, locale']}, function(response) {
+                console.log(response)
+            });
+        }, {scope: 'public_profile, email'});
+        
+    }
+
+    googleSignUp = () => {
+        
     }
 
     toggleRole = () => {
@@ -128,7 +160,6 @@ class SignUpStart extends Component {
 
     render() {
         const { data } = this.props.signup;
-        
         return (
             <form onSubmit={this.getSignUpOne} noValidate={true}>
                 <Row>
@@ -264,6 +295,19 @@ class SignUpStart extends Component {
                                 bsStyle="success"
                                 text="Join Us for Free"
                                 orientation="right"
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                        or
+                        </FormGroup>
+                        <FormGroup>
+                            <BtnFacebook
+                                title="Sign Up with Facebook"
+                                onClick={this.facebookSignUp}
+                            />
+                            <BtnGoogle
+                                title="Sign Up with Google"
+                                onClick={this.googleSignUp}
                             />
                         </FormGroup>
                     </Col>

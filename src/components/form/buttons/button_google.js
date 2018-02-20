@@ -12,7 +12,7 @@ class BtnGoogle extends Component {
                 onClick={this.props.onClick}
             >
                 <i className="fab fa-google-plus-square"></i>
-                <span>Upload from Google</span>
+                <span>{this.props.title}</span>
             </Button>
         );
     }
