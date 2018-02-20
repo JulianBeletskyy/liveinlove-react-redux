@@ -58,6 +58,19 @@ export default {
         .catch(error => console.log(error))
     },
 
+    sendRecovery(data) {
+        return fetch(config.API_URL + 'recovery', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
     signUpStart(data) {
         return fetch(config.API_URL + 'signup/start', {
             method: 'post',
@@ -96,9 +109,9 @@ export default {
 
         return fetch(config.API_URL + 'signup/client/step/two', {
             method: 'post',
-            headers: {
+            /*headers: {
                 //'Content-Type': 'multipart/form-data'
-            },
+            },*/
             body: formData
         })
         .then(responseHandler)
@@ -153,132 +166,12 @@ export default {
             },
             body: JSON.stringify(data)
         })
-            .then(responseHandler)
-            .catch(error => console.log(error))
+        .then(responseHandler)
+        .catch(error => console.log(error))
     },
 
     getOptionsSignUp(type) {
         return fetch(config.API_URL + type, {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(responseHandler)
-        .catch(error => console.log(error))
-    },
-
-    getHeights() {
-        return fetch(config.API_URL + 'height', {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(responseHandler)
-        .catch(error => console.log(error))
-    },
-
-    getWeights() {
-        return fetch(config.API_URL + 'weight', {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(responseHandler)
-        .catch(error => console.log(error))
-    },
-
-    getEyesColor() {
-        return fetch(config.API_URL + 'eyes', {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(responseHandler)
-        .catch(error => console.log(error))
-    },
-
-    getHairColor() {
-        return fetch(config.API_URL + 'hair_colors', {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(responseHandler)
-        .catch(error => console.log(error))
-    },
-
-    getHairLength() {
-        return fetch(config.API_URL + 'hair_lengths', {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(responseHandler)
-        .catch(error => console.log(error))
-    },
-
-    getEthnicities() {
-        return fetch(config.API_URL + 'ethnicities', {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(responseHandler)
-        .catch(error => console.log(error))
-    },
-
-    getMaritalStatus() {
-        return fetch(config.API_URL + 'marital_statuses', {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(responseHandler)
-        .catch(error => console.log(error))
-    },
-
-    getInterests() {
-        return fetch(config.API_URL + 'interests', {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(responseHandler)
-        .catch(error => console.log(error))
-    },
-
-    getReligions() {
-        return fetch(config.API_URL + 'religions', {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(responseHandler)
-        .catch(error => console.log(error))
-    },
-
-    getWantChildren() {
-        return fetch(config.API_URL + 'want_children', {
             method: 'get',
             headers: {
                 'Accept': 'application/json',

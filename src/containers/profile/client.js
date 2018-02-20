@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid, Modal, Row, Col } from 'react-bootstrap'
+import { Grid, Row, Col } from 'react-bootstrap'
 import style from './style.css';
 import InfoBlock from 'components/profile/info_block.js'
 import AboutMe from 'components/profile/about_me.js'
