@@ -24,6 +24,15 @@
 	color: white;
 }
 
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus, 
+.navbar-default .navbar-nav>.open>a:hover,
+.navbar-default .navbar-nav>li>a:focus, 
+.navbar-default .navbar-nav>li>a:hover {
+	background-color: transparent;
+	color: white; 
+}
+
 :local(.navBar>li>a:hover),
 :local(.navBar>li>a:focus),
 :local(.nav .open>a), 
@@ -49,21 +58,6 @@
   transition: width .4s;
 }
 
-:local(.navBar > li > ul) {
-	transition: opacity 0.3s linear;
-	display: block;
-	visibility: hidden;
-	opacity: 0;
-	border: none;
-	border-radius: 0;
-	letter-spacing: 0.6px;
-}
-
-:local(.navBar > li:hover > ul) {
-	visibility: visible;
-	opacity: 1;
-}
-
 :local(.navBar > li > ul > a) {
   display: block;
   padding: 3px 20px;
@@ -77,4 +71,31 @@
 
 :local(.navBar > li > ul > a:hover) {
  	background-color: #e2e2e2;
+}
+
+@media screen and (min-width: 768px) {
+	:local(.navBar > li > ul) {
+	transition: opacity 0.3s linear;
+	display: block;
+	visibility: hidden;
+	opacity: 0;
+	border: none;
+	border-radius: 0;
+	letter-spacing: 0.6px;
+	}
+
+	:local(.navBar > li:hover > ul) {
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	:local(.navbarDefault) {
+		background-color: rgba(0,0,0, 0.8);
+	}
+
+	:local(.navBar > li > ul > a) {
+		color: white;
+	}
 }

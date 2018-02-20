@@ -1,0 +1,43 @@
+:local(.wrapper) {
+	position: relative;
+}
+
+:local(.editBtn) {
+	position: absolute;
+	top: 0;
+	right: -10px;
+	border-radius: 0;
+	border: none;
+	letter-spacing: 1px;
+}
+
+:local(.title) {
+	position: relative;
+	text-align: center;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: 1px;
+}
+
+:local(.name) {
+	font-family: bebas_neue_bold;
+	font-size: 16px;
+	text-align: right;
+	padding-right: 50px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid black;
+}
+
+:local(.value) {
+	font-size: 16px;
+	padding-left: 50px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid black;
+}
+
+:local(.bNone) {
+	border: none;
+	padding-bottom: 0;
+}
