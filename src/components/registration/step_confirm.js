@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
-import { changeStep, sendSignUpTwo, toggleModal } from 'actions'
+import { toggleModal } from 'actions'
 import { FormGroup, Row, Col } from 'react-bootstrap'
 import BtnMain from 'components/form/buttons/main_button.js'
-import Cropper from 'react-cropper';
-import 'cropperjs/dist/cropper.css';
-import Validator from 'validate'
 import TextField from 'components/form/inputs/text_field.js'
 
 class SignUpConfirm extends Component {
@@ -38,7 +35,6 @@ class SignUpConfirm extends Component {
                             inputRef={ref => { this.signup.new_email = ref }}
                         />
                     </Col>
-                    
                 </Row>
                 <FormGroup className="text-center">
                     <BtnMain

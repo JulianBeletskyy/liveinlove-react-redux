@@ -1,6 +1,7 @@
 import * as types from './types.js'
 import api from '../api'
 import Cookies from 'js-cookie'
+import { history } from 'store'
 
 export function login(data) {
     return dispatch => {
@@ -53,14 +54,25 @@ export function removeAlert() {
     }
 }
 
+export function sendRecovery(data) {
+    return dispatch => {
+        return api.sendRecovery(data)
+        .then(json => {
+            if (json.data) {
+                dispatch(toggleModal(false, 'recovery'))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
 export function activateUser(hash) {
     return dispatch => {
         return api.activateUser(hash)
         .then(json => {
-            if (json.data == '') {
-                return true
-                window.location.href = '/profile'
-            }
+            history.push('/');
         })
         .catch(error => {
             console.log(error)
@@ -90,7 +102,7 @@ export function sendSignUpOne(data) {
             .then(json => {
                 if (json.data) {
                     dispatch(setSignUpData(data))
-                    const step = data.route == 'client' ? 2 : 5
+                    const step = data.route === 'client' ? 2 : 5
                     dispatch(changeStep(step))
                 }
             })
@@ -167,13 +179,19 @@ export function sendSignUpFinish(data) {
         return api.signUpFinish(data)
             .then(json => {
                 if (json.data) {
-                    console.log(json.data)
                     dispatch(changeStep(4))
                 }
             })
             .catch(error => {
                 console.log(error)
             })
+    }
+}
+
+export function setRecoveryHash(hash) {
+    return {
+        type: types.SET_RECOVERY_HASH,
+        hash
     }
 }
 
@@ -188,146 +206,6 @@ export function setSignUpData(data) {
     return {
         type: types.SET_SIGN_UP_DATA,
         data
-    }
-}
-
-export function getHeights() {
-    return dispatch => {
-        return api.getHeights()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setHeights(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-}
-
-export function getWeights() {
-    return dispatch => {
-        return api.getWeights()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setWeights(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-}
-
-export function getEyesColor() {
-    return dispatch => {
-        return api.getEyesColor()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setEyesColor(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-}
-
-export function getHairColor() {
-    return dispatch => {
-        return api.getHairColor()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setHairColor(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-}
-
-export function getHairLength() {
-    return dispatch => {
-        return api.getHairLength()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setHairLength(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-}
-
-export function getEthnicities() {
-    return dispatch => {
-        return api.getEthnicities()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setEthnicities(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-}
-
-export function getMaritalStatus() {
-    return dispatch => {
-        return api.getMaritalStatus()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setMaritalStatus(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-}
-
-export function getInterests() {
-    return dispatch => {
-        return api.getInterests()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setInterests(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-}
-
-export function getReligions() {
-    return dispatch => {
-        return api.getReligions()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setReligions(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-}
-
-export function getWantChildren() {
-    return dispatch => {
-        return api.getWantChildren()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setWantChildren(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
     }
 }
 
@@ -350,76 +228,6 @@ export function setOptionsSignUp(value, option) {
         type: types.SET_OPTIONS_SIGN_UP,
         value,
         option
-    }
-}
-
-export function setHairColor(value) {
-    return {
-        type: types.SET_HAIR_COLOR,
-        value
-    }
-}
-
-export function setWeights(value) {
-    return {
-        type: types.SET_WEIGHTS,
-        value
-    }
-}
-
-export function setEyesColor(value) {
-    return {
-        type: types.SET_EYES_COLOR,
-        value
-    }
-}
-
-export function setHeights(value) {
-    return {
-        type: types.SET_HEIGHTS,
-        value
-    }
-}
-
-export function setHairLength(value) {
-    return {
-        type: types.SET_HAIR_LENGTH,
-        value
-    }
-}
-
-export function setEthnicities(value) {
-    return {
-        type: types.SET_ETHNICITIES,
-        value
-    }
-}
-
-export function setMaritalStatus(value) {
-    return {
-        type: types.SET_MARITAL_STATUS,
-        value
-    }
-}
-
-export function setInterests(value) {
-    return {
-        type: types.SET_INTERESTS,
-        value
-    }
-}
-
-export function setReligions(value) {
-    return {
-        type: types.SET_RELIGIONS,
-        value
-    }
-}
-
-export function setWantChildren(value) {
-    return {
-        type: types.SET_WANT_CHILDREN,
-        value
     }
 }
 

@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import style from './about_me.css';
-import store from 'store/'
-import { Grid, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import style from './about_me.css'
+import { Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 class AboutMe extends Component {
    render() {

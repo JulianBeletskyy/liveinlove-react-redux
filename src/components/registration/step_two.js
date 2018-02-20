@@ -14,10 +14,7 @@ import Validator from 'validate'
 class SignUpTwo extends Component {
     constructor(props) {
         super(props)
-        this.signup = {
-            birth: {},
-            match: {}
-        }
+        this.signup = {}
     }
 
     _crop() {
@@ -30,7 +27,6 @@ class SignUpTwo extends Component {
 
     getConfirm = () => {
         let crop = this.refs.cropper.getData()
-        
         let error = 1
         error *= Validator.check(this.props.signup.avatar, ['required'], 'Avatar')
         
@@ -43,26 +39,28 @@ class SignUpTwo extends Component {
                 avatar: this.props.signup.file,
                 remember_token: this.props.signup.remember_token
             }
-            const step = this.props.signup.data.role == 'client' ? 3 : 6
+            const step = this.props.signup.data.role === 'client' ? 3 : 6
             store.dispatch(sendSignUpTwo(data, step))
         }
     }
 
     prevStep = () => {
-        const step = this.props.signup.data.role == 'client' ? 1 : 5
+        const step = this.props.signup.data.role === 'client' ? 1 : 5
         store.dispatch(changeStep(step))
     }
 
     render() {
-        const content = this.props.signup.avatar ? <Cropper
+        const content = this.props.signup.avatar ? 
+        <Cropper
             ref='cropper'
             src={this.props.signup.avatar}
             style={{ height: '200px', width: '100%', margin: '0 auto' }}
-            // Cropper.js options
             aspectRatio={1 / 1}
             guides={false}
             crop={this._crop.bind(this)}
-        /> : <img src="/assets/img/default-avatar.jpg" className="default-avatar" />
+        /> 
+        : <img src="/assets/img/default-avatar.jpg" className="default-avatar" />
+
         return (
             <form onSubmit={this.getSignUpThree} noValidate={true}>
                 <Row>

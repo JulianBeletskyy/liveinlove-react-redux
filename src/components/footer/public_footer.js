@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-bootstrap'
 import style from './style.css'
-import { Link } from 'react-router-dom'
-import Btn from 'components/form/buttons/button.js'
 
 class PublicFooter extends Component {
     render() {
