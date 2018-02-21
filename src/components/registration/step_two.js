@@ -36,9 +36,10 @@ class SignUpTwo extends Component {
                 height: crop.height.toFixed(),
                 x: crop.x.toFixed(),
                 y: crop.y.toFixed(),
-                avatar: this.props.signup.file,
+                avatar: this.props.signup.avatar,
                 remember_token: this.props.signup.remember_token
             }
+
             const step = this.props.signup.data.role === 'client' ? 3 : 6
             store.dispatch(sendSignUpTwo(data, step))
         }

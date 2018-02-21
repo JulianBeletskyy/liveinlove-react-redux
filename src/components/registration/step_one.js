@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup, Row, Col } from 'react-bootstrap'
-import { changeStep, sendSignUpOne} from 'actions'
+import { changeStep, sendSignUpOne, getOptionsSignUp } from 'actions'
 import SelectField from 'components/form/inputs/select_field.js'
 import Btn from 'components/form/buttons/button.js'
 import BlockSmall from 'components/blocks/block_small.js'
@@ -13,6 +13,21 @@ class SignUpOne extends Component {
         super(props)
         this.signup = {
             match: {}
+        }
+
+        const getFunc = {
+            education: () => {store.dispatch(getOptionsSignUp('education'))},
+            smoke: () => {store.dispatch(getOptionsSignUp('smoke'))},
+            primary_language: () => {store.dispatch(getOptionsSignUp('primary_language'))},
+            language_level: () => {store.dispatch(getOptionsSignUp('language_level'))},
+            drink: () => {store.dispatch(getOptionsSignUp('drink'))},
+            interests: () => {store.dispatch(getOptionsSignUp('interests'))}
+        }
+
+        for (let k in getFunc) {
+            if (! this.props.signup[k].length) {
+                getFunc[k]()
+            }
         }
     }
 
