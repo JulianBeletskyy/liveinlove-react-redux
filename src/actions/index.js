@@ -87,9 +87,7 @@ export function activateUser(hash) {
     return dispatch => {
         return api.activateUser(hash)
         .then(json => {
-            if (json.data) {
-                history.push('/');
-            }
+            history.push('/')
         })
         .catch(error => {
             console.log(error)
