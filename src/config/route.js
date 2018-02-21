@@ -16,6 +16,9 @@ export default {
             'path': '/client-profile',
             'component': 'ClientProfile'
         }, {
+            'path': '/client-edit',
+            'component': 'EditClientProfile'
+        }, {
             'path': '*',
             'component': 'NotFound'
         }
