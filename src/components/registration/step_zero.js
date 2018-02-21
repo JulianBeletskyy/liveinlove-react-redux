@@ -37,7 +37,8 @@ class SignUpStart extends Component {
             smoke: () => {store.dispatch(getOptionsSignUp('smoke'))},
             primary_language: () => {store.dispatch(getOptionsSignUp('primary_language'))},
             language_level: () => {store.dispatch(getOptionsSignUp('language_level'))},
-            drink: () => {store.dispatch(getOptionsSignUp('drink'))}
+            drink: () => {store.dispatch(getOptionsSignUp('drink'))},
+            countries: () => {store.dispatch(getOptionsSignUp('countries'))}
         }
         
         for (let k in getFunc) {
@@ -49,13 +50,14 @@ class SignUpStart extends Component {
 
     getSignUpOne = (event) => {
         event.preventDefault()
+        console.log(this.signup.country.value)
         let error = 1
         for (var k in this.signup.birth) {
             if (error) {
                 error *= Validator.check(this.signup.birth[k].value, ['required'], 'Birthday')
             }
         }
-        console.log(this.signup.terms.checked)
+        
         error *= Validator.check(this.signup.first_name.value, ['required', 'string', 'alphabet'], 'First Name')
         error *= Validator.check(this.signup.last_name.value, ['required', 'string', 'alphabet'], 'Last Name')
         error *= Validator.check(this.signup.email.value, ['required', 'email'], 'Email')
@@ -148,6 +150,26 @@ class SignUpStart extends Component {
             temp.push({'value': year, 'name': year})
         }
         return temp
+    }
+
+    getArray = (type) => {
+        let name = ''
+        switch(type) {
+            case 'countries': name = 'Choose Country'; break;
+            default: name = ''; break;
+        }
+        let temp = [{ 'value': '', 'name': name }]
+        for (var k in this.props.signup[type]) {
+            temp.push({
+                'value': this.props.signup[type][k].countryCode,
+                'name': this.props.signup[type][k].countryName
+            })
+        }
+        return temp
+    }
+
+    handleCountry = () => {
+        console.log(this)
     }
 
     componentDidMount() {
@@ -262,18 +284,18 @@ class SignUpStart extends Component {
                             </Row>
                         </FormGroup>
                         <FormGroup>
-                            <TextField
-                                type="text"
-                                placeholder="Country"
+                            <SelectField
+                                componentClass="select"
                                 inputRef={ref => { this.signup.country = ref }}
-                                value={data.country}
+                                options={this.getArray('countries')}
+                                value={data.countries}
+                                name="country"
                             />
                         </FormGroup>
                         <FormGroup>
-                            <TextField
-                                type="text"
-                                placeholder="City"
+                            <Autocomplete 
                                 inputRef={ref => { this.signup.city = ref }}
+                                placeholder="City"
                                 value={data.city}
                             />
                         </FormGroup>

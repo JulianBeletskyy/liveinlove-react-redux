@@ -1,42 +1,63 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import store from 'store'
+import { getCountries, removePlaceholder, setPlaceholder } from 'actions'
+import style from './autocomplete.css'
 
 class Autocomplete extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props)
-        this.handleKeyUp = this.keyUpHandler.bind(this);
+        this.input = false
+        this.id = Math.round(Math.random() * 999 * 1000)
+        this.handleChange()
     }
 
-    googleAutocomplete = function () {
-        console.log(this.props)
+    googleAutocomplete = () => {
+        let place = this.autocomplete.getPlace()
+        console.log(place)
     }
 
-    printOptions = (option, i) => {
-         return (<span key={i}>{option.name}</span>)
+    thisRef = (ref) => {
+        this.props.inputRef(ref);
+        this.input = ref
     }
 
-    keyUpHandler = (refName, e) => {
-        console.log(refName)
-        console.log(e)
+    handleChange = () => {
+        if (this.input.value || this.props.value) {
+            store.dispatch(setPlaceholder(this.id))
+        } else {
+            store.dispatch(removePlaceholder(this.id))
+        }
     }
 
     render() {
-        const { options } = this.props.autocomplete
+        const { countries } = this.props.signup
+        let input = document.getElementById('auocompleteInput')
+        var options = {
+                language: 'en-US',
+                types: ['(cities)'],
+                componentRestrictions: {country: this.props.signup.country}
+        };
+        this.autocomplete = new window.google.maps.places.Autocomplete(input, options)
+        const { changed } = this.props.textField;
+        
+        let className = style.placeholder;
+        if (changed.indexOf(this.id) >= 0) {
+            className += (' ' + style.active)
+        }
         return (
-            <div>
-                <input 
-                    className="form-control"
-                    ref={this.props.inputRef}
-                    type="text" 
-                    placeholder={this.props.placeholder}
-                    onKeyUp={this.handleKeyUp}
+            <div className={style.wrap}>
+                <input
+                    className={style.style + ' form-control'}
+                    ref={this.thisRef}
+                    type="text"
+                    onBlur={this.googleAutocomplete}
+                    id="auocompleteInput"
+                    defaultValue={this.props.value}
+                    onChange={this.handleChange}
+                    placeholder=" "
                 />
-                <div>
-                {
-                    options.map((option, i) => this.printOptions(option, i))
-                }
-                </div>
+                <div className={className}>{this.props.placeholder}</div>
             </div>
         );
     }
