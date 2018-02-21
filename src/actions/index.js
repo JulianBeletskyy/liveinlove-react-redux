@@ -160,7 +160,6 @@ export function sendSignUpTwoGirl(data) {
         return api.signUpTwoGirl(data)
             .then(json => {
                 if (json.data) {
-                    console.log(json.data)
                     dispatch(setSignUpData(data))
                     dispatch(changeStep(2))
                 }
