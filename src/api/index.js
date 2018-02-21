@@ -58,6 +58,18 @@ export default {
         .catch(error => console.log(error))
     },
 
+    getCountries() {
+        return fetch(config.API_URL + 'countries', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
     sendRecovery(data) {
         return fetch(config.API_URL + 'recovery', {
             method: 'post',

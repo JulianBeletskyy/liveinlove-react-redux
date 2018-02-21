@@ -54,7 +54,9 @@ const initialState = {
     primary_language: [],
     language_level: [],
     avatar: '',
-    file: new FormData()
+    file: new FormData(),
+    countries: [],
+    country: ''
 }
 
 export default function signup(signup = initialState, action = {}) {
@@ -81,49 +83,13 @@ export default function signup(signup = initialState, action = {}) {
             return Object.assign({}, signup, {
                 step: action.value
             });
+        case types.SET_COUNTRY:
+            return Object.assign({}, signup, {
+                country: action.value
+            });
         case types.SET_TEMP_TOKEN:
             return Object.assign({}, signup, {
                 remember_token: action.value
-            });
-        case types.SET_HEIGHTS:
-            return Object.assign({}, signup, {
-                heights: action.value
-            });
-        case types.SET_WEIGHTS:
-            return Object.assign({}, signup, {
-                weights: action.value
-            });
-        case types.SET_EYES_COLOR:
-            return Object.assign({}, signup, {
-                eyesColor: action.value
-            });
-        case types.SET_HAIR_COLOR:
-            return Object.assign({}, signup, {
-                hairColor: action.value
-            });
-        case types.SET_HAIR_LENGTH:
-            return Object.assign({}, signup, {
-                hairLength: action.value
-            });
-        case types.SET_ETHNICITIES:
-            return Object.assign({}, signup, {
-                ethnicities: action.value
-            });
-        case types.SET_MARITAL_STATUS:
-            return Object.assign({}, signup, {
-                maritalStatus: action.value
-            });
-        case types.SET_INTERESTS:
-            return Object.assign({}, signup, {
-                interests: action.value
-            });
-        case types.SET_RELIGIONS:
-            return Object.assign({}, signup, {
-                religions: action.value
-            });
-        case types.SET_WANT_CHILDREN:
-            return Object.assign({}, signup, {
-                want_children: action.value
             });
         case types.SET_ACTIVE_BLOCK:
             temp[action.key].push(action.id)

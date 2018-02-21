@@ -29,8 +29,7 @@ class SignUpTwo extends Component {
         let crop = this.refs.cropper.getData()
         let error = 1
         error *= Validator.check(this.props.signup.avatar, ['required'], 'Avatar')
-        console.log(this.refs.cropper.getImageData())
-        return
+        
         if (error) {
             let data = {
                 width: crop.width.toFixed(),

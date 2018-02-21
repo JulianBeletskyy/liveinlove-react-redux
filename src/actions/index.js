@@ -54,6 +54,20 @@ export function removeAlert() {
     }
 }
 
+export function getCountries() {
+    return dispatch => {
+        return api.getCountries()
+        .then(json => {
+            if (json.data) {
+                dispatch(setCountries(json.data.country))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
 export function sendRecovery(data) {
     return dispatch => {
         return api.sendRecovery(data)
@@ -210,6 +224,13 @@ export function setRecoveryHash(hash) {
     }
 }
 
+export function setCountries(data) {
+    return {
+        type: types.SET_COUNTRIES,
+        data
+    }
+}
+
 export function saveImage(data) {
     return {
         type: types.SAVE_IMAGE,
@@ -243,6 +264,13 @@ export function setOptionsSignUp(value, option) {
         type: types.SET_OPTIONS_SIGN_UP,
         value,
         option
+    }
+}
+
+export function setCountry(value) {
+    return {
+        type: types.SET_COUNTRY,
+        value
     }
 }
 
