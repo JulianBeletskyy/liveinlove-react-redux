@@ -5,12 +5,16 @@ import ConnectedRouter from 'react-router-redux/ConnectedRouter.js'
 import store, { history } from './store'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
+import { Route, Switch } from 'react-router-dom'
 
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
             <div>
-                <App />
+            <Switch>
+            	
+            	<Route component={App} />
+        	</Switch>
             </div>
         </ConnectedRouter>
     </Provider>,

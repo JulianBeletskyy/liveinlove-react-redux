@@ -1,10 +1,17 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import style from './style.css';
-import { Link } from 'react-router-dom';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import store from 'store'
+import style from './style.css'
+import { Link } from 'react-router-dom'
+import { Navbar, NavDropdown } from 'react-bootstrap'
+import { toggleModal } from 'actions'
 
 class PublicHeader extends Component {
+
+    showLogIn = () => {
+        store.dispatch(toggleModal(true, 'login'))
+    }
+
     render() {
         return (
             <Navbar className={style.navbarDefault + ' title'} fixedTop fluid>
@@ -43,10 +50,19 @@ class PublicHeader extends Component {
                             <Link to="/blog">Blog</Link>
                         </li>
 
-                        <NavDropdown role="presentation" eventKey={2} title="Support" id="support-nav-dropdown">
-                          <Link to="/send-request">Send Request</Link>
-                          <Link to="/faq">FAQ</Link>
+                        <NavDropdown 
+                            role="presentation"
+                            eventKey={2}
+                            title="Support" 
+                            id="support-nav-dropdown"
+                        >
+                            <Link to="/send-request">Send Request</Link>
+                            <Link to="/faq">FAQ</Link>
                         </NavDropdown>
+                        <li>
+                            <a href="javascript:;" onClick={this.showLogIn}>Log In</a>
+                        </li>
+                        
                     </ul>
                 </Navbar.Collapse> 
             </Navbar>

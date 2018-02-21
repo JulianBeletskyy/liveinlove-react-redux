@@ -1,0 +1,7 @@
+:local(.headerPanel) {
+    background-color: #fff;
+}
+
+.panel-default > .panel-heading {
+    background-color: #fff;
+}

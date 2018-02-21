@@ -6,7 +6,8 @@ import store from './store'
 import routing from './config/route.js'
 import PublicHeader from './components/header/public_header.js'
 import PublicFooter from './components/footer/public_footer.js'
-import { Alert } from './components'
+import Home from 'containers/home/home.js'
+import { Alert, Activate } from './components'
 import style from './App.css'
 
 class App extends Component {
@@ -23,6 +24,8 @@ class App extends Component {
             <div className="App">
                 <PublicHeader />
                     <Switch>
+                        <Route path="/activate/:hash" exact component={Activate} />
+                        <Route path="/recovery/:hash" exact component={Home} />
                         {
                             routes.map((route, i) => this.printRoutes(route, i))
                         }

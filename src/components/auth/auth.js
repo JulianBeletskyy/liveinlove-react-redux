@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import store from 'store/'
-import { FormGroup, Panel} from 'react-bootstrap'
-import { login } from 'actions'
-import { Link } from 'react-router-dom';
+import { FormGroup } from 'react-bootstrap'
+import { login, toggleModal } from 'actions'
 import Validator from 'validate'
 import TextField from 'components/form/inputs/text_field.js';
 import BtnMain from 'components/form/buttons/main_button.js';
@@ -30,45 +29,45 @@ class Auth extends Component {
         }
     }
 
+    showRecovery = () => {
+        store.dispatch(toggleModal(true, 'recovery'))
+        store.dispatch(toggleModal(false, 'login'))
+    }
+
     render() {
         return (
-            <Panel className={style.loginPanel}>
-                <Panel.Heading className={style.loginHeader + ' title text-center'}>Log In</Panel.Heading>
-                <Panel.Body>
-                    <form onSubmit={this.handleSubmit} noValidate={true}>
-                        <FormGroup>
-                            <TextField 
-                                type="email"
-                                placeholder="Enter email"
-                                inputRef={ref => { this.auth.email = ref }}
-                            />
-                        </FormGroup>
+            <form onSubmit={this.handleSubmit} noValidate={true}>
+                <FormGroup>
+                    <TextField 
+                        type="email"
+                        placeholder="Enter email"
+                        inputRef={ref => { this.auth.email = ref }}
+                    />
+                </FormGroup>
 
-                        <FormGroup>
-                            <TextField 
-                                type="password" 
-                                placeholder="Enter password"
-                                inputRef={ref => { this.auth.password = ref }}
-                             />
-                        </FormGroup>
+                <FormGroup>
+                    <TextField 
+                        type="password" 
+                        placeholder="Enter password"
+                        inputRef={ref => { this.auth.password = ref }}
+                     />
+                </FormGroup>
 
-                        <FormGroup className={style.inline + ' title'} >
-                            <CheckboxField 
-                                text='Remember me'
-                            />
+                <FormGroup className={style.inline + ' title'} >
+                    <CheckboxField 
+                        text='Remember me'
+                    />
 
-                            <Link className="pull-right" to="/pass-recovery">Forgot password?</Link>
-                        </FormGroup>
+                    <a className="pull-right" href="javascript:;" onClick={this.showRecovery}>Forgot password?</a>
+                </FormGroup>
 
-                        <FormGroup className="text-center">
-                            <BtnMain
-                                type="submit"
-                                bsStyle="success"
-                                text="Log In"/>
-                        </FormGroup>
-                    </form>
-                </Panel.Body>
-            </Panel> 
+                <FormGroup className="text-center">
+                    <BtnMain
+                        type="submit"
+                        bsStyle="success"
+                        text="Log In"/>
+                </FormGroup>
+            </form>
         );
     }
 }

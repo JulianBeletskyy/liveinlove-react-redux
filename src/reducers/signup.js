@@ -24,17 +24,35 @@ const initialState = {
         children: '',
         female_ethnicity: [],
         interest: [],
-        match: {}
+        religion_id: '',
+        want_children_id: '',
+        education_id: '',
+        smoke_id: '',
+        drink_id: '',
+        profession: '',
+        occupation: '',
+        primary_language_id: '',
+        english_language_id: '',
+        russian_language_id: '',
+        about_children: '',
+        mobile: ''
     },
     remember_token: '',
-    heights: [],
-    weights: [],
-    eyesColor: [],
-    hairColor: [],
-    hairLength: [],
+    height: [],
+    weight: [],
+    eyes: [],
+    hair_colors: [],
+    hair_lengths: [],
     ethnicities: [],
-    maritalStatus: [],
+    marital_statuses: [],
     interests: [],
+    religions: [],
+    want_children: [],
+    education: [],
+    drink: [],
+    smoke: [],
+    primary_language: [],
+    language_level: [],
     avatar: '',
     file: new FormData()
 }
@@ -47,10 +65,13 @@ export default function signup(signup = initialState, action = {}) {
                 if (action.data[k]) {
                     temp[k] = action.data[k]
                 }
-                
             }
             return Object.assign({}, signup, {
                 data: temp
+            });
+        case types.SET_OPTIONS_SIGN_UP:
+            return Object.assign({}, signup, {
+                [action.option]: action.value
             });
         case types.SAVE_FILE:
             return Object.assign({}, signup, {
@@ -95,6 +116,14 @@ export default function signup(signup = initialState, action = {}) {
         case types.SET_INTERESTS:
             return Object.assign({}, signup, {
                 interests: action.value
+            });
+        case types.SET_RELIGIONS:
+            return Object.assign({}, signup, {
+                religions: action.value
+            });
+        case types.SET_WANT_CHILDREN:
+            return Object.assign({}, signup, {
+                want_children: action.value
             });
         case types.SET_ACTIVE_BLOCK:
             temp[action.key].push(action.id)
