@@ -14,7 +14,6 @@ class Autocomplete extends Component {
 
     googleAutocomplete = () => {
         let place = this.autocomplete.getPlace()
-        console.log(place)
     }
 
     thisRef = (ref) => {

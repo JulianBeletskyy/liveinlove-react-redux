@@ -3,7 +3,7 @@ import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup, Col, Radio, Row } from 'react-bootstrap'
 import Validator from 'validate'
-import { sendSignUpStart, getOptionsSignUp } from 'actions'
+import { sendSignUpStart, getOptionsSignUp, setSignUpData, saveImage, saveFile } from 'actions'
 import TextField from 'components/form/inputs/text_field.js'
 import SelectField from 'components/form/inputs/select_field.js'
 import Btn from 'components/form/buttons/button.js'
@@ -30,14 +30,8 @@ class SignUpStart extends Component {
             hair_lengths: () => {store.dispatch(getOptionsSignUp('hair_lengths'))},
             ethnicities: () => {store.dispatch(getOptionsSignUp('ethnicities'))},
             marital_statuses: () => {store.dispatch(getOptionsSignUp('marital_statuses'))},
-            interests: () => {store.dispatch(getOptionsSignUp('interests'))},
             religions: () => {store.dispatch(getOptionsSignUp('religions'))},
             want_children: () => {store.dispatch(getOptionsSignUp('want_children'))},
-            education: () => {store.dispatch(getOptionsSignUp('education'))},
-            smoke: () => {store.dispatch(getOptionsSignUp('smoke'))},
-            primary_language: () => {store.dispatch(getOptionsSignUp('primary_language'))},
-            language_level: () => {store.dispatch(getOptionsSignUp('language_level'))},
-            drink: () => {store.dispatch(getOptionsSignUp('drink'))},
             countries: () => {store.dispatch(getOptionsSignUp('countries'))}
         }
         
@@ -50,7 +44,6 @@ class SignUpStart extends Component {
 
     getSignUpOne = (event) => {
         event.preventDefault()
-        console.log(this.signup.country.value)
         let error = 1
         for (var k in this.signup.birth) {
             if (error) {
@@ -88,9 +81,25 @@ class SignUpStart extends Component {
 
     facebookSignUp = () => {
         window.FB.login((response) => {
-            console.log(response)
             window.FB.api('/me', {fields: ['first_name, last_name, email, picture.width(2048), gender, locale']}, (response) => {
-                console.log(response)
+                this.signup.first_name.value = response.first_name
+                this.signup.last_name.value = response.last_name
+                this.signup.email.value = response.email
+                this.role.female.checked = response.gender == 'female'
+                this.role.male.checked = response.gender == 'male'
+
+                store.dispatch(saveImage(response.picture.data.url))
+                let file = new File([''], response.picture.data.url, {type: 'image'})
+                store.dispatch(saveFile(file))
+
+                const data = {
+                    first_name: response.first_name,
+                    last_name: response.last_name,
+                    email: response.email,
+                    role: response.gender == 'female' ? 'girl' : 'client'
+                }
+                this.signup.role = data.role
+                store.dispatch(setSignUpData(data))
             });
         }, {scope: 'public_profile, email'});
     }
@@ -168,17 +177,12 @@ class SignUpStart extends Component {
         return temp
     }
 
-    handleCountry = () => {
-        console.log(this)
-    }
-
     componentDidMount() {
-        this.googleSignUp()
+        //this.googleSignUp()
     }
 
     render() {
         const { data } = this.props.signup;
-        //
         return (
             <form onSubmit={this.getSignUpOne} noValidate={true}>
                 <Row>
@@ -288,7 +292,7 @@ class SignUpStart extends Component {
                                 componentClass="select"
                                 inputRef={ref => { this.signup.country = ref }}
                                 options={this.getArray('countries')}
-                                value={data.countries}
+                                value={data.country}
                                 name="country"
                             />
                         </FormGroup>
@@ -336,9 +340,7 @@ class SignUpStart extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-        signup: state.signup
-    }
+    return state
 }
 
 export default connect(
