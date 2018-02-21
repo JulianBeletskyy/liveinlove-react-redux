@@ -7,7 +7,7 @@ import routing from './config/route.js'
 import PublicHeader from './components/header/public_header.js'
 import PublicFooter from './components/footer/public_footer.js'
 import Home from 'containers/home/home.js'
-import { Alert, Activate } from './components'
+import { Alert } from './components'
 import style from './App.css'
 
 class App extends Component {

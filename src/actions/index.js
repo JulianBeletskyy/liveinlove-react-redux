@@ -8,6 +8,8 @@ export function login(data) {
         return api.login(data)
         .then(json => {
             if (json.data) {
+                dispatch(toggleModal(false, 'login'))
+                dispatch(getClientInfo(json.data))
                 dispatch(setToken(json.data))
             }
         })
@@ -51,6 +53,20 @@ export function setAlert(text, level) {
 export function removeAlert() {
     return {
         type: types.REMOVE_ALERT
+    }
+}
+
+export function getClientInfo() {
+    return dispatch => {
+        return api.getClientInfo()
+        .then(json => {
+            if (json.data) {
+                console.log(json.data)
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 }
 
@@ -101,7 +117,11 @@ export function activateUser(hash) {
     return dispatch => {
         return api.activateUser(hash)
         .then(json => {
-            history.push('/')
+            if (json.data) {
+                dispatch(setToken(json.data))
+                history.push('/')
+            }
+            
         })
         .catch(error => {
             console.log(error)

@@ -46,6 +46,18 @@ export default {
         .catch(error => console.log(error))
     },
 
+    getClientInfo(token) {
+        return fetch(config.API_URL + 'user', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
     activateUser(hash) {
         return fetch(config.API_URL + 'activate/' + hash, {
             method: 'get',

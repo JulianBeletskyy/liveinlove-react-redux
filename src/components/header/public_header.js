@@ -4,7 +4,7 @@ import store from 'store'
 import style from './style.css'
 import { Link } from 'react-router-dom'
 import { Navbar, NavDropdown } from 'react-bootstrap'
-import { toggleModal } from 'actions'
+import { toggleModal, logout } from 'actions'
 
 class PublicHeader extends Component {
 
@@ -12,7 +12,12 @@ class PublicHeader extends Component {
         store.dispatch(toggleModal(true, 'login'))
     }
 
+    logOut = () => {
+        store.dispatch(logout())
+    }
+
     render() {
+        const { token } = this.props.user
         return (
             <Navbar className={style.navbarDefault + ' title'} fixedTop fluid>
                  <Navbar.Header>
@@ -60,7 +65,11 @@ class PublicHeader extends Component {
                             <Link to="/faq">FAQ</Link>
                         </NavDropdown>
                         <li>
-                            <a href="javascript:;" onClick={this.showLogIn}>Log In</a>
+                        {
+                            token
+                            ?(<a href="javascript:;" onClick={this.logOut}>Log Out</a>)
+                            :(<a href="javascript:;" onClick={this.showLogIn}>Log In</a>)
+                        }
                         </li>
                         
                     </ul>
