@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
-import { changeStep, sendSignUpTwo } from 'actions'
+import { changeStep, sendSignUpTwo, saveImage,  saveFile} from 'actions'
 import { FormGroup, Row, Col } from 'react-bootstrap'
 import Btn from 'components/form/buttons/button.js'
 import BtnFacebook from 'components/form/buttons/button_facebook.js'
@@ -29,7 +29,8 @@ class SignUpTwo extends Component {
         let crop = this.refs.cropper.getData()
         let error = 1
         error *= Validator.check(this.props.signup.avatar, ['required'], 'Avatar')
-        
+        console.log(this.refs.cropper.getImageData())
+        return
         if (error) {
             let data = {
                 width: crop.width.toFixed(),
@@ -42,6 +43,16 @@ class SignUpTwo extends Component {
             const step = this.props.signup.data.role === 'client' ? 3 : 6
             store.dispatch(sendSignUpTwo(data, step))
         }
+    }
+
+    facebookSignUp = () => {
+        window.FB.login((response) => {
+            window.FB.api('/me', {fields: ['first_name, last_name, email, picture.width(2048), gender, locale']}, (response) => {
+                store.dispatch(saveImage(response.picture.data.url))
+                let file = new File([''], response.picture.data.url, {type: 'image'})
+                store.dispatch(saveFile(file))
+            });
+        }, {scope: 'public_profile, email'});
     }
 
     prevStep = () => {
@@ -72,6 +83,7 @@ class SignUpTwo extends Component {
                             <FormGroup>
                                 <BtnFacebook
                                     title="Upload from Facebook"
+                                    onClick={this.facebookSignUp}
                                  />
                             </FormGroup>
                             <FormGroup>

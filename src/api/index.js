@@ -71,6 +71,19 @@ export default {
         .catch(error => console.log(error))
     },
 
+    updatePassword(data, hash) {
+        return fetch(config.API_URL + 'password/' + hash, {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
     signUpStart(data) {
         return fetch(config.API_URL + 'signup/start', {
             method: 'post',

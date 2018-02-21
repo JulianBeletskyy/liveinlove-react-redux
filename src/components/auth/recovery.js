@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup } from 'react-bootstrap'
-import { sendRecovery } from 'actions'
+import { sendRecovery, setAlert, updatePassword } from 'actions'
 import Validator from 'validate'
 import TextField from 'components/form/inputs/text_field.js'
 import BtnMain from 'components/form/buttons/main_button.js'
@@ -15,9 +15,24 @@ class Recovery extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        let error = 1;
-        error *= Validator.check(this.email.value, ['required', 'email'], 'Email')
-        if (error) {
+        let error = 1
+
+        if (! this.props.user.recovery_hash) {
+            error *= Validator.check(this.email.value, ['required', 'email'], 'Email')
+        } else {
+            if (this.new_password.value !== this.confirm_password.value) {
+                error = 0
+                store.dispatch(setAlert('The passwords aren\'t same, retype it one more time, please!', 'error'))
+            }
+        }
+
+        if (error && this.props.user.recovery_hash) {
+            const data = {
+                'password': this.new_password.value,
+                'password_confirmation': this.confirm_password.value
+            }
+            store.dispatch(updatePassword(data, this.props.user.recovery_hash))
+        } else {
             const data = {
                 email: this.email.value,
                 url: window.location.href + 'recovery/{hash}'

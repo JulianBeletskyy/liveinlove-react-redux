@@ -11,6 +11,7 @@ import BtnGoogle from 'components/form/buttons/button_google.js'
 import BtnFacebook from 'components/form/buttons/button_facebook.js'
 import CheckboxField from 'components/form/inputs/checkbox_field.js'
 import style from './step_zero.css'
+import Autocomplete from 'components/form/inputs/autocomplete.js'
 
 class SignUpStart extends Component {
     constructor(props) {
@@ -54,7 +55,7 @@ class SignUpStart extends Component {
                 error *= Validator.check(this.signup.birth[k].value, ['required'], 'Birthday')
             }
         }
-
+        console.log(this.signup.terms.checked)
         error *= Validator.check(this.signup.first_name.value, ['required', 'string', 'alphabet'], 'First Name')
         error *= Validator.check(this.signup.last_name.value, ['required', 'string', 'alphabet'], 'Last Name')
         error *= Validator.check(this.signup.email.value, ['required', 'email'], 'Email')
@@ -85,7 +86,8 @@ class SignUpStart extends Component {
 
     facebookSignUp = () => {
         window.FB.login((response) => {
-            window.FB.api('/me', {fields: ['first_name, last_name, email, picture, gender, locale']}, (response) => {
+            console.log(response)
+            window.FB.api('/me', {fields: ['first_name, last_name, email, picture.width(2048), gender, locale']}, (response) => {
                 console.log(response)
             });
         }, {scope: 'public_profile, email'});
@@ -297,6 +299,12 @@ class SignUpStart extends Component {
                             &nbsp;
                             <BtnGoogle
                                     title="Sign Up with Google"
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Autocomplete 
+                                inputRef={ref => { this.signup.autocomplete = ref }}
+                                placeholder="Country"
                             />
                         </FormGroup>
                     </Col>
