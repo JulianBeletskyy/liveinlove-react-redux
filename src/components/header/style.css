@@ -7,10 +7,6 @@
 	background-color: rgba(0,0,0, 0.8);
 }
 
-:local(.navbarDefault) .navbar-collapse {
-	margin-top: 15px;
-}
-
 :local(.navbarDefault) .navbar-brand {
 	padding-top: 0;
 	padding-bottom: 0;
@@ -107,5 +103,9 @@
 @media screen and (max-width: 768px) {
 	:local(.navBar > li > ul > a) {
 		color: white;
+	}
+
+	:local(.navbarDefault) .navbar-collapse {
+		margin-top: 15px;
 	}
 }

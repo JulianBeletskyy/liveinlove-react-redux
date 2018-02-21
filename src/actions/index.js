@@ -289,10 +289,3 @@ export function saveFile(value) {
         value
     }
 }
-
-export function moveSelectPlaceholder(id) {
-    return {
-        type: types.MOVE_SELECT_PLACEHOLDER,
-        id
-    }
-}
