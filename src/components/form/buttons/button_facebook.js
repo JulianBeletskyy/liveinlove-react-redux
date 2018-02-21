@@ -12,7 +12,7 @@ class BtnFacebook extends Component {
                 onClick={this.props.onClick}
             >
                 <i className="fab fa-facebook"></i>
-                <span>Upload from Facebook</span>
+                <span>{this.props.title}</span>
             </Button>
         );
     }

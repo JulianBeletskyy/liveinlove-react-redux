@@ -1,9 +1,9 @@
 import * as types from '../actions/types.js'
-import Cookies from 'js-cookie'
 
 const initialState = {
-	registration: false
-    
+	registration: false,
+    login: false,
+    recovery: false
 }
 
 export default function modals(modals = initialState, action = {}) {

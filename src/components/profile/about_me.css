@@ -1,0 +1,64 @@
+:local(.wrapper) {
+	position: relative;
+}
+
+:local(.editBtn) {
+	position: absolute;
+	top: 0;
+	right: -10px;
+	border-radius: 0;
+	border: none;
+	letter-spacing: 1px;
+	z-index: 2;
+}
+
+:local(.title) {
+	position: relative;
+	text-align: center;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: 1px;
+}
+
+:local(.name) {
+	font-family: bebas_neue_bold;
+	font-size: 16px;
+	text-align: right;
+	padding-right: 50px;
+	padding-bottom: 20px;
+}
+
+:local(.value) {
+	font-size: 16px;
+	padding-left: 50px;
+	padding-bottom: 20px;
+}
+
+:local(.bNone) {
+	border: none;
+	padding-bottom: 0;
+}
+
+:local(.fancyBorder::after) {
+	content: '';
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	background: url('/assets/img/border.png') center center;
+	background-size: 190px;
+	background-repeat: no-repeat;
+	height: 30px;
+	width: 65%;
+}
+
+@media (max-width: 768px) {
+	:local(.value) {
+		padding-left: 10px;
+	}
+
+	:local(.name) {
+		padding-right: 10px;
+	}
+}

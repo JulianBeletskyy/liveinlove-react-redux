@@ -1,0 +1,50 @@
+:local(.wrapper) {
+	width: 100%;
+	min-height: 95vh;
+	background-image: url('/assets/img/girl-profile.jpeg');
+	background-size: cover;
+	background-repeat: repeat;
+}
+
+:local(.bigImageHolder) {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+:local(.bigImageHolder img) {
+	width: 100%;
+}
+
+:local(.smallImageHolder img) {
+	height: 100%;
+	width: auto;
+}
+
+:local(.smallImageHolder) {
+	height: 80px;
+	margin-bottom: 20px;
+}
+
+:local(.panel) {
+	background-color: rgba(248,247,244, .95);
+	box-shadow: 0 0 10px 5px rgba(0,0,0, .5);
+}
+
+:local(.xBorders) {
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+}
+
+:local(.btnEdit) {
+	letter-spacing: 1px;
+	font-size: 16px;
+	border-radius: 0;
+	border: none;
+}
+
+@media screen and (max-width: 768px) {
+	:local(.xBorders) {
+		border-right: none;
+		border-left: none;
+	}
+}

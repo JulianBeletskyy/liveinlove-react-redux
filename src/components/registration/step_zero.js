@@ -3,43 +3,43 @@ import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup, Col, Radio, Row } from 'react-bootstrap'
 import Validator from 'validate'
-import { 
-    sendSignUpStart, 
-    getHeights, 
-    getWeights, 
-    getEyesColor, 
-    getHairColor, 
-    getHairLength, 
-    getEthnicities, 
-    getMaritalStatus,
-    getInterests 
-} from 'actions'
+import { sendSignUpStart, getOptionsSignUp } from 'actions'
 import TextField from 'components/form/inputs/text_field.js'
 import SelectField from 'components/form/inputs/select_field.js'
 import Btn from 'components/form/buttons/button.js'
+import BtnGoogle from 'components/form/buttons/button_google.js'
+import BtnFacebook from 'components/form/buttons/button_facebook.js'
 import CheckboxField from 'components/form/inputs/checkbox_field.js'
 import style from './step_zero.css'
+import Autocomplete from 'components/form/inputs/autocomplete.js'
 
 class SignUpStart extends Component {
     constructor(props) {
         super(props)
         this.signup = {
-            role: 'client',
+            role: this.props.signup.data.role,
             birth: {}
         }
         this.role = {}
-
+        
         const getFunc = {
-            heights: () => {store.dispatch(getHeights())},
-            weights: () => {store.dispatch(getWeights())},
-            eyesColor: () => {store.dispatch(getEyesColor())},
-            hairColor: () => {store.dispatch(getHairColor())},
-            hairLength: () => {store.dispatch(getHairLength())},
-            ethnicities: () => {store.dispatch(getEthnicities())},
-            maritalStatus: () => {store.dispatch(getMaritalStatus())},
-            interests: () => {store.dispatch(getInterests())}
+            height: () => {store.dispatch(getOptionsSignUp('height'))},
+            weight: () => {store.dispatch(getOptionsSignUp('weight'))},
+            eyes: () => {store.dispatch(getOptionsSignUp('eyes'))},
+            hair_colors: () => {store.dispatch(getOptionsSignUp('hair_colors'))},
+            hair_lengths: () => {store.dispatch(getOptionsSignUp('hair_lengths'))},
+            ethnicities: () => {store.dispatch(getOptionsSignUp('ethnicities'))},
+            marital_statuses: () => {store.dispatch(getOptionsSignUp('marital_statuses'))},
+            interests: () => {store.dispatch(getOptionsSignUp('interests'))},
+            religions: () => {store.dispatch(getOptionsSignUp('religions'))},
+            want_children: () => {store.dispatch(getOptionsSignUp('want_children'))},
+            education: () => {store.dispatch(getOptionsSignUp('education'))},
+            smoke: () => {store.dispatch(getOptionsSignUp('smoke'))},
+            primary_language: () => {store.dispatch(getOptionsSignUp('primary_language'))},
+            language_level: () => {store.dispatch(getOptionsSignUp('language_level'))},
+            drink: () => {store.dispatch(getOptionsSignUp('drink'))}
         }
-
+        
         for (let k in getFunc) {
             if (! this.props.signup[k].length) {
                 getFunc[k]()
@@ -55,11 +55,11 @@ class SignUpStart extends Component {
                 error *= Validator.check(this.signup.birth[k].value, ['required'], 'Birthday')
             }
         }
+        console.log(this.signup.terms.checked)
         error *= Validator.check(this.signup.first_name.value, ['required', 'string', 'alphabet'], 'First Name')
         error *= Validator.check(this.signup.last_name.value, ['required', 'string', 'alphabet'], 'Last Name')
         error *= Validator.check(this.signup.email.value, ['required', 'email'], 'Email')
         error *= Validator.check(this.signup.password.value, ['required'], 'Password')
-        
         error *= Validator.check(this.signup.country.value, ['required'], 'Country')
         error *= Validator.check(this.signup.city.value, ['required'], 'City')
         error *= Validator.check(this.signup.terms.checked, ['checked'], 'Terms & Privacy')
@@ -82,6 +82,30 @@ class SignUpStart extends Component {
             }
             store.dispatch(sendSignUpStart(data))
         }
+    }
+
+    facebookSignUp = () => {
+        window.FB.login((response) => {
+            console.log(response)
+            window.FB.api('/me', {fields: ['first_name, last_name, email, picture.width(2048), gender, locale']}, (response) => {
+                console.log(response)
+            });
+        }, {scope: 'public_profile, email'});
+    }
+
+    googleSignUp = () => {
+        window.gapi.load('auth2', () => {
+            let auth2 = window.gapi.auth2.init({
+                'client_id': '614936763337-p55fs7mrcgtknam26o26g6766mdjlmgv.apps.googleusercontent.com',
+                'cookiepolicy': 'single_host_origin',
+                'scope': 'profile email'
+            });
+        let element = document.getElementById('google')
+
+        auth2.attachClickHandler(element, {}, (googleUser) => {
+                console.log(googleUser)
+            })
+       });
     }
 
     toggleRole = () => {
@@ -126,9 +150,13 @@ class SignUpStart extends Component {
         return temp
     }
 
+    componentDidMount() {
+        this.googleSignUp()
+    }
+
     render() {
         const { data } = this.props.signup;
-        
+        //
         return (
             <form onSubmit={this.getSignUpOne} noValidate={true}>
                 <Row>
@@ -136,23 +164,21 @@ class SignUpStart extends Component {
                         <FormGroup>
                             <div className="text-center title">
                                 <span className={style.spanMale}>Male</span>
-                                    <Radio 
-                                        name="sex" 
-                                        value="male"
-                                        defaultChecked={data.role != 'girl'}
-                                        onChange={this.toggleRole}
-                                        inputRef={ref => { this.role.male = ref }}
-                                        className={style.gender}
-                                        inline
-                                    >
-                                        <i className="fas fa-mars fa-2x"></i>
-                                    </Radio>
-                                    
-                                
+                                <Radio 
+                                    name="sex" 
+                                    value="male"
+                                    defaultChecked={data.role !== 'girl'}
+                                    onChange={this.toggleRole}
+                                    inputRef={ref => { this.role.male = ref }}
+                                    className={style.gender}
+                                    inline
+                                >
+                                    <i className="fas fa-mars fa-2x"></i>
+                                </Radio>
                                 <Radio 
                                     name="sex" 
                                     value="female"
-                                    defaultChecked={data.role == 'girl'}
+                                    defaultChecked={data.role === 'girl'}
                                     onChange={this.toggleRole}
                                     inputRef={ref => { this.role.female = ref }}
                                     className={style.gender}
@@ -266,6 +292,20 @@ class SignUpStart extends Component {
                                 orientation="right"
                             />
                         </FormGroup>
+                        <FormGroup>
+                        or
+                        </FormGroup>
+                        <FormGroup>
+                            <BtnFacebook
+                                title="Sign Up with Facebook"
+                                onClick={this.facebookSignUp}
+                            />
+                            &nbsp;
+                            &nbsp;
+                            <BtnGoogle
+                                title="Sign Up with Google"
+                            />
+                        </FormGroup>
                     </Col>
                 </Row>
             </form>
@@ -274,7 +314,9 @@ class SignUpStart extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        signup: state.signup
+    }
 }
 
 export default connect(

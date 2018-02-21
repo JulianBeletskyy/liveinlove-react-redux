@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { FormControl } from 'react-bootstrap'
 import styleCustom from './custom_select.css'
 import style from './select_field.css'
+import store from 'store/'
 
 class CustomSelect extends Component {
     constructor(props) {
@@ -13,16 +14,16 @@ class CustomSelect extends Component {
         return (<option key={i} value={option.value}>{option.name}</option>)
     }
 
-/*    movePlaceholder(el) {
-    var next = document.getElementById(el).nextElementSibling;
+    movePlaceholder() {
+    var next = document.getElementById(this.props.id).nextElementSibling;
     next.style.top = "-10px";
     next.style.fontSize = "12px";
-    }*/
+    }
 
     render() {
         return (
             <div className={styleCustom.selectWrapper} >
-                <FormControl className={style.select} componentClass={this.props.componentClass} inputRef={this.props.inputRef}>
+                <FormControl className={style.select} onChange={this.movePlaceholder} componentClass={this.props.componentClass} inputRef={this.props.inputRef}>
                     <option value="" defaultValue hidden></option>
                     {
                         this.props.options.map((option, i) => this.printOptions(option, i))

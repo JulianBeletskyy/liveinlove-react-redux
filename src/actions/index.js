@@ -1,6 +1,7 @@
 import * as types from './types.js'
 import api from '../api'
 import Cookies from 'js-cookie'
+import { history } from 'store'
 
 export function login(data) {
     return dispatch => {
@@ -53,6 +54,47 @@ export function removeAlert() {
     }
 }
 
+export function sendRecovery(data) {
+    return dispatch => {
+        return api.sendRecovery(data)
+        .then(json => {
+            if (json.data) {
+                dispatch(toggleModal(false, 'recovery'))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export function updatePassword(data, hash) {
+    return dispatch => {
+        return api.updatePassword(data, hash)
+        .then(json => {
+            if (json.data) {
+                dispatch(toggleModal(false, 'recovery'))
+                dispatch(setRecoveryHash(''))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export function activateUser(hash) {
+    return dispatch => {
+        return api.activateUser(hash)
+        .then(json => {
+            history.push('/')
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
 export function sendSignUpStart(data) {
     return dispatch => {
         return api.signUpStart(data)
@@ -75,7 +117,8 @@ export function sendSignUpOne(data) {
             .then(json => {
                 if (json.data) {
                     dispatch(setSignUpData(data))
-                    dispatch(changeStep(2))
+                    const step = data.route === 'client' ? 2 : 5
+                    dispatch(changeStep(step))
                 }
             })
             .catch(error => {
@@ -84,13 +127,28 @@ export function sendSignUpOne(data) {
     }
 }
 
-export function sendSignUpTwo(data) {
+export function sendSignUpTwo(data, step) {
     return dispatch => {
         return api.signUpTwo(data)
             .then(json => {
                 if (json.data) {
+                    dispatch(changeStep(step))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function sendSignUpTwoGirl(data) {
+    return dispatch => {
+        return api.signUpTwoGirl(data)
+            .then(json => {
+                if (json.data) {
                     console.log(json.data)
-                    dispatch(changeStep(3))
+                    dispatch(setSignUpData(data))
+                    dispatch(changeStep(2))
                 }
             })
             .catch(error => {
@@ -104,7 +162,25 @@ export function sendSignUpThree(data) {
         return api.signUpThree(data)
             .then(json => {
                 if (json.data) {
-                    dispatch(sendSignUpFinish({'remember_token': json.data}))
+                    dispatch(sendSignUpFinish({
+                        'remember_token': json.data,
+                        'url': window.location.href + 'activate/{hash}'
+                    }))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function sendSignUpThreeGirl(data) {
+    return dispatch => {
+        return api.signUpThreeGirl(data)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setSignUpData(data))
+                    dispatch(changeStep(3))
                 }
             })
             .catch(error => {
@@ -118,13 +194,19 @@ export function sendSignUpFinish(data) {
         return api.signUpFinish(data)
             .then(json => {
                 if (json.data) {
-                    console.log(json.data)
                     dispatch(changeStep(4))
                 }
             })
             .catch(error => {
                 console.log(error)
             })
+    }
+}
+
+export function setRecoveryHash(hash) {
+    return {
+        type: types.SET_RECOVERY_HASH,
+        hash
     }
 }
 
@@ -142,12 +224,12 @@ export function setSignUpData(data) {
     }
 }
 
-export function getHeights() {
+export function getOptionsSignUp(type) {
     return dispatch => {
-        return api.getHeights()
+        return api.getOptionsSignUp(type)
             .then(json => {
                 if (json.data) {
-                    dispatch(setHeights(json.data))
+                    dispatch(setOptionsSignUp(json.data, type))
                 }
             })
             .catch(error => {
@@ -156,157 +238,11 @@ export function getHeights() {
     }
 }
 
-export function getWeights() {
-    return dispatch => {
-        return api.getWeights()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setWeights(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-}
-
-export function getEyesColor() {
-    return dispatch => {
-        return api.getEyesColor()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setEyesColor(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-}
-
-export function getHairColor() {
-    return dispatch => {
-        return api.getHairColor()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setHairColor(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-}
-
-export function getHairLength() {
-    return dispatch => {
-        return api.getHairLength()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setHairLength(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-}
-
-export function getEthnicities() {
-    return dispatch => {
-        return api.getEthnicities()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setEthnicities(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-}
-
-export function getMaritalStatus() {
-    return dispatch => {
-        return api.getMaritalStatus()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setMaritalStatus(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-}
-
-export function getInterests() {
-    return dispatch => {
-        return api.getInterests()
-            .then(json => {
-                if (json.data) {
-                    dispatch(setInterests(json.data))
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-}
-
-export function setHairColor(value) {
+export function setOptionsSignUp(value, option) {
     return {
-        type: types.SET_HAIR_COLOR,
-        value
-    }
-}
-
-export function setWeights(value) {
-    return {
-        type: types.SET_WEIGHTS,
-        value
-    }
-}
-
-export function setEyesColor(value) {
-    return {
-        type: types.SET_EYES_COLOR,
-        value
-    }
-}
-
-export function setHeights(value) {
-    return {
-        type: types.SET_HEIGHTS,
-        value
-    }
-}
-
-export function setHairLength(value) {
-    return {
-        type: types.SET_HAIR_LENGTH,
-        value
-    }
-}
-
-export function setEthnicities(value) {
-    return {
-        type: types.SET_ETHNICITIES,
-        value
-    }
-}
-
-export function setMaritalStatus(value) {
-    return {
-        type: types.SET_MARITAL_STATUS,
-        value
-    }
-}
-
-export function setInterests(value) {
-    return {
-        type: types.SET_INTERESTS,
-        value
+        type: types.SET_OPTIONS_SIGN_UP,
+        value,
+        option
     }
 }
 

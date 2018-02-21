@@ -10,7 +10,7 @@
 }
 
 :local(.spanFemale) {
-    padding-left: 15px;
+   padding-left: 15px;
 }
 
 input[value=male]:checked + .fa-mars {

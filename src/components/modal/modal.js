@@ -8,7 +8,7 @@ import { changeStep } from 'actions';
 
 class MainModal extends Component {
     closeModal = () => {
-        store.dispatch(toggleModal(false, 'registration'))
+        store.dispatch(toggleModal(false, this.props.keyModal))
         store.dispatch(changeStep(0))
     }
     
@@ -16,8 +16,8 @@ class MainModal extends Component {
         return (
             <Modal 
                 show={this.props.show} 
-                onHide={this.closeModal} 
-                bsSize="lg"
+                onHide={this.closeModal}
+                bsSize={this.props.size}
             >
                 <Modal.Header bsClass={style.headerModal + ' modal-header'} closeButton>
                     <h3 className="modal-title title">

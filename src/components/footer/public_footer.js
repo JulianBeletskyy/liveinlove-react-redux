@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-bootstrap'
 import style from './style.css'
-import { Link } from 'react-router-dom'
-import Btn from 'components/form/buttons/button.js'
 
 class PublicFooter extends Component {
     render() {
@@ -89,11 +87,11 @@ class PublicFooter extends Component {
                     </Row>*/}
 
                     <Row className="title">
-                        <Col sm={12} md={6}>
+                        <Col xs={6}>
                             Copyright &copy; Liveinlove - All Rights Reserved
                         </Col>
 
-                        <Col sm={12} md={6} className="text-right">
+                        <Col xs={6} className="text-right">
                             2018
                         </Col>
                     </Row>

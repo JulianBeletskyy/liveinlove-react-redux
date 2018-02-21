@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
-import { FormGroup, Col, Row, FormControl } from 'react-bootstrap'
+import { FormGroup, Col, Row } from 'react-bootstrap'
 import BtnMain from 'components/form/buttons/main_button.js'
 import Btn from 'components/form/buttons/button.js'
 import { changeStep, sendSignUpThree } from 'actions'
@@ -48,6 +48,7 @@ class SignUpThree extends Component {
                             <Textarea
                                 inputRef={ref => { this.signup.message = ref }}
                                 value={data.message}
+                                placeholder="Message"
                             />
                         </FormGroup>
                         <h4 className="title">Interests</h4>
