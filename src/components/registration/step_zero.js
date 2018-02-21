@@ -101,6 +101,7 @@ class SignUpStart extends Component {
                 'scope': 'profile email'
             });
         let element = document.getElementById('google')
+
         auth2.attachClickHandler(element, {}, (googleUser) => {
                 console.log(googleUser)
             })
@@ -149,9 +150,13 @@ class SignUpStart extends Component {
         return temp
     }
 
+    componentDidMount() {
+        this.googleSignUp()
+    }
+
     render() {
         const { data } = this.props.signup;
-        this.googleSignUp()
+        //
         return (
             <form onSubmit={this.getSignUpOne} noValidate={true}>
                 <Row>
@@ -298,13 +303,7 @@ class SignUpStart extends Component {
                             &nbsp;
                             &nbsp;
                             <BtnGoogle
-                                    title="Sign Up with Google"
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <Autocomplete 
-                                inputRef={ref => { this.signup.autocomplete = ref }}
-                                placeholder="Country"
+                                title="Sign Up with Google"
                             />
                         </FormGroup>
                     </Col>

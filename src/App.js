@@ -24,7 +24,7 @@ class App extends Component {
             <div className="App">
                 <PublicHeader />
                     <Switch>
-                        <Route path="/activate/:hash" exact component={Activate} />
+                        <Route path="/activate/:activate_hash" exact component={Home} />
                         <Route path="/recovery/:hash" exact component={Home} />
                         {
                             routes.map((route, i) => this.printRoutes(route, i))
