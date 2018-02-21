@@ -1,0 +1,38 @@
+:local(.wrap) {
+    position: relative;
+    padding-bottom: 8px;
+}
+
+:local(.style) {
+    border-radius: 0px;
+    border-top-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    box-shadow:inset 0 0 0 0 #fff;
+    position: relative;
+    z-index: 1;
+    background: transparent;
+}
+
+:local(.style:focus) {
+    box-shadow:inset 0 0 0 0 #fff;
+    box-shadow: 0 0 0 0 #fff;
+}
+
+:local(.placeholder) {
+    position: absolute;
+    white-space: nowrap;
+    bottom: 10px;
+    font-family: bebas_neue;
+    font-weight: 400;
+    letter-spacing: 1px;
+    z-index: 0;
+    opacity: 0.5;
+    transition: all 0.2s linear 0s;
+}
+
+:local(.style:focus + .placeholder),
+:local(.placeholder.active) {
+    bottom: 40px;
+    font-size: 12px;
+}
