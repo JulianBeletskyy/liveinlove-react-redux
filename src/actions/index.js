@@ -68,11 +68,28 @@ export function sendRecovery(data) {
     }
 }
 
+export function updatePassword(data, hash) {
+    return dispatch => {
+        return api.updatePassword(data, hash)
+        .then(json => {
+            if (json.data) {
+                dispatch(toggleModal(false, 'recovery'))
+                dispatch(setRecoveryHash(''))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
 export function activateUser(hash) {
     return dispatch => {
         return api.activateUser(hash)
         .then(json => {
-            history.push('/');
+            if (json.data) {
+                history.push('/');
+            }
         })
         .catch(error => {
             console.log(error)
