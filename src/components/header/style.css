@@ -1,10 +1,20 @@
 :local(.navbarDefault) {
 	width: 100%;
-	background-color: transparent;
 	margin-bottom: 20px;
 	padding: 10px 0;
 	z-index: 5;
 	border: none;
+	background-color: rgba(0,0,0, 0.8);
+}
+
+:local(.navbarDefault) .navbar-brand {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+:local(.navbarDefault) .navbar-brand > img {
+	height: 60px;
+	margin-top: -5px;
 }
 
 :local(.navBar > li) {
@@ -24,11 +34,11 @@
 	color: white;
 }
 
-.navbar-default .navbar-nav>.open>a,
-.navbar-default .navbar-nav>.open>a:focus, 
-.navbar-default .navbar-nav>.open>a:hover,
-.navbar-default .navbar-nav>li>a:focus, 
-.navbar-default .navbar-nav>li>a:hover {
+:local(.navbarDefault) .navbar-nav>.open>a,
+:local(.navbarDefault) .navbar-nav>.open>a:focus, 
+:local(.navbarDefault) .navbar-nav>.open>a:hover,
+:local(.navbarDefault) .navbar-nav>li>a:focus, 
+:local(.navbarDefault) .navbar-nav>li>a:hover {
 	background-color: transparent;
 	color: white; 
 }
@@ -91,11 +101,11 @@
 }
 
 @media screen and (max-width: 768px) {
-	:local(.navbarDefault) {
-		background-color: rgba(0,0,0, 0.8);
-	}
-
 	:local(.navBar > li > ul > a) {
 		color: white;
+	}
+
+	:local(.navbarDefault) .navbar-collapse {
+		margin-top: 15px;
 	}
 }

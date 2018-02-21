@@ -8,13 +8,13 @@ class AboutMe extends Component {
    render() {
    	return (
    		<div className={style.wrapper}>
-            <Link to="/" className={style.editBtn + ' btn + btn-success'}>Edit</Link>
+            <Link to="/client-edit" className={style.editBtn + ' btn + btn-success'}>Edit</Link>
 
    			<div className={style.title}>
    				About Me
    			</div>
 
-   			<Row>
+   			<Row className={style.fancyBorder}>
    				<Col xs={6} className={style.name}>
    					<div>Star sign:</div>
    					<div>Heght:</div>
