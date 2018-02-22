@@ -24,7 +24,6 @@ class Auth extends Component {
                 email: this.auth.email.value,
                 password: this.auth.password.value
             }
-            console.log(data)
             store.dispatch(login(data))
         }
     }
