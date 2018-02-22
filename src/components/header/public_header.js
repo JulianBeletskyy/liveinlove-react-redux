@@ -19,7 +19,7 @@ class PublicHeader extends Component {
     render() {
         const { token } = this.props.user
         return (
-           <ul className={style.navBar + ' nav navbar-nav navbar-right'} >
+            <ul className={style.navBar + ' nav navbar-nav navbar-right'} >
                 <NavDropdown role="presentation" eventKey={1} title="About" id="about-nav-dropdown">
                   <Link to="/about">About Agency</Link>
                   <Link to="/how-works">How it works?</Link>
