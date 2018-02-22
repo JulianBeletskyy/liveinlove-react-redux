@@ -38,6 +38,7 @@ const initialState = {
         about_children: '',
         mobile: ''
     },
+    send_email: '',
     remember_token: '',
     height: [],
     weight: [],
@@ -75,6 +76,10 @@ export default function signup(signup = initialState, action = {}) {
         case types.SET_EMPTY_DATA:
             return Object.assign({}, signup, {
                 empty_data: temp
+            });
+        case types.SET_SEND_EMAIL:
+            return Object.assign({}, signup, {
+                send_email: action.value
             });
         case types.SET_EMPTY_SIGNUP_DATA:
             return Object.assign({}, signup, {

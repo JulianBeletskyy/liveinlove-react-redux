@@ -1,3 +1,7 @@
+:local(.brandImg) {
+	min-width: 110px;
+}
+
 :local(.navbarDefault) {
 	width: 100%;
 	margin-bottom: 20px;

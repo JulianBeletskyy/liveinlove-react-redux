@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import store from 'store'
 import style from './style.css'
 import { Link } from 'react-router-dom'
-import { Navbar, NavDropdown } from 'react-bootstrap'
+import { Navbar, NavDropdown, Grid } from 'react-bootstrap'
 import { toggleModal, logout } from 'actions'
 import PublicHeader from 'components/header/public_header.js'
 import GirlHeader from 'components/header/girl_header.js'
@@ -22,15 +22,15 @@ class Header extends Component {
     render() {
         const { token, data } = this.props.user
         return (
-            <Navbar className={style.navbarDefault + ' title'} fixedTop fluid>
-                 <Navbar.Header>
+            <Navbar className="title" fixedTop>
+                <Navbar.Header>
                     <Navbar.Brand>
                         <Link to="/">
-                            <img alt="Brand" src="/assets/img/white-logo.svg"/>
+                            <img alt="Brand" src="/assets/img/logo-dark.svg" className={style.brandImg + " img-responsive"} />
                         </Link>
                     </Navbar.Brand>
                     <Navbar.Toggle />
-                 </Navbar.Header>
+                </Navbar.Header>
                 <Navbar.Collapse>
                 {
                     token
@@ -39,7 +39,7 @@ class Header extends Component {
                     : (<GirlHeader />)
                     : (<PublicHeader />)
                 }
-                </Navbar.Collapse> 
+                </Navbar.Collapse>
             </Navbar>
         );
     }

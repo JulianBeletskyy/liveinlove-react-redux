@@ -1,6 +1,7 @@
 :local(.wrap) {
     position: relative;
     padding-bottom: 8px;
+    padding-top: 8px;
 }
 
 :local(.style) {

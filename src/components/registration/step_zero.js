@@ -308,7 +308,7 @@ class SignUpStart extends Component {
                     <Col xs={12} className="text-center">
                         <CheckboxField
                             inputRef={ref => { this.signup.terms = ref }}
-                            text='By clicking " Join Us for Free" above you agree to "Terms of Use" & "Privacy Policy"'
+                            text='By clicking "Join Us for Free" above you agree to "Terms of Use" & "Privacy Policy"'
                             value={data.terms}
                         />
                         <FormGroup>
@@ -323,15 +323,19 @@ class SignUpStart extends Component {
                         or
                         </FormGroup>
                         <FormGroup>
-                            <BtnFacebook
-                                title="Sign Up with Facebook"
-                                onClick={this.facebookSignUp}
-                            />
-                            &nbsp;
-                            &nbsp;
-                            <BtnGoogle
-                                title="Sign Up with Google"
-                            />
+                            <Row>
+                                <Col sm={6}>
+                                    <BtnFacebook
+                                        title="Sign Up with Facebook"
+                                        onClick={this.facebookSignUp}
+                                    />
+                                </Col>
+                                <Col sm={6}>
+                                    <BtnGoogle
+                                        title="Sign Up with Google"
+                                    />
+                                </Col>
+                            </Row>
                         </FormGroup>
                     </Col>
                 </Row>

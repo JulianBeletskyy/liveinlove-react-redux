@@ -5,7 +5,6 @@ import { FormGroup, Row, Col } from 'react-bootstrap'
 class SignUpConfirm extends Component {
     constructor(props) {
         super(props)
-        this.signup= {}
     }
 
     render() {
@@ -14,9 +13,11 @@ class SignUpConfirm extends Component {
                 <Row>
                     <Col sm={8} smOffset={2}>
                         <FormGroup className="text-center">
-                            <p>Email verification link was sent to 
-                            <strong>{this.props.signup.data.email}</strong>. 
-                            To activate your account please check your email and click on the confirmation link.</p>
+                            <p>Email verification link was sent to
+                            &nbsp;
+                            <strong>{this.props.signup.send_email}</strong>. 
+                                To activate your account please check your email and click on the confirmation link.
+                            </p>
                         </FormGroup>
                     </Col>
                 </Row>

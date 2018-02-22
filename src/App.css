@@ -16,6 +16,21 @@ body .title {
     padding: 1px;
 }
 
+.blue-color {
+  color: #27c2d3;
+}
+
+.small-italic {
+  font-size: 13px;
+  font-style: italic;
+  opacity: 0.7;
+  font-weight: normal;
+}
+
+.btn-login {
+  padding: 30px;
+}
+
 .modal-content {
     border-style: solid;
     border-width: 2px;
@@ -59,8 +74,8 @@ body .title {
 }
 
 .upload-btn-group {
-    width: 255px;
     margin: 0 auto;
+    max-width: 100%;
 }
 
 .upload-btn-group button {
@@ -68,21 +83,14 @@ body .title {
 }
 
 .default-avatar {
-    height: 240px;
     width: 240px;
     margin: 0 auto;
     display: block;
-}
-.container-fluid {
-    padding-left: 30px;
-    padding-right: 30px;
+    max-width: 100%;
 }
 
 .shadow {
     padding-top: 100px;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.25);
 }
 
 .no-results-page {
@@ -142,4 +150,8 @@ body .title {
   position: relative;
   background-color: #fff;
   z-index: 1;
+}
+
+.navbar .container-fluid {
+  padding: 0;
 }

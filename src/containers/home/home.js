@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Auth, MainModal, Recovery, PublicHome } from 'components'
 import { toggleModal, setRecoveryHash, activateUser } from 'actions'
+import { Grid } from 'react-bootstrap'
 import store, { history } from 'store'
 import style from './style.css';
 import ClientHome from 'components/home/client_home.js';
@@ -30,26 +31,28 @@ class Home extends Component {
         const { token, data } = this.props.user
 
         return (
-            <div className={style.homeWrapper} >
-            {
-                token
-                ? data.role == 'client'
-                    ? (<ClientHome />)
-                    : (<GirlHome />)
-                : (<PublicHome />)
-            }
-                <MainModal
-                    body={<Auth />}
-                    title="LOg IN"
-                    show={login}
-                    keyModal="login"
-                />
-                <MainModal
-                    body={<Recovery />}
-                    title="Recovery"
-                    show={recovery}
-                    keyModal="recovery"
-                />
+            <div className={style.homeWrapper}>
+                <Grid>
+                {
+                    token
+                    ? data.role == 'client'
+                        ? (<ClientHome />)
+                        : (<GirlHome />)
+                    : (<PublicHome />)
+                }
+                    <MainModal
+                        body={<Auth />}
+                        title="LOg IN"
+                        show={login}
+                        keyModal="login"
+                    />
+                    <MainModal
+                        body={<Recovery />}
+                        title="Recovery"
+                        show={recovery}
+                        keyModal="recovery"
+                    />
+                </Grid>
             </div>
         );
     }

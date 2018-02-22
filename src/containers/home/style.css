@@ -1,9 +1,6 @@
 :local(.homeWrapper) {
-	width: 100%;
-	min-height: 93.5vh;
 	background-image: url('/assets/img/login-bg.jpg');
 	background-size: cover;
-	background-repeat: repeat;
 }
 
 :local(.bigDesc) {

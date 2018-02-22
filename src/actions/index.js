@@ -137,6 +137,7 @@ export function sendSignUpStart(data) {
             if (json.data) {
                 dispatch(setTempToken(json.data))
                 dispatch(setSignUpData(data))
+                dispatch(setSendEmail(data.email))
                 dispatch(changeStep(1))
             }
         })
@@ -239,6 +240,13 @@ export function sendSignUpFinish(data) {
             .catch(error => {
                 console.log(error)
             })
+    }
+}
+
+export function setSendEmail(value) {
+    return {
+        type: types.SET_SEND_EMAIL,
+        value
     }
 }
 

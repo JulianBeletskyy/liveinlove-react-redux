@@ -22,7 +22,7 @@ export default {
             'path': '/',
             'component': 'Home'
         }, {
-            'path': '/client-profile',
+            'path': '/profile',
             'component': 'ClientProfile'
         }, {
             'path': '/client-edit',
