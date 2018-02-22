@@ -5,22 +5,14 @@ import style from './right_menu.css'
 import { Link } from 'react-router-dom'
 
 class ClientRightMenu extends Component {
-	getUserInfo = () => {
-		return {
-			userId: '434234234',
-			credits: '0',
-			country: 'Ukraine',
-			fname: 'Ivan',
-			lname: 'Syla',
-			regDate: '12.12.12'
-		};
-	}
 	render() {
+		const { data } = this.props.user
+		console.log(data)
 		return (
 			<Panel className={style.wrapper}>
 				<Panel.Body>
 					<div className={style.profileImage}>
-						<img src="/assets/img/default-avatar.jpg" alt="profile image" />
+						<img src={data.avatar[0].croped} alt="profile image" />
 					</div>
 
 					<Row className={style.itemHolder}>
@@ -29,7 +21,7 @@ class ClientRightMenu extends Component {
 						</Col>
 
 						<Col xs={6}>
-							<span className={style.userId}>{this.getUserInfo().userId}</span>
+							<span className={style.userId}>{data.profile_id}</span>
 						</Col>
 					</Row>
 
@@ -39,7 +31,7 @@ class ClientRightMenu extends Component {
 						</Col>
 
 						<Col xs={6}>
-							{this.getUserInfo().credits}
+							0
 						</Col>
 					</Row>
 
@@ -49,7 +41,7 @@ class ClientRightMenu extends Component {
 						</Col>
 
 						<Col xs={6}>
-							{this.getUserInfo().fname + ' ' + this.getUserInfo().lname}
+							{data.first_name + ' ' + data.last_name}
 						</Col>
 					</Row>
 
@@ -59,7 +51,7 @@ class ClientRightMenu extends Component {
 						</Col>
 
 						<Col xs={6}>
-							{this.getUserInfo().regDate}
+							{data.birthday.day + '.' + data.birthday.month + '.' + data.birthday.year}
 						</Col>
 					</Row>
 
@@ -69,7 +61,7 @@ class ClientRightMenu extends Component {
 						</Col>
 
 						<Col xs={6}>
-							{this.getUserInfo().country}
+							{data.country}
 						</Col>
 					</Row>
 

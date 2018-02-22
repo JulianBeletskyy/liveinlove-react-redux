@@ -22,6 +22,9 @@ export default {
             'path': '/',
             'component': 'Home'
         }, {
+            'path': '/client-profile',
+            'component': 'ClientProfile'
+        }, {
             'path': '/client-edit',
             'component': 'EditClientProfile'
         }, {

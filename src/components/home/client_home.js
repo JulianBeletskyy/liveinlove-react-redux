@@ -27,6 +27,7 @@ class ClientHome extends Component {
     }
 
     render() {
+        const { data } = this.props.user
         return (
             <div className="shadow title">
                 <Grid fluid>
@@ -54,7 +55,9 @@ class ClientHome extends Component {
                         </Col>
 
                         <Col md={2} className={style.rightMenu}>
-                            <ClientRightMenu></ClientRightMenu>
+                            <ClientRightMenu 
+                                
+                            />
                         </Col>
                     </Row>
                 </Grid>

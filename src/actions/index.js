@@ -61,7 +61,6 @@ export function getClientInfo(token) {
         return api.getClientInfo(token)
         .then(json => {
             if (json.data) {
-                console.log(json.data)
                 dispatch(setClientInfo(json.data))
             }
         })
@@ -120,6 +119,7 @@ export function activateUser(hash) {
         .then(json => {
             if (json.data) {
                 dispatch(setToken(json.data))
+                dispatch(getClientInfo(json.data))
                 history.push('/')
             }
             

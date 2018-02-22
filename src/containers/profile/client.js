@@ -63,6 +63,8 @@ class ClientProfile extends Component {
         }
     }
     render() {
+        const { data } = this.props.user
+        console.log(data)
         return (
             <div className={style.wrapper}>
                 <div className="shadow">
@@ -72,22 +74,24 @@ class ClientProfile extends Component {
                         		<Row>
         		                	<Col sm={12} md={4} >
         		                		<div className={style.bigImageHolder}>
-        		                			<img src="/assets/img/default-avatar.jpg" alt="profile big image" />
+        		                			<img 
+                                                src={data.avatar[0].croped} 
+                                                alt="profile big image" 
+                                            />
         		                		</div>
         		                	</Col>
 
         		                	<Col sm={12} md={4} className={style.xBorders}>
-                                        <InfoBlock title="Name" value={this.getName()}></InfoBlock>
-                                        <InfoBlock title="Adress" value={this.getAdress()}></InfoBlock>
-                                        <InfoBlock title="Personal Message" value={this.getMessage()}></InfoBlock>
-                                        <InfoBlock title="Interests" value={this.getInterests()}></InfoBlock>
-                                        <InfoBlock title="Languages" value={this.getLanguages()}></InfoBlock>
-                                        <InfoBlock title="Criminal Record" value={this.getRecord()}></InfoBlock>
-                                        <InfoBlock title="Education" value={this.getEducation()}></InfoBlock>
+                                        <InfoBlock title="Name" value={[data.first_name + ' ' + data.last_name]}></InfoBlock>
+                                        <InfoBlock title="Adress" value={[data.country + ', ' + data.city]}></InfoBlock>
+                                        <InfoBlock title="Personal Message" value={[data.message]}></InfoBlock>
+                                        <InfoBlock title="Interests" value={data.interests}></InfoBlock>
         		                	</Col>
 
         		                	<Col sm={12} md={4}>
-                                        <AboutMe info={this.getInfo()}></AboutMe>
+                                        <AboutMe 
+                                            info={this.getInfo()} 
+                                        />
         		                	</Col>
                         		</Row>
                         	</Col>
