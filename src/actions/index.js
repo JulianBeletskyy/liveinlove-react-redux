@@ -56,9 +56,9 @@ export function removeAlert() {
     }
 }
 
-export function getClientInfo() {
+export function getClientInfo(token) {
     return dispatch => {
-        return api.getClientInfo()
+        return api.getClientInfo(token)
         .then(json => {
             if (json.data) {
                 console.log(json.data)

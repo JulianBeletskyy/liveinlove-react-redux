@@ -50,8 +50,9 @@ export default {
         return fetch(config.API_URL + 'user', {
             method: 'get',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Authorization': 'Bearer ' + token
+                //'Accept': 'application/json',
+                //'Content-Type': 'application/json'
             }
         })
         .then(responseHandler)
