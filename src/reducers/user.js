@@ -4,7 +4,9 @@ import Cookies from 'js-cookie'
 const initialState = {
     token: Cookies.get('token'),
     recovery_hash: '',
-    data: {}
+    data: {
+        role: 'client'
+    }
 }
 
 export default function user(user = initialState, action = {}) {

@@ -22,7 +22,7 @@ class PublicHome extends Component {
             <div className="shadow">
                 <Grid fluid>
                     <Row>
-                        <Col md={6} sm={12} >
+                        <Col md={8} sm={12} >
                             <MainPanel
                                 title="Registration"
                                 iconClass="fas fa-address-card"
@@ -30,7 +30,7 @@ class PublicHome extends Component {
                             /> 
                         </Col>
 
-                        <Col md={6} sm={12} className="title">
+                        <Col md={4} sm={12} className="title">
                             <div className={style.bigDesc}>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit
                             </div>

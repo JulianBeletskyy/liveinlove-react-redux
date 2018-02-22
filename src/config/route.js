@@ -17,7 +17,7 @@ export default {
             'component': 'NotFound'
         }
     ],
-    'clients': [
+    'client': [
         {
             'path': '/',
             'component': 'Home'
@@ -38,8 +38,11 @@ export default {
             'component': 'NotFound'
         }
     ],
-    'girls': [
+    'girl': [
         {
+            'path': '/',
+            'component': 'Home'
+        }, {
             'path': '*',
             'component': 'NotFound'
         }

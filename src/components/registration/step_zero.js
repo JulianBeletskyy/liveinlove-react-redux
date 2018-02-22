@@ -3,7 +3,7 @@ import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup, Col, Radio, Row } from 'react-bootstrap'
 import Validator from 'validate'
-import { sendSignUpStart, getOptionsSignUp, setSignUpData, saveImage, saveFile } from 'actions'
+import { sendSignUpStart, getOptionsSignUp, setSignUpData, saveImage, saveFile, setEmptyData } from 'actions'
 import TextField from 'components/form/inputs/text_field.js'
 import SelectField from 'components/form/inputs/select_field.js'
 import Btn from 'components/form/buttons/button.js'
@@ -21,6 +21,7 @@ class SignUpStart extends Component {
             birth: {}
         }
         this.role = {}
+        store.dispatch(setEmptyData())
         
         const getFunc = {
             height: () => {store.dispatch(getOptionsSignUp('height'))},
@@ -182,7 +183,7 @@ class SignUpStart extends Component {
     }
 
     render() {
-        const { data } = this.props.signup;
+        const { data } = this.props.signup
         return (
             <form onSubmit={this.getSignUpOne} noValidate={true}>
                 <Row>

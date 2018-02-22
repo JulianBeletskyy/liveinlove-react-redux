@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid, Row, Col } from 'react-bootstrap'
-import { Auth, Registration, MainModal, MainPanel, Recovery, PublicHome } from 'components'
+import { Auth, MainModal, Recovery, PublicHome } from 'components'
 import { toggleModal, setRecoveryHash, activateUser } from 'actions'
 import store, { history } from 'store'
-import BtnMain from 'components/form/buttons/main_button.js'
 import style from './style.css';
 import ClientHome from 'components/home/client_home.js';
+import GirlHome from 'components/home/girl_home.js';
 
 class Home extends Component {
     constructor(props) {
@@ -27,23 +26,18 @@ class Home extends Component {
     }
 
     render() {
-        const { registration, login, recovery } = this.props.modals
-        const { token } = this.props.user
+        const { login, recovery } = this.props.modals
+        const { token, data } = this.props.user
 
         return (
             <div className={style.homeWrapper} >
             {
-                token ?
-                (<ClientHome />)
+                token
+                ? data.role == 'client'
+                    ? (<ClientHome />)
+                    : (<GirlHome />)
                 : (<PublicHome />)
             }
-                <MainModal
-                    body={<Registration />}
-                    title="Registration"
-                    show={registration}
-                    keyModal="registration"
-                    size="lg"
-                />
                 <MainModal
                     body={<Auth />}
                     title="LOg IN"

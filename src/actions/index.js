@@ -228,12 +228,29 @@ export function sendSignUpFinish(data) {
         return api.signUpFinish(data)
             .then(json => {
                 if (json.data) {
+                    dispatch(setEmptySignUpData())
+                    const emptyImage = ''
+                    const emptyFile = new FormData()
+                    dispatch(saveImage(emptyImage))
+                    dispatch(saveFile(emptyFile))
                     dispatch(changeStep(4))
                 }
             })
             .catch(error => {
                 console.log(error)
             })
+    }
+}
+
+export function setEmptySignUpData() {
+    return {
+        type: types.SET_EMPTY_SIGNUP_DATA
+    }
+}
+
+export function setEmptyData() {
+    return {
+        type: types.SET_EMPTY_DATA
     }
 }
 
