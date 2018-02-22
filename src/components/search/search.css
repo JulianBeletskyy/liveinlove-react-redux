@@ -1,0 +1,42 @@
+:local(.searchHolder) {
+	position: relative;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+:local(.searchHolder) input {
+	border-width: 1px;
+	letter-spacing: 1px;
+	font-weight: 600;
+	padding-right: 40px;
+}
+
+:local(.searchHolder) > div:first-child > div {
+	left: 5px;
+	padding-bottom: 4px;
+}
+
+:local(.searchHolder) > button {
+	position: absolute;
+	right: 0;
+	top: 0;
+	background-color: transparent;
+	height: 34px;
+	border: 1px solid #ccc;
+	padding-right: 10px;
+	padding-left: 10px;
+	border-right-width: 0px;
+	border-top-width: 0px;
+	border-bottom-width: 0px;
+	z-index: 2;
+}
+
+:local(.searchTitle) {
+	height: 34px;
+	padding-top: 7px;
+	text-align: right;
+}
+
+:local(.dNone) {
+	display: none;
+}
