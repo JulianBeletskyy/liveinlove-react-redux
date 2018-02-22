@@ -63,7 +63,6 @@ export default function signup(signup = initialState, action = {}) {
     let temp = Object.assign([], signup.data)
     switch (action.type) {
         case types.SET_SIGN_UP_DATA:
-
             for (let k in temp) {
                 if (action.data[k]) {
                     temp[k] = action.data[k]
