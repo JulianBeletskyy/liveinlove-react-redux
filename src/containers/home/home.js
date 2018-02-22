@@ -6,7 +6,7 @@ import { toggleModal, setRecoveryHash, activateUser } from 'actions'
 import store, { history } from 'store'
 import BtnMain from 'components/form/buttons/main_button.js'
 import style from './style.css';
-import ClientHome from 'containers/profile/client.js';
+import ClientHome from 'components/home/client_home.js';
 
 class Home extends Component {
     constructor(props) {

@@ -62,6 +62,7 @@ export function getClientInfo(token) {
         .then(json => {
             if (json.data) {
                 console.log(json.data)
+                dispatch(setClientInfo(json.data))
             }
         })
         .catch(error => {
@@ -233,6 +234,13 @@ export function sendSignUpFinish(data) {
             .catch(error => {
                 console.log(error)
             })
+    }
+}
+
+export function setClientInfo(data) {
+    return {
+        type: types.SET_CLIENT_DATA,
+        data
     }
 }
 
