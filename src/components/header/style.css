@@ -13,8 +13,8 @@
 }
 
 :local(.navbarDefault) .navbar-brand > img {
-	height: 60px;
-	margin-top: -5px;
+	height: 30px;
+	margin-top: 10px;
 }
 
 :local(.navBar > li) {

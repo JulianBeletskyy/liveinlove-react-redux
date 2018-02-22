@@ -23,7 +23,7 @@ class PublicHeader extends Component {
                  <Navbar.Header>
                     <Navbar.Brand>
                         <Link to="/">
-                            <img alt="Brand" src="/assets/img/white-logo.svg"/>
+                            <img alt="Brand" src="/assets/img/logo.svg"/>
                         </Link>
                     </Navbar.Brand>
 
