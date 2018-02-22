@@ -35,11 +35,25 @@ class ClientHome extends Component {
                             <Panel>
                                 <Panel.Body>
                                     <SearchBar/>
+
+                                    <div className="TEMPORARY">
+                                        <div>
+                                            Popular:
+                                        </div>
+
+                                        <div className={style.tempBox}></div>
+
+                                        <div>
+                                            New:
+                                        </div>
+
+                                        <div className={style.tempBox}></div>
+                                    </div>
                                 </Panel.Body>
                             </Panel>
                         </Col>
 
-                        <Col md={2} className={style.mobHidden}>
+                        <Col md={2} className={style.rightMenu}>
                             <ClientRightMenu></ClientRightMenu>
                         </Col>
                     </Row>

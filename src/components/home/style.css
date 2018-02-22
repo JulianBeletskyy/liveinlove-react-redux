@@ -1,5 +1,16 @@
+:local(.tempBox) {
+	border: 1px solid #ccc;
+	height: 150px;
+	margin-bottom: 50px;
+}
+
+:local(.rightMenu) {
+	position: fixed;
+	right: 15px;
+}
+
 @media screen and (max-width: 768px){
-	:local(.mobHidden) {
+	:local(.rightMenu) {
 		display: none;
 	}
 }

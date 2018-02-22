@@ -14,6 +14,8 @@
 
 :local(.hr) {
 	border-top: 1px solid #27C2D2;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 :local(.userId) {
