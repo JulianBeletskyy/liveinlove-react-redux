@@ -14,6 +14,7 @@ class SignUpOne extends Component {
         this.signup = {
             match: {}
         }
+        console.log(this.props.signup.data)
 
         const getFunc = {
             education: () => {store.dispatch(getOptionsSignUp('education'))},
@@ -147,7 +148,7 @@ class SignUpOne extends Component {
     }
 
     printEthnicity = (ethnicity, i) => {
-        return (<Col sm={2} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={ethnicity.value} id={ethnicity.id} type="female_ethnicity"  /></Col>)
+        return (<Col sm={4} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={ethnicity.value} id={ethnicity.id} type="female_ethnicity"  /></Col>)
     }
 
     render() {

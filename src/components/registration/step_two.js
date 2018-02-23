@@ -15,6 +15,7 @@ class SignUpTwo extends Component {
     constructor(props) {
         super(props)
         this.signup = {}
+        console.log(this.props.signup.data)
     }
 
     _crop() {
@@ -95,17 +96,19 @@ class SignUpTwo extends Component {
                     </Col>
                     <Col sm={2}>
                         <div className="title text-center text-step-two">
-                            <h4>How Ladies See You Matters</h4>
-                            <span>Use A Clear Photo Be Alone In Your Photo Be In A Well-Lit Place</span>
+                            <p><strong>How Ladies See You Matters</strong></p>
                         </div>
                     </Col>
                     <Col sm={5}>
                         <FormGroup>
                             { content }
                         </FormGroup>
-                        
                     </Col>
+
                 </Row>
+                <FormGroup className="text-center">
+                    <span className="small-italic">Use A Clear Photo Be Alone In Your Photo Be In A Well-Lit Place</span>
+                </FormGroup>
                 <FormGroup className="text-center">
                     <Btn
                         type="button"

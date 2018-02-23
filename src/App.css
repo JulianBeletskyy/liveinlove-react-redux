@@ -16,6 +16,44 @@ body .title {
     padding: 1px;
 }
 
+.pt-51 {
+  padding-top: 51px;
+}
+
+.p-15 {
+  padding: 15px;
+}
+
+.bg-blue {
+  background-color: #ECF1F4;
+}
+
+.bg-white {
+  background-color: #fff;
+  height: 500px;
+}
+
+.rounded-avatar {
+  border-radius: 50%;
+  max-width: 100%;
+  border: 1px solid #66c8d1;
+}
+
+.blue-color {
+  color: #27c2d3;
+}
+
+.small-italic {
+  font-size: 13px;
+  font-style: italic;
+  opacity: 0.7;
+  font-weight: normal;
+}
+
+.btn-login {
+  padding: 30px;
+}
+
 .modal-content {
     border-style: solid;
     border-width: 2px;
@@ -59,8 +97,8 @@ body .title {
 }
 
 .upload-btn-group {
-    width: 255px;
     margin: 0 auto;
+    max-width: 100%;
 }
 
 .upload-btn-group button {
@@ -68,20 +106,75 @@ body .title {
 }
 
 .default-avatar {
-    height: 240px;
     width: 240px;
     margin: 0 auto;
     display: block;
-}
-.container-fluid {
-    padding-left: 30px;
-    padding-right: 30px;
+    max-width: 100%;
 }
 
 .shadow {
-    padding-top: 150px;
-    padding-bottom: 100px;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.25);
+    padding-top: 100px;
+}
+
+.no-results-page {
+  margin-top: 75px;
+  text-align: center;
+}
+.no-results-page:first-child {
+  margin-top: 15px;
+}
+.no-results-page__label {
+  margin: 0;
+  color: #34dca2;
+  font-size: 5.714285714285714em;
+  font-family: 'bebas_neue', Helvetica, Arial, sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: normal;
+  line-height: 1;
+}
+@media (min-width: 768px) {
+    .no-results-page__label {
+        font-size: 12.142857142857142em;
+    }
+}
+.no-results-page__label._404 {
+  font-size: 10em;
+}
+@media (min-width: 768px) {
+  .no-results-page__label._404 {
+    font-size: 20em;
+  }
+}
+.no-results-page__label._cart {
+  margin-bottom: 90px;
+}
+.no-results-page__title {
+  margin-top: 15px;
+}
+.no-results-page__desc {
+  margin-bottom: 60px;
+  line-height: 1.75;
+  font-size: 1.571428571428571em;
+}
+.no-results-page__desc strong {
+  color: #222;
+}
+.no-results-page__link {
+  font-family: 'bebas_neue', Helvetica, Arial, sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.main-content-wrapper {
+  padding-top: 60px;
+  padding-bottom: 120px;
+  position: relative;
+  background-color: #fff;
+  z-index: 1;
+}
+
+.navbar .container-fluid {
+  padding: 0;
 }

@@ -61,7 +61,7 @@ export function getClientInfo(token) {
         return api.getClientInfo(token)
         .then(json => {
             if (json.data) {
-                console.log(json.data)
+                dispatch(setClientInfo(json.data))
             }
         })
         .catch(error => {
@@ -119,6 +119,7 @@ export function activateUser(hash) {
         .then(json => {
             if (json.data) {
                 dispatch(setToken(json.data))
+                dispatch(getClientInfo(json.data))
                 history.push('/')
             }
             
@@ -136,6 +137,7 @@ export function sendSignUpStart(data) {
             if (json.data) {
                 dispatch(setTempToken(json.data))
                 dispatch(setSignUpData(data))
+                dispatch(setSendEmail(data.email))
                 dispatch(changeStep(1))
             }
         })
@@ -227,12 +229,43 @@ export function sendSignUpFinish(data) {
         return api.signUpFinish(data)
             .then(json => {
                 if (json.data) {
+                    dispatch(setEmptySignUpData())
+                    const emptyImage = ''
+                    const emptyFile = new FormData()
+                    dispatch(saveImage(emptyImage))
+                    dispatch(saveFile(emptyFile))
                     dispatch(changeStep(4))
                 }
             })
             .catch(error => {
                 console.log(error)
             })
+    }
+}
+
+export function setSendEmail(value) {
+    return {
+        type: types.SET_SEND_EMAIL,
+        value
+    }
+}
+
+export function setEmptySignUpData() {
+    return {
+        type: types.SET_EMPTY_SIGNUP_DATA
+    }
+}
+
+export function setEmptyData() {
+    return {
+        type: types.SET_EMPTY_DATA
+    }
+}
+
+export function setClientInfo(data) {
+    return {
+        type: types.SET_CLIENT_DATA,
+        data
     }
 }
 

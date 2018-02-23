@@ -8,7 +8,7 @@ class BtnFacebook extends Component {
         return (
             <Button
                 type="button"
-                bsClass={style.button}
+                bsClass={style.button + ' btn'}
                 onClick={this.props.onClick}
             >
                 <i className="fab fa-facebook"></i>

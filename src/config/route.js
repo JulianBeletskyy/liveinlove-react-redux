@@ -13,20 +13,20 @@ export default {
             'path': '/girl-profile',
             'component': 'GirlProfile'
         }, {
-            'path': '/client-edit',
-            'component': 'EditClientProfile'
-        }, {
             'path': '*',
             'component': 'NotFound'
         }
     ],
-    'clients': [
+    'client': [
         {
             'path': '/',
             'component': 'Home'
         }, {
             'path': '/profile',
             'component': 'ClientProfile'
+        }, {
+            'path': '/client-edit',
+            'component': 'EditClientProfile'
         }, {
             'path': '/girls',
             'component': 'Girls'
@@ -41,8 +41,11 @@ export default {
             'component': 'NotFound'
         }
     ],
-    'girls': [
+    'girl': [
         {
+            'path': '/',
+            'component': 'Home'
+        }, {
             'path': '*',
             'component': 'NotFound'
         }

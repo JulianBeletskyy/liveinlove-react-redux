@@ -1,0 +1,53 @@
+:local(.wrapper) {
+	letter-spacing: 0.5px;
+}
+
+:local(.profileImage) {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+:local(.profileImage img) {
+	height: 150px;
+	width: 150px;
+}
+
+:local(.hr) {
+	border-top: 1px solid #27C2D2;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+:local(.userId) {
+	color: #27C2D2;
+}
+
+:local(.buttonHolder) {
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+:local(.itemHolder) {
+	padding-left: 5px;
+}
+
+:local(.itemHolder > div:first-child) {
+	text-align: right;
+}
+
+:local(.buttonHolder a) {
+	display:block;
+	text-decoration: none;
+	padding: 8px 10px 6px 10px;
+	background-color: #27C2D2;
+	color: black;
+	width: 120px;
+	margin-left: auto;
+	margin-right: auto;
+	font-weight: 600;
+	letter-spacing: .8px;
+}
+
+:local(.buttonHolder a:hover) {
+	background-color: #279ba7;
+}

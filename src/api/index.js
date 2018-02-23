@@ -47,7 +47,7 @@ export default {
     },
 
     getClientInfo(token) {
-        return fetch(config.API_URL + 'user', {
+        return fetch(config.API_URL + 'user/profile', {
             method: 'get',
             headers: {
                 'Authorization': 'Bearer ' + token
