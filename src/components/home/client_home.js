@@ -29,35 +29,16 @@ class ClientHome extends Component {
     render() {
         const { data } = this.props.user
         return (
-            <div className="shadow title bg-white">
+            <div className="pt-51 bg-blue">
                 <Grid>
                     <Row>
-                        <Col md={10}>
-                            <Panel>
-                                <Panel.Body>
-                                    <SearchBar/>
-
-                                    <div className="TEMPORARY">
-                                        <div>
-                                            Popular:
-                                        </div>
-
-                                        <div className={style.tempBox}></div>
-
-                                        <div>
-                                            New:
-                                        </div>
-
-                                        <div className={style.tempBox}></div>
-                                    </div>
-                                </Panel.Body>
-                            </Panel>
+                        <Col md={9} className="bg-white">
+                            <div>
+                            </div>
                         </Col>
 
-                        <Col md={2} className={style.rightMenu}>
-                            <ClientRightMenu 
-                                
-                            />
+                        <Col md={3}>
+                            <ClientRightMenu />
                         </Col>
                     </Row>
                 </Grid>
