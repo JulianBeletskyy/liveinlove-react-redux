@@ -52,7 +52,7 @@ class Auth extends Component {
                      />
                 </FormGroup>
 
-                <FormGroup className={style.inline + ' title'} >
+                <FormGroup className={style.inline} >
                     <CheckboxField 
                         text='Remember me'
                     />

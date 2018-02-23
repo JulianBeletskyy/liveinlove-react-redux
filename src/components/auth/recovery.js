@@ -32,11 +32,10 @@ class Recovery extends Component {
                 'password_confirmation': this.confirm_password.value
             }
             store.dispatch(updatePassword(data, this.props.user.recovery_hash))
-        } else {
+        } else if (error) {
             const data = {
                 email: this.email.value,
                 url: window.location.href + 'recovery/{hash}'
-               
             }
             store.dispatch(sendRecovery(data))
         }
