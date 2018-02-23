@@ -17,11 +17,6 @@
 	margin-top: 10px;
 }
 
-:local(.navBar > li) {
-	margin-right: 15px;
-	margin-left: 15px;
-}
-
 :local(.navbarDefault .navBar > li > a) {
 	color: white;
 	text-transform: uppercase;

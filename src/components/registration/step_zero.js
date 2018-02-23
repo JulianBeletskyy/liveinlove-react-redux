@@ -45,8 +45,7 @@ class SignUpStart extends Component {
 
     getSignUpOne = (event) => {
         event.preventDefault()
-        console.log(console.log(this.signup.country.id))
-        return
+        
         let error = 1
         for (var k in this.signup.birth) {
             if (error) {

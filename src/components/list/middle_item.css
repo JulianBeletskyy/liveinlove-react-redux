@@ -1,0 +1,23 @@
+:local(.infoItem) {
+  padding: 15px 10px;
+}
+
+:local(.infoItem a) {
+  color: #646C74;
+}
+
+:local(.infoItem i) {
+  margin-right: 10px;
+  color: #ccc;
+}
+
+:local(.infoItem:hover) {
+  background-color: #4099FF;
+  cursor: pointer;
+}
+
+:local(.infoItem:hover a),
+:local(.infoItem:hover i) {
+  text-decoration: none;
+  color: #fff;
+}

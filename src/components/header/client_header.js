@@ -19,7 +19,7 @@ class ClientHeader extends Component {
     render() {
         const { token } = this.props.user
         return (
-           <ul className={style.navBar + ' nav navbar-nav navbar-right'}>
+           <ul className={style.navBar + " nav navbar-nav navbar-right"}>
                 <li role="presentation">
                     <Link to="/girls">Mail</Link>
                 </li>
