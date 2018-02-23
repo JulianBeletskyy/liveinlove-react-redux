@@ -7,12 +7,12 @@ import { setCountry } from 'actions'
 
 class SelectField extends Component {
     printOptions(option, i) {
-        return (<option key={i} value={option.value}>{option.name}</option>)
+        return (<option key={i} id={option.value} value={option.value}>{option.name}</option>)
     }
 
     handleChange = (event) => {
         if (this.props.name) {
-            store.dispatch(setCountry(event.target.value))
+            store.dispatch(setCountry(event.target.id))
         }
     }
 

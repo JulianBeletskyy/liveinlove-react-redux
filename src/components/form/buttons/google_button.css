@@ -12,23 +12,23 @@
     text-transform: uppercase;
     font-weight: bold;
     display: inline-block;
-    font-size: 1.142857142857143em;
     line-height: 1.5;
     text-align: center;
     text-decoration: none;
     -webkit-transition: all .3s;
     -o-transition: all .3s;
     transition: all .3s;
-    padding: 0.8125em 40px;
+    padding: 15px;
     color: #fff;
-    background-color: #fb2007;
+    background-color: #e4311c; 
     border: 0;
     position: relative;
     overflow: hidden;
+    min-width: 180px;
 }
 
 :local(.button:hover) {
-    background-color: #e4311c;
+    background-color: #fb2007;
     color: #fff;
 }
 

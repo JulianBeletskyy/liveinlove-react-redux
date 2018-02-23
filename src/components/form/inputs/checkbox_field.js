@@ -9,7 +9,7 @@ class CheckboxField extends Component {
                 inputRef={this.props.inputRef} 
                 defaultChecked={this.props.value}
             >
-                {this.props.text}
+                <span className="small-italic">{this.props.text}</span>
             </Checkbox>
         );
     }

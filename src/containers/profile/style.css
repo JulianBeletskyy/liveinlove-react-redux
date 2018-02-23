@@ -1,7 +1,24 @@
+:local(.bigTitle) {
+	font-size: 24px;
+	font-weight: bold;
+	margin-right: 15px;
+}
+
+:local(.middleTitle) {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+:local(.divider) {
+	border-bottom: 1px solid #27C2D3;
+	width: 75%;
+	padding-top: 10px;
+}
+
 :local(.wrapper) {
 	width: 100%;
 	min-height: 95vh;
-	background-image: url('/assets/img/girl-profile.jpeg');
+	
 	background-size: cover;
 	background-repeat: repeat;
 }

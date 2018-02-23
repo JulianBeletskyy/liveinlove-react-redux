@@ -3,6 +3,7 @@ import * as types from '../actions/types.js'
 const initialState = {
     showModal: false,
     step: 0,
+    empty_data: {},
     data: { 
         first_name: '',
         last_name: '',
@@ -37,6 +38,7 @@ const initialState = {
         about_children: '',
         mobile: ''
     },
+    send_email: '',
     remember_token: '',
     height: [],
     weight: [],
@@ -70,6 +72,18 @@ export default function signup(signup = initialState, action = {}) {
             }
             return Object.assign({}, signup, {
                 data: temp
+            });
+        case types.SET_EMPTY_DATA:
+            return Object.assign({}, signup, {
+                empty_data: temp
+            });
+        case types.SET_SEND_EMAIL:
+            return Object.assign({}, signup, {
+                send_email: action.value
+            });
+        case types.SET_EMPTY_SIGNUP_DATA:
+            return Object.assign({}, signup, {
+                data: Object.assign({}, signup.empty_data, {})
             });
         case types.SET_OPTIONS_SIGN_UP:
             return Object.assign({}, signup, {

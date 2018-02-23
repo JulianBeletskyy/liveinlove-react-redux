@@ -4,7 +4,44 @@ import Cookies from 'js-cookie'
 const initialState = {
     token: Cookies.get('token'),
     recovery_hash: '',
-    data: {}
+    data: {
+        role: 'client',
+        profile_id: '',
+        zodiac: '',
+        weight: {},
+        want_children: '',
+        smoke: '',
+        russian_language: '',
+        religion: '',
+        profession: '',
+        primary_language: '',
+        occupation: '',
+        mobile: '',
+        message: '',
+        marital_status: '',
+        last_name: '',
+        first_name: '',
+        interests: [],
+        id: '',
+        height: {},
+        hair_length: '',
+        hair_color: '',
+        female_ethnicity: [],
+        eyes: '',
+        ethnicity: '',
+        english_language: '',
+        email: '',
+        education: '',
+        drink: '',
+        country: '',
+        city: '',
+        children: '',
+        age: '',
+        birthday: {},
+        about_children: '',
+        match: {},
+        avatar: {0:{}}
+    }
 }
 
 export default function user(user = initialState, action = {}) {

@@ -3,7 +3,7 @@ import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup, Col, Radio, Row } from 'react-bootstrap'
 import Validator from 'validate'
-import { sendSignUpStart, getOptionsSignUp, setSignUpData, saveImage, saveFile } from 'actions'
+import { sendSignUpStart, getOptionsSignUp, setSignUpData, saveImage, saveFile, setEmptyData } from 'actions'
 import TextField from 'components/form/inputs/text_field.js'
 import SelectField from 'components/form/inputs/select_field.js'
 import Btn from 'components/form/buttons/button.js'
@@ -21,6 +21,7 @@ class SignUpStart extends Component {
             birth: {}
         }
         this.role = {}
+        store.dispatch(setEmptyData())
         
         const getFunc = {
             height: () => {store.dispatch(getOptionsSignUp('height'))},
@@ -44,6 +45,8 @@ class SignUpStart extends Component {
 
     getSignUpOne = (event) => {
         event.preventDefault()
+        console.log(console.log(this.signup.country.id))
+        return
         let error = 1
         for (var k in this.signup.birth) {
             if (error) {
@@ -182,7 +185,7 @@ class SignUpStart extends Component {
     }
 
     render() {
-        const { data } = this.props.signup;
+        const { data } = this.props.signup
         return (
             <form onSubmit={this.getSignUpOne} noValidate={true}>
                 <Row>
@@ -226,6 +229,7 @@ class SignUpStart extends Component {
                                         inputRef={ref => { this.signup.first_name = ref }}
                                         value={data.first_name}
                                         name="First Name"
+                                        key="first_name"
                                     />
                                 </FormGroup>
                             </Col>
@@ -237,6 +241,7 @@ class SignUpStart extends Component {
                                         inputRef={ref => { this.signup.last_name = ref }}
                                         name="Last Name"
                                         value={data.last_name}
+                                        key="last_name"
                                     />
                                 </FormGroup>
                             </Col>
@@ -307,7 +312,7 @@ class SignUpStart extends Component {
                     <Col xs={12} className="text-center">
                         <CheckboxField
                             inputRef={ref => { this.signup.terms = ref }}
-                            text='By clicking " Join Us for Free" above you agree to "Terms of Use" & "Privacy Policy"'
+                            text='By clicking "Join Us for Free" above you agree to "Terms of Use" & "Privacy Policy"'
                             value={data.terms}
                         />
                         <FormGroup>
@@ -322,15 +327,19 @@ class SignUpStart extends Component {
                         or
                         </FormGroup>
                         <FormGroup>
-                            <BtnFacebook
-                                title="Sign Up with Facebook"
-                                onClick={this.facebookSignUp}
-                            />
-                            &nbsp;
-                            &nbsp;
-                            <BtnGoogle
-                                title="Sign Up with Google"
-                            />
+                            <Row>
+                                <Col sm={6}>
+                                    <BtnFacebook
+                                        title="Sign Up with Facebook"
+                                        onClick={this.facebookSignUp}
+                                    />
+                                </Col>
+                                <Col sm={6}>
+                                    <BtnGoogle
+                                        title="Sign Up with Google"
+                                    />
+                                </Col>
+                            </Row>
                         </FormGroup>
                     </Col>
                 </Row>

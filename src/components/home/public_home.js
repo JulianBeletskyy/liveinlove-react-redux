@@ -13,14 +13,14 @@ class PublicHome extends Component {
     }
 
     showModal = () => {
-        store.dispatch(toggleModal(true, 'registration'))
+        store.dispatch(toggleModal(true, 'login'))
     }
 
     render() {
         const { registration, login, recovery } = this.props.modals
         return (
             <div className="shadow">
-                <Grid fluid>
+                <Grid>
                     <Row>
                         <Col md={6} sm={12} >
                             <MainPanel
@@ -31,20 +31,21 @@ class PublicHome extends Component {
                         </Col>
 
                         <Col md={6} sm={12} className="title">
-                            <div className={style.bigDesc}>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                            </div>
-                            <div className={style.smallDesc}>
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                               cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                               proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                               <div>
-                                <BtnMain
-                                    type="button"
-                                    bsStyle="success"
-                                    text="Registration"
-                                    onClick={this.showModal}
-                                />
+                            <div>
+                                <div>
+                                    <h3>
+                                        Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </h3>
+                               </div>
+                               <div className="btn-login text-center">
+                                    <BtnMain
+                                        type="button"
+                                        bsStyle="success"
+                                        text="Login"
+                                        onClick={this.showModal}
+                                    />
                                 </div>
                             </div>
                         </Col>

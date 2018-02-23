@@ -17,10 +17,13 @@ export default {
             'component': 'NotFound'
         }
     ],
-    'clients': [
+    'client': [
         {
             'path': '/',
             'component': 'Home'
+        }, {
+            'path': '/profile',
+            'component': 'ClientProfile'
         }, {
             'path': '/client-edit',
             'component': 'EditClientProfile'
@@ -38,8 +41,11 @@ export default {
             'component': 'NotFound'
         }
     ],
-    'girls': [
+    'girl': [
         {
+            'path': '/',
+            'component': 'Home'
+        }, {
             'path': '*',
             'component': 'NotFound'
         }

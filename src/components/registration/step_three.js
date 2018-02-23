@@ -13,6 +13,7 @@ class SignUpThree extends Component {
     constructor(props) {
         super(props)
         this.signup = {}
+        console.log(this.props.signup.data)
     }
 
     getConfirm = () => {

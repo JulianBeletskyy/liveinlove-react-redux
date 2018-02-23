@@ -6,6 +6,7 @@
     border-left-width: 0px;
     border-right-width: 0px;
     box-shadow:inset 0 0 0 0 #fff;
+    margin-bottom: 8px;
 }
 
 :local(.select:focus) {
