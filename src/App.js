@@ -10,6 +10,7 @@ import PublicFooter from './components/footer/public_footer.js'
 import Home from 'containers/home/home.js'
 import { Alert } from './components'
 import style from './App.css'
+import { Auth, MainModal, Recovery } from 'components'
 
 class App extends Component {
     constructor(props) {
@@ -28,6 +29,7 @@ class App extends Component {
         const { data, token } = this.props.user
         const key = token ? data.role : 'public'
         const routes = routing[key]
+        const { login, recovery } = this.props.modals
         return (
             <div className="App">
                 <Header />
@@ -39,6 +41,18 @@ class App extends Component {
                         }
                     </Switch>
                 <PublicFooter />
+                <MainModal
+                    body={<Auth />}
+                    title="LOg IN"
+                    show={login}
+                    keyModal="login"
+                />
+                <MainModal
+                    body={<Recovery />}
+                    title="Recovery"
+                    show={recovery}
+                    keyModal="recovery"
+                />
                 <Alert />
             </div>
         );
