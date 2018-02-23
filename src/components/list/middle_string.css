@@ -1,0 +1,13 @@
+:local(.wrap) {
+	padding: 10px;
+}
+
+:local(.key) {
+	margin-right: 10px;
+    color: #ccc;
+}
+
+:local(.text) {
+	margin-right: 10px;
+    color: #646C74;
+}

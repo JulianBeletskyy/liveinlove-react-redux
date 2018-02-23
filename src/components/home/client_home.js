@@ -29,7 +29,7 @@ class ClientHome extends Component {
     render() {
         const { data } = this.props.user
         return (
-            <div className="pt-51 bg-blue">
+            <div className="pt-66 bg-blue">
                 <Grid>
                     <Row>
                         <Col md={9} className="bg-white">

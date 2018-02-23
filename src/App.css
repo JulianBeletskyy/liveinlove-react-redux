@@ -16,12 +16,16 @@ body .title {
     padding: 1px;
 }
 
-.pt-51 {
-  padding-top: 51px;
+.pt-66 {
+  padding-top: 66px;
 }
 
 .p-15 {
   padding: 15px;
+}
+
+.px-15 {
+  padding: 0px 15px;
 }
 
 .bg-blue {
@@ -33,10 +37,18 @@ body .title {
   height: 500px;
 }
 
+.text-blue {
+  color: #4099FF;
+}
+
 .rounded-avatar {
   border-radius: 50%;
   max-width: 100%;
-  border: 1px solid #66c8d1;
+  border: 1px solid #4099FF;
+}
+
+.divider {
+  border-bottom: 1px solid #ccc;
 }
 
 .blue-color {

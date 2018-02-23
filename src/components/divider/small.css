@@ -1,0 +1,21 @@
+:local(.wrap) {
+	position: relative;
+	overflow: hidden;
+}
+
+:local(.text) {
+	font-size: 12px;
+	z-index: 1;
+	text-transform: uppercase;
+	padding-right: 8px;
+	color: #ccc;
+}
+
+:local(.divider) {
+	display: inline-block;
+	vertical-align: middle;
+	border-bottom: 1px solid #ccc;
+	width: 100%;
+	position: absolute;
+    padding: 5px 0;
+}
