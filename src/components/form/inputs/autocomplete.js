@@ -29,8 +29,7 @@ class Autocomplete extends Component {
         }
     }
 
-    render() {
-        const { countries } = this.props.signup
+    componentDidMount() {
         let input = document.getElementById('auocompleteInput')
         var options = {
                 language: 'en-US',
@@ -38,6 +37,11 @@ class Autocomplete extends Component {
                 componentRestrictions: {country: this.props.signup.country}
         };
         this.autocomplete = new window.google.maps.places.Autocomplete(input, options)
+    }
+
+    render() {
+        const { countries } = this.props.signup
+        
         const { changed } = this.props.textField;
         
         let className = style.placeholder;
