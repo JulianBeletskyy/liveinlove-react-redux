@@ -29,8 +29,8 @@ class ClientHome extends Component {
     render() {
         const { data } = this.props.user
         return (
-            <div className="shadow title">
-                <Grid fluid>
+            <div className="shadow title bg-white">
+                <Grid>
                     <Row>
                         <Col md={10}>
                             <Panel>

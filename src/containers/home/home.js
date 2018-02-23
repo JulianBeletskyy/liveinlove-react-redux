@@ -32,7 +32,6 @@ class Home extends Component {
 
         return (
             <div className={style.homeWrapper}>
-                <Grid>
                 {
                     token
                     ? data.role == 'client'
@@ -52,7 +51,6 @@ class Home extends Component {
                         show={recovery}
                         keyModal="recovery"
                     />
-                </Grid>
             </div>
         );
     }

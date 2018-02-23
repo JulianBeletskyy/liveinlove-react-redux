@@ -16,6 +16,10 @@ body .title {
     padding: 1px;
 }
 
+.bg-white {
+  background-color: #fff;
+}
+
 .blue-color {
   color: #27c2d3;
 }

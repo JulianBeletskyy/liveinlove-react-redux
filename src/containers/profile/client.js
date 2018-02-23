@@ -10,7 +10,6 @@ import BtnMain from 'components/form/buttons/main_button.js'
 class ClientProfile extends Component {
     render() {
         const { data } = this.props.user
-        console.log(data)
         return (
             <div className="shadow">
                 <Grid>

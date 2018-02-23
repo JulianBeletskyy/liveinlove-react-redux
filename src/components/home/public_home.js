@@ -20,35 +20,37 @@ class PublicHome extends Component {
         const { registration, login, recovery } = this.props.modals
         return (
             <div className="shadow">
-                <Row>
-                    <Col md={6} sm={12} >
-                        <MainPanel
-                            title="Registration"
-                            iconClass="fas fa-address-card"
-                            body={<Registration />}
-                        /> 
-                    </Col>
+                <Grid>
+                    <Row>
+                        <Col md={6} sm={12} >
+                            <MainPanel
+                                title="Registration"
+                                iconClass="fas fa-address-card"
+                                body={<Registration />}
+                            /> 
+                        </Col>
 
-                    <Col md={6} sm={12} className="title">
-                        <div>
+                        <Col md={6} sm={12} className="title">
                             <div>
-                                <h3>
-                                    Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </h3>
-                           </div>
-                           <div className="btn-login text-center">
-                                <BtnMain
-                                    type="button"
-                                    bsStyle="success"
-                                    text="Login"
-                                    onClick={this.showModal}
-                                />
+                                <div>
+                                    <h3>
+                                        Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </h3>
+                               </div>
+                               <div className="btn-login text-center">
+                                    <BtnMain
+                                        type="button"
+                                        bsStyle="success"
+                                        text="Login"
+                                        onClick={this.showModal}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                    </Col>
-                </Row>
+                        </Col>
+                    </Row>
+                </Grid>
             </div>
         );
     }

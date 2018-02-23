@@ -12,14 +12,10 @@ class GirlHome extends Component {
         super(props)
     }
 
-    showModal = () => {
-        store.dispatch(toggleModal(true, 'registration'))
-    }
-
     render() {
         return (
             <div className="shadow">
-                <Grid fluid>
+                <Grid>
                     <h1>Girl Home</h1>
                 </Grid>
             </div>
