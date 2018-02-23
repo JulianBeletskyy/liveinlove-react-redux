@@ -27,7 +27,7 @@ class Home extends Component {
     }
 
     render() {
-        const { login, recovery } = this.props.modals
+        
         const { token, data } = this.props.user
 
         return (
@@ -39,18 +39,6 @@ class Home extends Component {
                         : (<GirlHome />)
                     : (<PublicHome />)
                 }
-                    <MainModal
-                        body={<Auth />}
-                        title="LOg IN"
-                        show={login}
-                        keyModal="login"
-                    />
-                    <MainModal
-                        body={<Recovery />}
-                        title="Recovery"
-                        show={recovery}
-                        keyModal="recovery"
-                    />
             </div>
         );
     }
