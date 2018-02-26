@@ -1,0 +1,32 @@
+:local(.wrap) {
+	position: relative;
+}
+
+:local(.img) {
+  border-radius: 50%;
+  max-width: 100%;
+  border: 1px solid #4099FF;
+}
+
+:local(.hover) {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: black;
+	border-radius: 50%;
+	opacity: 0;
+	color: #fff;
+}
+
+:local(.hover:hover) {
+	opacity: 0.3;
+	cursor: pointer;
+}
+
+:local(.span) {
+	position: absolute;
+    top: 70%;
+    left: 46%;
+}

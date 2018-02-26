@@ -9,7 +9,7 @@ import { changeStep } from 'actions';
 class MainModal extends Component {
     closeModal = () => {
         store.dispatch(toggleModal(false, this.props.keyModal))
-        store.dispatch(changeStep(0))
+        //store.dispatch(changeStep(0))
     }
     
     render() {
@@ -29,6 +29,18 @@ class MainModal extends Component {
                 <Modal.Body>
                     {this.props.body}
                 </Modal.Body>
+                {
+                    this.props.footer
+                    ? (<Modal.Footer bsClass={style.headerModal + ' modal-footer'}>
+                        <button 
+                            className="btn btn-default" 
+                            onClick={this.closeModal}
+                        >
+                            Cancel
+                        </button>
+                    </Modal.Footer>)
+                    : ''
+                }
             </Modal>
         );
     }

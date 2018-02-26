@@ -6,14 +6,14 @@ import { Link } from 'react-router-dom'
 
 class MiddleString extends Component {
     render() {
-        console.log(this.props.keyName)
+        const link = this.props.link ? style.link : '' 
         return (
             <div className={style.wrap}>
                 <strong>
-                    <span className={style.key}>{this.props.keyName}</span>
+                    <span className={style.key + ' text-blue'}>{this.props.keyName}</span>
                 </strong>
                 <strong>
-                    <span className={style.text}>{this.props.text}</span>
+                    <span className={style.text + ' ' + link} onClick={this.props.onClick}>{this.props.text}</span>
                 </strong>
             </div>
         );

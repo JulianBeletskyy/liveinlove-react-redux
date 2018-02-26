@@ -3,7 +3,11 @@ import * as types from '../actions/types.js'
 const initialState = {
 	registration: false,
     login: false,
-    recovery: false
+    recovery: false,
+    avatar: false,
+    photo_preview: false,
+    plans: false,
+    credits: false
 }
 
 export default function modals(modals = initialState, action = {}) {

@@ -36,6 +36,7 @@ export function setTempToken(value) {
 
 export function logout() {
     Cookies.remove('token')
+    history.push('/')
     return {
         type: types.LOGOUT,
         value: false
@@ -56,12 +57,33 @@ export function removeAlert() {
     }
 }
 
+export function addCredits(value) {
+    return {
+        type: types.ADD_CREDITS,
+        value
+    }
+}
+
 export function getClientInfo(token) {
     return dispatch => {
         return api.getClientInfo(token)
         .then(json => {
             if (json.data) {
                 dispatch(setClientInfo(json.data))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export function updateUserProfile(data, token) {
+    return dispatch => {
+        return api.updateUserProfile(data, token)
+        .then(json => {
+            if (json.data) {
+                console.log(json.data)
             }
         })
         .catch(error => {
@@ -347,17 +369,17 @@ export function removePlaceholder(id) {
     }
 }
 
-export function setActiveBlock(id, key) {
+export function setActiveBlock(id, key, data) {
     return {
-        type: types.SET_ACTIVE_BLOCK,
+        type: types['SET_ACTIVE_BLOCK_' + data.toUpperCase()],
         id,
         key
     }
 }
 
-export function removeActiveBlock(id, key) {
+export function removeActiveBlock(id, key, data) {
     return {
-        type: types.REMOVE_ACTIVE_BLOCK,
+        type: types['REMOVE_ACTIVE_BLOCK_' + data.toUpperCase()],
         id,
         key
     }

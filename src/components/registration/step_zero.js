@@ -163,6 +163,10 @@ class SignUpStart extends Component {
         return temp
     }
 
+    countryChange = () => {
+        console.log('123')
+    }
+
     getArray = (type) => {
         let name = ''
         switch(type) {
@@ -233,7 +237,7 @@ class SignUpStart extends Component {
                                 </FormGroup>
                             </Col>
                             <Col sm={6}>
-                                <FormGroup sm={6}>
+                                <FormGroup>
                                     <TextField
                                         type="text"
                                         placeholder="Last Name"
@@ -298,6 +302,7 @@ class SignUpStart extends Component {
                                 options={this.getArray('countries')}
                                 value={data.country}
                                 name="country"
+                                onChange={this.countryChange}
                             />
                         </FormGroup>
                         <FormGroup>

@@ -41,7 +41,6 @@ class SignUpTwoGirl extends Component {
                 russian_language_id: this.signup.russianLanguage.value,
                 remember_token: this.props.signup.remember_token
             }
-            console.log(data)
             store.dispatch(sendSignUpTwoGirl(data))
         }
     }

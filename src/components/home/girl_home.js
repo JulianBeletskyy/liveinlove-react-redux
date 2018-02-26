@@ -5,7 +5,8 @@ import { Auth, Registration, MainModal, MainPanel, Recovery } from 'components'
 import { toggleModal, setRecoveryHash, activateUser } from 'actions'
 import store, { history } from 'store'
 import BtnMain from 'components/form/buttons/main_button.js'
-import style from './style.css';
+import style from './style.css'
+import GirlRightMenu from 'components/menu/girl_right_menu.js'
 
 class GirlHome extends Component {
     constructor(props) {
@@ -13,10 +14,20 @@ class GirlHome extends Component {
     }
 
     render() {
+        const { data } = this.props.user
         return (
-            <div className="shadow">
+            <div className="pt-66 bg-blue">
                 <Grid>
-                    <h1>Girl Home</h1>
+                    <Row>
+                        <Col md={9} className="bg-white">
+                            <div>
+                            </div>
+                        </Col>
+
+                        <Col md={3}>
+                            <GirlRightMenu />
+                        </Col>
+                    </Row>
                 </Grid>
             </div>
         );

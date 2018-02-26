@@ -11,10 +11,14 @@ class MiddleItem extends Component {
         orientationStyle = orientation === 'right' ? style.right : style.left
 
         return (
-            <div className={style.infoItem}>
+            <div className={style.infoItem} onClick={this.props.onClick}>
                 <i className={this.props.icon}></i>
                 <strong>
-                    <Link to={this.props.link}>{this.props.text}</Link>
+                {
+                    this.props.link
+                    ? <Link to={this.props.link}>{this.props.text}</Link>
+                    : <span>{this.props.text}</span>
+                }
                 </strong>
             </div>
         );

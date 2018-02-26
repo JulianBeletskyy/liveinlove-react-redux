@@ -11,3 +11,8 @@
 	margin-right: 10px;
     color: #646C74;
 }
+
+:local(.link:hover) {
+	color: #4099FF;
+	cursor: pointer;
+}
