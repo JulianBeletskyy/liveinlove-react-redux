@@ -22,10 +22,10 @@ export default {
             'path': '/',
             'component': 'Home'
         }, {
-            'path': '/profile',
+            'path': '/profile/*',
             'component': 'ClientProfile'
         }, {
-            'path': '/client-edit',
+            'path': '/edit',
             'component': 'EditClientProfile'
         }, {
             'path': '/girls',
@@ -45,6 +45,9 @@ export default {
         {
             'path': '/',
             'component': 'Home'
+        }, {
+            'path': '/profile/*',
+            'component': 'ClientProfile'
         }, {
             'path': '*',
             'component': 'NotFound'

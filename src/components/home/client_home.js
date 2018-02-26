@@ -18,14 +18,6 @@ class ClientHome extends Component {
         store.dispatch(toggleModal(true, 'registration'))
     }
 
-    getLeftMenuItems = () => {
-        return [
-            {text: 'My Friends', linkTo: '/friends'},
-            {text: 'My Messages', linkTo: '/messages'},
-            {text: 'Shop', linkTo: '/shop'}
-        ];
-    }
-
     render() {
         const { data } = this.props.user
         return (

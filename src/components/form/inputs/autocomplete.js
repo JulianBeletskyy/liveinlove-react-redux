@@ -10,15 +10,17 @@ class Autocomplete extends Component {
         this.input = false
         this.id = Math.round(Math.random() * 999 * 1000)
         this.handleChange()
+
     }
 
     googleAutocomplete = () => {
-        let place = this.autocomplete.getPlace()
+        //let place = this.autocomplete.getPlace()
     }
 
     thisRef = (ref) => {
         this.props.inputRef(ref);
         this.input = ref
+
     }
 
     handleChange = () => {
@@ -30,21 +32,26 @@ class Autocomplete extends Component {
     }
 
     componentDidMount() {
-        let input = document.getElementById('auocompleteInput')
-        var options = {
+        //let input = document.getElementById('auocompleteInput')
+        /*var options = {
                 language: 'en-US',
                 types: ['(cities)'],
-                componentRestrictions: {country: this.props.signup.country}
+                //componentRestrictions: {country: this.props.signup.country}
         };
-        this.autocomplete = new window.google.maps.places.Autocomplete(input, options)
+
+        let autocomplete = new window.google.maps.places.Autocomplete(this.input, options)*/
     }
 
     render() {
-        const { countries } = this.props.signup
-        
-        const { changed } = this.props.textField;
-        
-        let className = style.placeholder;
+        const { changed } = this.props.textField
+        var options = {
+                language: 'en-US',
+                types: ['(cities)'],
+                componentRestrictions: {country: this.props.country}
+        };
+        let autocomplete = new window.google.maps.places.Autocomplete(this.input, options)
+
+        let className = style.placeholder
         if (changed.indexOf(this.id) >= 0) {
             className += (' ' + style.active)
         }
@@ -67,7 +74,10 @@ class Autocomplete extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        country: state.signup.country,
+        textField: state.textField
+    }
 }
 
 export default connect(

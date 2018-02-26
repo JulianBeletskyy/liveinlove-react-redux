@@ -15,7 +15,6 @@ class SignUpTwo extends Component {
     constructor(props) {
         super(props)
         this.signup = {}
-        console.log(this.props.signup.data)
     }
 
     _crop() {
@@ -69,6 +68,7 @@ class SignUpTwo extends Component {
             style={{ height: '200px', width: '100%', margin: '0 auto' }}
             aspectRatio={1 / 1}
             guides={false}
+            background={false}
             crop={this._crop.bind(this)}
         /> 
         : <img src="/assets/img/default-avatar.jpg" className="default-avatar" />

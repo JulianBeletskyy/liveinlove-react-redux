@@ -25,7 +25,7 @@ class GirlHeader extends Component {
                 </li>
 
                 <li role="presentation">
-                    <Link to="/services">My profile</Link>
+                    <Link to="/profile/info">My profile</Link>
                 </li>
 
                 <li role="presentation">

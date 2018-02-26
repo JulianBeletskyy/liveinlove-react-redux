@@ -59,6 +59,20 @@ export default {
         .catch(error => console.log(error))
     },
 
+    updateUserProfile(data, token) {
+        return fetch(config.API_URL + 'user/profile', {
+            method: 'put',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
     activateUser(hash) {
         return fetch(config.API_URL + 'activate/' + hash, {
             method: 'get',
