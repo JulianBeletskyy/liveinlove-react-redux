@@ -76,6 +76,14 @@ export default class Validator {
         return 1
     }
 
+    static plus(value, name) {
+        if (value < 0) {
+            this.showAlert(name + ' is incorrect', 'error')
+            return 0
+        }
+        return 1
+    }
+
     static isEmptyObject(object) {
         return !object || Object.keys(object).length === 0;
     }

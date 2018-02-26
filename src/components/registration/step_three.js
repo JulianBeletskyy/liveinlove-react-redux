@@ -13,7 +13,6 @@ class SignUpThree extends Component {
     constructor(props) {
         super(props)
         this.signup = {}
-        console.log(this.props.signup.data)
     }
 
     getConfirm = () => {
@@ -35,7 +34,7 @@ class SignUpThree extends Component {
     }
 
     printInterest = (interest, i) => {
-        return (<Col sm={2} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={interest.value} id={interest.id} type={"interest"} /></Col>)
+        return (<Col sm={2} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={interest.value} id={interest.id} data="signup" type={"interest"} /></Col>)
     }
 
     render() {

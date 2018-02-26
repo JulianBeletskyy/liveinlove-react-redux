@@ -7,8 +7,7 @@ import { setPlaceholder, removePlaceholder } from 'actions'
 
 class TextField extends Component {
     constructor(props) {
-        super(props);
-        
+        super(props)
         this.input = false
         this.id = Math.round(Math.random() * 999 * 1000)
         this.handleChange()
@@ -20,7 +19,7 @@ class TextField extends Component {
     }
 
     handleChange = () => {
-        if (this.input.value || this.props.value) {
+        if (this.input.value || this.props.value !== '') {
             store.dispatch(setPlaceholder(this.id))
         } else {
             store.dispatch(removePlaceholder(this.id))
@@ -29,8 +28,9 @@ class TextField extends Component {
 
     render() {
         const { changed } = this.props.textField;
-        
+        const { data } = this.props.user
         let className = style.placeholder;
+
         if (changed.indexOf(this.id) >= 0) {
             className += (' ' + style.active)
         }

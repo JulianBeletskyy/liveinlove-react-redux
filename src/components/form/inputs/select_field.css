@@ -13,3 +13,7 @@
     box-shadow:inset 0 0 0 0 #fff;
     box-shadow: 0 0 0 0 #fff;
 }
+
+:local(.select option) {
+    font-family: Arial;
+}

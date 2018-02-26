@@ -2,7 +2,8 @@
   padding: 15px 10px;
 }
 
-:local(.infoItem a) {
+:local(.infoItem a),
+:local(.infoItem span) {
   color: #646C74;
 }
 
@@ -17,7 +18,8 @@
 }
 
 :local(.infoItem:hover a),
-:local(.infoItem:hover i) {
+:local(.infoItem:hover i),
+:local(.infoItem:hover span) {
   text-decoration: none;
   color: #fff;
 }

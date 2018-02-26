@@ -105,12 +105,12 @@ export default function signup(signup = initialState, action = {}) {
             return Object.assign({}, signup, {
                 remember_token: action.value
             });
-        case types.SET_ACTIVE_BLOCK:
+        case types.SET_ACTIVE_BLOCK_SIGNUP:
             temp[action.key].push(action.id)
             return Object.assign({}, signup, {
                 data: temp
             });
-        case types.REMOVE_ACTIVE_BLOCK:
+        case types.REMOVE_ACTIVE_BLOCK_SIGNUP:
             for (var k in temp[action.key]) {
                 if (temp[action.key][k] === action.id) {
                     temp[action.key].splice(k, 1)
