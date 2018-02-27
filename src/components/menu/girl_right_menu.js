@@ -14,7 +14,7 @@ class GirlRightMenu extends Component {
 			<div className={style.wrapGirl + " p-15"}>
 				<FormGroup className="px-15 text-center">
 					<Avatar 
-						src={data.avatar.original}
+						src={data.avatar.croped}
 					/>
 				</FormGroup>
 
@@ -63,7 +63,11 @@ class GirlRightMenu extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return state
+	return {
+		user: {
+			data: state.user.data
+		}
+	}
 }
 
 export default connect(

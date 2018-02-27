@@ -29,10 +29,9 @@ class ClientRightMenu extends Component {
 			<div className={style.wrapClient + " p-15"}>
 				<FormGroup className="px-15 text-center">
 					<Avatar 
-						src={data.avatar.original}
+						src={data.avatar.croped}
 					/>
 				</FormGroup>
-
 				<FormGroup className={style.name + " text-center"}>
 					<div>
 						<h2><strong>{data.first_name + ' ' + data.last_name}</strong></h2>
@@ -123,7 +122,15 @@ class ClientRightMenu extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return state
+	return {
+		user: {
+			data: state.user.data
+		},
+		modals: {
+			plans: state.modals.plans,
+			credits: state.modals.credits
+		}
+	}
 }
 
 export default connect(

@@ -4,14 +4,11 @@ import { connect } from 'react-redux'
 import { FormGroup, Col, Radio, Row } from 'react-bootstrap'
 import Validator from 'validate'
 import { sendSignUpStart, getOptionsSignUp, setSignUpData, saveImage, saveFile, setEmptyData } from 'actions'
-import TextField from 'components/form/inputs/text_field.js'
-import SelectField from 'components/form/inputs/select_field.js'
+import { TextField, SelectField, CheckboxField, Autocomplete } from 'components/form/inputs'
 import Btn from 'components/form/buttons/button.js'
 import BtnGoogle from 'components/form/buttons/button_google.js'
 import BtnFacebook from 'components/form/buttons/button_facebook.js'
-import CheckboxField from 'components/form/inputs/checkbox_field.js'
 import style from './step_zero.css'
-import Autocomplete from 'components/form/inputs/autocomplete.js'
 
 class SignUpStart extends Component {
     constructor(props) {
@@ -35,6 +32,8 @@ class SignUpStart extends Component {
             want_children: () => {store.dispatch(getOptionsSignUp('want_children'))},
             countries: () => {store.dispatch(getOptionsSignUp('countries'))}
         }
+
+        console.log(this.props.signup)
         
         for (let k in getFunc) {
             if (! this.props.signup[k].length) {
@@ -188,7 +187,7 @@ class SignUpStart extends Component {
     }
 
     render() {
-        const { data } = this.props.signup
+        const { role, first_name, last_name, email, password, birth, country, city, terms } = this.props.signup.data
         return (
             <form onSubmit={this.getSignUpOne} noValidate={true}>
                 <Row>
@@ -199,7 +198,7 @@ class SignUpStart extends Component {
                                 <Radio 
                                     name="sex" 
                                     value="male"
-                                    defaultChecked={data.role !== 'girl'}
+                                    defaultChecked={role !== 'girl'}
                                     onChange={this.toggleRole}
                                     inputRef={ref => { this.role.male = ref }}
                                     className={style.gender}
@@ -210,7 +209,7 @@ class SignUpStart extends Component {
                                 <Radio 
                                     name="sex" 
                                     value="female"
-                                    defaultChecked={data.role === 'girl'}
+                                    defaultChecked={role === 'girl'}
                                     onChange={this.toggleRole}
                                     inputRef={ref => { this.role.female = ref }}
                                     className={style.gender}
@@ -230,7 +229,7 @@ class SignUpStart extends Component {
                                         type="text"
                                         placeholder="First Name"
                                         inputRef={ref => { this.signup.first_name = ref }}
-                                        value={data.first_name}
+                                        value={first_name}
                                         name="First Name"
                                         key="first_name"
                                     />
@@ -243,7 +242,7 @@ class SignUpStart extends Component {
                                         placeholder="Last Name"
                                         inputRef={ref => { this.signup.last_name = ref }}
                                         name="Last Name"
-                                        value={data.last_name}
+                                        value={last_name}
                                         key="last_name"
                                     />
                                 </FormGroup>
@@ -254,7 +253,7 @@ class SignUpStart extends Component {
                                 type="email"
                                 placeholder="Enter email"
                                 inputRef={ref => { this.signup.email = ref }}
-                                value={data.email}
+                                value={email}
                             />
                         </FormGroup>
                         <FormGroup>
@@ -262,7 +261,7 @@ class SignUpStart extends Component {
                                 type="password"
                                 placeholder="Enter password"
                                 inputRef={ref => { this.signup.password = ref }}
-                                value={data.password}
+                                value={password}
                             />
                         </FormGroup>
                     </Col>
@@ -274,7 +273,7 @@ class SignUpStart extends Component {
                                         componentClass="select"
                                         inputRef={ref => { this.signup.birth.month = ref }}
                                         options={this.monthArray()}
-                                        value={data.birth.month}
+                                        value={birth.month}
                                     />
                                 </Col>
                                 <Col sm={4}>
@@ -282,7 +281,7 @@ class SignUpStart extends Component {
                                         componentClass="select"
                                         inputRef={ref => { this.signup.birth.day = ref }}
                                         options={this.dayArray()}
-                                        value={data.birth.day}
+                                        value={birth.day}
                                     />
                                 </Col>
                                 <Col sm={4}>
@@ -290,7 +289,7 @@ class SignUpStart extends Component {
                                         componentClass="select"
                                         inputRef={ref => { this.signup.birth.year = ref }}
                                         options={this.yearArray()}
-                                        value={data.birth.year}
+                                        value={birth.year}
                                     />
                                 </Col>
                             </Row>
@@ -300,7 +299,7 @@ class SignUpStart extends Component {
                                 componentClass="select"
                                 inputRef={ref => { this.signup.country = ref }}
                                 options={this.getArray('countries')}
-                                value={data.country}
+                                value={country}
                                 name="country"
                                 onChange={this.countryChange}
                             />
@@ -309,7 +308,7 @@ class SignUpStart extends Component {
                             <Autocomplete 
                                 inputRef={ref => { this.signup.city = ref }}
                                 placeholder="City"
-                                value={data.city}
+                                value={city}
                             />
                         </FormGroup>
                     </Col>
@@ -317,7 +316,7 @@ class SignUpStart extends Component {
                         <CheckboxField
                             inputRef={ref => { this.signup.terms = ref }}
                             text='By clicking "Join Us for Free" above you agree to "Terms of Use" & "Privacy Policy"'
-                            value={data.terms}
+                            value={terms}
                         />
                         <FormGroup>
                             <Btn
@@ -353,7 +352,31 @@ class SignUpStart extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        signup: {
+           data: {
+                first_name: state.signup.data.first_name,
+                last_name: state.signup.data.last_name,
+                role: state.signup.data.role,
+                email: state.signup.data.email,
+                password: state.signup.data.email,
+                birth: state.signup.data.birth,
+                country: state.signup.data.country,
+                city: state.signup.data.city,
+                terms: state.signup.data.terms
+            },
+            height: state.signup.height,
+            weight: state.signup.weight,
+            eyes: state.signup.eyes,
+            hair_colors: state.signup.hair_colors,
+            hair_lengths: state.signup.hair_lengths,
+            ethnicities: state.signup.ethnicities,
+            marital_statuses: state.signup.marital_statuses,
+            religions: state.signup.religions,
+            want_children: state.signup.want_children,
+            countries: state.signup.countries
+        }
+    }
 }
 
 export default connect(

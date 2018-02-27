@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Row, Col, FormGroup } from 'react-bootstrap'
 import store from 'store/'
 import { getOptionsSignUp, updateUserProfile } from 'actions'
 import { SelectField, TextField, Textarea, Autocomplete }  from 'components/form/inputs'
+import style from './edit_profile.css'
 import BtnMain from 'components/form/buttons/main_button.js'
 import BlockSmall from 'components/blocks/block_small.js'
 import SmallDivider from 'components/divider/small_divider.js'
 import Validator from 'validate'
-import style from './edit_profile.css'
 
 class EditProfile extends Component {
    	constructor(props) {
@@ -24,10 +24,16 @@ class EditProfile extends Component {
 	        eyes: () => {store.dispatch(getOptionsSignUp('eyes'))},
 	        hair_colors: () => {store.dispatch(getOptionsSignUp('hair_colors'))},
 	        hair_lengths: () => {store.dispatch(getOptionsSignUp('hair_lengths'))},
-	        ethnicities: () => {store.dispatch(getOptionsSignUp('ethnicities'))},
 	        marital_statuses: () => {store.dispatch(getOptionsSignUp('marital_statuses'))},
+	        religions: () => {store.dispatch(getOptionsSignUp('religions'))},
+	        want_children: () => {store.dispatch(getOptionsSignUp('want_children'))},
 	        countries: () => {store.dispatch(getOptionsSignUp('countries'))},
-            interests: () => {store.dispatch(getOptionsSignUp('interests'))}
+            interests: () => {store.dispatch(getOptionsSignUp('interests'))},
+            education: () => {store.dispatch(getOptionsSignUp('education'))},
+            smoke: () => {store.dispatch(getOptionsSignUp('smoke'))},
+            primary_language: () => {store.dispatch(getOptionsSignUp('primary_language'))},
+            language_level: () => {store.dispatch(getOptionsSignUp('language_level'))},
+            drink: () => {store.dispatch(getOptionsSignUp('drink'))}
 	    }
         
         for (let k in getFunc) {
@@ -61,7 +67,17 @@ class EditProfile extends Component {
         error *= Validator.check(this.user.children.value, ['required'], 'Children')
         error *= Validator.check(this.user.message.value, ['required'], 'Message')
         error *= Validator.check(this.props.user.data.interests, ['reqiredArray'], 'Interests')
-        error *= Validator.check(this.props.user.data.female_ethnicity, ['reqiredArray'], 'Ethnicity Match')
+        error *= Validator.check(this.user.want_children.value, ['required'], 'Want Children')
+        error *= Validator.check(this.user.religion.value, ['required'], 'Religions')
+        error *= Validator.check(this.user.education.value, ['required'], 'Education')
+        error *= Validator.check(this.user.profession.value, ['required'], 'Profession')
+        error *= Validator.check(this.user.occupation.value, ['required'], 'Occupation')
+        error *= Validator.check(this.user.smoke.value, ['required'], 'Smoking')
+        error *= Validator.check(this.user.primaryLanguage.value, ['required'], 'Primary Language')
+        error *= Validator.check(this.user.englishLanguage.value, ['required'], 'English Language')
+        error *= Validator.check(this.user.russianLanguage.value, ['required'], 'Russian Language')
+        error *= Validator.check(this.user.drink.value, ['required'], 'Drink')
+        error *= Validator.check(this.user.mobile.value, ['required', 'integer'], 'Phone')
 
         if (error) {
             const data = {
@@ -85,17 +101,22 @@ class EditProfile extends Component {
                     from: this.user.match.from.value,
                     to: this.user.match.to.value
                 },
-                interest_id: this.props.user.data.interests,
-                female_ethnicity: this.props.user.data.female_ethnicity
+                interest_id: this.props.user.data.interests
             }
+
+            data.want_children_id = this.user.want_children ? this.user.want_children.value : ''
+            data.education_id = this.user.education.value
+            data.smoke_id = this.user.smoke.value
+            data.drink_id = this.user.drink.value
+            data.profession = this.user.profession.value
+            data.occupation = this.user.occupation.value
+            data.primary_language_id = this.user.primaryLanguage.value
+            data.english_language_id = this.user.englishLanguage.value
+            data.russian_language_id = this.user.russianLanguage.value
 
             store.dispatch(updateUserProfile(data, this.props.user.token))
         }
   	}
-
-    printEthnicity = (ethnicity, i) => {
-        return (<Col sm={2} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={ethnicity.value} id={ethnicity.id} data="user" type="female_ethnicity"  /></Col>)
-    }
 
     printInterest = (interest, i) => {
         return (<Col sm={2} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={interest.value} id={interest.id} data="user" type="interests" /></Col>)
@@ -195,6 +216,14 @@ class EditProfile extends Component {
             case 'hair_colors': name = 'Hair Color'; break;
             case 'eyes': name = 'Eyes Color'; break;
             case 'marital_statuses': name = 'Marital Status'; break;
+            case 'religions': name = 'Religions'; break;
+            case 'want_children': name = 'Do You Want Children?'; break;
+            case 'education': name = 'Education'; break;
+            case 'smoke': name = 'Do You Smoking?'; break;
+            case 'primary_language': name = 'Primary Language'; break;
+            case 'english_language': name = 'English Language'; type = 'language_level'; break;
+            case 'russian_language': name = 'Russian Language'; type = 'language_level'; break;
+            case 'drink': name = 'Do You Drink?'; break;
             default: name = ''; break;
         }
         let temp = [{ 'value': '', 'name': name }]
@@ -210,7 +239,7 @@ class EditProfile extends Component {
   
 	render() {
         const { data } = this.props.user
-  		const { ethnicities, interests } = this.props.signup
+  		const { interests } = this.props.signup
         let classRole = data.role == 'client' ? 'client' : 'girl'
 		return (
             <div className={style.wrapper + ' ' + classRole}>
@@ -255,6 +284,15 @@ class EditProfile extends Component {
                                             label={true}
                 		                />
                 		            </FormGroup>
+                                    <FormGroup>
+                                        <TextField
+                                            type="text"
+                                            placeholder="Phone"
+                                            inputRef={ref => { this.user.mobile = ref }}
+                                            value={data.mobile}
+                                            label={true}
+                                        />
+                                    </FormGroup>
                                 </Col>
                                 <Col sm={6}>
                                     <FormGroup>
@@ -388,6 +426,16 @@ class EditProfile extends Component {
                                     <FormGroup>
                                         <SelectField
                                             componentClass="select"
+                                            inputRef={ref => { this.user.religion = ref }}
+                                            options={this.getArray('religions')}
+                                            value={data.religion.id}
+                                            label={true}
+                                            placeholder="Religion"
+                                        />
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <SelectField
+                                            componentClass="select"
                                             inputRef={ref => { this.user.marital = ref }}
                                             options={this.getArray('marital_statuses')}
                                             value={data.marital_status.id}
@@ -412,9 +460,8 @@ class EditProfile extends Component {
                     <Col sm={12}>
                         <FormGroup>
                             <SmallDivider
-                                text="I am looking for a woman"
-                            />
-                            
+                                text="I am looking for a man"
+                                />
                         </FormGroup>
                         <div className={style.blockWrapper}>
                             <FormGroup>
@@ -443,7 +490,14 @@ class EditProfile extends Component {
                                 </Row>
                             </FormGroup>
                             <FormGroup>
-                                <Row><Col sm={12}>{ethnicities.map((ethnicity, i) => this.printEthnicity(ethnicity, i))}</Col></Row>
+                                <SelectField
+                                    componentClass="select"
+                                    inputRef={ref => { this.user.want_children = ref }}
+                                    options={this.getArray('want_children')}
+                                    value={data.want_children.id}
+                                    label={true}
+                                    placeholder="Do you want children?"
+                                />
                             </FormGroup>
                         </div>
                     </Col>
@@ -466,6 +520,93 @@ class EditProfile extends Component {
                                 <span className="font-bebas">Interests</span>
                                 <Row><Col sm={12}>{interests.map((interest, i) => this.printInterest(interest, i))}</Col></Row>
                             </FormGroup>
+                            <Row>
+                                <Col sm={6}>
+                                    <FormGroup>
+                                        <SelectField
+                                            componentClass="select"
+                                            inputRef={ref => { this.user.education = ref }}
+                                            options={this.getArray('education')}
+                                            value={data.education.id}
+                                            label={true}
+                                            placeholder="Education"
+                                        />
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <TextField
+                                            type="text"
+                                            placeholder="Profession"
+                                            inputRef={ref => { this.user.profession = ref }}
+                                            value={data.profession}
+                                            name="First Name"
+                                            label={true}
+                                        />
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <TextField
+                                            type="text"
+                                            placeholder="Occupation"
+                                            inputRef={ref => { this.user.occupation = ref }}
+                                            value={data.occupation}
+                                            name="First Name"
+                                            label={true}
+                                        />
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <SelectField
+                                            componentClass="select"
+                                            inputRef={ref => { this.user.smoke = ref }}
+                                            options={this.getArray('smoke')}
+                                            value={data.smoke.id}
+                                            label={true}
+                                            placeholder="Smoke"
+
+                                        />
+                                    </FormGroup>
+                                </Col>
+                                <Col sm={6}>
+                                    <FormGroup>
+                                        <SelectField
+                                            componentClass="select"
+                                            inputRef={ref => { this.user.primaryLanguage = ref }}
+                                            options={this.getArray('primary_language')}
+                                            value={data.primary_language.id}
+                                            label={true}
+                                            placeholder="Primary Language"
+                                        />
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <SelectField
+                                            componentClass="select"
+                                            inputRef={ref => { this.user.englishLanguage = ref }}
+                                            options={this.getArray('english_language')}
+                                            value={data.english_language.id}
+                                            label={true}
+                                            placeholder="English Language"
+                                        />
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <SelectField
+                                            componentClass="select"
+                                            inputRef={ref => { this.user.russianLanguage = ref }}
+                                            options={this.getArray('russian_language')}
+                                            value={data.russian_language.id}
+                                            label={true}
+                                            placeholder="Russian Language"
+                                        />
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <SelectField
+                                            componentClass="select"
+                                            inputRef={ref => { this.user.drink = ref }}
+                                            options={this.getArray('drink')}
+                                            value={data.drink.id}
+                                            label={true}
+                                            placeholder="Drink"
+                                        />
+                                    </FormGroup>
+                                </Col>
+                            </Row>
                         </div>
                         <FormGroup>
                             <BtnMain
