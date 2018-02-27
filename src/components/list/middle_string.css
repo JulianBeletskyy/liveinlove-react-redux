@@ -1,15 +1,17 @@
 :local(.wrap) {
-	padding: 10px;
+	
 }
 
 :local(.key) {
 	margin-right: 10px;
-    color: #ccc;
+    color: #fff;
 }
 
 :local(.text) {
 	margin-right: 10px;
-    color: #646C74;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
 :local(.link:hover) {

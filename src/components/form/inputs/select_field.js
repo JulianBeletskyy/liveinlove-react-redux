@@ -17,18 +17,22 @@ class SelectField extends Component {
     }
 
     render() {
+        let classSelect = this.props.placeholder ? ' title' : ''
         return (
-            <FormControl 
-                className={style.select} 
-                componentClass={this.props.componentClass} 
-                inputRef={this.props.inputRef}
-                defaultValue={this.props.value}
-                onChange={this.handleChange.bind(this)}
-            >
-                {
-                    this.props.options.map((option, i) => this.printOptions(option, i))
-                }
-            </FormControl>
+            <div className={style.wrap}>
+                {this.props.label ? <label>{this.props.placeholder}</label> : ''}
+                <FormControl 
+                    className={style.select + classSelect} 
+                    componentClass={this.props.componentClass} 
+                    inputRef={this.props.inputRef}
+                    defaultValue={this.props.value}
+                    onChange={this.handleChange.bind(this)}
+                >
+                    {
+                        this.props.options.map((option, i) => this.printOptions(option, i))
+                    }
+                </FormControl> 
+            </div>
         );
     }
 }

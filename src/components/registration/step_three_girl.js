@@ -37,6 +37,7 @@ class SignUpThreeGirl extends Component {
 
     render() {
     	const { data } = this.props.signup
+        console.log(data)
     	return (
             <form onSubmit={this.getSignUpThree} noValidate={true}>
                 <Row>
@@ -50,7 +51,7 @@ class SignUpThreeGirl extends Component {
                             />
                         </FormGroup>
                         {
-                            data.children === 1 ? 
+                            data.children == 1 ? 
                             (<FormGroup>
                                 <Textarea
                                     inputRef={ref => { this.signup.about_children = ref }}

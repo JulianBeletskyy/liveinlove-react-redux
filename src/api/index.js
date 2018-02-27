@@ -123,6 +123,20 @@ export default {
         .catch(error => console.log(error))
     },
 
+    changePassword(data, token) {
+        return fetch(config.API_URL + 'user/password', {
+            method: 'put',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
     signUpStart(data) {
         return fetch(config.API_URL + 'signup/start', {
             method: 'post',

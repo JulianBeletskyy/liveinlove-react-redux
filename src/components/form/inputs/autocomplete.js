@@ -32,24 +32,21 @@ class Autocomplete extends Component {
     }
 
     componentDidMount() {
-        //let input = document.getElementById('auocompleteInput')
-        /*var options = {
-                language: 'en-US',
-                types: ['(cities)'],
-                //componentRestrictions: {country: this.props.signup.country}
-        };
-
-        let autocomplete = new window.google.maps.places.Autocomplete(this.input, options)*/
+        
     }
 
     render() {
         const { changed } = this.props.textField
         var options = {
-                language: 'en-US',
                 types: ['(cities)'],
                 componentRestrictions: {country: this.props.country}
         };
         let autocomplete = new window.google.maps.places.Autocomplete(this.input, options)
+        
+        window.google.maps.event.addListener(autocomplete, 'place_changed', () => {
+           var place = autocomplete.getPlace()
+           this.input.value = place.vicinity
+        });
 
         let className = style.placeholder
         if (changed.indexOf(this.id) >= 0) {
@@ -57,6 +54,7 @@ class Autocomplete extends Component {
         }
         return (
             <div className={style.wrap}>
+                {this.props.label ? <label>{this.props.placeholder}</label> : ''}
                 <input
                     className={style.style + ' form-control'}
                     ref={this.thisRef}
@@ -67,7 +65,8 @@ class Autocomplete extends Component {
                     onChange={this.handleChange}
                     placeholder=" "
                 />
-                <div className={className}>{this.props.placeholder}</div>
+                {this.props.label ? '' : <div className={className}>{this.props.placeholder}</div>}
+               
             </div>
         );
     }

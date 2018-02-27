@@ -4,6 +4,13 @@
     padding-top: 8px;
 }
 
+:local(.wrap label) {
+    color: #828282;
+    font-family: bebas_neue;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
 :local(.style) {
     border-radius: 0px;
     border-top-width: 0px;

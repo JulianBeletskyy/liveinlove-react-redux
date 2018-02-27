@@ -17,7 +17,7 @@ class Plans extends Component {
 
     render() {
         const { data } = this.props.user
-        console.log(style.buttonBottom)
+        console.log(style.heading)
         return (
             <Row>
                 <Col sm={4}>
@@ -34,20 +34,46 @@ class Plans extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div id="price-table-features-wrap-3432" className="ult_price_features ult-responsive">
-                            <ul>
-                                <li>20 Pages, Galleries, and Blogs</li>
-                                <li>500 GB&nbsp;Storage</li>
-                                <li>2 Contributors</li>
-                                <li>Fully Integrated E-Commerce</li>
-                                <li>Donations</li>
-                                <li>Mobile Website and Store</li>
-                                <li><span className="text-wrapper">Custom Domain</span>&nbsp;<span className="free">FREE</span></li>
-                                <li>24/7 Customer Support</li>
-                            </ul>
+                        <div className={style.btnWrap}>
+                            <a href="#" className={style.buttonBottom}>buy now</a>
                         </div>
-                        <div id="price-table-button-wrap-4315" className="ult_price_link">
-                            <a href="#" className={style.button}>buy now</a>
+                    </div>
+                </Col>
+                <Col sm={4}>
+                    <div className={style.table + ' text-center'}>
+                        <div className={style.heading}>
+                            <h3 className={style.title}>Starter</h3>
+                            <h5 className="cust-subhead ult-responsive">Billed annually or $12 month-to-month</h5>
+                        </div>
+                        <div className={style.priceBlock}>
+                            <div className="ult_price_body">
+                                <div id="price-table-wrap-8060" className="ult_price">
+                                    <span className={style.price}>$10</span>
+                                    <span className="ult_price_term ult-responsive">per mounth</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={style.btnWrap}>
+                            <a href="#" className={style.buttonBottom}>buy now</a>
+                        </div>
+                    </div>
+                </Col>
+                <Col sm={4}>
+                    <div className={style.table + ' text-center'}>
+                        <div className={style.heading}>
+                            <h3 className={style.title}>Starter</h3>
+                            <h5 className="cust-subhead ult-responsive">Billed annually or $12 month-to-month</h5>
+                        </div>
+                        <div className={style.priceBlock}>
+                            <div className="ult_price_body">
+                                <div id="price-table-wrap-8060" className="ult_price">
+                                    <span className={style.price}>$10</span>
+                                    <span className="ult_price_term ult-responsive">per mounth</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={style.btnWrap}>
+                            <a href="#" className={style.buttonBottom}>buy now</a>
                         </div>
                     </div>
                 </Col>
