@@ -1,5 +1,6 @@
 :local(.wrapper) {
 	position: relative;
+	padding-top: 15px;
 }
 
 :local(.editBtn) {
@@ -51,6 +52,10 @@
 	background-repeat: no-repeat;
 	height: 30px;
 	width: 65%;
+}
+
+:local(.middleTitle) {
+    font-weight: bold;
 }
 
 @media (max-width: 768px) {

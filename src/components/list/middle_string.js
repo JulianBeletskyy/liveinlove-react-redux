@@ -9,12 +9,10 @@ class MiddleString extends Component {
         const link = this.props.link ? style.link : '' 
         return (
             <div className={style.wrap}>
-                <strong>
-                    <span className={style.key + ' text-blue'}>{this.props.keyName}</span>
-                </strong>
-                <strong>
+                    <span className={style.key}>{this.props.keyName}</span>
+                <span>
                     <span className={style.text + ' ' + link} onClick={this.props.onClick}>{this.props.text}</span>
-                </strong>
+                </span>
             </div>
         );
     }

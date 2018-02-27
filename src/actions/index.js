@@ -78,6 +78,21 @@ export function getClientInfo(token) {
     }
 }
 
+export function changePassword(data, token) {
+    return dispatch => {
+        return api.changePassword(data, token)
+        .then(json => {
+            if (json.data) {
+                console.log(json.data)
+                //dispatch(setClientInfo(json.data))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
 export function updateUserProfile(data, token) {
     return dispatch => {
         return api.updateUserProfile(data, token)

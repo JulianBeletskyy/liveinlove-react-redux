@@ -8,12 +8,46 @@
     src: url(./assets/fonts/bebasneue_bold-webfont.woff);
 }
 
+@font-face {
+    font-family: neutra;
+    src: url(./assets/fonts/NeutraBold.ttf);
+}
+
+@font-face {
+    font-family: neutra_bold;
+    src: url(./assets/fonts/NeutraText-Bold.otf);
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+}
+
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+}
+
+@import url('https://fonts.googleapis.com/css?family=Exo');
+
+/*@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');*/
+
 body .title {
-    font-family: bebas_neue,Helvetica,Arial,sans-serif;
+    font-family: "Roboto Condensed",Helvetica,Arial,sans-serif;
+
+}
+
+.font-bebas {
+  font-family: "bebas_neue",Helvetica,Arial,sans-serif;
+  text-transform: uppercase;
+  color: #828282;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 
 .ethniticy-block {
-    padding: 1px;
+    padding: 2px 5px;
 }
 
 .pt-66 {
@@ -34,16 +68,27 @@ body .title {
 
 .bg-white {
   background-color: #fff;
-  min-height: 500px;
+  min-height: 1200px;
 }
 
 .text-blue {
   color: #4099FF;
 }
 
+.client .divider {
+  box-shadow: 5px 0px 20px 1px rgba(39, 194, 211,0.2);
+  border-bottom: 1px solid #27c2d3;
+}
+
 .divider {
   border-bottom: 1px solid #ccc;
 }
+
+.girl .divider {
+  box-shadow: 5px 0px 20px 1px rgba(249, 30, 127,0.2);
+  border-bottom: 1px solid rgba(249, 30, 127, 0.6);
+}
+
 
 .blue-color {
   color: #27c2d3;
@@ -51,7 +96,6 @@ body .title {
 
 .small-italic {
   font-size: 13px;
-  font-style: italic;
   opacity: 0.7;
   font-weight: normal;
 }

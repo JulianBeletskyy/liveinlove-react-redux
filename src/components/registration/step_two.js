@@ -69,7 +69,6 @@ class SignUpTwo extends Component {
             aspectRatio={1 / 1}
             guides={false}
             background={false}
-            crop={this._crop.bind(this)}
         /> 
         : <img src="/assets/img/default-avatar.jpg" className="default-avatar" />
 

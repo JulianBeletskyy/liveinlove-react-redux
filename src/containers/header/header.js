@@ -31,7 +31,7 @@ class Header extends Component {
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
-                <Navbar.Collapse>
+                <Navbar.Collapse className={style.collapse}>
                 {
                     token
                     ? data.role == 'client'
@@ -52,3 +52,7 @@ const mapStateToProps = (state) => {
 export default connect(
     mapStateToProps
 )(Header);
+
+//boy linear-gradient(to top, rgba(249, 0, 110, 0.4), rgba(91, 207, 220, 0.9));
+
+//girl linear-gradient(to top, rgba(91, 207, 220, 0.9), rgba(249, 0, 110, 0.6));

@@ -4,7 +4,7 @@
 
 :local(.infoItem a),
 :local(.infoItem span) {
-  color: #646C74;
+  color: #fff;
 }
 
 :local(.infoItem i) {
@@ -12,8 +12,13 @@
   color: #ccc;
 }
 
-:local(.infoItem:hover) {
-  background-color: #4099FF;
+:local(.client.infoItem:hover) {
+  background-color: #27c2d3;
+  cursor: pointer;
+}
+
+:local(.girl.infoItem:hover) {
+  background-color: #f91e7f;
   cursor: pointer;
 }
 

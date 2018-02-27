@@ -12,29 +12,31 @@ class GirlRightMenu extends Component {
 	render() {
 		const { data } = this.props.user
 		return (
-			<div className="p-15">
-				<FormGroup className="px-15">
+			<div className={style.wrapGirl + " p-15"}>
+				<FormGroup className="px-15 text-center">
 					<Avatar 
 						src={data.avatar.original}
 					/>
 				</FormGroup>
 
-				<FormGroup className="text-center">
+				<FormGroup className={style.name + " text-center"}>
 					<div>
 						<h2><strong>{data.first_name + ' ' + data.last_name}</strong></h2>
+						<MiddleString
+							text={data.profile_id}
+							keyName="ID:"
+						/>
 					</div>
 				</FormGroup>
-
 				<FormGroup>
-					<MiddleString
-						text={data.profile_id}
-						keyName="ID:"
+					<SmallDivider
+						text=""
 					/>
 				</FormGroup>
 				<FormGroup>
 					<MiddleString
 						text={data.view_profile}
-						keyName="Profile viewed by boys:"
+						keyName="Profile viewed:"
 					/>
 				</FormGroup>
 				<FormGroup>
@@ -47,11 +49,13 @@ class GirlRightMenu extends Component {
 						text="View Profile"
 						icon="fas fa-user"
 						link="/profile/info"
+						role="girl"
 					/>
 					<MiddleItem
 						text="Edit Profile"
 						icon="fas fa-cog"
 						link="/profile/edit"
+						role="girl"
 					/>
 				</FormGroup>
 			</div>

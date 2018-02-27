@@ -26,23 +26,25 @@ class ClientRightMenu extends Component {
 		const { data } = this.props.user
 		const { plans, credits } = this.props.modals
 		return (
-			<div className="p-15">
-				<FormGroup className="px-15">
+			<div className={style.wrapClient + " p-15"}>
+				<FormGroup className="px-15 text-center">
 					<Avatar 
 						src={data.avatar.original}
 					/>
 				</FormGroup>
 
-				<FormGroup className="text-center">
+				<FormGroup className={style.name + " text-center"}>
 					<div>
 						<h2><strong>{data.first_name + ' ' + data.last_name}</strong></h2>
+						<MiddleString
+							text={data.profile_id}
+							keyName="ID:"
+						/>
 					</div>
 				</FormGroup>
-
 				<FormGroup>
-					<MiddleString
-						text={data.profile_id}
-						keyName="ID:"
+					<SmallDivider
+						text=""
 					/>
 				</FormGroup>
 				<FormGroup>
@@ -56,7 +58,7 @@ class ClientRightMenu extends Component {
 				<FormGroup>
 					<MiddleString
 						text={data.view_profile}
-						keyName="Profile viewed by girls:"
+						keyName="Profile viewed:"
 					/>
 				</FormGroup>
 				<FormGroup>
@@ -69,16 +71,19 @@ class ClientRightMenu extends Component {
 						text="View Profile"
 						icon="fas fa-user"
 						link="/profile/info"
+						role="client"
 					/>
 					<MiddleItem
 						text="Edit Profile"
 						icon="fas fa-cog"
 						link="/profile/edit"
+						role="client"
 					/>
 					<MiddleItem
 						text="Add Credits"
 						icon="fas fa-credit-card"
 						onClick={this.showAddCredits}
+						role="client"
 					/>
 				</FormGroup>
 				<FormGroup>
@@ -91,7 +96,9 @@ class ClientRightMenu extends Component {
 						text={data.credits}
 						keyName="Money Balance:"
 					/>
-					<MiddleString
+				</FormGroup>
+				<FormGroup>
+				<MiddleString
 						text="0"
 						keyName="Bonus Balance:"
 					/>
