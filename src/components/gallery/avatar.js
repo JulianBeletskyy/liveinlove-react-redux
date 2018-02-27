@@ -41,7 +41,11 @@ class Avatar extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        modals: {
+            avatar: state.modals.avatar
+        }
+    }
 }
 
 export default connect(

@@ -14,7 +14,7 @@ class Gallery extends Component {
     }
 
     printPhoto = (photo, i) => {
-        return (<Col key={i} sm={3}><SmallItem croped={photo.original} original={photo.croped} /></Col>)
+        return (<Col key={i} sm={3}><SmallItem croped={photo.croped} original={photo.original} /></Col>)
     }
 
     render() {
@@ -32,7 +32,13 @@ class Gallery extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        user: {
+            data: {
+                avatar: state.user.data.avatar
+            }
+        }
+    }
 }
 
 export default connect(

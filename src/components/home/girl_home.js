@@ -1,24 +1,13 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-bootstrap'
-import { Auth, Registration, MainModal, MainPanel, Recovery } from 'components'
-import { toggleModal, setRecoveryHash, activateUser } from 'actions'
-import store, { history } from 'store'
-import BtnMain from 'components/form/buttons/main_button.js'
-import style from './style.css'
 import { Route, Switch } from 'react-router-dom'
 import GirlRightMenu from 'components/menu/girl_right_menu.js'
-import EditProfile from 'components/profile/edit_profile.js'
+import EditProfileGirl from 'components/profile/edit_profile_girl.js'
 import AboutMe from 'components/profile/about_me.js'
 import PasswordProfile from 'components/profile/password_profile.js'
 
 class GirlHome extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     render() {
-        const { data } = this.props.user
         return (
             <div className="pt-66 bg-blue">
                 <Grid>
@@ -26,7 +15,7 @@ class GirlHome extends Component {
                         <Col md={9} className="bg-white">
                             <Switch>
                                 <Route path="/profile/info" exact component={AboutMe} />
-                                <Route path="/profile/edit" exact component={EditProfile} />
+                                <Route path="/profile/edit" exact component={EditProfileGirl} />
                                 <Route path="/profile/password" exact component={PasswordProfile} />
                             </Switch>
                         </Col>
@@ -41,10 +30,4 @@ class GirlHome extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-}
-
-export default connect(
-    mapStateToProps
-)(GirlHome);
+export default GirlHome

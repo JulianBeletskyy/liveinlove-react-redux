@@ -21,22 +21,22 @@ class Home extends Component {
         }
     }
 
-    showModal = () => {
-        store.dispatch(toggleModal(true, 'registration'))
+    getHome = (role) => {
+        switch (role) {
+            case 'client': return <ClientHome />
+            case 'girl': return <GirlHome />
+            default: return <PublicHome />
+        }
     }
 
     render() {
-        
         const { token, data } = this.props.user
-
         return (
             <div className={style.homeWrapper}>
                 {
-                    token
-                    ? data.role == 'client'
-                        ? (<ClientHome />)
-                        : (<GirlHome />)
-                    : (<PublicHome />)
+                    ! token
+                    ? <PublicHome />
+                    : this.getHome(data.role)
                 }
             </div>
         );
@@ -44,7 +44,14 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        user: {
+            token: state.user.token,
+            data: {
+                role: state.user.data.role
+            }
+        }
+    }
 }
 
 export default connect(

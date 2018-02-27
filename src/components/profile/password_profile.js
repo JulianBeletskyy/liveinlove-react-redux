@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
 import { changePassword } from 'actions'
-import style from './change_password.css'
+import style from './password_profile.css'
 import { FormGroup } from 'react-bootstrap'
 import TextField from 'components/form/inputs/text_field.js'
 import Validator from 'validate'
@@ -70,9 +70,13 @@ class PasswordProfile extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return state
+    return {
+        user: {
+            token: state.user.token
+        }
+    }
 }
 
 export default connect(
-	mapStateToProps
-)(PasswordProfile);
+    mapStateToProps
+)(PasswordProfile)

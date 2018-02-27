@@ -151,7 +151,6 @@ export default {
     },
 
     signUpOne(data) {
-        console.log(data)
         return fetch(config.API_URL + 'signup/' + data.route + '/step/one', {
             method: 'post',
             headers: {

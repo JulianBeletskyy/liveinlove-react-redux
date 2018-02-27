@@ -60,7 +60,18 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        user: {
+            data: {
+                role: state.user.data.role
+            },
+            token: state.user.token
+        },
+        modals: {
+            login: state.modals.login,
+            recovery: state.modals.recovery
+        }
+    }
 }
 
 export default connect(
