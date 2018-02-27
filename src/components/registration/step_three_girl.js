@@ -37,7 +37,6 @@ class SignUpThreeGirl extends Component {
 
     render() {
     	const { data } = this.props.signup
-        console.log(data)
     	return (
             <form onSubmit={this.getSignUpThree} noValidate={true}>
                 <Row>
@@ -82,7 +81,16 @@ class SignUpThreeGirl extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        signup: {
+            data: {
+                children: state.signup.data.children,
+                mobile: state.signup.data.mobile,
+                about_children: state.signup.data.about_children
+            },
+            remember_token: state.signup.remember_token
+        }
+    }
 }
 
 export default connect(

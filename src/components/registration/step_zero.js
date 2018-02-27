@@ -32,8 +32,6 @@ class SignUpStart extends Component {
             want_children: () => {store.dispatch(getOptionsSignUp('want_children'))},
             countries: () => {store.dispatch(getOptionsSignUp('countries'))}
         }
-
-        console.log(this.props.signup)
         
         for (let k in getFunc) {
             if (! this.props.signup[k].length) {
@@ -160,10 +158,6 @@ class SignUpStart extends Component {
             temp.push({'value': year, 'name': year})
         }
         return temp
-    }
-
-    countryChange = () => {
-        console.log('123')
     }
 
     getArray = (type) => {

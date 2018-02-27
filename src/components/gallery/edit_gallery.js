@@ -15,7 +15,6 @@ class EditGallery extends Component {
     }
 
     render() {
-        console.log('render')
         return (
             <div>
                 <Row>

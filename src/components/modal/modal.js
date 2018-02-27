@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Modal } from 'react-bootstrap'
 import store from 'store/'
 import { toggleModal } from 'actions'
