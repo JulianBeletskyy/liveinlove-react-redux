@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Auth, MainModal, Recovery, PublicHome } from 'components'
+import { PublicHome } from 'components'
 import { toggleModal, setRecoveryHash, activateUser } from 'actions'
-import { Grid } from 'react-bootstrap'
 import store, { history } from 'store'
 import style from './style.css';
 import ClientHome from 'components/home/client_home.js';

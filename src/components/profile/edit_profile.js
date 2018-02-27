@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
+import { Row, Col, FormGroup } from 'react-bootstrap'
 import store from 'store/'
 import { getOptionsSignUp, updateUserProfile } from 'actions'
 import style from './edit_profile.css'
 import SelectField from 'components/form/inputs/select_field.js'
 import TextField from 'components/form/inputs/text_field.js'
-import TextFieldEdit from 'components/form/inputs/text_field_edit.js'
 import Textarea from 'components/form/inputs/textarea.js'
-import CheckboxField from 'components/form/inputs/checkbox_field.js';
 import BtnMain from 'components/form/buttons/main_button.js';
 import Autocomplete from 'components/form/inputs/autocomplete.js'
 import BlockSmall from 'components/blocks/block_small.js'
@@ -369,7 +367,6 @@ class EditProfile extends Component {
                                             placeholder="City"
                                             value={data.city}
                                             label={true}
-                                            placeholder="City"
                                         />
                                     </FormGroup>
                                 </Col>
@@ -485,9 +482,15 @@ class EditProfile extends Component {
     	            </Col>
                     <Col sm={12}>
                         <FormGroup>
-                            <SmallDivider
+                        {
+                            data.role == 'client'
+                            ? <SmallDivider
                                 text="I am looking for a woman"
-                            />
+                                />
+                            : <SmallDivider
+                                text="I am looking for a man"
+                                />
+                        }
                         </FormGroup>
                         <div className={style.blockWrapper}>
                             <FormGroup>
@@ -544,7 +547,6 @@ class EditProfile extends Component {
                                     value={data.message}
                                     placeholder="Message"
                                     label={true}
-                                    placeholder="Message"
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -573,7 +575,6 @@ class EditProfile extends Component {
                                                     value={data.profession}
                                                     name="First Name"
                                                     label={true}
-                                                    placeholder="Profession"
                                                 />
                                             </FormGroup>
                                             <FormGroup>
@@ -584,7 +585,6 @@ class EditProfile extends Component {
                                                     value={data.occupation}
                                                     name="First Name"
                                                     label={true}
-                                                    placeholder="Occupation"
                                                 />
                                             </FormGroup>
                                             <FormGroup>

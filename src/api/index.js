@@ -124,7 +124,7 @@ export default {
     },
 
     changePassword(data, token) {
-        return fetch(config.API_URL + 'user/password', {
+        return fetch(config.API_URL + 'user/password/update', {
             method: 'put',
             headers: {
                 'Authorization': 'Bearer ' + token,
