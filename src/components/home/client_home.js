@@ -1,30 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid, Row, Col, Panel } from 'react-bootstrap'
-import { Auth, Registration, MainModal, MainPanel, Recovery } from 'components'
-import { toggleModal, setRecoveryHash, activateUser } from 'actions'
-import store, { history } from 'store'
-import BtnMain from 'components/form/buttons/main_button.js'
-import style from './style.css';
+import { Grid, Row, Col } from 'react-bootstrap'
+import { toggleModal } from 'actions'
+import store from 'store'
 import ClientRightMenu from 'components/menu/client_right_menu.js'
-import SearchBar from 'components/search/search.js'
 import { Route, Switch } from 'react-router-dom'
 import EditProfile from 'components/profile/edit_profile.js'
 import AboutMe from 'components/profile/about_me.js'
-import { NotFound } from 'containers'
 import PasswordProfile from 'components/profile/password_profile.js'
 
 class ClientHome extends Component {
-    constructor(props) {
-        super(props)
-    }
-
-    showModal = () => {
-        store.dispatch(toggleModal(true, 'registration'))
-    }
-
     render() {
-        const { data } = this.props.user
         return (
             <div className="pt-66 bg-blue">
                 <Grid>
