@@ -1,12 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import store from 'store'
-import { addCredits, toggleModal } from 'actions'
-import { Button, FormGroup, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import TextField from 'components/form/inputs/text_field.js'
-import BtnMain from 'components/form/buttons/main_button.js'
-import Validator from 'validate'
+import {  Row, Col } from 'react-bootstrap'
 import style from './plans.css'
 
 class Plans extends Component {
@@ -16,8 +10,6 @@ class Plans extends Component {
     }
 
     render() {
-        const { data } = this.props.user
-        console.log(style.heading)
         return (
             <Row>
                 <Col sm={4}>
@@ -35,7 +27,7 @@ class Plans extends Component {
                             </div>
                         </div>
                         <div className={style.btnWrap}>
-                            <a href="#" className={style.buttonBottom}>buy now</a>
+                            <a href="javascript:;" className={style.buttonBottom}>buy now</a>
                         </div>
                     </div>
                 </Col>
@@ -54,7 +46,7 @@ class Plans extends Component {
                             </div>
                         </div>
                         <div className={style.btnWrap}>
-                            <a href="#" className={style.buttonBottom}>buy now</a>
+                            <a href="javascript:;" className={style.buttonBottom}>buy now</a>
                         </div>
                     </div>
                 </Col>
@@ -73,7 +65,7 @@ class Plans extends Component {
                             </div>
                         </div>
                         <div className={style.btnWrap}>
-                            <a href="#" className={style.buttonBottom}>buy now</a>
+                            <a href="javascript:;" className={style.buttonBottom}>buy now</a>
                         </div>
                     </div>
                 </Col>

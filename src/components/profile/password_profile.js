@@ -26,7 +26,6 @@ class PasswordProfile extends Component {
     }
 
 	render() {
-        const { data } = this.props.user
 		return (
 			<div className={style.wrap}>
 				<FormGroup>

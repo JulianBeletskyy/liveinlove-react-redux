@@ -1,13 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import store from 'store'
-import { Row, Col, FormGroup } from 'react-bootstrap'
-import { MainModal } from 'components'
-import { Link } from 'react-router-dom'
-import { toggleModal } from 'actions'
-import style from './avatar.css'
-import Cropper from 'react-cropper';
-import 'cropperjs/dist/cropper.css';
+import { Row, Col } from 'react-bootstrap'
 import SmallItem from './small_item.js'
 
 class Gallery extends Component {

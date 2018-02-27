@@ -1,27 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import store from 'store'
 import { Row, Col } from 'react-bootstrap'
-import { MainModal } from 'components'
-import { Link } from 'react-router-dom'
-import { toggleModal } from 'actions'
-import style from './avatar.css'
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
 import Gallery from './gallery.js'
 
 class EditGallery extends Component {
-
-    _crop() {
-        //this.refs.cropper.getCroppedCanvas().toDataURL()
-    }
-
     getUrl = () => {
        return this.props.user.data.avatar.original + '?' + Date.now()
     }
 
     save = () => {
-        let crop = this.refs.cropper.getData()
+        //let crop = this.refs.cropper.getData()
     }
 
     render() {
