@@ -28,14 +28,16 @@ class TextField extends Component {
 
     render() {
         const { changed } = this.props.textField;
-        const { data } = this.props.user
+        //const { data } = this.props.user
         let className = style.placeholder;
 
         if (changed.indexOf(this.id) >= 0) {
             className += (' ' + style.active)
         }
+
         return (
             <div className={style.wrap}>
+                {this.props.label ? <label>{this.props.placeholder}</label> : ''}
                 <FormControl
                     type={this.props.type}
                     inputRef={this.thisRef}
@@ -44,7 +46,8 @@ class TextField extends Component {
                     onChange={this.handleChange}
                     defaultValue={this.props.value}
                 />
-                <div className={className}>{this.props.placeholder}</div>
+                {this.props.label ? '' : <div className={className}>{this.props.placeholder}</div>}
+                
             </div>
         );
     }

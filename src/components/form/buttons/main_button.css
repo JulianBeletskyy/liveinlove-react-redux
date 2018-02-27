@@ -21,7 +21,7 @@
     transition: all .3s;
     padding: 15px;
     color: #fff;
-    background-color: #34dca2;
+    background-color: #27c2d3;
     border: 0;
     position: relative;
     overflow: hidden;
@@ -30,6 +30,6 @@
 }
 
 :local(.button:hover) {
-    background-color: #1eaf7d;
+    background-color: #279faa;
     color: #fff;
 }

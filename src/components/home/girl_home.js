@@ -6,7 +6,10 @@ import { toggleModal, setRecoveryHash, activateUser } from 'actions'
 import store, { history } from 'store'
 import BtnMain from 'components/form/buttons/main_button.js'
 import style from './style.css'
+import { Route, Switch } from 'react-router-dom'
 import GirlRightMenu from 'components/menu/girl_right_menu.js'
+import EditProfile from 'components/profile/edit_profile.js'
+import AboutMe from 'components/profile/about_me.js'
 
 class GirlHome extends Component {
     constructor(props) {
@@ -20,8 +23,10 @@ class GirlHome extends Component {
                 <Grid>
                     <Row>
                         <Col md={9} className="bg-white">
-                            <div>
-                            </div>
+                            <Switch>
+                                <Route path="/profile/info" exact component={AboutMe} />
+                                <Route path="/profile/edit" exact component={EditProfile} />
+                            </Switch>
                         </Col>
 
                         <Col md={3}>

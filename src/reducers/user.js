@@ -51,7 +51,7 @@ const initialState = {
         english_language_id: '',
         russian_language_id: '',
         drink_id: '',
-        want_children: '',
+        want_children: {},
         credits: 0,
         view_profile: 0,
         membership: {

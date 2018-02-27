@@ -34,6 +34,7 @@ class Textarea extends Component {
         }
         return (
             <div className={style.wrap}>
+                {this.props.label ? <label>{this.props.placeholder}</label> : ''}
                 <FormControl 
                     componentClass="textarea"
                     inputRef={this.thisRef}
@@ -41,7 +42,8 @@ class Textarea extends Component {
                     onChange={this.handleChange}
                     defaultValue={this.props.value}
                 />
-                <span className={style.placeholder + ' ' + className}>{this.props.placeholder}</span>
+                {this.props.label ? '' : <span className={style.placeholder + ' ' + className}>{this.props.placeholder}</span>}
+                
             </div>
         );
     }

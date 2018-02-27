@@ -36,3 +36,10 @@
     bottom: 40px;
     font-size: 12px;
 }
+
+:local(.wrap label) {
+    color: #828282;
+    font-family: bebas_neue;
+    letter-spacing: 1px;
+    font-weight: 400;
+}

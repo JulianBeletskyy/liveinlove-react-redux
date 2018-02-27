@@ -5,6 +5,7 @@ import style from './about_me.css'
 import { Row, Col, FormGroup,  } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import BtnMain from 'components/form/buttons/main_button.js'
+import SmallDivider from 'components/divider/small_divider.js'
 
 class AboutMe extends Component {
     editProfile = () => {
@@ -12,117 +13,151 @@ class AboutMe extends Component {
     }
    render() {
     const { data } = this.props.user
+    let classRole = data.role == 'client' ? 'client' : 'girl'
    	return (
-   		<div>
+   		<div className={style.wrapper + ' ' + classRole}>
             <Row>
-               <Col sm={3}>
-                    <FormGroup>
-                    <img 
-                        src={data.avatar.original} 
-                        alt="profile big image" 
-                        className="img-responsive"
-                    />
-                    </FormGroup>
-                    <FormGroup>
-                        <BtnMain 
-                            type="button"
-                            bsStyle="success btn-block"
-                            text="Edit Profile"
-                            onClick={this.editProfile}
-                        />
-                    </FormGroup>
-                </Col>
-
                 <Col sm={6}>
                     <FormGroup>
-                        <div className="title">
-                            <span className={style.bigTitle}>{data.first_name + ' ' + data.last_name}</span>
-                                <span className="small-italic">
-                                    <i className="fas fa-map-marker-alt blue-color"></i>&nbsp;&nbsp;
-                                    {data.country + ', ' + data.city}
-                                </span>
-                            <div><strong>Profile ID:</strong> {data.profile_id}</div>
-                            <div>{data.age}<span> years</span></div>
+                        <SmallDivider
+                            text="Main Information"
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <div>
+                            <span className={style.middleTitle + ' title'}>Address</span>
                         </div>
-                        <div className={style.divider}>
+                         <span className="small-italic">{data.country + ' ' + data.city}</span>
+                    </FormGroup>
+                    <FormGroup>
+                        <div>
+                            <span className={style.middleTitle + ' title'}>Email</span>
                         </div>
+                        <span className="small-italic">{data.email}</span>
+                    </FormGroup>
+                    <FormGroup>
+                        <div>
+                            <span className={style.middleTitle + ' title'}>Birthday</span>
+                        </div>
+                      <span className="small-italic">{data.birthday.day + '.' + data.birthday.month + '.' + data.birthday.year} ({data.age} years)</span>
                     </FormGroup>
                     <FormGroup>
                         <div>
                             <span className={style.middleTitle + ' title'}>Personal message</span>
                         </div>
+                      <span className="small-italic">{data.message}</span>
+                    </FormGroup>
+                </Col>
 
-                        <span className="small-italic">{data.message}</span>
-                        <div className={style.divider}>
-                        </div>
-                    </FormGroup>
+                <Col sm={6}>
                     <FormGroup>
-                        <div>
-                            <span className={style.middleTitle + ' title'}>Interests</span>
-                        </div>
-                        <span className="small-italic">{data.interests.join(', ')}</span>
-                        <div className={style.divider}>
-                        </div>
+                        <SmallDivider
+                            text="About Me"
+                        />
                     </FormGroup>
-                    <FormGroup>
-                        <div>
-                            <span className={style.middleTitle + ' title'}>I am looking for a wooman</span>
-                        </div>
-                        <div>
-                            <span className="title">Age: &nbsp;</span><span className="small-italic">from {data.match.from} to {data.match.to}</span>
-                        </div>
-                        {
-                            data.role == 'client'
-                            ? <div>
-                                  <span className="title">Ethnicity: &nbsp;</span><span className="small-italic">{data.female_ethnicity_value.join(', ')}</span>
-                              </div>
-                            : ''
-                        }
-                        <div className={style.divider}>
-                        </div>
-                    </FormGroup>
+                    <Row>
+                        <Col sm={6}>
+                            <FormGroup>
+                                <div>
+                                    <span className={style.middleTitle + ' title'}>Height</span>
+                                </div>
+                                <span className="small-italic">{data.height.cm + ' cm'} / {data.height.inch + ' inch'}</span>
+                            </FormGroup>
+                            <FormGroup>
+                                <div>
+                                    <span className={style.middleTitle + ' title'}>Weight</span>
+                                </div>
+                                <span className="small-italic">{data.weight.kg + ' kg'} / {data.weight.lbs + ' lbs'}</span>
+                            </FormGroup>
+                            <FormGroup>
+                                <div>
+                                    <span className={style.middleTitle + ' title'}>Eyes color</span>
+                                </div>
+                                <span className="small-italic">{data.eyes.value}</span>
+                            </FormGroup>
+                            <FormGroup>
+                                <div>
+                                    <span className={style.middleTitle + ' title'}>Hair Color</span>
+                                </div>
+                                <span className="small-italic">{data.hair_color.value}</span>
+                            </FormGroup>
+                            <FormGroup>
+                                <div>
+                                    <span className={style.middleTitle + ' title'}>Hair Length</span>
+                                </div>
+                                <span className="small-italic">{data.hair_length.value}</span>
+                            </FormGroup>
+                        </Col>
+                        <Col sm={6}>
+                            <FormGroup>
+                                <div>
+                                    <span className={style.middleTitle + ' title'}>Ethnicity</span>
+                                </div>
+                                <span className="small-italic">{data.ethnicity.value}</span>
+                            </FormGroup>
+                            {
+                                data.role === 'girl'
+                                ? <FormGroup>
+                                    <div>
+                                        <span className={style.middleTitle + ' title'}>Religion</span>
+                                    </div>
+                                    <span className="small-italic">{data.religion.value}</span>
+                                </FormGroup>
+                                : ''
+                            }
+                            <FormGroup>
+                                <div>
+                                    <span className={style.middleTitle + ' title'}>Marital Status</span>
+                                </div>
+                                <span className="small-italic">{data.marital_status.value}</span>
+                            </FormGroup>  
+                            <FormGroup>
+                                <div>
+                                    <span className={style.middleTitle + ' title'}>Have Children</span>
+                                </div>
+                                <span className="small-italic">{data.children.value}</span>
+                            </FormGroup>
+                            {
+                                data.role === 'girl'
+                                ? <FormGroup>
+                                    <div>
+                                        <span className={style.middleTitle + ' title'}>About Children</span>
+                                    </div>
+                                    <span className="small-italic">{data.about_children}</span>
+                                </FormGroup>
+                                : ''
+                            }
+                            <FormGroup>
+                                <div>
+                                    <span className={style.middleTitle + ' title'}>Interests</span>
+                                </div>
+                                <span className="small-italic">{data.interests_value.join(', ')}</span>
+                            </FormGroup>
+                        </Col>
+                    </Row>
                </Col>
-
-               <Col sm={3}>
-                      <span className={style.middleTitle + ' title'}>About me</span>
-                      <div className={style.divider}>
-                      </div>
-                      <div>
-                          <span className="title">Birthday: &nbsp;&nbsp;</span>
-                          <span className="small-italic">{data.birthday.day + '.' + data.birthday.month + '.' + data.birthday.year}</span>
-                      </div>
-                      <div>
-                          <span className="title">Ethnicity: &nbsp;&nbsp;</span>
-                          <span className="small-italic">{data.ethnicity.value}</span>
-                      </div>
-                       <div>
-                          <span className="title">Height: &nbsp;&nbsp;</span>
-                          <span className="small-italic">{data.height.cm + ' cm'} / {data.height.inch + ' inch'}</span>
-                      </div>
-                       <div>
-                          <span className="title">Weight: &nbsp;&nbsp;</span>
-                          <span className="small-italic">{data.weight.kg + ' kg'} / {data.weight.lbs + ' lbs'}</span>
-                      </div>
-                       <div>
-                          <span className="title">Eyes color: &nbsp;&nbsp;</span>
-                          <span className="small-italic">{data.eyes.value}</span>
-                      </div>
-                      <div>
-                          <span className="title">Hair Color: &nbsp;&nbsp;</span>
-                          <span className="small-italic">{data.hair_color.value}</span>
-                      </div>
-                      <div>
-                          <span className="title">Hair Length: &nbsp;&nbsp;</span>
-                          <span className="small-italic">{data.hair_length.value}</span>
-                      </div>
-                      <div>
-                          <span className="title">Marital Status: &nbsp;&nbsp;</span>
-                          <span className="small-italic">{data.marital_status.value}</span>
-                      </div>
-                      <div>
-                          <span className="title">Have Children: &nbsp;&nbsp;</span>
-                          <span className="small-italic">{data.children.value}</span>
-                      </div>
+               <Col sm={6}>
+                    <FormGroup>
+                        <SmallDivider
+                            text={'I am looking for a ' + (data.role == 'client' ? 'woman' : 'man')}
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <div>
+                            <span className={style.middleTitle + ' title'}>Age</span>
+                        </div>
+                        <span className="small-italic">from {data.match.from} to {data.match.to}</span>
+                    </FormGroup>
+                    {
+                        data.role === 'client'
+                        ? <FormGroup>
+                            <div>
+                                <span className={style.middleTitle + ' title'}>Ethnicity</span>
+                            </div>
+                            <span className="small-italic">{data.female_ethnicity_value.join(', ')}</span>
+                        </FormGroup>
+                        : ''
+                    }
                </Col>
             </Row>
    		</div>

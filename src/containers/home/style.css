@@ -1,6 +1,7 @@
 :local(.homeWrapper) {
 	background-image: url('/assets/img/login-bg.jpg');
 	background-size: cover;
+    min-height: 1200px;
 }
 
 :local(.bigDesc) {

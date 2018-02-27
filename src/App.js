@@ -43,7 +43,7 @@ class App extends Component {
                 <PublicFooter />
                 <MainModal
                     body={<Auth />}
-                    title="LOg IN"
+                    title="Log In"
                     show={login}
                     keyModal="login"
                 />

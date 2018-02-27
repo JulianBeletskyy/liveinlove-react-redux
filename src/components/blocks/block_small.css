@@ -1,7 +1,7 @@
 :local(.block) {
     border-radius: 0px;
     border-width: 1px;
-    border-color: rgb(38, 39, 45);
+    border-color: #27C2D3;
     border-style: solid;
     background: #fff;
     color: rgb(38, 39, 45);
@@ -12,6 +12,6 @@
 :local(.block.active),
 :local(.block:hover) {
     cursor: pointer;
-    background:  rgb(38, 39, 45);
+    background:  #27C2D3;
     color: #fff;
 }

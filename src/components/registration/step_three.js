@@ -34,7 +34,7 @@ class SignUpThree extends Component {
     }
 
     printInterest = (interest, i) => {
-        return (<Col sm={2} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={interest.value} id={interest.id} data="signup" type={"interest"} /></Col>)
+        return (<Col sm={3} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={interest.value} id={interest.id} data="signup" type={"interest"} /></Col>)
     }
 
     render() {
@@ -51,7 +51,7 @@ class SignUpThree extends Component {
                                 placeholder="Message"
                             />
                         </FormGroup>
-                        <h4 className="title">Interests</h4>
+                        <h4 className="font-bebas">Interests</h4>
                         {
                             interests.map((interest, i) => this.printInterest(interest, i))
                         }

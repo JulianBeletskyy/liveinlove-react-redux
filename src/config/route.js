@@ -23,7 +23,7 @@ export default {
             'component': 'Home'
         }, {
             'path': '/profile/*',
-            'component': 'ClientProfile'
+            'component': 'Home'
         }, {
             'path': '/edit',
             'component': 'EditClientProfile'
@@ -47,7 +47,7 @@ export default {
             'component': 'Home'
         }, {
             'path': '/profile/*',
-            'component': 'ClientProfile'
+            'component': 'Home'
         }, {
             'path': '*',
             'component': 'NotFound'
