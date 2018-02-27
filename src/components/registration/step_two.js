@@ -17,10 +17,6 @@ class SignUpTwo extends Component {
         this.signup = {}
     }
 
-    _crop() {
-        this.refs.cropper.getCroppedCanvas().toDataURL()
-    }
-
     getSignUpThree = (event) => {
         event.preventDefault()
     }
@@ -128,7 +124,9 @@ class SignUpTwo extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        signup: state.signup
+    }
 }
 
 export default connect(

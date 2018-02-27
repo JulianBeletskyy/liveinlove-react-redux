@@ -40,8 +40,7 @@ class SignUpThree extends Component {
     render() {
         const { interests, data } = this.props.signup
         return (
-            <form onSubmit={this.confirm} noValidate={true}>
-                
+            <form noValidate={true}>
                 <Row>
                     <Col sm={12}>
                         <FormGroup>
@@ -52,9 +51,7 @@ class SignUpThree extends Component {
                             />
                         </FormGroup>
                         <h4 className="font-bebas">Interests</h4>
-                        {
-                            interests.map((interest, i) => this.printInterest(interest, i))
-                        }
+                        { interests.map((interest, i) => this.printInterest(interest, i)) }
                     </Col>
                 </Row>
                 <FormGroup className="text-center">
@@ -77,7 +74,13 @@ class SignUpThree extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        signup: {
+            data: state.signup.data,
+            remember_token: state.signup.remember_token,
+            interests: state.signup.interests
+        }
+    }
 }
 
 export default connect(

@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Modal } from 'react-bootstrap'
 import store from 'store/'
 import { toggleModal } from 'actions'
 import style from './modal.css'
-import { changeStep } from 'actions';
 
 class MainModal extends Component {
     closeModal = () => {
         store.dispatch(toggleModal(false, this.props.keyModal))
-        //store.dispatch(changeStep(0))
     }
     
     render() {
@@ -46,10 +43,4 @@ class MainModal extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-}
-
-export default connect(
-    mapStateToProps
-)(MainModal);
+export default MainModal

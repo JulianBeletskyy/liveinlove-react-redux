@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-bootstrap'
-import { toggleModal } from 'actions'
-import store from 'store'
 import ClientRightMenu from 'components/menu/client_right_menu.js'
 import { Route, Switch } from 'react-router-dom'
 import EditProfile from 'components/profile/edit_profile.js'
@@ -33,10 +30,4 @@ class ClientHome extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-}
-
-export default connect(
-    mapStateToProps
-)(ClientHome);
+export default ClientHome

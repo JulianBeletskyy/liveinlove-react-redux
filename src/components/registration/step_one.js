@@ -3,7 +3,7 @@ import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup, Row, Col } from 'react-bootstrap'
 import { changeStep, sendSignUpOne, getOptionsSignUp } from 'actions'
-import SelectField from 'components/form/inputs/select_field.js'
+import { SelectField } from 'components/form/inputs'
 import Btn from 'components/form/buttons/button.js'
 import BlockSmall from 'components/blocks/block_small.js'
 import Validator from 'validate'
@@ -306,7 +306,9 @@ class SignUpOne extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        signup: state.signup
+    }
 }
 
 export default connect(

@@ -15,8 +15,6 @@ class EditGallery extends Component {
     }
 
     render() {
-        const { data } = this.props.user
-        console.log(data)
         return (
             <div>
                 <Row>
@@ -27,6 +25,7 @@ class EditGallery extends Component {
                             style={{ height: '200px', width: '100%', margin: '0 auto' }}
                             aspectRatio={1 / 1}
                             guides={false}
+                            background={false}
                         />
                     </Col>
                     <Col sm={8}>
@@ -39,7 +38,13 @@ class EditGallery extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        user: {
+            data: {
+                avatar: state.user.data.avatar
+            }
+        }
+    }
 }
 
 export default connect(

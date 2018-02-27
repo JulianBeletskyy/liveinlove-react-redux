@@ -83,8 +83,6 @@ export function changePassword(data, token) {
         return api.changePassword(data, token)
         .then(json => {
             if (json.data) {
-                console.log(json.data)
-                //dispatch(setClientInfo(json.data))
             }
         })
         .catch(error => {

@@ -27,9 +27,8 @@ class TextField extends Component {
     }
 
     render() {
-        const { changed } = this.props.textField;
-        //const { data } = this.props.user
-        let className = style.placeholder;
+        const { changed } = this.props.textField
+        let className = style.placeholder
 
         if (changed.indexOf(this.id) >= 0) {
             className += (' ' + style.active)
@@ -54,7 +53,11 @@ class TextField extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        textField: {
+            changed: state.textField.changed
+        }
+    }
 }
 
 export default connect(
