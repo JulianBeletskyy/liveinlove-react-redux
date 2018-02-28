@@ -1,6 +1,6 @@
 :local(.homeWrapper) {
-	background-image: url('/assets/img/login-bg.jpg');
-	background-size: cover;
+    position: relative;
+    z-index: 1;
     min-height: 1200px;
 }
 

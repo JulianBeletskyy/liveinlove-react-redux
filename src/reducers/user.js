@@ -96,6 +96,14 @@ export default function user(user = initialState, action = {}) {
             return Object.assign({}, user, {
                 data: temp
             });
+        case types.SET_PLAN:
+            temp.membership = {
+                id: action.plan.id,
+                name: action.plan.name
+            }
+            return Object.assign({}, user, {
+                data: temp
+            });
         case types.REMOVE_ACTIVE_BLOCK_USER:
             for (var k in temp[action.key]) {
                 if (temp[action.key][k] === action.id) {

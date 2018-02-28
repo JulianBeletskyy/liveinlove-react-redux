@@ -59,6 +59,18 @@ export default {
         .catch(error => console.log(error))
     },
 
+    getMemberships() {
+        return fetch(config.API_URL + 'memberships', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
     updateUserProfile(data, token) {
         return fetch(config.API_URL + 'user/profile', {
             method: 'put',
@@ -124,7 +136,7 @@ export default {
     },
 
     changePassword(data, token) {
-        return fetch(config.API_URL + 'user/password/update', {
+        return fetch(config.API_URL + 'password/update', {
             method: 'put',
             headers: {
                 'Authorization': 'Bearer ' + token,

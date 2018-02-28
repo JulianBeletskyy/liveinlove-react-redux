@@ -3,6 +3,7 @@ import * as types from '../actions/types.js'
 const initialState = {
     showModal: false,
     step: 0,
+    showRegistration: false,
     empty_data: {},
     data: { 
         first_name: '',
@@ -92,6 +93,10 @@ export default function signup(signup = initialState, action = {}) {
         case types.SAVE_FILE:
             return Object.assign({}, signup, {
                 file: action.value
+            });
+        case types.TOGGLE_REGISTRATION:
+            return Object.assign({}, signup, {
+                showRegistration: action.value
             });
         case types.CHANGE_STEP:
             return Object.assign({}, signup, {

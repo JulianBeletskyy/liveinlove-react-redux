@@ -38,6 +38,30 @@ body .title {
 
 }
 
+.App {
+  position: relative;
+  background-image: url('/assets/img/image.png');
+  background-size: cover;
+}
+
+.App:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.2);
+  z-index: 0;
+}
+
+.text-white {
+  color: #fff;
+  font-family: bebas_neue;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
 .font-bebas {
   font-family: "bebas_neue",Helvetica,Arial,sans-serif;
   text-transform: uppercase;
