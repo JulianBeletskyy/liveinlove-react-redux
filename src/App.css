@@ -18,10 +18,10 @@
     src: url(./assets/fonts/NeutraText-Bold.otf);
 }
 
-@font-face {
+/*@font-face {
     font-family: Roboto;
     src: url('https://fonts.googleapis.com/css?family=Roboto:400,700');
-}
+}*/
 
 @font-face {
     font-family: 'Roboto Condensed';
@@ -36,6 +36,31 @@
 body .title {
     font-family: "Roboto Condensed",Helvetica,Arial,sans-serif;
 
+}
+
+.App {
+  position: relative;
+  background-image: url('/assets/img/image.jpg');
+  background-size: cover;
+  background-position: right center;
+}
+
+.App:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.2);
+  z-index: 0;
+}
+
+.text-white {
+  color: #fff;
+  font-family: bebas_neue;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 
 .font-bebas {
@@ -114,6 +139,12 @@ body .title {
 .panel {
 	border-radius: 0;
 	border: none;
+}
+
+@media (max-width: 768px) {
+  .App:after {
+    background-color: rgba(0,0,0,0.6);
+  }
 }
 
 @media (min-width: 992px) {

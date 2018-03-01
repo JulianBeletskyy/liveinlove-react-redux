@@ -9,8 +9,8 @@ class TextField extends Component {
     constructor(props) {
         super(props)
         this.input = false
-        this.id = Math.round(Math.random() * 999 * 1000)
-        this.handleChange()
+        this.id =  Math.round(Math.random() * 999 * 1000)
+        //this.handleChange()
     }
 
     thisRef = (ref) => {
@@ -18,7 +18,7 @@ class TextField extends Component {
         this.input = ref
     }
 
-    handleChange = () => {
+    handleChange = (ref) => {
         if (this.input.value || this.props.value !== '') {
             store.dispatch(setPlaceholder(this.id))
         } else {

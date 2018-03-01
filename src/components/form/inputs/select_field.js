@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { FormControl } from 'react-bootstrap'
 import store from 'store'
 import style from './select_field.css'
@@ -37,10 +36,4 @@ class SelectField extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-}
-
-export default connect(
-    mapStateToProps
-)(SelectField);
+export default SelectField

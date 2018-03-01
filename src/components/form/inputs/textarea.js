@@ -18,7 +18,8 @@ class Textarea extends Component {
         this.input = ref
     }
 
-    handleChange = () => {
+    handleChange = (e) => {
+        console.log(e)
         if (this.input.value || this.props.value) {
             store.dispatch(toggleTextarea(true))
         } else {
