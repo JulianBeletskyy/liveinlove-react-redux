@@ -16,3 +16,9 @@
 	opacity: 0;
 	display: none;
 }
+
+@media (max-width: 768px) {
+    :local(.wrapRegistration) {
+	    width: 100%;
+	}
+}
