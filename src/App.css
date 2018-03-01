@@ -18,10 +18,10 @@
     src: url(./assets/fonts/NeutraText-Bold.otf);
 }
 
-@font-face {
+/*@font-face {
     font-family: Roboto;
     src: url('https://fonts.googleapis.com/css?family=Roboto:400,700');
-}
+}*/
 
 @font-face {
     font-family: 'Roboto Condensed';
@@ -42,6 +42,7 @@ body .title {
   position: relative;
   background-image: url('/assets/img/image.jpg');
   background-size: cover;
+  background-position: right center;
 }
 
 .App:after {
@@ -138,6 +139,12 @@ body .title {
 .panel {
 	border-radius: 0;
 	border: none;
+}
+
+@media (max-width: 768px) {
+  .App:after {
+    background-color: rgba(0,0,0,0.6);
+  }
 }
 
 @media (min-width: 992px) {
