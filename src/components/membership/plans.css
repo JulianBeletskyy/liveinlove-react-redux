@@ -5,6 +5,8 @@
     box-shadow: none;
     padding: 40px 40px 0;
     font-size: 1em;
+    position: relative;
+    overflow: hidden;
 }
 
 :local(.table:hover) {
@@ -13,6 +15,15 @@
 
 :local(.heading) {
 	margin-bottom: 30px;
+}
+
+:local(.list) {
+    padding: 0;
+    list-style-type: none;
+}
+
+:local(.list strong) {
+    float: right;
 }
 
 :local(.title) {
@@ -30,13 +41,37 @@
     font-size: 4.285714285714286em;
     line-height: 1;
     color: #34dca2;
-    display: block;
+}
+
+:local(.wrapValues) {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    bottom: -200px;
+    transition: all .3s;
+}
+
+:local(.priceItem) {
+    padding-bottom: 15px;
+}
+
+:local(.price_3 .price) {
+    font-size: 20px;
+}
+
+:local(.price_6 .price) {
+    font-size: 30px;
+}
+
+:local(.price_12 .price) {
+    font-size: 40px;
 }
 
 :local(.priceBlock) {
-	margin: 30px 0 50px;
+	margin: 30px 0 15px;
     border-bottom: 3px solid #e6e6e6;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
     float: none;
 }
 
@@ -73,7 +108,12 @@
     width: auto;
 }
 
-:local(.btnWrap:hover a) {
+:local(.wrapValues.active) {
+    bottom: 0px;
+}
+
+:local(.btnWrap:hover a),
+:local(.btnValues:hover a) {
     background-color: #279faa;
     color: #fff;
     text-decoration: none;

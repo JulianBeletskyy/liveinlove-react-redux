@@ -79,6 +79,12 @@ class ClientRightMenu extends Component {
 						role="client"
 					/>
 					<MiddleItem
+						text="Change password"
+						icon="fas fa-unlock-alt"
+						link="/profile/password"
+						role="client"
+					/>
+					<MiddleItem
 						text="Add Credits"
 						icon="fas fa-credit-card"
 						onClick={this.showAddCredits}

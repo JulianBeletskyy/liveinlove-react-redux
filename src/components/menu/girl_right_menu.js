@@ -56,6 +56,12 @@ class GirlRightMenu extends Component {
 						link="/profile/edit"
 						role="girl"
 					/>
+					<MiddleItem
+						text="Change password"
+						icon="fas fa-unlock-alt"
+						link="/profile/password"
+						role="girl"
+					/>
 				</FormGroup>
 			</div>
 		);

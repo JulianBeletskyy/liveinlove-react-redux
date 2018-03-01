@@ -27,6 +27,13 @@ export function setToken(value) {
     }
 }
 
+export function toggleRegistration(value) {
+    return {
+        type: types.TOGGLE_REGISTRATION,
+        value
+    }
+}
+
 export function setTempToken(value) {
     return {
         type: types.SET_TEMP_TOKEN,
@@ -57,6 +64,20 @@ export function removeAlert() {
     }
 }
 
+export function setPlan(plan, month_id) {
+    return {
+        type: types.SET_PLAN,
+        plan
+    }
+}
+
+export function openPriceBtn(value) {
+    return {
+        type: types.OPEN_PRICE_BUTTON,
+        value
+    }
+}
+
 export function addCredits(value) {
     return {
         type: types.ADD_CREDITS,
@@ -70,6 +91,20 @@ export function getClientInfo(token) {
         .then(json => {
             if (json.data) {
                 dispatch(setClientInfo(json.data))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export function getMemberships() {
+    return dispatch => {
+        return api.getMemberships()
+        .then(json => {
+            if (json.data) {
+                dispatch(setMemberships(json.data))
             }
         })
         .catch(error => {
@@ -281,6 +316,13 @@ export function sendSignUpFinish(data) {
 export function setSendEmail(value) {
     return {
         type: types.SET_SEND_EMAIL,
+        value
+    }
+}
+
+export function setMemberships(value) {
+    return {
+        type: types.SET_MEMBERSHIPS,
         value
     }
 }

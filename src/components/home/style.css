@@ -1,16 +1,18 @@
-:local(.tempBox) {
-	border: 1px solid #ccc;
-	height: 150px;
-	margin-bottom: 50px;
+:local(.wrapRegistration) {
+    width: 60%;
+    z-index: 1;
+    transition: all .3s;
 }
 
-:local(.rightMenu) {
-	position: fixed;
-	right: 15px;
+:local(.wrapRegistration.active) {
+    width: 100%;
 }
 
-@media screen and (max-width: 768px){
-	:local(.rightMenu) {
-		display: none;
-	}
+:local(.wrapLogin) {
+	opacity: 1;
+}
+
+:local(.wrapLogin.active) {
+	opacity: 0;
+	display: none;
 }

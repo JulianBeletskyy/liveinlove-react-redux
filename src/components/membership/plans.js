@@ -1,81 +1,40 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import store from 'store'
 import {  Row, Col } from 'react-bootstrap'
 import style from './plans.css'
+import { getMemberships } from 'actions'
+import PlanItem from './plan_item.js'
 
 class Plans extends Component {
     constructor(props) {
         super(props)
         this.user = {}
+        store.dispatch(getMemberships())
+    }
+
+    printPlans(plan, i) {
+        if (plan.name !== 'Free') {
+            return (<Col key={i} sm={4}><PlanItem options={plan}  /></Col>)
+        }
     }
 
     render() {
+        const { plans } = this.props.memberships
         return (
             <Row>
-                <Col sm={4}>
-                    <div className={style.table + ' text-center'}>
-                        <div className={style.heading}>
-                            <h3 className={style.title}>Starter</h3>
-                            <h5 className="cust-subhead ult-responsive">Billed annually or $12 month-to-month</h5>
-                        </div>
-                        <div className={style.priceBlock}>
-                            <div className="ult_price_body">
-                                <div id="price-table-wrap-8060" className="ult_price">
-                                    <span className={style.price}>$10</span>
-                                    <span className="ult_price_term ult-responsive">per mounth</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={style.btnWrap}>
-                            <a href="javascript:;" className={style.buttonBottom}>buy now</a>
-                        </div>
-                    </div>
-                </Col>
-                <Col sm={4}>
-                    <div className={style.table + ' text-center'}>
-                        <div className={style.heading}>
-                            <h3 className={style.title}>Starter</h3>
-                            <h5 className="cust-subhead ult-responsive">Billed annually or $12 month-to-month</h5>
-                        </div>
-                        <div className={style.priceBlock}>
-                            <div className="ult_price_body">
-                                <div id="price-table-wrap-8060" className="ult_price">
-                                    <span className={style.price}>$10</span>
-                                    <span className="ult_price_term ult-responsive">per mounth</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={style.btnWrap}>
-                            <a href="javascript:;" className={style.buttonBottom}>buy now</a>
-                        </div>
-                    </div>
-                </Col>
-                <Col sm={4}>
-                    <div className={style.table + ' text-center'}>
-                        <div className={style.heading}>
-                            <h3 className={style.title}>Starter</h3>
-                            <h5 className="cust-subhead ult-responsive">Billed annually or $12 month-to-month</h5>
-                        </div>
-                        <div className={style.priceBlock}>
-                            <div className="ult_price_body">
-                                <div id="price-table-wrap-8060" className="ult_price">
-                                    <span className={style.price}>$10</span>
-                                    <span className="ult_price_term ult-responsive">per mounth</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={style.btnWrap}>
-                            <a href="javascript:;" className={style.buttonBottom}>buy now</a>
-                        </div>
-                    </div>
-                </Col>
+                { plans.map((plan, i) => this.printPlans(plan, i)) }
             </Row>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        memberships: {
+            plans: state.memberships.plans
+        }
+    }
 }
 
 export default connect(
