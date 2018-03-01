@@ -40,7 +40,7 @@ body .title {
 
 .App {
   position: relative;
-  background-image: url('/assets/img/image.png');
+  background-image: url('/assets/img/image.jpg');
   background-size: cover;
 }
 

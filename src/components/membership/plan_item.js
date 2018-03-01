@@ -77,7 +77,11 @@ class PlanItem extends Component {
                     <a href="javascript:;" className={style.buttonBottom}>buy now</a>
                 </div>
                 <div className={style.wrapValues + ' ' + classBtn}>
-                    <div className={style.btnValues}><a onClick={this.hideValues} className={style.buttonBottom}><i className="fas fa-angle-down"></i></a></div>
+                    <div className={style.btnValues}>
+                        <a onClick={this.hideValues} className={style.buttonBottom}>
+                            <i className="fas fa-angle-down"></i>
+                        </a>
+                    </div>
                     {this.props.options.values.map((value, i) => this.printPriceButton(value, i))}
 
                 </div>
