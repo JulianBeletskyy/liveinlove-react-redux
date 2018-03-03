@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import style from './button.css'
 
@@ -24,10 +23,4 @@ class Btn extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-}
-
-export default connect(
-    mapStateToProps
-)(Btn);
+export default Btn

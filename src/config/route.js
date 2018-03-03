@@ -4,15 +4,6 @@ export default {
             'path': '/',
             'component': 'Home'
         }, {
-            'path': '/about',
-            'component': 'About'
-        }, {
-            'path': '/support',
-            'component': 'Support'
-        }, {
-            'path': '/girl-profile',
-            'component': 'GirlProfile'
-        }, {
             'path': '*',
             'component': 'NotFound'
         }
@@ -24,18 +15,6 @@ export default {
         }, {
             'path': '/profile/*',
             'component': 'Home'
-        }, {
-            'path': '/edit',
-            'component': 'EditClientProfile'
-        }, {
-            'path': '/girls',
-            'component': 'Girls'
-        }, {
-            'path': '/success-stories',
-            'component': 'SuccessStories'
-        }, {
-            'path': 'blog',
-            'component': 'Blog'
         }, {
             'path': '*',
             'component': 'NotFound'

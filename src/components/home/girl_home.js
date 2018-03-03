@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { Route, Switch } from 'react-router-dom'
 import GirlRightMenu from 'components/menu/girl_right_menu.js'
-import EditProfileGirl from 'components/profile/edit_profile_girl.js'
-import AboutMe from 'components/profile/about_me.js'
-import PasswordProfile from 'components/profile/password_profile.js'
+import InfoProfile from 'components/profile/info.js'
+import Edit from 'components/profile/edit.js'
 
 class GirlHome extends Component {
     render() {
@@ -14,9 +13,8 @@ class GirlHome extends Component {
                     <Row>
                         <Col md={9} className="bg-white">
                             <Switch>
-                                <Route path="/profile/info" exact component={AboutMe} />
-                                <Route path="/profile/edit" exact component={EditProfileGirl} />
-                                <Route path="/profile/password" exact component={PasswordProfile} />
+                                <Route path="/profile/edit/:tab" exact component={Edit} />
+                                <Route path="/profile/:tab" exact component={InfoProfile} />
                             </Switch>
                         </Col>
 

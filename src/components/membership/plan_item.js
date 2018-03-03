@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
-import {  Row, Col } from 'react-bootstrap'
 import style from './plans.css'
-import { getMemberships, openPriceBtn, setPlan, toggleModal } from 'actions'
+import { openPriceBtn, setPlan, toggleModal } from 'actions'
 
 class PlanItem extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     printPrice(value, i) {
         let priceClass = ''
@@ -20,11 +16,11 @@ class PlanItem extends Component {
 
         if (value.month !== 1) {
             return (<div key={i}>
-                    <div className={priceClass + ' ' + style.priceItem}>
-                        <span className={style.price}>${value.month_payment}</span>
-                        <span className="ult_price_term ult-responsive"> / {value.month} month</span>
-                    </div>
-                </div>)
+                        <div className={priceClass + ' ' + style.priceItem}>
+                            <span className={style.price}>{value.month_payment ? '$' + value.month_payment : ''}</span>
+                            <span className="ult_price_term ult-responsive">{value.month_payment ? '/ ' + value.month + 'month' : <span>&nbsp;</span>}</span>
+                        </div>
+                    </div>)
         }
     }
 
@@ -52,6 +48,7 @@ class PlanItem extends Component {
 
     render() {
         const { active_btn } = this.props.memberships
+        const { id } = this.props.user.data.membership
         const classBtn = active_btn == this.props.options.id ? style.active : ''
         return (
             <div className={style.table + ' text-center'}>
@@ -73,9 +70,21 @@ class PlanItem extends Component {
                     </ul>
                    <span className="ult_price_term ult-responsive"></span> 
                 </div>
-                <div className={style.btnWrap} onClick={this.showValues}>
-                    <a href="javascript:;" className={style.buttonBottom}>buy now</a>
-                </div>
+                    {
+                        this.props.options.id == id
+                        ?   <div className={style.btnWrap}>
+                                <span className={style.btnCurrent}>Current</span>
+                            </div>
+                        :   
+                        this.props.options.name == 'Free'
+                        ?   <div className={style.btnWrap}>
+                                <span className={style.btnCurrent}>Free</span>
+                            </div>
+                        :   <div className={style.btnWrap} onClick={this.showValues}>
+                                <a href="javascript:;" className={style.buttonBottom}>buy now</a>
+                            </div>
+                        
+                    }
                 <div className={style.wrapValues + ' ' + classBtn}>
                     <div className={style.btnValues}>
                         <a onClick={this.hideValues} className={style.buttonBottom}>
@@ -83,7 +92,6 @@ class PlanItem extends Component {
                         </a>
                     </div>
                     {this.props.options.values.map((value, i) => this.printPriceButton(value, i))}
-
                 </div>
             </div>
         );
@@ -95,6 +103,13 @@ const mapStateToProps = (state) => {
         memberships: {
             plans: state.memberships.plans,
             active_btn: state.memberships.active_btn
+        },
+        user: {
+            data: {
+                membership: {
+                    id: state.user.data.membership.id
+                }
+            }
         }
     }
 }

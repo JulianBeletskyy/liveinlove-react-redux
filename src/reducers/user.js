@@ -54,10 +54,7 @@ const initialState = {
         want_children: {},
         credits: 0,
         view_profile: 0,
-        membership: {
-            id: 'basic',
-            name: 'Basic'
-        }
+        membership: {}
     },
     countries: []
 }

@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import store from 'store'
 import style from './style.css'
 import { Link } from 'react-router-dom'
-import { Navbar, NavDropdown } from 'react-bootstrap'
 import { toggleModal, logout } from 'actions'
 
 class GirlHeader extends Component {
@@ -17,7 +15,6 @@ class GirlHeader extends Component {
     }
 
     render() {
-        const { token } = this.props.user
         return (
            <ul className={style.navBar + ' nav navbar-nav navbar-right'}>
                 <li role="presentation">
@@ -52,10 +49,4 @@ class GirlHeader extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-}
-
-export default connect(
-    mapStateToProps
-)(GirlHeader);
+export default GirlHeader

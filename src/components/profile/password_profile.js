@@ -4,7 +4,7 @@ import store from 'store'
 import { changePassword } from 'actions'
 import style from './password_profile.css'
 import { FormGroup } from 'react-bootstrap'
-import TextField from 'components/form/inputs/text_field.js'
+import { TextField } from 'components/form/inputs'
 import Validator from 'validate'
 import BtnMain from 'components/form/buttons/main_button.js'
 

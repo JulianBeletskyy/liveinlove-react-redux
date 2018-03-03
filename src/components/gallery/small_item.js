@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
-import { Row, Col, FormGroup } from 'react-bootstrap'
+import { FormGroup } from 'react-bootstrap'
 import { MainModal } from 'components'
-import { Link } from 'react-router-dom'
 import { toggleModal } from 'actions'
 import style from './small_item.css'
-import Cropper from 'react-cropper';
-import 'cropperjs/dist/cropper.css';
 
 class SmallItem extends Component {
     showModal = () => {
         store.dispatch(toggleModal(true, 'photo_preview'))
     }
 
+    removePhoto = () => {
+        if(window.confirm('Are you sure?')) {
+            
+        }
+    }
+
     render() {
-        const { data } = this.props.user
         const { photo_preview } = this.props.modals
         return (
             <div>
@@ -28,7 +30,7 @@ class SmallItem extends Component {
                                 <a href="javascript:;" onClick={this.showModal} className={style.preview}>Preview</a>
                             </div>
                         </div>
-                        <span className={style.close}><i className="fas fa-times"></i></span>
+                        <span className={style.close} onClick={this.removePhoto}><i className="fas fa-times"></i></span>
                     </div>
                 </FormGroup>
                 <MainModal
@@ -43,7 +45,11 @@ class SmallItem extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        modals: {
+            photo_preview: state.modals.photo_preview
+        }
+    }
 }
 
 export default connect(

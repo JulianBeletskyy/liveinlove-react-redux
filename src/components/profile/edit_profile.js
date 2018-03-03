@@ -105,8 +105,8 @@ class EditProfile extends Component {
 	    let temp = [{ 'value': '', 'name': 'Choose Country' }]
 	    for (var k in this.props.signup[type]) {
 	        temp.push({
-	            'value': this.props.signup[type][k].countryCode,
-	            'name': this.props.signup[type][k].countryName
+	            'value': this.props.signup[type][k].country_code,
+	            'name': this.props.signup[type][k].country_name
 	        })
 	    }
 	    return temp
@@ -296,10 +296,11 @@ class EditProfile extends Component {
                                             componentClass="select"
                                             inputRef={ref => { this.user.country = ref }}
                                             options={this.getCountryArray('countries')}
-                                            value={data.country}
+                                            value={data.country.country_code}
                                             name="country"
                                             label={true}
                                             placeholder="Country"
+                                            city={this.user.city}
                                         />
                                     </FormGroup>
                                     <FormGroup>

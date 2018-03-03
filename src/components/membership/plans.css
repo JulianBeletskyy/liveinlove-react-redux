@@ -108,8 +108,41 @@
     width: auto;
 }
 
+:local(.btnCurrent) {
+    background: 0 0;
+    -webkit-font-smoothing: antialiased;
+    -webkit-appearance: none;
+    border-radius: 0;
+    box-shadow: none;
+    max-width: 100%;
+    vertical-align: middle;
+    outline: 0;
+    font-family: bebas_neue,Helvetica,Arial,sans-serif;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block;
+    font-size: 1.142857142857143em;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    -webkit-transition: color .4s,background-color .4s;
+    transition: color .4s,background-color .4s;
+    border: 0;
+    padding: .8125em 40px;
+    background-color: #ccc;
+    color: #fff;
+    width: 100%;
+    font-weight: 700!important;
+    cursor: default;
+}
+
 :local(.wrapValues.active) {
     bottom: 0px;
+}
+
+:local(.btnValues) {
+    cursor: pointer;
 }
 
 :local(.btnWrap:hover a),
@@ -118,4 +151,3 @@
     color: #fff;
     text-decoration: none;
 }
-

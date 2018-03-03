@@ -7,6 +7,8 @@ import modals from './modals.js'
 import textarea from './textarea.js'
 import autocomplete from './autocomplete.js'
 import memberships from './memberships.js'
+import profile from './profile.js'
+import segments from './segments.js'
 import { routerReducer } from 'react-router-redux'
 
 const reducer = combineReducers({
@@ -18,7 +20,9 @@ const reducer = combineReducers({
     modals,
     textarea,
     autocomplete,
-    memberships
+    memberships,
+    profile,
+    segments
 })
 
 export default reducer

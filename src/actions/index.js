@@ -9,7 +9,7 @@ export function login(data) {
         .then(json => {
             if (json.data) {
                 dispatch(toggleModal(false, 'login'))
-                dispatch(getClientInfo(json.data))
+                dispatch(getUserInfo(json.data))
                 dispatch(setToken(json.data))
             }
         })
@@ -31,6 +31,15 @@ export function toggleRegistration(value) {
     return {
         type: types.TOGGLE_REGISTRATION,
         value
+    }
+}
+
+export function setSegment(first, second, third) {
+    return {
+        type: types.SET_SEGMENT,
+        first,
+        second,
+        third
     }
 }
 
@@ -85,9 +94,30 @@ export function addCredits(value) {
     }
 }
 
-export function getClientInfo(token) {
+export function toggleTab(value) {
+    return {
+        type: types.TOGGLE_TAB,
+        value
+    }
+}
+
+export function getFullInfo(token) {
     return dispatch => {
-        return api.getClientInfo(token)
+        return api.getFullInfo(token)
+        .then(json => {
+            if (json.data) {
+                dispatch(setClientInfo(json.data))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export function getUserInfo(token) {
+    return dispatch => {
+        return api.getUserInfo(token)
         .then(json => {
             if (json.data) {
                 dispatch(setClientInfo(json.data))
@@ -189,7 +219,7 @@ export function activateUser(hash) {
         .then(json => {
             if (json.data) {
                 dispatch(setToken(json.data))
-                dispatch(getClientInfo(json.data))
+                dispatch(getUserInfo(json.data))
                 history.push('/')
             }
             
