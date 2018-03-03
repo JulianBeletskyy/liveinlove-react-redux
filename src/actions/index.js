@@ -43,6 +43,13 @@ export function setSegment(first, second, third) {
     }
 }
 
+export function setGallery(value) {
+    return {
+        type: types.SET_GALLERY,
+        value
+    }
+}
+
 export function setTempToken(value) {
     return {
         type: types.SET_TEMP_TOKEN,
