@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
-import {  Row, Col } from 'react-bootstrap'
-import style from './plans.css'
 import { getMemberships } from 'actions'
 import PlanItem from './plan_item.js'
+import Carousel from 'components/carousel'
 
 class Plans extends Component {
     constructor(props) {
@@ -14,17 +13,18 @@ class Plans extends Component {
     }
 
     printPlans(plan, i) {
-        if (plan.name !== 'Free') {
-            return (<Col key={i} sm={4}><PlanItem options={plan}  /></Col>)
-        }
+        return (<PlanItem key={i} options={plan} />)
     }
 
     render() {
         const { plans } = this.props.memberships
+
         return (
-            <Row>
-                { plans.map((plan, i) => this.printPlans(plan, i)) }
-            </Row>
+            <div>
+                <Carousel
+                    items={plans.map((plan, i) => this.printPlans(plan, i))}
+                />
+            </div>
         );
     }
 }

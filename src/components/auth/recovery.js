@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { FormGroup } from 'react-bootstrap'
 import { sendRecovery, setAlert, updatePassword } from 'actions'
 import Validator from 'validate'
-import TextField from 'components/form/inputs/text_field.js'
+import { TextField } from 'components/form/inputs'
 import BtnMain from 'components/form/buttons/main_button.js'
 
 class Recovery extends Component {
@@ -45,19 +45,16 @@ class Recovery extends Component {
         const { recovery_hash } = this.props.user
         return (
             <form onSubmit={this.handleSubmit} noValidate={true}>
-                {recovery_hash === '' ?
-                    (
-                        <FormGroup>
+                {
+                    recovery_hash === ''
+                    ?   <FormGroup>
                             <TextField 
                                 type="email"
                                 placeholder="Enter email"
                                 inputRef={ref => { this.email = ref }}
                             />
                         </FormGroup>
-                    ) 
-                    :
-                    (
-                        <div>
+                    :   <div>
                             <FormGroup>
                                 <TextField 
                                     type="password"
@@ -74,7 +71,6 @@ class Recovery extends Component {
                                 />
                             </FormGroup>
                         </div>
-                    ) 
                 }
                 <FormGroup className="text-center">
                     <BtnMain
@@ -88,7 +84,11 @@ class Recovery extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        user: {
+            recovery_hash: state.user.recovery_hash
+        }
+    }
 }
 
 export default connect(

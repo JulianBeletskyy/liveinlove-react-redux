@@ -25,7 +25,6 @@ class Alert extends Component {
     }
 
     render() {
-        
         return (
             <ToastContainer
                 ref={ref => this.container = ref}

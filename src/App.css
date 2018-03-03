@@ -56,6 +56,16 @@ body .title {
   z-index: 0;
 }
 
+.slick-dots.slick-thumb {
+  top: 5px;
+  bottom: none;
+  color: #27c2d3;
+}
+
+.slick-dots.slick-thumb li button:before {
+  color: #27c2d3;
+}
+
 .text-white {
   color: #fff;
   font-family: bebas_neue;
@@ -81,6 +91,10 @@ body .title {
 
 .p-15 {
   padding: 15px;
+}
+
+.pt-15 {
+  padding-top: 15px;
 }
 
 .px-15 {

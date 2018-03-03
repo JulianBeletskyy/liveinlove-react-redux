@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Checkbox } from 'react-bootstrap'
 
 class CheckboxField extends Component {
@@ -15,10 +14,4 @@ class CheckboxField extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-}
-
-export default connect(
-    mapStateToProps
-)(CheckboxField);
+export default CheckboxField

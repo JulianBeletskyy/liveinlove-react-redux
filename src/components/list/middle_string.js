@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import style from './middle_string.css'
-import { Link } from 'react-router-dom'
 
 class MiddleString extends Component {
     render() {
@@ -18,10 +16,4 @@ class MiddleString extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-}
-
-export default connect(
-    mapStateToProps
-)(MiddleString);
+export default MiddleString

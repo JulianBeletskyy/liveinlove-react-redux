@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Button } from 'react-bootstrap'
 import style from './small.css'
 
 class SmallDivider extends Component {
@@ -18,10 +16,4 @@ class SmallDivider extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-}
-
-export default connect(
-    mapStateToProps
-)(SmallDivider);
+export default SmallDivider

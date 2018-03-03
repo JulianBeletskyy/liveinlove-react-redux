@@ -1,0 +1,19 @@
+:local(.planItem) {
+    padding: 0 15px;
+}
+
+:local(.wrapArrow) {
+	position: absolute;
+	top: 50%;
+	z-index: 1;
+	cursor: pointer;
+	color: #27c2d3;
+}
+
+:local(.nextArrow) {
+	right: -13px;
+}
+
+:local(.prevArrow) {
+	left: -13px;
+}

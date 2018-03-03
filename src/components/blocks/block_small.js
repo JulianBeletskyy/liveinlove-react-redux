@@ -33,7 +33,14 @@ class BlockSmall extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        user: {
+            data: state.user.data
+        },
+        signup: {
+            data: state.signup.data
+        }
+    }
 }
 
 export default connect(

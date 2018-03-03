@@ -46,12 +46,9 @@ class SignUpStart extends Component {
         } else {
             store.dispatch(toggleRegistration(true))
         }
-        
     }
 
     getSignUpOne = () => {
-        //event.preventDefault()
-        
         let error = 1
         for (var k in this.signup.birth) {
             if (error) {
@@ -178,8 +175,8 @@ class SignUpStart extends Component {
         let temp = [{ 'value': '', 'name': name }]
         for (var k in this.props.signup[type]) {
             temp.push({
-                'value': this.props.signup[type][k].countryCode,
-                'name': this.props.signup[type][k].countryName
+                'value': this.props.signup[type][k].country_code,
+                'name': this.props.signup[type][k].country_name
             })
         }
         return temp
@@ -195,7 +192,7 @@ class SignUpStart extends Component {
         const activeClass = showRegistration ? style.active : ''
         const col = showRegistration ? 6 : 12
         return (
-            <form /*onSubmit={this.getSignUpOne}*/ noValidate={true}>
+            <form noValidate={true}>
                 <Row>
                     <Col xs={12}>
                         <FormGroup>
@@ -308,7 +305,7 @@ class SignUpStart extends Component {
                                     options={this.getArray('countries')}
                                     value={country}
                                     name="country"
-                                    onChange={this.countryChange}
+                                    city={this.signup.city}
                                 />
                             </FormGroup>
                             <FormGroup>

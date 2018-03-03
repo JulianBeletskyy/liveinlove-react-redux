@@ -19,7 +19,6 @@ class Textarea extends Component {
     }
 
     handleChange = (e) => {
-        console.log(e)
         if (this.input.value || this.props.value) {
             store.dispatch(toggleTextarea(true))
         } else {
@@ -51,7 +50,11 @@ class Textarea extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        textarea: {
+            changed: state.textarea.changed
+        }
+    }
 }
 
 export default connect(

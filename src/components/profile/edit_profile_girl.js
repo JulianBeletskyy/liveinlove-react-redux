@@ -10,7 +10,7 @@ import BlockSmall from 'components/blocks/block_small.js'
 import SmallDivider from 'components/divider/small_divider.js'
 import Validator from 'validate'
 
-class EditProfile extends Component {
+class EditProfileGirl extends Component {
    	constructor(props) {
 		super(props)
 		this.user = {
@@ -126,8 +126,8 @@ class EditProfile extends Component {
 	    let temp = [{ 'value': '', 'name': 'Choose Country' }]
 	    for (var k in this.props.signup[type]) {
 	        temp.push({
-	            'value': this.props.signup[type][k].countryCode,
-	            'name': this.props.signup[type][k].countryName
+	            'value': this.props.signup[type][k].country_code,
+	            'name': this.props.signup[type][k].country_name
 	        })
 	    }
 	    return temp
@@ -334,7 +334,7 @@ class EditProfile extends Component {
                                             componentClass="select"
                                             inputRef={ref => { this.user.country = ref }}
                                             options={this.getCountryArray('countries')}
-                                            value={data.country}
+                                            value={data.country.country_code}
                                             name="country"
                                             label={true}
                                             placeholder="Country"
@@ -451,6 +451,14 @@ class EditProfile extends Component {
                                             value={data.children.id}
                                             label={true}
                                             placeholder="Do you have children?"
+                                        />
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Textarea
+                                            inputRef={ref => { this.user.about_children = ref }}
+                                            value={data.about_children}
+                                            placeholder="About Children"
+                                            label={true}
                                         />
                                     </FormGroup>
                                 </Col>
@@ -635,4 +643,4 @@ const mapStateToProps = (state) => {
 
 export default connect(
 	mapStateToProps
-)(EditProfile);
+)(EditProfileGirl);

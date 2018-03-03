@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Button } from 'react-bootstrap'
 import style from './middle_item.css'
 import { Link } from 'react-router-dom'
 
@@ -26,10 +24,4 @@ class MiddleItem extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-}
-
-export default connect(
-    mapStateToProps
-)(MiddleItem);
+export default MiddleItem

@@ -25,7 +25,7 @@ class AboutMe extends Component {
                             <div>
                                 <span className={style.middleTitle + ' title'}>Address</span>
                             </div>
-                             <span className="small-italic">{data.country + ' ' + data.city}</span>
+                             <span className="small-italic">{data.country.country_name + ' ' + data.city}</span>
                         </FormGroup>
                         <FormGroup>
                             <div>
