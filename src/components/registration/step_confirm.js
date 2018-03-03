@@ -3,31 +3,30 @@ import { connect } from 'react-redux'
 import { FormGroup, Row, Col } from 'react-bootstrap'
 
 class SignUpConfirm extends Component {
-    constructor(props) {
-        super(props)
-    }
-
+    
     render() {
         return (
-            <form onSubmit={this.getSignUpThree} noValidate={true}>
-                <Row>
-                    <Col sm={8} smOffset={2}>
-                        <FormGroup className="text-center">
-                            <p>Email verification link was sent to
-                            &nbsp;
-                            <strong>{this.props.signup.send_email}</strong>. 
-                                To activate your account please check your email and click on the confirmation link.
-                            </p>
-                        </FormGroup>
-                    </Col>
-                </Row>
-            </form>
+            <Row>
+                <Col sm={8} smOffset={2}>
+                    <FormGroup className="text-center">
+                        <p>Email verification link was sent to
+                        &nbsp;
+                        <strong>{this.props.signup.send_email}</strong>. 
+                            To activate your account please check your email and click on the confirmation link.
+                        </p>
+                    </FormGroup>
+                </Col>
+            </Row>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        signup: {
+            send_email: state.signup.send_email
+        }
+    }
 }
 
 export default connect(

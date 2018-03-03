@@ -53,13 +53,13 @@ class GirlRightMenu extends Component {
 					<MiddleItem
 						text="Edit Profile"
 						icon="fas fa-cog"
-						link="/profile/edit"
+						link="/profile/edit/info"
 						role="girl"
 					/>
 					<MiddleItem
 						text="Change password"
 						icon="fas fa-unlock-alt"
-						link="/profile/password"
+						link="/profile/edit/password"
 						role="girl"
 					/>
 				</FormGroup>
@@ -71,7 +71,13 @@ class GirlRightMenu extends Component {
 const mapStateToProps = (state) => {
 	return {
 		user: {
-			data: state.user.data
+			data: {
+				avatar: state.user.data.avatar,
+				first_name: state.user.data.first_name,
+				last_name: state.user.data.last_name,
+				view_profile: state.user.data.view_profile,
+				profile_id: state.user.data.profile_id
+			}
 		}
 	}
 }

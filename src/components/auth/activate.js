@@ -1,5 +1,4 @@
 import { Component } from 'react'
-import { connect } from 'react-redux'
 import { activateUser } from 'actions'
 import store from 'store'
 
@@ -16,10 +15,4 @@ class Activate extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-}
-
-export default connect(
-    mapStateToProps
-)(Activate);
+export default Activate

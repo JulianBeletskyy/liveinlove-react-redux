@@ -12,7 +12,6 @@ ReactDOM.render(
         <ConnectedRouter history={history}>
             <div>
             <Switch>
-            	
             	<Route component={App} />
         	</Switch>
             </div>

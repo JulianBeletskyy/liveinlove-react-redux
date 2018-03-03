@@ -1,5 +1,8 @@
 :local(.brandImg) {
-	min-width: 110px;
+    display: block;
+    max-width: 150px;
+    height: auto;
+    width: 100%;
 }
 
 :local(.collapse) {

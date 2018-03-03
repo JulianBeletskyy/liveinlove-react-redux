@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import store from 'store'
 import style from './main_button.css'
 import ImageUploader from 'react-images-upload';
@@ -34,10 +33,4 @@ class BtnUpload extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-}
-
-export default connect(
-    mapStateToProps
-)(BtnUpload);
+export default BtnUpload

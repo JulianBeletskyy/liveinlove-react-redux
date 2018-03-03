@@ -1,0 +1,50 @@
+:local(.wrapTab) {
+	padding-top: 15px;
+}
+
+:local(.wrapTab li) {
+	margin-bottom: 0px;
+	outline: 0;
+}
+
+
+:local(.wrapTab) .nav-tabs>li.active>a, 
+:local(.wrapTab) .nav-tabs>li.active>a:focus, 
+:local(.wrapTab) .nav-tabs>li.active>a:hover a {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	outline: 0;
+	color: #222;
+	font-weight: bold;
+}
+
+:local(.wrapTab) .nav-tabs>li.active>a:after {
+    border-bottom: 3px solid #34dca2;
+    width: 100%;
+}
+
+:local(.wrapTab) .nav-tabs>li>a:after {
+    content: '';
+    position: absolute;
+    height: 3px;
+    bottom: -3px;
+    left: 0;
+    
+}
+
+:local(.wrapTab) .nav>li>a:hover {
+	background-color: #fff;
+    border: none;
+    outline: 0;
+    color: #222;
+}
+
+:local(.wrapTab) .nav>li>a {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	outline: 0;
+	color: #a8a8a8;
+	font-weight: bold;
+}

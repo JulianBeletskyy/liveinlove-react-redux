@@ -4,10 +4,6 @@ import { Row, Col } from 'react-bootstrap'
 import SmallItem from './small_item.js'
 
 class Gallery extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     photoArray = (avtars) => {
         let array = [avtars]
         return array
@@ -22,9 +18,7 @@ class Gallery extends Component {
         return (
             <div>
                 <Row>
-                {
-                    this.photoArray(data.avatar).map((photo, i) => this.printPhoto(photo, i))
-                }
+                    { this.photoArray(data.avatar).map((photo, i) => this.printPhoto(photo, i)) }
                 </Row>
             </div>
         );

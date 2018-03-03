@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
-import { getCountries, removePlaceholder, setPlaceholder } from 'actions'
+import { removePlaceholder, setPlaceholder } from 'actions'
 import style from './autocomplete.css'
 
 class Autocomplete extends Component {
@@ -10,7 +10,6 @@ class Autocomplete extends Component {
         this.input = false
         this.id = Math.round(Math.random() * 999 * 1000)
         this.handleChange()
-
     }
 
     googleAutocomplete = () => {
@@ -20,7 +19,6 @@ class Autocomplete extends Component {
     thisRef = (ref) => {
         this.props.inputRef(ref);
         this.input = ref
-
     }
 
     handleChange = () => {
@@ -29,10 +27,6 @@ class Autocomplete extends Component {
         } else {
             store.dispatch(removePlaceholder(this.id))
         }
-    }
-
-    componentDidMount() {
-        
     }
 
     render() {

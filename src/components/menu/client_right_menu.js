@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
 import { toggleModal } from 'actions'
-import { Row, Col, Panel, FormGroup } from 'react-bootstrap'
+import { FormGroup } from 'react-bootstrap'
 import style from './right_menu.css'
-import { Link } from 'react-router-dom'
 import SmallDivider from 'components/divider/small_divider.js'
 import MiddleItem from 'components/list/middle_item.js'
 import MiddleString from 'components/list/middle_string.js'
@@ -75,13 +74,13 @@ class ClientRightMenu extends Component {
 					<MiddleItem
 						text="Edit Profile"
 						icon="fas fa-cog"
-						link="/profile/edit"
+						link="/profile/edit/info"
 						role="client"
 					/>
 					<MiddleItem
 						text="Change password"
 						icon="fas fa-unlock-alt"
-						link="/profile/password"
+						link="/profile/edit/password"
 						role="client"
 					/>
 					<MiddleItem
@@ -130,7 +129,15 @@ class ClientRightMenu extends Component {
 const mapStateToProps = (state) => {
 	return {
 		user: {
-			data: state.user.data
+			data: {
+				avatar: state.user.data.avatar,
+				first_name: state.user.data.first_name,
+				last_name: state.user.data.last_name,
+				membership: state.user.data.membership,
+				credits: state.user.data.credits,
+				view_profile: state.user.data.view_profile,
+				profile_id: state.user.data.profile_id
+			}
 		},
 		modals: {
 			plans: state.modals.plans,

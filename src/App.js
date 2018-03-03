@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getClientInfo } from 'actions'
+import { setSegment, getUserInfo } from 'actions'
 import * as pages from './containers'
-import store from './store'
+import store, { history } from './store'
 import routing from './config/route.js'
 import Header from './containers/header/header.js'
 import PublicFooter from './components/footer/public_footer.js'
@@ -15,9 +15,16 @@ import { Auth, MainModal, Recovery } from 'components'
 class App extends Component {
     constructor(props) {
         super(props)
+        history.listen((location, action) => {
+            let segments = location.pathname.split('/')
+            segments.shift()
+            let var1, var2, var3
+            [var1, var2, var3] = segments
+            store.dispatch(setSegment(var1, var2, var3))
+        })
 
         if (props.user.token) {
-            store.dispatch(getClientInfo(props.user.token))
+            store.dispatch(getUserInfo(props.user.token))
         }
     }
 
