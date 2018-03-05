@@ -72,8 +72,21 @@ export default {
         .catch(error => console.log(error))
     },
 
+    getGallery(token) {
+        return fetch(config.API_URL + 'gallery', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token
+                //'Accept': 'application/json',
+                //'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
     getMemberships() {
-        return fetch(config.API_URL + 'memberships', {
+        return fetch(config.API_URL + 'memberships/active', {
             method: 'get',
             headers: {
                 'Accept': 'application/json',
@@ -203,6 +216,35 @@ export default {
                 //'Content-Type': 'multipart/form-data'
             },*/
             body: formData
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    addToGallery(data, token) {
+        let formData = new FormData()
+        formData.append('image', data)
+
+        return fetch(config.API_URL + 'gallery/add', {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            },
+            body: formData
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    removePhotos(data, token) {
+        return fetch(config.API_URL + 'gallery/remove', {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         })
         .then(responseHandler)
         .catch(error => console.log(error))

@@ -2,14 +2,22 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
 import { MainModal } from 'components'
-import { toggleModal } from 'actions'
+import { toggleModal, getGallery } from 'actions'
 import style from './avatar.css'
 import EditGallery from './edit_gallery.js'
 
 class Avatar extends Component {
+    constructor(props) {
+        super(props)
+        store.dispatch(getGallery(props.user.token))
+    }
 
     showModal = () => {
         store.dispatch(toggleModal(true, 'avatar'))
+    }
+
+    save = () => {
+        console.log(this.props.user.data.cropped_data)
     }
 
     render() {
@@ -33,6 +41,7 @@ class Avatar extends Component {
                     keyModal="avatar"
                     footer={true}
                     size="lg"
+                    onSave={this.save}
                 />
             </div>
         );
@@ -43,6 +52,12 @@ const mapStateToProps = (state) => {
     return {
         modals: {
             avatar: state.modals.avatar
+        },
+        user: {
+            data: {
+                cropped_data: state.user.data.cropped_data
+            },
+            token: state.user.token
         }
     }
 }

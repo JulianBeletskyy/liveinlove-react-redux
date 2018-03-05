@@ -9,6 +9,7 @@
     "js-cookie": "^2.2.0",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
+    "react-confirm-alert": "^1.0.8",
     "react-crop": "^4.0.2",
     "react-cropper": "^1.0.1",
     "react-dom": "^16.2.0",

@@ -81,6 +81,10 @@ body .title {
   letter-spacing: 1px;
 }
 
+.react-confirm-alert-button-group > button:last-child {
+  background: #27C2D3;
+}
+
 .ethniticy-block {
     padding: 2px 5px;
 }
@@ -174,10 +178,16 @@ body .title {
     margin: 0;
 }
 
+.fileUploader {
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+}
+
 .fileContainer .chooseFileButton {
     background: #34dca2;
     border-radius: 0;
-    padding: 0.8125em 40px;
+    padding: 15px;
     margin: 0;
     font-weight: bold;
 }

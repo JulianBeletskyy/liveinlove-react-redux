@@ -56,6 +56,17 @@ class SignUpTwo extends Component {
         store.dispatch(changeStep(step))
     }
 
+    onDrop = (picture) => {
+        if (picture) {
+            store.dispatch(saveFile(picture[0]))
+            let reader = new FileReader();
+            reader.readAsDataURL(picture[0])
+            reader.onload = function() {
+                store.dispatch(saveImage(reader.result))
+            }
+        }
+    }
+
     render() {
         const content = this.props.signup.avatar ? 
         <Cropper
@@ -74,7 +85,9 @@ class SignUpTwo extends Component {
                     <Col sm={5}>
                         <div className="upload-btn-group">
                             <FormGroup>
-                                <BtnUpload />
+                                <BtnUpload
+                                    onChange={this.onDrop}
+                                />
                             </FormGroup>
                             <FormGroup>
                                 <BtnFacebook

@@ -50,6 +50,41 @@ export function setGallery(value) {
     }
 }
 
+export function addToGallery(value, token) {
+    return dispatch => {
+        return api.addToGallery(value, token)
+        .then(json => {
+            if (json.data) {
+                console.log(json.data)
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export function removePhotos(value, token) {
+    return dispatch => {
+        return api.removePhotos(value, token)
+        .then(json => {
+            if (json.data) {
+                console.log(json.data)
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export function setSelected(value) {    
+    return {
+        type: types.SET_SELECTED,
+        value
+    }
+}
+
 export function setTempToken(value) {
     return {
         type: types.SET_TEMP_TOKEN,
@@ -128,6 +163,20 @@ export function getUserInfo(token) {
         .then(json => {
             if (json.data) {
                 dispatch(setClientInfo(json.data))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export function getGallery(token) {
+    return dispatch => {
+        return api.getGallery(token)
+        .then(json => {
+            if (json.data) {
+                dispatch(setImages(json.data))
             }
         })
         .catch(error => {
@@ -353,6 +402,13 @@ export function sendSignUpFinish(data) {
 export function setSendEmail(value) {
     return {
         type: types.SET_SEND_EMAIL,
+        value
+    }
+}
+
+export function setImages(value) {
+    return {
+        type: types.SET_IMAGES,
         value
     }
 }
