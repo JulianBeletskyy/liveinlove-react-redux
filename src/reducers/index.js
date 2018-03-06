@@ -9,6 +9,7 @@ import autocomplete from './autocomplete.js'
 import memberships from './memberships.js'
 import profile from './profile.js'
 import segments from './segments.js'
+import options from './options.js'
 import { routerReducer } from 'react-router-redux'
 
 const reducer = combineReducers({
@@ -22,7 +23,8 @@ const reducer = combineReducers({
     autocomplete,
     memberships,
     profile,
-    segments
+    segments,
+    options
 })
 
 export default reducer

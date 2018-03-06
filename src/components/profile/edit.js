@@ -12,7 +12,7 @@ class Edit extends Component {
 
 	constructor(props) {
         super(props)
-        store.dispatch(getFullInfo(props.user.token))
+        //store.dispatch(getFullInfo(props.user.token))
         this.handleSelect = this.handleSelect.bind(this)
         store.dispatch(setSegment('profile', 'edit', props.match.params.tab))
     }

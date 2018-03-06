@@ -43,6 +43,63 @@ export function setSegment(first, second, third) {
     }
 }
 
+export function setGallery(value) {
+    return {
+        type: types.SET_GALLERY,
+        value
+    }
+}
+
+export function addToGallery(value, token) {
+    return dispatch => {
+        return api.addToGallery(value, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(getGallery(token))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export function removePhotos(value, token) {
+    return dispatch => {
+        return api.removePhotos(value, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(getGallery(token))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export function updateAvatar(data, token) {
+    return dispatch => {
+        return api.updateAvatar(data, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(getUserInfo(token))
+                dispatch(toggleModal(false, 'avatar'))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export function setSelected(value) {    
+    return {
+        type: types.SET_SELECTED,
+        value
+    }
+}
+
 export function setTempToken(value) {
     return {
         type: types.SET_TEMP_TOKEN,
@@ -73,10 +130,17 @@ export function removeAlert() {
     }
 }
 
-export function setPlan(plan, month_id) {
-    return {
-        type: types.SET_PLAN,
-        plan
+export function setPlan(plan_id, month_id, token) {
+    return dispatch => {
+        return api.setPlan(plan_id, month_id, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(getUserInfo(token))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 }
 
@@ -121,6 +185,20 @@ export function getUserInfo(token) {
         .then(json => {
             if (json.data) {
                 dispatch(setClientInfo(json.data))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export function getGallery(token) {
+    return dispatch => {
+        return api.getGallery(token)
+        .then(json => {
+            if (json.data) {
+                dispatch(setImages(json.data))
             }
         })
         .catch(error => {
@@ -350,6 +428,13 @@ export function setSendEmail(value) {
     }
 }
 
+export function setImages(value) {
+    return {
+        type: types.SET_IMAGES,
+        value
+    }
+}
+
 export function setMemberships(value) {
     return {
         type: types.SET_MEMBERSHIPS,
@@ -409,7 +494,7 @@ export function getOptionsSignUp(type) {
         return api.getOptionsSignUp(type)
             .then(json => {
                 if (json.data) {
-                    dispatch(setOptionsSignUp(json.data, type))
+                    dispatch(setOptions(json.data, type))
                 }
             })
             .catch(error => {
@@ -418,9 +503,9 @@ export function getOptionsSignUp(type) {
     }
 }
 
-export function setOptionsSignUp(value, option) {
+export function setOptions(value, option) {
     return {
-        type: types.SET_OPTIONS_SIGN_UP,
+        type: types.SET_OPTIONS_DATA,
         value,
         option
     }

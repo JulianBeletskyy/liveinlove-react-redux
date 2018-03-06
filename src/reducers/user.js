@@ -43,6 +43,8 @@ const initialState = {
         about_children: '',
         match: {},
         avatar: {},
+        temp_avatar: '',
+        cropped_data: {},
         education_id: '',
         profession: '',
         occupation: '',
@@ -54,7 +56,14 @@ const initialState = {
         want_children: {},
         credits: 0,
         view_profile: 0,
-        membership: {}
+        membership: {},
+        active_gallery: 'main',
+        selected_img: [],
+        images: {
+            public: [],
+            privat: [],
+            video: []
+        }
     },
     countries: []
 }
@@ -97,6 +106,32 @@ export default function user(user = initialState, action = {}) {
             temp.membership = {
                 id: action.plan.id,
                 name: action.plan.name
+            }
+            return Object.assign({}, user, {
+                data: temp
+            });
+        case types.SET_GALLERY:
+            temp.active_gallery = action.value
+            return Object.assign({}, user, {
+                data: temp
+            });
+        case types.SET_SELECTED:
+            temp.selected_img = action.value
+            return Object.assign({}, user, {
+                data: temp
+            });
+        case types.SET_IMAGES:
+            for (let k in action.value) {
+                temp.images[k] = []
+                for (let j in action.value[k]) {
+                    temp.images[k].push({
+                        id: action.value[k][j].id,
+                        src: action.value[k][j].image,
+                        thumbnail: action.value[k][j].image,
+                        thumbnailWidth: 150,
+                        thumbnailHeight: 100
+                    })
+                }
             }
             return Object.assign({}, user, {
                 data: temp

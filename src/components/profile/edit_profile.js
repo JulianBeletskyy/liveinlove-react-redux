@@ -17,24 +17,6 @@ class EditProfile extends Component {
 			birth: {},
             match: {}
 		}
-
-		const getFunc = {
-	        height: () => {store.dispatch(getOptionsSignUp('height'))},
-	        weight: () => {store.dispatch(getOptionsSignUp('weight'))},
-	        eyes: () => {store.dispatch(getOptionsSignUp('eyes'))},
-	        hair_colors: () => {store.dispatch(getOptionsSignUp('hair_colors'))},
-	        hair_lengths: () => {store.dispatch(getOptionsSignUp('hair_lengths'))},
-	        ethnicities: () => {store.dispatch(getOptionsSignUp('ethnicities'))},
-	        marital_statuses: () => {store.dispatch(getOptionsSignUp('marital_statuses'))},
-	        countries: () => {store.dispatch(getOptionsSignUp('countries'))},
-            interests: () => {store.dispatch(getOptionsSignUp('interests'))}
-	    }
-        
-        for (let k in getFunc) {
-            if (! this.props.signup[k].length) {
-                getFunc[k]()
-            }
-        }
   	}
 
   	save = () => {
@@ -103,10 +85,10 @@ class EditProfile extends Component {
 
   	getCountryArray = (type) => {
 	    let temp = [{ 'value': '', 'name': 'Choose Country' }]
-	    for (var k in this.props.signup[type]) {
+	    for (var k in this.props.options[type]) {
 	        temp.push({
-	            'value': this.props.signup[type][k].country_code,
-	            'name': this.props.signup[type][k].country_name
+	            'value': this.props.options[type][k].country_code,
+	            'name': this.props.options[type][k].country_name
 	        })
 	    }
 	    return temp
@@ -152,20 +134,20 @@ class EditProfile extends Component {
 
     heightsArray = () => {
         let temp = [{ 'value': '', 'name': 'Height' }]
-        for (var k in this.props.signup.height) {
+        for (var k in this.props.options.height) {
             temp.push({ 
-                'value': this.props.signup.height[k].id,
-                'name': this.props.signup.height[k].cm + ' cm / (' + this.props.signup.height[k].inch + ')' })
+                'value': this.props.options.height[k].id,
+                'name': this.props.options.height[k].cm + ' cm / (' + this.props.options.height[k].inch + ')' })
         }
         return temp
     }
 
     weightsArray = () => {
         let temp = [{ 'value': '', 'name': 'Weight' }]
-        for (var k in this.props.signup.weight) {
+        for (var k in this.props.options.weight) {
             temp.push({
-                'value': this.props.signup.weight[k].id,
-                'name': this.props.signup.weight[k].kg + ' kg / ' + this.props.signup.weight[k].lbs + ' lbs'
+                'value': this.props.options.weight[k].id,
+                'name': this.props.options.weight[k].kg + ' kg / ' + this.props.options.weight[k].lbs + ' lbs'
             })
         }
         return temp
@@ -199,10 +181,10 @@ class EditProfile extends Component {
         }
         let temp = [{ 'value': '', 'name': name }]
         
-        for (var k in this.props.signup[type]) {
+        for (var k in this.props.options[type]) {
             temp.push({
-                'value': this.props.signup[type][k].id,
-                'name': this.props.signup[type][k].value
+                'value': this.props.options[type][k].id,
+                'name': this.props.options[type][k].value
             })
         }
         return temp
@@ -210,7 +192,7 @@ class EditProfile extends Component {
   
 	render() {
         const { data } = this.props.user
-  		const { ethnicities, interests } = this.props.signup
+  		const { ethnicities, interests } = this.props.options
         let classRole = data.role == 'client' ? 'client' : 'girl'
 		return (
             <div className={style.wrapper + ' ' + classRole}>
@@ -489,7 +471,7 @@ const mapStateToProps = (state) => {
             data: state.user.data,
             token: state.user.token
         },
-        signup: state.signup
+        options: state.options
     }
 }
 

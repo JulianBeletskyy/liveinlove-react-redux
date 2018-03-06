@@ -33,3 +33,7 @@
     background-color: #279faa;
     color: #fff;
 }
+
+:local(.button)[disabled] {
+    cursor: not-allowed;
+}

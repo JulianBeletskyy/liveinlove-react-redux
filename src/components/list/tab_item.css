@@ -1,0 +1,15 @@
+:local(.wrap) {
+	padding: 5px 10px;
+}
+
+:local(.wrap) a {
+	cursor: pointer;
+	text-decoration: none;
+	color: #a8a8a8;
+    font-weight: bold;
+}
+
+:local(.wrap) a:hover,
+:local(.wrap.active) a {
+	color: #222;
+}
