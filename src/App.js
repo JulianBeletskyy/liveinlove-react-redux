@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { setSegment, getUserInfo } from 'actions'
+import { setSegment, getUserInfo, getFullInfo, getGallery } from 'actions'
 import * as pages from './containers'
 import store, { history } from './store'
 import routing from './config/route.js'
@@ -25,6 +25,8 @@ class App extends Component {
 
         if (props.user.token) {
             store.dispatch(getUserInfo(props.user.token))
+            store.dispatch(getFullInfo(props.user.token))
+            store.dispatch(getGallery(props.user.token))
         }
     }
 

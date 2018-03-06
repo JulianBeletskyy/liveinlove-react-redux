@@ -35,6 +35,12 @@ class MainModal extends Component {
                         >
                             Cancel
                         </button>
+                        <button 
+                            className="btn btn-default" 
+                            onClick={this.props.onSave}
+                        >
+                            Save
+                        </button>
                     </Modal.Footer>)
                     : ''
                 }

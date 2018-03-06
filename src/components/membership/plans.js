@@ -20,11 +20,9 @@ class Plans extends Component {
         const { plans } = this.props.memberships
 
         return (
-            <div>
-                <Carousel
-                    items={plans.map((plan, i) => this.printPlans(plan, i))}
-                />
-            </div>
+            <Carousel
+                items={plans.map((plan, i) => this.printPlans(plan, i))}
+            />
         );
     }
 }

@@ -9,7 +9,7 @@ class ClientHome extends Component {
     render() {
         return (
             <div className="pt-66 bg-blue">
-                <Grid>
+                <Grid className="fadeIn animated">
                     <Row>
                         <Col md={9} className="bg-white">
                             <Switch>
@@ -17,7 +17,6 @@ class ClientHome extends Component {
                                 <Route path="/profile/:tab" exact component={InfoProfile} />
                             </Switch>
                         </Col>
-
                         <Col md={3}>
                             <ClientRightMenu />
                         </Col>

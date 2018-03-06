@@ -9,7 +9,7 @@ class GirlHome extends Component {
     render() {
         return (
             <div className="pt-66 bg-blue">
-                <Grid>
+                <Grid className="fadeIn animated">
                     <Row>
                         <Col md={9} className="bg-white">
                             <Switch>

@@ -4,34 +4,9 @@
 }
 
 @font-face {
-    font-family: bebas_neue_bold;
-    src: url(./assets/fonts/bebasneue_bold-webfont.woff);
-}
-
-@font-face {
-    font-family: neutra;
-    src: url(./assets/fonts/NeutraBold.ttf);
-}
-
-@font-face {
-    font-family: neutra_bold;
-    src: url(./assets/fonts/NeutraText-Bold.otf);
-}
-
-/*@font-face {
-    font-family: Roboto;
-    src: url('https://fonts.googleapis.com/css?family=Roboto:400,700');
-}*/
-
-@font-face {
     font-family: 'Roboto Condensed';
     src: url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 }
-
-@import url('https://fonts.googleapis.com/css?family=Exo');
-
-/*@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');*/
 
 body .title {
     font-family: "Roboto Condensed",Helvetica,Arial,sans-serif;
@@ -66,6 +41,10 @@ body .title {
   color: #27c2d3;
 }
 
+.tile-viewport img {
+  object-fit: cover;
+}
+
 .text-white {
   color: #fff;
   font-family: bebas_neue;
@@ -79,6 +58,10 @@ body .title {
   color: #828282;
   font-size: 14px;
   letter-spacing: 1px;
+}
+
+.react-confirm-alert-button-group > button:last-child {
+  background: #27C2D3;
 }
 
 .ethniticy-block {
@@ -174,10 +157,16 @@ body .title {
     margin: 0;
 }
 
+.fileUploader {
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+}
+
 .fileContainer .chooseFileButton {
     background: #34dca2;
     border-radius: 0;
-    padding: 0.8125em 40px;
+    padding: 15px;
     margin: 0;
     font-weight: bold;
 }
@@ -193,7 +182,7 @@ body .title {
 
 .upload-btn-group {
     margin: 0 auto;
-    max-width: 100%;
+    max-width: 180px;
 }
 
 .upload-btn-group button {
@@ -272,4 +261,80 @@ body .title {
 
 .navbar .container-fluid {
   padding: 0;
+}
+
+.pace-activity {
+    position: fixed;
+    z-index: 30;
+    top: 50%;
+    left: 50%;
+    margin: -40px 0 0 -40px;
+    height: 80px;
+    width: 80px;
+    -webkit-animation: pace-animate1 1.5s linear infinite;
+    animation: pace-animate1 1.5s linear infinite;
+    clip: rect(0,80px,80px,40px);
+  }
+
+  .pace-activity:after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    box-shadow: inset #27C2D3 0 0 0 2px;
+    -webkit-animation: pace-animate2 1.5s ease-in-out infinite;
+    animation: pace-animate2 1.5s ease-in-out infinite;
+    clip: rect(0,80px,80px,40px);
+}
+
+.loader-wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #fff;
+    opacity: 0.8;
+}
+
+@-webkit-keyframes pace-animate1 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(220deg);
+    transform: rotate(220deg);
+  }
+}
+@keyframes pace-animate1 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(220deg);
+    transform: rotate(220deg);
+  }
+}
+@-webkit-keyframes pace-animate2 {
+  0% {
+    -webkit-transform: rotate(-140deg);
+    transform: rotate(-140deg);
+  }
+  100% {
+    -webkit-transform: rotate(140deg);
+    transform: rotate(140deg);
+  }
+}
+@keyframes pace-animate2 {
+  0% {
+    -webkit-transform: rotate(-140deg);
+    transform: rotate(-140deg);
+  }
+  100% {
+    -webkit-transform: rotate(140deg);
+    transform: rotate(140deg);
+  }
 }

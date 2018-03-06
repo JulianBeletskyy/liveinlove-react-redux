@@ -157,6 +157,60 @@ class AboutMe extends Component {
                             : ''
                         }
                    </Col>
+                   {
+                        data.role === 'girl'
+                        ?   <Col sm={6}>
+                                <FormGroup>
+                                    <SmallDivider
+                                        text="Education"
+                                    />
+                                </FormGroup>
+                                <Row>
+                                    <Col sm={6}>
+                                        <FormGroup>
+                                            <div>
+                                                <span className={style.middleTitle + ' title'}>Education</span>
+                                            </div>
+                                            <span className="small-italic">{data.education.value}</span>
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <div>
+                                                <span className={style.middleTitle + ' title'}>Ocupation</span>
+                                            </div>
+                                            <span className="small-italic">{data.occupation}</span>
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <div>
+                                                <span className={style.middleTitle + ' title'}>Profession</span>
+                                            </div>
+                                            <span className="small-italic">{data.profession}</span>
+                                        </FormGroup>
+                                    </Col>
+                                    <Col sm={6}>
+                                        <FormGroup>
+                                            <div>
+                                                <span className={style.middleTitle + ' title'}>Primary Language</span>
+                                            </div>
+                                            <span className="small-italic">{data.primary_language.value}</span>
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <div>
+                                                <span className={style.middleTitle + ' title'}>Russian Language</span>
+                                            </div>
+                                            <span className="small-italic">{data.russian_language.value}</span>
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <div>
+                                                <span className={style.middleTitle + ' title'}>English Language</span>
+                                            </div>
+                                            <span className="small-italic">{data.english_language.value}</span>
+                                        </FormGroup>
+                                    </Col>
+                                </Row>
+                            </Col>
+                        : ''
+                   }
+                   
                 </Row>
        		</div>
        	);

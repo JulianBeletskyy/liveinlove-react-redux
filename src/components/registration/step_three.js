@@ -38,7 +38,8 @@ class SignUpThree extends Component {
     }
 
     render() {
-        const { interests, data } = this.props.signup
+        const { data } = this.props.signup
+        const { interests } = this.props.options
         return (
             <form noValidate={true}>
                 <Row>
@@ -77,8 +78,10 @@ const mapStateToProps = (state) => {
     return {
         signup: {
             data: state.signup.data,
-            remember_token: state.signup.remember_token,
-            interests: state.signup.interests
+            remember_token: state.signup.remember_token
+        },
+        options: {
+            interests: state.options.interests
         }
     }
 }
