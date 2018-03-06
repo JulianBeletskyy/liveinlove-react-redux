@@ -1,7 +1,6 @@
 import * as types from '../actions/types.js'
 
 const initialState = {
-    showModal: false,
     step: 0,
     showRegistration: false,
     empty_data: {},
@@ -41,24 +40,8 @@ const initialState = {
     },
     send_email: '',
     remember_token: '',
-    height: [],
-    weight: [],
-    eyes: [],
-    hair_colors: [],
-    hair_lengths: [],
-    ethnicities: [],
-    marital_statuses: [],
-    interests: [],
-    religions: [],
-    want_children: [],
-    education: [],
-    drink: [],
-    smoke: [],
-    primary_language: [],
-    language_level: [],
     avatar: '',
     file: new FormData(),
-    countries: [],
     country: ''
 }
 
@@ -85,10 +68,6 @@ export default function signup(signup = initialState, action = {}) {
         case types.SET_EMPTY_SIGNUP_DATA:
             return Object.assign({}, signup, {
                 data: Object.assign({}, signup.empty_data, {})
-            });
-        case types.SET_OPTIONS_SIGN_UP:
-            return Object.assign({}, signup, {
-                [action.option]: action.value
             });
         case types.SAVE_FILE:
             return Object.assign({}, signup, {

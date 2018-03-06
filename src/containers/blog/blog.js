@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Grid } from 'react-bootstrap'
 
 class Blog extends Component {
@@ -12,10 +11,4 @@ class Blog extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-}
-
-export default connect(
-    mapStateToProps
-)(Blog);
+export default Blog

@@ -55,7 +55,7 @@ export function addToGallery(value, token) {
         return api.addToGallery(value, token)
         .then(json => {
             if (json.data) {
-                console.log(json.data)
+                dispatch(getGallery(token))
             }
         })
         .catch(error => {
@@ -69,7 +69,22 @@ export function removePhotos(value, token) {
         return api.removePhotos(value, token)
         .then(json => {
             if (json.data) {
-                console.log(json.data)
+                dispatch(getGallery(token))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export function updateAvatar(data, token) {
+    return dispatch => {
+        return api.updateAvatar(data, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(getUserInfo(token))
+                dispatch(toggleModal(false, 'avatar'))
             }
         })
         .catch(error => {
@@ -115,10 +130,17 @@ export function removeAlert() {
     }
 }
 
-export function setPlan(plan, month_id) {
-    return {
-        type: types.SET_PLAN,
-        plan
+export function setPlan(plan_id, month_id, token) {
+    return dispatch => {
+        return api.setPlan(plan_id, month_id, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(getUserInfo(token))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 }
 
@@ -472,7 +494,7 @@ export function getOptionsSignUp(type) {
         return api.getOptionsSignUp(type)
             .then(json => {
                 if (json.data) {
-                    dispatch(setOptionsSignUp(json.data, type))
+                    dispatch(setOptions(json.data, type))
                 }
             })
             .catch(error => {
@@ -481,9 +503,9 @@ export function getOptionsSignUp(type) {
     }
 }
 
-export function setOptionsSignUp(value, option) {
+export function setOptions(value, option) {
     return {
-        type: types.SET_OPTIONS_SIGN_UP,
+        type: types.SET_OPTIONS_DATA,
         value,
         option
     }

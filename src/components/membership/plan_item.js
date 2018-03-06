@@ -33,7 +33,7 @@ class PlanItem extends Component {
     }
 
     setPlan = (val) => {
-        store.dispatch(setPlan(this.props.options, val.id))
+        store.dispatch(setPlan(this.props.options.id, val.id, this.props.user.token))
         this.hideValues()
         store.dispatch(toggleModal(false, 'plans'))
     }
@@ -61,12 +61,12 @@ class PlanItem extends Component {
                 </div>
                 <div>
                     <ul className={style.list + ' text-left'}>
-                        <li>Free letter: <strong>{this.props.options.free_leter}</strong></li>
-                        <li>Private Photo: <strong>{this.props.options.private_photo}</strong></li>
-                        <li>Upload Photo: <strong>{this.props.options.my_photo}</strong></li>
-                        <li>View Photo: <strong>{this.props.options.view_photo}</strong></li>
-                        <li>View Video: <strong>{this.props.options.view_video}</strong></li>
-                        <li>Likes: <strong>{this.props.options.likes}</strong></li>
+                        <li>Send 1st free letter to any girl: <strong>{this.props.options.free_leter}</strong></li>
+                        <li>Accept/send private photos: <strong>{this.props.options.private_photo}</strong></li>
+                        <li>Set photos in your profile: <strong>{this.props.options.my_photo}</strong></li>
+                        <li>View photos in profiles: <strong>{this.props.options.view_photo}</strong></li>
+                        <li>View videos in profiles: <strong>{this.props.options.view_video}</strong></li>
+                        <li>Expression of Interest: <strong>{this.props.options.likes}</strong></li>
                     </ul>
                    <span className="ult_price_term ult-responsive"></span> 
                 </div>
@@ -109,7 +109,8 @@ const mapStateToProps = (state) => {
                 membership: {
                     id: state.user.data.membership.id
                 }
-            }
+            },
+            token: state.user.token
         }
     }
 }

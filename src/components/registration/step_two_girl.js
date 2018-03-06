@@ -11,9 +11,7 @@ import Validator from 'validate'
 class SignUpTwoGirl extends Component {
     constructor(props) {
         super(props)
-        this.signup = {
-            
-        }
+        this.signup = {}
     }
 
     getSignUpThree = (event) => {
@@ -62,10 +60,10 @@ class SignUpTwoGirl extends Component {
         }
         let temp = [{ 'value': '', 'name': name }]
         
-        for (var k in this.props.signup[type]) {
+        for (var k in this.props.options[type]) {
             temp.push({
-                'value': this.props.signup[type][k].id,
-                'name': this.props.signup[type][k].value
+                'value': this.props.options[type][k].id,
+                'name': this.props.options[type][k].value
             })
         }
         return temp
@@ -167,7 +165,13 @@ class SignUpTwoGirl extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        signup: {
+            data: state.signup.data,
+            remember_token: state.signup.remember_token
+        },
+        options: state.options
+    }
 }
 
 export default connect(

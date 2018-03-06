@@ -14,21 +14,6 @@ class SignUpOne extends Component {
         this.signup = {
             match: {}
         }
-
-        const getFunc = {
-            education: () => {store.dispatch(getOptionsSignUp('education'))},
-            smoke: () => {store.dispatch(getOptionsSignUp('smoke'))},
-            primary_language: () => {store.dispatch(getOptionsSignUp('primary_language'))},
-            language_level: () => {store.dispatch(getOptionsSignUp('language_level'))},
-            drink: () => {store.dispatch(getOptionsSignUp('drink'))},
-            interests: () => {store.dispatch(getOptionsSignUp('interests'))}
-        }
-
-        for (let k in getFunc) {
-            if (! this.props.signup[k].length) {
-                getFunc[k]()
-            }
-        }
     }
 
     getSignUpTwo = (event) => {
@@ -88,20 +73,20 @@ class SignUpOne extends Component {
 
     heightsArray = () => {
         let temp = [{ 'value': '', 'name': 'Height' }]
-        for (var k in this.props.signup.height) {
+        for (var k in this.props.options.height) {
             temp.push({ 
-                'value': this.props.signup.height[k].id,
-                'name': this.props.signup.height[k].cm + ' cm / (' + this.props.signup.height[k].inch + ')' })
+                'value': this.props.options.height[k].id,
+                'name': this.props.options.height[k].cm + ' cm / (' + this.props.options.height[k].inch + ')' })
         }
         return temp
     }
 
     weightsArray = () => {
         let temp = [{ 'value': '', 'name': 'Weight' }]
-        for (var k in this.props.signup.weight) {
+        for (var k in this.props.options.weight) {
             temp.push({
-                'value': this.props.signup.weight[k].id,
-                'name': this.props.signup.weight[k].kg + ' kg / ' + this.props.signup.weight[k].lbs + ' lbs'
+                'value': this.props.options.weight[k].id,
+                'name': this.props.options.weight[k].kg + ' kg / ' + this.props.options.weight[k].lbs + ' lbs'
             })
         }
         return temp
@@ -121,10 +106,10 @@ class SignUpOne extends Component {
         }
         let temp = [{ 'value': '', 'name': name }]
         
-        for (var k in this.props.signup[type]) {
+        for (var k in this.props.options[type]) {
             temp.push({
-                'value': this.props.signup[type][k].id,
-                'name': this.props.signup[type][k].value
+                'value': this.props.options[type][k].id,
+                'name': this.props.options[type][k].value
             })
         }
         return temp
@@ -151,7 +136,8 @@ class SignUpOne extends Component {
     }
 
     render() {
-        const { data, ethnicities } = this.props.signup
+        const { data } = this.props.signup
+        const { ethnicities } = this.props.options
         return (
             <form onSubmit={this.getSignUpTwo} noValidate={true}>
                 <Row>
@@ -307,7 +293,8 @@ class SignUpOne extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        signup: state.signup
+        signup: state.signup,
+        options: state.options
     }
 }
 

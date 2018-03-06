@@ -2,22 +2,21 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {Tabs, Tab, Row, Col } from 'react-bootstrap'
 import store, { history } from 'store'
-import { setSegment, getFullInfo, setGallery, setSelected, addToGallery, removePhotos } from 'actions'
+import { setSegment, setGallery, setSelected, addToGallery, removePhotos } from 'actions'
 import AboutMe from './about_me.js'
 import style from './style.css'
 import CustomGallery from 'components/gallery/gallery.js'
 import MembershipInfo from './membership_info.js'
 import BtnMain from 'components/form/buttons/main_button.js'
 import BtnUpload from 'components/form/buttons/button_upload.js'
-import { confirmAlert } from 'react-confirm-alert'; // Import
+import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
+import TabItem from 'components/list/tab_item.js'
 
 class InfoProfile extends Component {
 
 	constructor(props) {
         super(props)
-        store.dispatch(getFullInfo(props.user.token))
-        //this.handleSelect = this.handleSelect.bind(this)
         store.dispatch(setSegment('profile', props.match.params.tab))
     }
 
@@ -75,9 +74,8 @@ class InfoProfile extends Component {
 		switch (this.props.user.data.active_gallery) {
 			case 'main': images =  this.props.user.data.images.public; break;
 			case 'private': images = this.props.user.data.images.privat; break;
+			case 'video': images = this.props.user.data.images.video; break;
 		}
-
-		console.log(images)
 		
 		return (
 			<div className={style.wrapTab}>
@@ -95,31 +93,46 @@ class InfoProfile extends Component {
 						<div className="pt-15">
 							<Row>
 								<Col sm={2}>
-									<a onClick={(e) => this.setGallery('main')}>Main</a> <br/>
-				                    <a onClick={(e) => this.setGallery('private')}>Private</a> <br/>
-				                    <a onClick={(e) => this.setGallery('video')}>Video</a> <br/>
+									<TabItem 
+										onClick={(e) => this.setGallery('main')}
+										title="Main"
+										activeClass={this.props.user.data.active_gallery == 'main'} />
+									<TabItem 
+										onClick={(e) => this.setGallery('private')} 
+										title="Private"
+										activeClass={this.props.user.data.active_gallery == 'private'} />
+									<TabItem 
+										onClick={(e) => this.setGallery('video')}
+										title="Video"
+										activeClass={this.props.user.data.active_gallery == 'video'} />
 								</Col>
 								<Col sm={10}>
-									<CustomGallery
-										images={images}
-										onSelected={this.onSelected}
-										isSelected={true}
-									/>
-								</Col>
-								<Col sm={10} smOffset={2}>
-				                    <BtnMain
-				                        type="button"
-				                        bsStyle="success btn"
-				                        text={"Remove " + selected.length + ' photos'}
-				                        onClick={this.removePhoto}
-				                        disabled={! selected.length}
-				                    />
-				                    <BtnUpload
-				                        onChange={this.onDrop}
-				                    />
+									<div className="clearfix form-group">
+										<CustomGallery
+											images={images}
+											onSelected={this.onSelected}
+											isSelected={true}
+										/>
+									</div>
+									<Row>
+										<Col sm={4}>
+											<BtnMain
+						                        type="button"
+						                        bsStyle="success"
+						                        text={"Remove " + selected.length + ' photos'}
+						                        onClick={this.removePhoto}
+						                        disabled={! selected.length}
+						                    />
+					                    </Col>
+					                    <Col sm={4}>
+						                    <BtnUpload
+						                        onChange={this.onDrop}
+						                        title="Upload photo"
+						                    />
+					                    </Col>
+				                    </Row>
 								</Col>
 							</Row>
-							
 						</div>
 					</Tab>
 					{
@@ -136,9 +149,9 @@ class InfoProfile extends Component {
 						role == 'client'
 						?	<Tab 
 								eventKey={'credits'} 
-								title="Cradits & Bonuses"
+								title="Credits & Bonuses"
 							>
-								Cradits & Bonuses
+								Credits & Bonuses
 							</Tab>	
 						: ''
 					}

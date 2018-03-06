@@ -9,7 +9,7 @@ class BtnUpload extends Component {
     render() {
         return (
             <ImageUploader
-                buttonText='Choose images'
+                buttonText={this.props.title}
                 onChange={this.props.onChange}
                 imgExtension={['.jpg', '.gif', '.png', '.gif']}
                 maxFileSize={5242880}

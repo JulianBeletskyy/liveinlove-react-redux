@@ -1,16 +1,61 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import store from 'store'
+import { FormGroup } from 'react-bootstrap'
+import { toggleModal } from 'actions'
+import BtnMain from 'components/form/buttons/main_button.js'
 
 class MembershipInfo extends Component {
+	toggleModal = () => {
+		store.dispatch(toggleModal(true, 'plans'))
+	}
+
 	render() {
 		const { membership } = this.props.user.data
 		return (
 			<div className="pt-15">
-				<div><span className="font-bebas">Current plan: </span><strong>{ membership.name }</strong></div>
-				<div><span className="font-bebas">Expression of Interest: </span><strong>{ membership.likes }</strong></div>
-				<div><span className="font-bebas">View ALL additional photos in profiles: </span><strong>{ membership.view_photo }</strong></div>
-				<div><span className="font-bebas">View ALL videos in profiles: </span><strong>{ membership.view_video }</strong></div>
-				<div><span className="font-bebas">Set photos in your profile: </span><strong>{ membership.my_photo }</strong></div>
+				<FormGroup>
+					<div>
+						<span className="font-bebas">Current plan: </span>
+						<strong>{ membership.name }</strong>
+					</div>
+					<div>
+						<span className="font-bebas">Expression of Interest: </span>
+						<strong>{ membership.likes }</strong>
+					</div>
+					<div>
+						<span className="font-bebas">View ALL additional photos in profiles: </span>
+						<strong>{ membership.view_photo }</strong>
+					</div>
+					<div>
+						<span className="font-bebas">View ALL videos in profiles: </span>
+						<strong>{ membership.view_video }</strong>
+					</div>
+					<div>
+						<span className="font-bebas">Set photos in your profile: </span>
+						<strong>{ membership.my_photo }</strong>
+					</div>
+					<div>
+						<span className="font-bebas">Send 1st free letter to any girl: </span>
+						<strong>{ membership.my_photo }</strong>
+					</div>
+					<div>
+						<span className="font-bebas">Accept/send private photos: </span>
+						<strong>{ membership.my_photo }</strong>
+					</div>
+					<div>
+						<span className="font-bebas">Value: </span>
+						<strong>{membership.value.month + ' months - $' + membership.value.month_payment.toFixed(2) + ' per month (billed in one payment $' + membership.value.one_payment.toFixed(2) + ')'}</strong>
+					</div>
+				</FormGroup>
+				<div>
+					<BtnMain
+                        type="button"
+                        bsStyle="success"
+                        text={'Upgrate'}
+                        onClick={this.toggleModal}
+                    />
+				</div>
 			</div>
 		);
 	}

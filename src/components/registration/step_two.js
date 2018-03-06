@@ -87,6 +87,7 @@ class SignUpTwo extends Component {
                             <FormGroup>
                                 <BtnUpload
                                     onChange={this.onDrop}
+                                    title="upload photo"
                                 />
                             </FormGroup>
                             <FormGroup>

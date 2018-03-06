@@ -72,6 +72,24 @@ export default {
         .catch(error => console.log(error))
     },
 
+    setPlan(plan_id, value_id, token) {
+        const data = {
+            membership_id: plan_id,
+            value_id: value_id
+        }
+        return fetch(config.API_URL + 'client/membership/update', {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
     getGallery(token) {
         return fetch(config.API_URL + 'gallery', {
             method: 'get',
@@ -236,8 +254,22 @@ export default {
         .catch(error => console.log(error))
     },
 
+    updateAvatar(data, token) {
+        return fetch(config.API_URL + 'client/avatar', {
+            method: 'put',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
     removePhotos(data, token) {
-        return fetch(config.API_URL + 'gallery/remove', {
+        return fetch(config.API_URL + 'gallery/hide', {
             method: 'post',
             headers: {
                 'Authorization': 'Bearer ' + token,

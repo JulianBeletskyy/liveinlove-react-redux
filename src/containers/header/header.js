@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import store from 'store'
 import style from './style.css'
 import { Link } from 'react-router-dom'
-import { Navbar, NavDropdown, Grid } from 'react-bootstrap'
+import { Navbar, Grid } from 'react-bootstrap'
 import { toggleModal, logout } from 'actions'
 import PublicHeader from 'components/header/public_header.js'
 import GirlHeader from 'components/header/girl_header.js'
@@ -46,13 +46,14 @@ class Header extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return state
+    return {
+        user: {
+            data: state.user.data,
+            token: state.user.token
+        }
+    }
 }
 
 export default connect(
     mapStateToProps
-)(Header);
-
-//boy linear-gradient(to top, rgba(249, 0, 110, 0.4), rgba(91, 207, 220, 0.9));
-
-//girl linear-gradient(to top, rgba(91, 207, 220, 0.9), rgba(249, 0, 110, 0.6));
+)(Header)

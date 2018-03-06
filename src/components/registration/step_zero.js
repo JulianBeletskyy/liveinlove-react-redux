@@ -19,25 +19,6 @@ class SignUpStart extends Component {
         }
         this.role = {}
         store.dispatch(setEmptyData())
-        
-        const getFunc = {
-            height: () => {store.dispatch(getOptionsSignUp('height'))},
-            weight: () => {store.dispatch(getOptionsSignUp('weight'))},
-            eyes: () => {store.dispatch(getOptionsSignUp('eyes'))},
-            hair_colors: () => {store.dispatch(getOptionsSignUp('hair_colors'))},
-            hair_lengths: () => {store.dispatch(getOptionsSignUp('hair_lengths'))},
-            ethnicities: () => {store.dispatch(getOptionsSignUp('ethnicities'))},
-            marital_statuses: () => {store.dispatch(getOptionsSignUp('marital_statuses'))},
-            religions: () => {store.dispatch(getOptionsSignUp('religions'))},
-            want_children: () => {store.dispatch(getOptionsSignUp('want_children'))},
-            countries: () => {store.dispatch(getOptionsSignUp('countries'))}
-        }
-        
-        for (let k in getFunc) {
-            if (! this.props.signup[k].length) {
-                getFunc[k]()
-            }
-        }
     }
 
     showRegistration = () => {
@@ -173,10 +154,10 @@ class SignUpStart extends Component {
             default: name = ''; break;
         }
         let temp = [{ 'value': '', 'name': name }]
-        for (var k in this.props.signup[type]) {
+        for (var k in this.props.options[type]) {
             temp.push({
-                'value': this.props.signup[type][k].country_code,
-                'name': this.props.signup[type][k].country_name
+                'value': this.props.options[type][k].country_code,
+                'name': this.props.options[type][k].country_name
             })
         }
         return temp
@@ -372,17 +353,10 @@ const mapStateToProps = (state) => {
                 city: state.signup.data.city,
                 terms: state.signup.data.terms
             },
-            showRegistration: state.signup.showRegistration,
-            height: state.signup.height,
-            weight: state.signup.weight,
-            eyes: state.signup.eyes,
-            hair_colors: state.signup.hair_colors,
-            hair_lengths: state.signup.hair_lengths,
-            ethnicities: state.signup.ethnicities,
-            marital_statuses: state.signup.marital_statuses,
-            religions: state.signup.religions,
-            want_children: state.signup.want_children,
-            countries: state.signup.countries
+            showRegistration: state.signup.showRegistration
+        },
+        options: {
+            countries: state.options.countries
         }
     }
 }

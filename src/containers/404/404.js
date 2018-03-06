@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Grid } from 'react-bootstrap'
 
 class NotFound extends Component {
@@ -26,10 +25,4 @@ class NotFound extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-}
-
-export default connect(
-    mapStateToProps
-)(NotFound);
+export default NotFound

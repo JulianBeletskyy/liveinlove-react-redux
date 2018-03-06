@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
 import { MainModal } from 'components'
-import { toggleModal, getGallery } from 'actions'
+import { toggleModal, getGallery, updateAvatar } from 'actions'
 import style from './avatar.css'
 import EditGallery from './edit_gallery.js'
 
@@ -17,7 +17,7 @@ class Avatar extends Component {
     }
 
     save = () => {
-        console.log(this.props.user.data.cropped_data)
+        store.dispatch(updateAvatar(this.props.user.data.cropped_data, this.props.user.token))
     }
 
     render() {

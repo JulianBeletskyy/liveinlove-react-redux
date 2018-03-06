@@ -1,15 +1,7 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import SmallItem from './small_item.js'
 import Gallery from 'react-grid-gallery'
 
-
 class CustomGallery extends Component {
-    constructor(props) {
-        super(props)
-        console.log(props)
-    }
-
     render() {
         return (
             <Gallery
