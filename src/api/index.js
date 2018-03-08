@@ -72,6 +72,93 @@ export default {
         .catch(error => console.log(error))
     },
 
+    getMembers(token) {
+        return fetch(config.API_URL + 'user/members', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    getMemberInfo(token, id) {
+        return fetch(config.API_URL + 'user/member/' + id, {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    getNewMembers(token) {
+        return fetch(config.API_URL + 'user/members/new', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    getPopularMembers(token) {
+        return fetch(config.API_URL + 'user/members/popular', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    getFavoriteMembers(token) {
+        return fetch(config.API_URL + 'user/members/favorite', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    addToFavorite(id, token) {
+        return fetch(config.API_URL + 'user/members/favorite/' + id + '/add', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    removeFromFavorite(id, token) {
+        return fetch(config.API_URL + 'user/members/favorite/' + id + '/remove', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
     setPlan(plan_id, value_id, token) {
         const data = {
             membership_id: plan_id,
@@ -131,18 +218,6 @@ export default {
 
     activateUser(hash) {
         return fetch(config.API_URL + 'activate/' + hash, {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(responseHandler)
-        .catch(error => console.log(error))
-    },
-
-    getCountries() {
-        return fetch(config.API_URL + 'countries', {
             method: 'get',
             headers: {
                 'Accept': 'application/json',
@@ -255,7 +330,7 @@ export default {
     },
 
     updateAvatar(data, token) {
-        return fetch(config.API_URL + 'client/avatar', {
+        return fetch(config.API_URL + 'gallery/avatar', {
             method: 'put',
             headers: {
                 'Authorization': 'Bearer ' + token,
@@ -334,7 +409,7 @@ export default {
         .catch(error => console.log(error))
     },
 
-    getOptionsSignUp(type) {
+    getOptions(type) {
         return fetch(config.API_URL + type, {
             method: 'get',
             headers: {

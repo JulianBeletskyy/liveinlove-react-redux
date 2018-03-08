@@ -10,7 +10,7 @@ class SelectField extends Component {
     }
 
     handleChange = (event) => {
-        if (this.props.name == 'country') {
+        if (this.props.name === 'country') {
             this.props.city.value = ''
             store.dispatch(setCountry(event.target.value))
         }

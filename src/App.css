@@ -10,7 +10,6 @@
 
 body .title {
     font-family: "Roboto Condensed",Helvetica,Arial,sans-serif;
-
 }
 
 .App {
@@ -33,7 +32,7 @@ body .title {
 
 .slick-dots.slick-thumb {
   top: 5px;
-  bottom: none;
+  bottom: auto;
   color: #27c2d3;
 }
 

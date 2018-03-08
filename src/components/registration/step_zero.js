@@ -3,11 +3,11 @@ import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup, Col, Radio, Row } from 'react-bootstrap'
 import Validator from 'validate'
-import { sendSignUpStart, getOptionsSignUp, setSignUpData, saveImage, saveFile, setEmptyData, toggleRegistration } from 'actions'
+import { sendSignUpStart, setSignUpData, saveImage, saveFile, setEmptyData, toggleRegistration } from 'actions'
 import { TextField, SelectField, CheckboxField, Autocomplete } from 'components/form/inputs'
 import Btn from 'components/form/buttons/button.js'
-import BtnGoogle from 'components/form/buttons/button_google.js'
-import BtnFacebook from 'components/form/buttons/button_facebook.js'
+//import BtnGoogle from 'components/form/buttons/button_google.js'
+//import BtnFacebook from 'components/form/buttons/button_facebook.js'
 import style from './step_zero.css'
 
 class SignUpStart extends Component {
@@ -71,8 +71,8 @@ class SignUpStart extends Component {
                 this.signup.first_name.value = response.first_name
                 this.signup.last_name.value = response.last_name
                 this.signup.email.value = response.email
-                this.role.female.checked = response.gender == 'female'
-                this.role.male.checked = response.gender == 'male'
+                this.role.female.checked = response.gender === 'female'
+                this.role.male.checked = response.gender === 'male'
 
                 store.dispatch(saveImage(response.picture.data.url))
                 let file = new File([''], response.picture.data.url, {type: 'image'})
@@ -82,7 +82,7 @@ class SignUpStart extends Component {
                     first_name: response.first_name,
                     last_name: response.last_name,
                     email: response.email,
-                    role: response.gender == 'female' ? 'girl' : 'client'
+                    role: response.gender === 'female' ? 'girl' : 'client'
                 }
                 this.signup.role = data.role
                 store.dispatch(setSignUpData(data))

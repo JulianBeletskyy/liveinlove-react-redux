@@ -11,7 +11,7 @@ class AboutMe extends Component {
     }
     render() {
         const { data } = this.props.user
-        let classRole = data.role == 'client' ? 'client' : 'girl'
+        let classRole = data.role === 'client' ? 'client' : 'girl'
        	return (
        		<div className={style.wrapper + ' ' + classRole}>
                 <Row>
@@ -137,7 +137,7 @@ class AboutMe extends Component {
                     <Col sm={6}>
                         <FormGroup>
                             <SmallDivider
-                                text={'I am looking for a ' + (data.role == 'client' ? 'woman' : 'man')}
+                                text={'I am looking for a ' + (data.role === 'client' ? 'woman' : 'man')}
                             />
                         </FormGroup>
                         <FormGroup>

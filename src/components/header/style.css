@@ -47,8 +47,13 @@
 	color: white;
 }
 
-:local(.navBar > li:hover:after) {
+:local(.navBar > li:hover:after),
+:local(.navBar > li.active:after) {
 	width: 100%;
+}
+
+:local(.navBar > li.active > a) {
+	color: #333;
 }
 
 :local(.navBar>li:after) {

@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import store from 'store'
 import { MainModal } from 'components'
 import { toggleModal, getGallery, updateAvatar } from 'actions'
-import style from './avatar.css'
 import EditGallery from './edit_gallery.js'
+import AvatarImg from './avatar_img.js'
 
 class Avatar extends Component {
     constructor(props) {
@@ -23,17 +23,12 @@ class Avatar extends Component {
     render() {
         const { avatar } = this.props.modals
         return (
-            <div className={style.wrap}>
-                <img
+            <div>
+                <AvatarImg 
                     src={this.props.src}
-                    className={style.img}
-                />
-                <div 
-                    className={style.hover}
                     onClick={this.showModal}
-                >
-                    <span className={style.span}>edit</span>
-                </div>
+                    textHover="edit" />
+               
                 <MainModal
                     body={<EditGallery />}
                     title="Avatar"

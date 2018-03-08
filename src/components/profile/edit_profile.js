@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Row, Col, FormGroup } from 'react-bootstrap'
 import store from 'store/'
-import { getOptionsSignUp, updateUserProfile } from 'actions'
+import { updateUserProfile } from 'actions'
 import { SelectField, TextField, Textarea, Autocomplete }  from 'components/form/inputs'
 import BtnMain from 'components/form/buttons/main_button.js'
 import BlockSmall from 'components/blocks/block_small.js'
@@ -193,9 +193,8 @@ class EditProfile extends Component {
 	render() {
         const { data } = this.props.user
   		const { ethnicities, interests } = this.props.options
-        let classRole = data.role == 'client' ? 'client' : 'girl'
 		return (
-            <div className={style.wrapper + ' ' + classRole}>
+            <div className={style.wrapper + ' client'}>
     			<Row>
     				<Col sm={12}>
                         <FormGroup>
