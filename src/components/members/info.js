@@ -6,7 +6,6 @@ class MemberInfo extends Component {
 	
     render() {
     	const member = this.props.options
-    	console.log(member)
     	const images = []
         return (
             <Tabs
