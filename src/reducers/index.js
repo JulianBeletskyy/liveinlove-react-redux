@@ -10,6 +10,8 @@ import memberships from './memberships.js'
 import profile from './profile.js'
 import segments from './segments.js'
 import options from './options.js'
+import members from './members.js'
+import services from './services.js'
 import { routerReducer } from 'react-router-redux'
 
 const reducer = combineReducers({
@@ -24,7 +26,9 @@ const reducer = combineReducers({
     memberships,
     profile,
     segments,
-    options
+    options,
+    members,
+    services
 })
 
 export default reducer

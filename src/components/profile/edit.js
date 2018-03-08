@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {Tabs, Tab } from 'react-bootstrap'
 import store, { history } from 'store'
-import { setSegment, getFullInfo } from 'actions'
+import { setSegment } from 'actions'
 import PasswordProfile from './password_profile.js'
 import EditProfile from './edit_profile.js'
 import EditProfileGirl from './edit_profile_girl.js'
@@ -12,7 +12,6 @@ class Edit extends Component {
 
 	constructor(props) {
         super(props)
-        //store.dispatch(getFullInfo(props.user.token))
         this.handleSelect = this.handleSelect.bind(this)
         store.dispatch(setSegment('profile', 'edit', props.match.params.tab))
     }
@@ -22,7 +21,7 @@ class Edit extends Component {
   	}
 
 	render() {
-		const { first, second, third } = this.props.segments
+		const { third } = this.props.segments
 		const { role } = this.props.user.data
 		return (
 			<div className={style.wrapTab}>
@@ -32,7 +31,7 @@ class Edit extends Component {
 						title="Edit"
 					>
 						{
-							role == 'client'
+							role === 'client'
 							? <EditProfile />
 							: <EditProfileGirl />
 						}
@@ -51,7 +50,9 @@ class Edit extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		segments: state.segments,
+		segments: {
+			third: state.segments.third,
+		},
 		user: {
 			token: state.user.token,
 			data: {

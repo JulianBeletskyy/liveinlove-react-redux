@@ -50,7 +50,7 @@ class SignUpThreeGirl extends Component {
                             />
                         </FormGroup>
                         {
-                            data.children == 1 ? 
+                            data.children * 1 === 1 ? 
                             (<FormGroup>
                                 <Textarea
                                     inputRef={ref => { this.signup.about_children = ref }}

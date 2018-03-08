@@ -38,7 +38,7 @@ class InfoProfile extends Component {
         }
         let selected = []
         for(let i = 0; i < images.length; i++) {
-            if(this.props.images[i].isSelected == true) {
+            if(this.props.images[i].isSelected === true) {
                 selected.push(this.props.images[i].id);
             }  
         }
@@ -66,7 +66,7 @@ class InfoProfile extends Component {
     }
 
 	render() {
-		const { first, second } = this.props.segments
+		const { second } = this.props.segments
 		const { role } = this.props.user.data
 		let images = []
 		let selected = this.props.user.data.selected_img
@@ -75,6 +75,7 @@ class InfoProfile extends Component {
 			case 'main': images =  this.props.user.data.images.public; break;
 			case 'private': images = this.props.user.data.images.privat; break;
 			case 'video': images = this.props.user.data.images.video; break;
+			default: images = []
 		}
 		
 		return (
@@ -96,15 +97,15 @@ class InfoProfile extends Component {
 									<TabItem 
 										onClick={(e) => this.setGallery('main')}
 										title="Main"
-										activeClass={this.props.user.data.active_gallery == 'main'} />
+										activeClass={this.props.user.data.active_gallery === 'main'} />
 									<TabItem 
 										onClick={(e) => this.setGallery('private')} 
 										title="Private"
-										activeClass={this.props.user.data.active_gallery == 'private'} />
+										activeClass={this.props.user.data.active_gallery === 'private'} />
 									<TabItem 
 										onClick={(e) => this.setGallery('video')}
 										title="Video"
-										activeClass={this.props.user.data.active_gallery == 'video'} />
+										activeClass={this.props.user.data.active_gallery === 'video'} />
 								</Col>
 								<Col sm={10}>
 									<div className="clearfix form-group">
@@ -136,7 +137,7 @@ class InfoProfile extends Component {
 						</div>
 					</Tab>
 					{
-						role == 'client'
+						role === 'client'
 						? 	<Tab 
 								eventKey={'membership'}
 								title="Membership"
@@ -146,7 +147,7 @@ class InfoProfile extends Component {
 						: ''
 					}
 					{
-						role == 'client'
+						role === 'client'
 						?	<Tab 
 								eventKey={'credits'} 
 								title="Credits & Bonuses"
@@ -164,7 +165,6 @@ class InfoProfile extends Component {
 const mapStateToProps = (state) => {
 	return {
 		segments: {
-			first: state.segments.first,
 			second: state.segments.second
 		},
 		user: {
