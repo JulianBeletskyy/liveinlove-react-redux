@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import store from 'store'
 import style from './style.css'
 import { Link } from 'react-router-dom'
-import { Navbar, Grid } from 'react-bootstrap'
+import { Navbar } from 'react-bootstrap'
 import { toggleModal, logout } from 'actions'
 import PublicHeader from 'components/header/public_header.js'
 import GirlHeader from 'components/header/girl_header.js'
@@ -34,7 +34,7 @@ class Header extends Component {
                 <Navbar.Collapse className={style.collapse}>
                 {
                     token
-                    ? data.role == 'client'
+                    ? data.role === 'client'
                     ? (<ClientHeader />)
                     : (<GirlHeader />)
                     : (<PublicHeader />)

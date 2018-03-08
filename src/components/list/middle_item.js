@@ -4,10 +4,7 @@ import { Link } from 'react-router-dom'
 
 class MiddleItem extends Component {
     render() {
-        let orientationStyle = ''
-        const orientation = this.props.orientation
-        orientationStyle = orientation === 'right' ? style.right : style.left
-        let classRole = this.props.role == 'client' ? style.client : style.girl
+        let classRole = this.props.role === 'client' ? style.client : style.girl
 
         return (
             <div className={style.infoItem + ' ' + classRole} onClick={this.props.onClick}>

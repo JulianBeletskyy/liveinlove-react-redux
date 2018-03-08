@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
-import store from 'store'
+import store, { history } from 'store'
+import { setSegment } from 'actions'
+import { connect } from 'react-redux'
 import style from './style.css'
 import { Link } from 'react-router-dom'
 import { toggleModal, logout } from 'actions'
 
 class ClientHeader extends Component {
+    constructor(props) {
+        super(props)
+        const first = history.location.pathname.replace('/', '')
+        store.dispatch(setSegment(first))
+    }
 
     showLogIn = () => {
         store.dispatch(toggleModal(true, 'login'))
@@ -15,29 +22,30 @@ class ClientHeader extends Component {
     }
 
     render() {
+        const url = this.props.segments.first
         return (
            <ul className={style.navBar + " nav navbar-nav navbar-right"}>
-                <li role="presentation">
-                    <Link to="/girls">Mail</Link>
+                <li role="presentation" className={url === 'mail' ? style.active : ''}>
+                    <Link to="/mail">Mail</Link>
                 </li>
 
-                <li role="presentation">
+                <li role="presentation" className={url === 'profile' ? style.active : ''}>
                     <Link to="/profile/info">My profile</Link>
                 </li>
 
-                <li role="presentation">
-                    <Link to="/success-stories">Girls</Link>
+                <li role="presentation" className={url === 'girls' ? style.active : ''}>
+                    <Link to="/girls">Girls</Link>
                 </li>
 
-                <li role="presentation">
-                    <Link to="/blog">Contacts</Link>
+                <li role="presentation" className={url === 'contacts' ? style.active : ''}>
+                    <Link to="/contacts">Contacts</Link>
                 </li>
 
-                <li role="presentation">
-                    <Link to="/blog">Services</Link>
+                <li role="presentation" className={url === 'services' ? style.active : ''}>
+                    <Link to="/services">Services</Link>
                 </li>
 
-                <li role="presentation">
+                <li role="presentation" className={url === 'blog' ? style.active : ''}>
                     <Link to="/blog">Shop</Link>
                 </li>
 
@@ -49,4 +57,12 @@ class ClientHeader extends Component {
     }
 }
 
-export default ClientHeader
+const mapStateToProps = (state) => {
+    return {
+        segments: state.segments
+    }
+}
+
+export default connect(
+    mapStateToProps
+)(ClientHeader)

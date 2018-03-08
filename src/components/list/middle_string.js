@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap'
 import style from './middle_string.css'
 
 class MiddleString extends Component {

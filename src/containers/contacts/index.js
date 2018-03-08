@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 import store from 'store'
 import { connect } from 'react-redux'
-import { getMembers } from 'actions'
+import { getFavoriteMembers } from 'actions'
 import MemberBlock from 'components/members/member_block.js'
 
-class Girls extends Component {
+class Contacts extends Component {
 	constructor(props) {
 		super(props)
-		store.dispatch(getMembers(props.user.token))
+		store.dispatch(getFavoriteMembers(props.user.token))
 	}
 
     render() {
         return (
             <div className="pt-15">
                 <MemberBlock 
-                	list={this.props.members.list} />
+                	list={this.props.members.favorite_list} />
             </div>
         );
     }
@@ -26,11 +26,11 @@ const mapStateToProps = (state) => {
 			token: state.user.token
     	},
     	members: {
-    		list: state.members.list
+    		favorite_list: state.members.favorite_list
     	}
     }
 }
 
 export default connect(
     mapStateToProps
-)(Girls)
+)(Contacts)

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, FormGroup } from 'react-bootstrap'
 import store from 'store/'
-import { getOptionsSignUp, updateUserProfile } from 'actions'
+import { updateUserProfile } from 'actions'
 import { SelectField, TextField, Textarea, Autocomplete }  from 'components/form/inputs'
 import style from './edit_profile.css'
 import BtnMain from 'components/form/buttons/main_button.js'
@@ -216,9 +216,8 @@ class EditProfileGirl extends Component {
 	render() {
         const { data } = this.props.user
   		const { interests } = this.props.options
-        let classRole = data.role == 'client' ? 'client' : 'girl'
 		return (
-            <div className={style.wrapper + ' ' + classRole}>
+            <div className={style.wrapper + ' girl'}>
     			<Row>
     				<Col sm={12}>
                         <FormGroup>

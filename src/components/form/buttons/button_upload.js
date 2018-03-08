@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import store from 'store'
 import style from './main_button.css'
-import ImageUploader from 'react-images-upload';
-import { saveImage, saveFile } from 'actions'
+import ImageUploader from 'react-images-upload'
 
 class BtnUpload extends Component {
     

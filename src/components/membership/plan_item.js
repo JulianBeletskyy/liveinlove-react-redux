@@ -49,7 +49,7 @@ class PlanItem extends Component {
     render() {
         const { active_btn } = this.props.memberships
         const { id } = this.props.user.data.membership
-        const classBtn = active_btn == this.props.options.id ? style.active : ''
+        const classBtn = active_btn === this.props.options.id ? style.active : ''
         return (
             <div className={style.table + ' text-center'}>
                 <div className={style.heading}>
@@ -71,12 +71,12 @@ class PlanItem extends Component {
                    <span className="ult_price_term ult-responsive"></span> 
                 </div>
                     {
-                        this.props.options.id == id
+                        this.props.options.id === id
                         ?   <div className={style.btnWrap}>
                                 <span className={style.btnCurrent}>Current</span>
                             </div>
                         :   
-                        this.props.options.name == 'Free'
+                        this.props.options.name === 'Free'
                         ?   <div className={style.btnWrap}>
                                 <span className={style.btnCurrent}>Free</span>
                             </div>

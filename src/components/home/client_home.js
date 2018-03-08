@@ -4,15 +4,25 @@ import ClientRightMenu from 'components/menu/client_right_menu.js'
 import { Route, Switch } from 'react-router-dom'
 import Edit from 'components/profile/edit.js'
 import InfoProfile from 'components/profile/info.js'
+import MainPofile from 'components/profile/main.js'
+import { Girls, Contacts } from 'containers'
 
 class ClientHome extends Component {
+    componentDidUpdate() {
+        let el = document.getElementById('profile')
+        el.classList.remove('fadeIn', 'animated')
+    }
+
     render() {
         return (
             <div className="pt-66 bg-blue">
-                <Grid className="fadeIn animated">
+                <Grid id="profile" className="fadeIn animated">
                     <Row>
                         <Col md={9} className="bg-white">
                             <Switch>
+                                <Route path="/" exact component={MainPofile} />
+                                <Route path="/girls" exact component={Girls} />
+                                <Route path="/contacts/:tab" exact component={Contacts} />
                                 <Route path="/profile/edit/:tab" exact component={Edit} />
                                 <Route path="/profile/:tab" exact component={InfoProfile} />
                             </Switch>

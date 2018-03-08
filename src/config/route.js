@@ -16,6 +16,15 @@ export default {
             'path': '/profile/*',
             'component': 'Home'
         }, {
+            'path': '/girls',
+            'component': 'Home'
+        }, {
+            'path': '/contacts/*',
+            'component': 'Home'
+        }, {
+            'path': '/member/:id',
+            'component': 'Member'
+        }, {
             'path': '*',
             'component': 'NotFound'
         }
@@ -27,6 +36,12 @@ export default {
         }, {
             'path': '/profile/*',
             'component': 'Home'
+        }, {
+            'path': '/contacts/*',
+            'component': 'Home'
+        }, {
+            'path': '/member/:id',
+            'component': 'Member'
         }, {
             'path': '*',
             'component': 'NotFound'
