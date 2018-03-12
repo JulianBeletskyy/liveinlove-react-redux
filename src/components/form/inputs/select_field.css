@@ -24,3 +24,7 @@
     letter-spacing: 1px;
     font-weight: 400;
 }
+
+:local(.uploadField) {
+    display: none !important;
+}

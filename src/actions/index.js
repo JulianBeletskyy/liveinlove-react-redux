@@ -659,6 +659,12 @@ export function addCredits(value) {
     }
 }
 
+export function setUpload() {
+    return {
+        type: types.SET_UPLOAD
+    }
+}
+
 export function toggleTab(value) {
     return {
         type: types.TOGGLE_TAB,

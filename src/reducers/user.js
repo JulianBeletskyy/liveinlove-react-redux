@@ -118,6 +118,7 @@ export default function user(user = initialState, action = {}) {
                 data: temp
             });
         case types.SET_IMAGES:
+            temp.selected_img = []
             for (let k in action.value) {
                 temp.images[k] = []
                 for (let j in action.value[k]) {

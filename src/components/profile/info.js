@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {Tabs, Tab, Row, Col } from 'react-bootstrap'
+import {Tabs, Tab, Row, Col, FormGroup } from 'react-bootstrap'
 import store, { history } from 'store'
-import { setSegment, setGallery, setSelected, addToGallery, removePhotos } from 'actions'
+import { setSegment, setGallery, setSelected, addToGallery, removePhotos, setUpload, setAlert } from 'actions'
 import AboutMe from './about_me.js'
 import style from './style.css'
 import CustomGallery from 'components/gallery/gallery.js'
@@ -12,6 +12,7 @@ import BtnUpload from 'components/form/buttons/button_upload.js'
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import TabItem from 'components/list/tab_item.js'
+import UploadField from 'components/form/inputs/upload_field'
 
 class InfoProfile extends Component {
 
@@ -63,10 +64,41 @@ class InfoProfile extends Component {
   		console.log(this.props.user.data.selected_img)
   	}
 
-  	onDrop = (picture) => {
-        if (picture) {
-            store.dispatch(addToGallery(picture[0], this.props.user.token))
+  	onDrop = (e) => {
+        if (e) {
+            store.dispatch(addToGallery(e.target.files[0], this.props.user.token))
         }
+    }
+
+    checkLimit = () => {
+    	let count = 0
+    	for (let k in this.props.user.data.images) {
+    		count += this.props.user.data.images[k].length
+    	}
+    	
+    	if (count >= this.props.user.data.membership.my_photo) {
+    		store.dispatch(setAlert('You can\'t upload more photos in your membership', 'error'))
+    	} else {
+    		let el = document.getElementById('upload')
+        	el.click()
+    	}
+    }
+
+    getButton = (selected) => {
+    	let text = ''
+    	switch(this.props.user.data.active_gallery) {
+    		case 'main': text =  'Make private'; break;
+			case 'private': text = 'Make public'; break;
+			default: text = ''; break;
+    	}
+    	if (text) {
+    		return <BtnMain
+	            type="button"
+	            bsStyle="success"
+	            text={text}
+	            onClick={this.addToPrivate}
+	            disabled={! selected.length} />
+    	}
     }
 
 	render() {
@@ -121,26 +153,43 @@ class InfoProfile extends Component {
 									</div>
 									<Row>
 										<Col sm={4}>
-						                    <BtnUpload
-						                        onChange={this.onDrop}
-						                        title="Upload photo"
-						                    />
+										{
+											this.props.user.data.active_gallery === 'main'
+											?	/*<FormGroup className="text-center">
+								                    <BtnUpload
+								                        onChange={this.onDrop}
+								                        title="Upload photo"
+								                        onClick={this.checkGalleryLimit}
+								                    />
+							                    </FormGroup>*/
+							                    <FormGroup className="text-center">
+							                    	<UploadField
+							                    		onClick={this.checkLimit}
+							                    		check={this.props.services.upload}
+							                    		onChange={this.onDrop} />
+							                    </FormGroup>
+											: ''
+										}
 					                    </Col>
 										<Col sm={4}>
-											<BtnMain
-						                        type="button"
-						                        bsStyle="success"
-						                        text={'Remove ' + selected.length + ' photos'}
-						                        onClick={this.removePhoto}
-						                        disabled={! selected.length} />
+											{
+												this.props.user.data.active_gallery === 'main'
+												? 	<FormGroup className="text-center">
+														<BtnMain
+									                        type="button"
+									                        bsStyle="success"
+									                        text={'Remove ' + selected.length + ' photos'}
+									                        onClick={this.removePhoto}
+									                        disabled={! selected.length} />
+							                        </FormGroup>
+												: ''
+											}
+											
 					                    </Col>
 					                    <Col sm={4}>
-					                    	<BtnMain
-						                        type="button"
-						                        bsStyle="success"
-						                        text={"Add to private"}
-						                        onClick={this.addToPrivate}
-						                        disabled={! selected.length} />
+					                    	<FormGroup className="text-center">
+					                    		{ this.getButton(selected) }
+					                        </FormGroup>
 					                    </Col>
 				                    </Row>
 								</Col>
@@ -184,9 +233,13 @@ const mapStateToProps = (state) => {
 				images: state.user.data.images,
 				private_images: state.user.data.private_images,
 				active_gallery: state.user.data.active_gallery,
-				selected_img: state.user.data.selected_img
+				selected_img: state.user.data.selected_img,
+				membership: state.user.data.membership
 			},
 			token: state.user.token
+		},
+		services: {
+			upload: state.services.upload
 		}
 	}
 }

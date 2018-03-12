@@ -20,14 +20,14 @@ class Carousel extends Component {
             dotsClass: 'slick-dots slick-thumb',
             responsive: [
                 {
-                    breakpoint: 768, 
+                    breakpoint: 1120, 
                     settings: {
                         slidesToShow: 1, 
                         dots: true,
                         arrows: false
                     }
                 }, {
-                    breakpoint: 1440,
+                    breakpoint: 1650,
                     settings: {slidesToShow: 2}
                 }
             ]

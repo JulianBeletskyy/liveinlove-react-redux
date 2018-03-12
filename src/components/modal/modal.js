@@ -3,6 +3,7 @@ import { Modal } from 'react-bootstrap'
 import store from 'store/'
 import { toggleModal } from 'actions'
 import style from './modal.css'
+import BtnMain from 'components/form/buttons/main_button.js'
 
 class MainModal extends Component {
     closeModal = () => {
@@ -29,18 +30,16 @@ class MainModal extends Component {
                 {
                     this.props.footer
                     ? (<Modal.Footer bsClass={style.headerModal + ' modal-footer'}>
-                        <button 
-                            className="btn btn-default" 
-                            onClick={this.closeModal}
-                        >
-                            Cancel
-                        </button>
-                        <button 
-                            className="btn btn-default" 
-                            onClick={this.props.onSave}
-                        >
-                            Save
-                        </button>
+                        <BtnMain
+                            type="button"
+                            bsStyle="success"
+                            text={'Cancel'}
+                            onClick={this.closeModal} />
+                        <BtnMain
+                            type="button"
+                            bsStyle="success"
+                            text={'Save'}
+                            onClick={this.props.onSave} />
                     </Modal.Footer>)
                     : ''
                 }
