@@ -4,10 +4,11 @@ import style from './main_button.css'
 
 class BtnMain extends Component {
     render() {
+        const colorClass = this.props.color || 'main'
         return (
             <Button
                 type={this.props.type}
-                bsStyle={this.props.bsStyle}
+                bsStyle={this.props.bsStyle + ' ' + colorClass}
                 bsClass={style.button}
                 onClick={this.props.onClick}
                 disabled={this.props.disabled}

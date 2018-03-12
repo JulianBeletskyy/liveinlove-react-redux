@@ -21,12 +21,19 @@
     transition: all .3s;
     padding: 15px;
     color: #fff;
-    background-color: #27c2d3;
     border: 0;
     position: relative;
     overflow: hidden;
     min-width: 180px;
     max-width: 100%;
+}
+
+:local(.button).main {
+    background-color: #27c2d3;
+}
+
+:local(.button).pink {
+    background-color: #F9006E;
 }
 
 :local(.button:hover) {

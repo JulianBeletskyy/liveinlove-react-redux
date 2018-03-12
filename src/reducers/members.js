@@ -6,11 +6,18 @@ const initialState = {
     popular_list: [],
     favorite_list: [],
     data: {
-        avatar: {}
+        avatar: {},
+        birthday: {},
+        height: {},
+        weight: {},
+        match: {},
+        interests_value: [],
+        find_ethnicity_value: []
     }
 }
 
 export default function members(members = initialState, action = {}) {
+    let temp = Object.assign([], members.data)
     switch (action.type) {
         case SET_MEMBERS:
             return Object.assign({}, members, {
@@ -35,10 +42,15 @@ export default function members(members = initialState, action = {}) {
                     }
                 }
             }
+
+            if (temp.id === action.id) {
+                temp.favorite = action.value
+            }
             return Object.assign({}, members, {
                 list: temp_lists.list,
                 new_list: temp_lists.new_list,
-                popular_list: temp_lists.popular_list
+                popular_list: temp_lists.popular_list,
+                data: temp
             });
         default:
             return members;

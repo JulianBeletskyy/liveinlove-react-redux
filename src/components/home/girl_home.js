@@ -6,6 +6,7 @@ import InfoProfile from 'components/profile/info.js'
 import Edit from 'components/profile/edit.js'
 import MainPofile from 'components/profile/main.js'
 import { Contacts } from 'containers'
+import Mail from 'components/mail'
 
 class GirlHome extends Component {
     componentDidUpdate() {
@@ -21,13 +22,14 @@ class GirlHome extends Component {
                         <Col md={9} className="bg-white">
                             <Switch>
                                 <Route path="/" exact component={MainPofile} />
+                                <Route path="/mail" exact component={Mail} />
                                 <Route path="/contacts/:tab" exact component={Contacts} />
                                 <Route path="/profile/edit/:tab" exact component={Edit} />
                                 <Route path="/profile/:tab" exact component={InfoProfile} />
                             </Switch>
                         </Col>
 
-                        <Col md={3}>
+                        <Col md={3} xsHidden>
                             <GirlRightMenu />
                         </Col>
                     </Row>

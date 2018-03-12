@@ -10,7 +10,7 @@ const initialState = {
     marital_statuses: [],
     interests: [],
     religions: [],
-    want_children: [],
+    //want_children: [],
     education: [],
     drink: [],
     smoke: [],

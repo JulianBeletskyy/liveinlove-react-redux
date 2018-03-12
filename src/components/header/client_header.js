@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import store, { history } from 'store'
 import { setSegment } from 'actions'
 import { connect } from 'react-redux'
+import { NavDropdown } from 'react-bootstrap'
 import style from './style.css'
 import { Link } from 'react-router-dom'
 import { toggleModal, logout } from 'actions'
@@ -40,6 +41,14 @@ class ClientHeader extends Component {
                 <li role="presentation" className={url === 'contacts' ? style.active : ''}>
                     <Link to="/contacts">Contacts</Link>
                 </li>
+
+                <NavDropdown 
+                    role="presentation"
+                    eventKey={2}
+                    title="Contacts" 
+                    id="support-nav-dropdown">
+                    <Link to="/contacts/favorite">Favorite</Link>
+                </NavDropdown>
 
                 <li role="presentation" className={url === 'services' ? style.active : ''}>
                     <Link to="/services">Services</Link>

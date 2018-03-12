@@ -32,7 +32,7 @@ class Home extends Component {
             countries: () => {store.dispatch(getOptions('countries'))},
             interests: () => {store.dispatch(getOptions('interests'))},
             religions: () => {store.dispatch(getOptions('religions'))},
-            want_children: () => {store.dispatch(getOptions('want_children'))},
+            //want_children: () => {store.dispatch(getOptions('want_children'))},
             education: () => {store.dispatch(getOptions('education'))},
             smoke: () => {store.dispatch(getOptions('smoke'))},
             primary_language: () => {store.dispatch(getOptions('primary_language'))},

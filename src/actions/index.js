@@ -44,7 +44,7 @@ export function activateUser(hash) {
         .then(json => {
             if (json.data) {
                 dispatch(setToken(json.data))
-                dispatch(getUserInfo(json.data))
+                dispatch(getFullInfo(json.data))
                 history.push('/')
             }
             
@@ -429,6 +429,13 @@ export function getMemberInfo(token, id) {
     }
 }
 
+export function toggleLightBox(value) {
+    return {
+        type: types.TOGGLE_LIGHT_BOX,
+        value
+    }
+}
+
 export function setMemberInfo(data) {
     return {
         type: types.SET_MEMBER_INFO,
@@ -464,6 +471,20 @@ export function removeFromFavorite(id, token) {
         .then(json => {
             if (json.data) {
                 dispatch(setFavorite(id, false))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export function addViewed(id, token) {
+    return dispatch => {
+        return api.addViewed(id, token)
+        .then(json => {
+            if (json.data) {
+                //dispatch(setMemberInfo(json.data))
             }
         })
         .catch(error => {
@@ -652,10 +673,11 @@ export function setCountry(value) {
     }
 }
 
-export function setActiveTab(value) {
+export function setActiveTab(value, key) {
     return {
         type: types.SET_ACTIVE_TAB,
-        value
+        value,
+        key
     }
 }
 

@@ -43,7 +43,7 @@ class EditProfileGirl extends Component {
         error *= Validator.check(this.user.children.value, ['required'], 'Children')
         error *= Validator.check(this.user.message.value, ['required'], 'Message')
         error *= Validator.check(this.props.user.data.interests, ['reqiredArray'], 'Interests')
-        error *= Validator.check(this.user.want_children.value, ['required'], 'Want Children')
+        //error *= Validator.check(this.user.want_children.value, ['required'], 'Want Children')
         error *= Validator.check(this.user.religion.value, ['required'], 'Religions')
         error *= Validator.check(this.user.education.value, ['required'], 'Education')
         error *= Validator.check(this.user.profession.value, ['required'], 'Profession')
@@ -80,7 +80,7 @@ class EditProfileGirl extends Component {
                 interest_id: this.props.user.data.interests
             }
 
-            data.want_children_id = this.user.want_children ? this.user.want_children.value : ''
+            //data.want_children_id = this.user.want_children ? this.user.want_children.value : ''
             data.education_id = this.user.education.value
             data.smoke_id = this.user.smoke.value
             data.drink_id = this.user.drink.value
@@ -277,7 +277,7 @@ class EditProfileGirl extends Component {
                                                     componentClass="select"
                                                     inputRef={ref => { this.user.birth.month = ref }}
                                                     options={this.monthArray()}
-                                                    value={data.birthday.month}
+                                                    value={data.birth.month}
                                                     label={true}
                                                     placeholder="Birthday"
                                                 />
@@ -287,7 +287,7 @@ class EditProfileGirl extends Component {
                                                     componentClass="select"
                                                     inputRef={ref => { this.user.birth.day = ref }}
                                                     options={this.dayArray()}
-                                                    value={data.birthday.day}
+                                                    value={data.birth.day}
                                                     label={true}
                                                     placeholder={<span>&nbsp;</span>}
                                                 />
@@ -297,7 +297,7 @@ class EditProfileGirl extends Component {
                                                     componentClass="select"
                                                     inputRef={ref => { this.user.birth.year = ref }}
                                                     options={this.yearArray()}
-                                                    value={data.birthday.year}
+                                                    value={data.birth.year}
                                                     label={true}
                                                     placeholder={<span>&nbsp;</span>}
                                                 />
