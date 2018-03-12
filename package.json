@@ -15,6 +15,7 @@
     "react-dom": "^16.2.0",
     "react-google-autocomplete": "^1.0.15",
     "react-grid-gallery": "^0.4.8",
+    "react-images": "^0.5.17",
     "react-images-upload": "^1.1.1",
     "react-places-autocomplete": "^6.1.2",
     "react-redux": "^5.0.6",

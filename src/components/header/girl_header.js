@@ -18,7 +18,7 @@ class GirlHeader extends Component {
         return (
            <ul className={style.navBar + ' nav navbar-nav navbar-right'}>
                 <li role="presentation">
-                    <Link to="/girls">Mail</Link>
+                    <Link to="/mail">Mail</Link>
                 </li>
 
                 <li role="presentation">

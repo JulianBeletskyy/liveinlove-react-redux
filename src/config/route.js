@@ -16,6 +16,9 @@ export default {
             'path': '/profile/*',
             'component': 'Home'
         }, {
+            'path': '/mail',
+            'component': 'Home'
+        }, {
             'path': '/girls',
             'component': 'Home'
         }, {
@@ -35,6 +38,9 @@ export default {
             'component': 'Home'
         }, {
             'path': '/profile/*',
+            'component': 'Home'
+        }, {
+            'path': '/mail',
             'component': 'Home'
         }, {
             'path': '/contacts/*',

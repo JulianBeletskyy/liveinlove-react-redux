@@ -28,8 +28,7 @@ class ClientRightMenu extends Component {
 			<div className={style.wrapClient + " p-15"}>
 				<FormGroup className="px-15 text-center">
 					<Avatar 
-						src={data.avatar.croped}
-					/>
+						src={data.avatar.croped} />
 				</FormGroup>
 				<FormGroup className={style.name + " text-center"}>
 					<div>

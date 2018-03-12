@@ -32,11 +32,9 @@ class SignUpOne extends Component {
         error *= Validator.check(this.signup.ethnicity.value, ['required'], 'Ethnicity')
         error *= Validator.check(this.signup.marital.value, ['required'], 'Marital')
         error *= Validator.check(this.signup.children.value, ['required'], 'Children')
+        error *= Validator.check(this.props.signup.data.find_ethnicity, ['reqiredArray'], 'Ethnicity Match')
 
-        if (this.props.signup.data.role === 'client') {
-            error *= Validator.check(this.props.signup.data.female_ethnicity, ['reqiredArray'], 'Ethnicity Match')
-        } else {
-            error *= Validator.check(this.signup.want_children.value, ['required'], 'Want Children')
+        if (this.props.signup.data.role === 'girl') {
             error *= Validator.check(this.signup.religion.value, ['required'], 'Religions')
         }
 
@@ -52,13 +50,13 @@ class SignUpOne extends Component {
                 ethnicity_id: this.signup.ethnicity.value,
                 marital_status_id: this.signup.marital.value,
                 children: this.signup.children.value,
-                female_ethnicity: this.props.signup.data.female_ethnicity,
+                find_ethnicity: this.props.signup.data.find_ethnicity,
                 match: {
                     from: this.signup.match.from.value,
                     to: this.signup.match.to.value
                 },
                 interest: this.props.signup.data.interest,
-                want_children_id: this.signup.want_children ? this.signup.want_children.value : '',
+                //want_children_id: this.signup.want_children ? this.signup.want_children.value : '',
                 religion_id: this.signup.religion ? this.signup.religion.value : '',
                 remember_token: this.props.signup.remember_token
             }
@@ -132,7 +130,7 @@ class SignUpOne extends Component {
     }
 
     printEthnicity = (ethnicity, i) => {
-        return (<Col sm={4} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={ethnicity.value} id={ethnicity.id} data="signup" type="female_ethnicity"  /></Col>)
+        return (<Col sm={4} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={ethnicity.value} id={ethnicity.id} data="signup" type="find_ethnicity"  /></Col>)
     }
 
     render() {
@@ -259,15 +257,15 @@ class SignUpOne extends Component {
                         <Row>
                             <Col sm={12}>
                             {
-                                data.role === 'client' ?
                                 ethnicities.map((ethnicity, i) => this.printEthnicity(ethnicity, i))
-                                :
-                                    <SelectField
+                                
+                                
+                                /*: <SelectField
                                         componentClass="select"
                                         inputRef={ref => { this.signup.want_children = ref }}
                                         options={this.getArray('want_children')}
                                         value={data.want_children_id}
-                                    />
+                                    />*/
                             }
                             </Col>
                         </Row>

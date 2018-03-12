@@ -23,7 +23,7 @@ const initialState = {
         ethnicity_id: '',
         marital_status_id: '',
         children: '',
-        female_ethnicity: [],
+        find_ethnicity: [],
         interest: [],
         religion_id: '',
         want_children_id: '',
