@@ -28,6 +28,10 @@
     max-width: 100%;
 }
 
+:local(.uploadWrap) {
+    z-index: 1;
+}
+
 :local(.button).main {
     background-color: #27c2d3;
 }

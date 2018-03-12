@@ -13,7 +13,6 @@ class MessagesBlock extends Component {
         return (
             <div>
                 { data.map((message, i) => this.printMessages(message, i)) }
-                
             </div>
         );
     }

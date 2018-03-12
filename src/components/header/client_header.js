@@ -38,10 +38,6 @@ class ClientHeader extends Component {
                     <Link to="/girls">Girls</Link>
                 </li>
 
-                <li role="presentation" className={url === 'contacts' ? style.active : ''}>
-                    <Link to="/contacts">Contacts</Link>
-                </li>
-
                 <NavDropdown 
                     role="presentation"
                     eventKey={2}

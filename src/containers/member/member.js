@@ -78,7 +78,7 @@ class Member extends Component {
                     <Grid className="bg-white pt-15">
                         {
                             ! this.checkRequest()
-                            ? <Loader />
+                            ?   <Loader />
                             :   <Row>
                                     <Col md={3}>
                                         <AvatarImg

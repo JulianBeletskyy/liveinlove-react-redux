@@ -28,7 +28,13 @@
 	display: inline-block;
 }
 
-:local(.imgWrap img) {
+:local(.imgContactWrap) {
+	width: 100px;
+	display: inline-block;
+}
+
+:local(.imgWrap img),
+:local(.imgContactWrap img) {
 	width: 100%;
 }
 

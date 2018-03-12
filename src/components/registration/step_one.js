@@ -190,6 +190,18 @@ class SignUpOne extends Component {
                                 value={data.ethnicity_id}
                             />
                         </FormGroup>
+                        {
+                            data.role === 'girl' 
+                            ?   <FormGroup>
+                                    <SelectField
+                                        componentClass="select"
+                                        inputRef={ref => { this.signup.religion = ref }}
+                                        options={this.getArray('religions')}
+                                        value={data.religion_id}
+                                    />
+                                </FormGroup>
+                            : ''
+                        }
                     </Col>
                     <Col xs={12} className="text-center">
                         <h3 className="title">Marital & Children Details</h3>
@@ -213,16 +225,6 @@ class SignUpOne extends Component {
                                 value={data.children}
                             />
                         </FormGroup>
-                        {data.role === 'girl' ? 
-                        (<FormGroup>
-                            <SelectField
-                                componentClass="select"
-                                inputRef={ref => { this.signup.religion = ref }}
-                                options={this.getArray('religions')}
-                                value={data.religion_id}
-                            />
-                        </FormGroup>)
-                        : ''}
 
                     </Col>
                     <Col xs={12} className="text-center">

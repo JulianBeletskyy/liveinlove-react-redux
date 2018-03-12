@@ -18,7 +18,7 @@ class PlanItem extends Component {
             return (<div key={i}>
                         <div className={priceClass + ' ' + style.priceItem}>
                             <span className={style.price}>{value.month_payment ? '$' + value.month_payment : ''}</span>
-                            <span className="ult_price_term ult-responsive">{value.month_payment ? '/ ' + value.month + 'month' : <span>&nbsp;</span>}</span>
+                            <span className="ult_price_term ult-responsive">{value.month_payment ? ' / ' + value.month + ' month' : <span>&nbsp;</span>}</span>
                         </div>
                     </div>)
         }
@@ -50,6 +50,7 @@ class PlanItem extends Component {
         const { active_btn } = this.props.memberships
         const { id } = this.props.user.data.membership
         const classBtn = active_btn === this.props.options.id ? style.active : ''
+
         return (
             <div className={style.table + ' text-center'}>
                 <div className={style.heading}>
@@ -67,6 +68,7 @@ class PlanItem extends Component {
                         <li>View photos in profiles: <strong>{this.props.options.view_photo}</strong></li>
                         <li>View videos in profiles: <strong>{this.props.options.view_video}</strong></li>
                         <li>Expression of Interest: <strong>{this.props.options.likes}</strong></li>
+                        <li>Discount on ALL services: <strong>{this.props.options.discount}%</strong></li>
                     </ul>
                    <span className="ult_price_term ult-responsive"></span> 
                 </div>
