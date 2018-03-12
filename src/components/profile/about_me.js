@@ -37,7 +37,7 @@ class AboutMe extends Component {
                             <div>
                                 <span className={style.middleTitle + ' title'}>Birthday</span>
                             </div>
-                          <span className="small-italic">{data.birthday.day + '.' + data.birthday.month + '.' + data.birthday.year} ({data.age} years)</span>
+                          <span className="small-italic">{data.birth.day + '.' + data.birth.month + '.' + data.birth.year} ({data.age} years)</span>
                         </FormGroup>
                         <FormGroup>
                             <div>
