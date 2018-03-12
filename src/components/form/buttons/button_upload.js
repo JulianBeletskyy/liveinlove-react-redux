@@ -6,16 +6,18 @@ class BtnUpload extends Component {
     
     render() {
         return (
-            <ImageUploader
-                buttonText={this.props.title}
-                onChange={this.props.onChange}
-                imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                maxFileSize={5242880}
-                withPreview={false}
-                withIcon={false}
-                withLabel={false}
-                buttonClassName={style.button}
-            />
+            <div className={style.uploadWrap} onClick={this.props.onClick}>
+                <ImageUploader
+                    buttonText={this.props.title}
+                    onChange={this.props.onChange}
+                    imgExtension={['.jpg', '.gif', '.png', '.gif', '.jpeg']}
+                    maxFileSize={5242880}
+                    withPreview={false}
+                    withIcon={false}
+                    withLabel={false}
+                    buttonClassName={style.button}
+                />
+            </div>
         );
     }
 }

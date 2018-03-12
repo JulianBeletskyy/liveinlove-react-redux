@@ -1,4 +1,4 @@
-import { SET_ACTIVE_TAB, TOGGLE_LIGHT_BOX } from 'actions/types.js'
+import { SET_ACTIVE_TAB, TOGGLE_LIGHT_BOX, SET_UPLOAD } from 'actions/types.js'
 
 const initialState = {
 	tabs: {
@@ -8,7 +8,8 @@ const initialState = {
 	},
     gallery: {
         avatar: false
-    }
+    },
+    upload: false
 }
 
 export default function services(services = initialState, action = {}) {
@@ -24,6 +25,10 @@ export default function services(services = initialState, action = {}) {
             gallery.avatar = action.value
             return Object.assign({}, services, {
                 gallery: gallery
+            });
+        case SET_UPLOAD:
+            return Object.assign({}, services, {
+                upload: true
             });
         default:
             return services;

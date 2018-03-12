@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Tabs from 'components/tabs'
 import MessagesBlock from './messages_block.js'
+import ContactsBlock from './contacts_block.js'
 
 class Mail extends Component {
     
@@ -16,7 +17,7 @@ class Mail extends Component {
                         }, {
                             eventKey: 'contacts', 
                             title: 'Contacts', 
-                            content: <div>Contacts</div>
+                            content: <ContactsBlock />
                         }
                     ]}
                     activeKey="messages"

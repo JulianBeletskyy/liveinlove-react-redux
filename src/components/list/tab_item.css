@@ -13,3 +13,11 @@
 :local(.wrap.active) a {
 	color: #222;
 }
+
+@media (max-width: 768px) {
+    :local(.wrap) {
+		display: inline-block;
+		vertical-align: middle;
+		
+	}
+}

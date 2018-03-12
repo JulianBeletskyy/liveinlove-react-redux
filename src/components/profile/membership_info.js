@@ -12,6 +12,7 @@ class MembershipInfo extends Component {
 
 	render() {
 		const { membership } = this.props.user.data
+		console.log(membership)
 		return (
 			<div className="pt-15">
 				<FormGroup>
@@ -37,11 +38,15 @@ class MembershipInfo extends Component {
 					</div>
 					<div>
 						<span className="font-bebas">Send 1st free letter to any girl: </span>
-						<strong>{ membership.my_photo }</strong>
+						<strong>{ membership.free_leter }</strong>
 					</div>
 					<div>
 						<span className="font-bebas">Accept/send private photos: </span>
-						<strong>{ membership.my_photo }</strong>
+						<strong>{ membership.private_photo }</strong>
+					</div>
+					<div>
+						<span className="font-bebas">Discount on ALL additional communicative services: </span>
+						<strong>{ membership.discount }%</strong>
 					</div>
 					<div>
 						<span className="font-bebas">Value: </span>
@@ -52,7 +57,7 @@ class MembershipInfo extends Component {
 					<BtnMain
                         type="button"
                         bsStyle="success"
-                        text={'Upgrate'}
+                        text={'Upgrade'}
                         onClick={this.toggleModal}
                     />
 				</div>
