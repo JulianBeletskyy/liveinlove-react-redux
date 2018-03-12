@@ -85,29 +85,28 @@ class SignUpTwoGirl extends Component {
                             />
                         </FormGroup>
                         <FormGroup>
+                            <SelectField
+                                componentClass="select"
+                                inputRef={ref => { this.signup.smoke = ref }}
+                                options={this.getArray('smoke')}
+                                value={data.smoke_id}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <SelectField
+                                componentClass="select"
+                                inputRef={ref => { this.signup.drink = ref }}
+                                options={this.getArray('drink')}
+                                value={data.drink_id}
+                            />
+                        </FormGroup>
+                        <FormGroup>
                             <TextField
                                 type="text"
                                 placeholder="Profession"
                                 inputRef={ref => { this.signup.profession = ref }}
                                 value={data.profession}
                                 name="First Name"
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <TextField
-                                type="text"
-                                placeholder="Occupation"
-                                inputRef={ref => { this.signup.occupation = ref }}
-                                value={data.occupation}
-                                name="First Name"
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <SelectField
-                                componentClass="select"
-                                inputRef={ref => { this.signup.smoke = ref }}
-                                options={this.getArray('smoke')}
-                                value={data.smoke_id}
                             />
                         </FormGroup>
                     </Col>
@@ -137,11 +136,12 @@ class SignUpTwoGirl extends Component {
                             />
                         </FormGroup>
                         <FormGroup>
-                            <SelectField
-                                componentClass="select"
-                                inputRef={ref => { this.signup.drink = ref }}
-                                options={this.getArray('drink')}
-                                value={data.drink_id}
+                            <TextField
+                                type="text"
+                                placeholder="Occupation"
+                                inputRef={ref => { this.signup.occupation = ref }}
+                                value={data.occupation}
+                                name="First Name"
                             />
                         </FormGroup>
                     </Col>

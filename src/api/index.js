@@ -51,8 +51,6 @@ export default {
             method: 'get',
             headers: {
                 'Authorization': 'Bearer ' + token
-                //'Accept': 'application/json',
-                //'Content-Type': 'application/json'
             }
         })
         .then(responseHandler)
@@ -64,8 +62,6 @@ export default {
             method: 'get',
             headers: {
                 'Authorization': 'Bearer ' + token
-                //'Accept': 'application/json',
-                //'Content-Type': 'application/json'
             }
         })
         .then(responseHandler)
@@ -150,6 +146,17 @@ export default {
 
     removeFromFavorite(id, token) {
         return fetch(config.API_URL + 'user/members/favorite/' + id + '/remove', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    addViewed(id, token) {
+        return fetch(config.API_URL + 'user/view/' + id, {
             method: 'get',
             headers: {
                 'Authorization': 'Bearer ' + token

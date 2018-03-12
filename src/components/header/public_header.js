@@ -45,8 +45,7 @@ class PublicHeader extends Component {
                     role="presentation"
                     eventKey={2}
                     title="Support" 
-                    id="support-nav-dropdown"
-                >
+                    id="support-nav-dropdown">
                     <Link to="/send-request">Send Request</Link>
                     <Link to="/faq">FAQ</Link>
                 </NavDropdown>

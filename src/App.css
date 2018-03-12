@@ -55,8 +55,11 @@ body .title {
   font-family: "bebas_neue",Helvetica,Arial,sans-serif;
   text-transform: uppercase;
   color: #828282;
-  font-size: 14px;
   letter-spacing: 1px;
+}
+
+.text-grey {
+  color: #828282;
 }
 
 .react-confirm-alert-button-group > button:last-child {
@@ -73,6 +76,10 @@ body .title {
 
 .p-15 {
   padding: 15px;
+}
+
+.pt-17 {
+  padding-top: 17px;
 }
 
 .pt-15 {

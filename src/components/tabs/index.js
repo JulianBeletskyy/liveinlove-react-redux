@@ -7,12 +7,12 @@ import style from './style.css'
 
 class CustomTabs extends Component {
 
-    handleSelect(key) {
+    handleSelect = (key) => {
     	if (key.indexOf('link') + 1) {
     		let temp = key.split('-')
     		history.push(temp[0])
     	} else {
-    		store.dispatch(setActiveTab(key))
+    		store.dispatch(setActiveTab(key, this.props.tabKey))
     	}
   	}
 
@@ -21,11 +21,10 @@ class CustomTabs extends Component {
   	}
 
 	render() {
-		const active_tab = this.props.services.active_tab || this.props.activeKey
-
+		const tabs = this.props.services.tabs
 		return (
 			<div className={style.wrapTab}>
-				<Tabs id="tab" activeKey={active_tab} onSelect={this.handleSelect}>
+				<Tabs id="tab" activeKey={tabs[this.props.tabKey]} onSelect={this.handleSelect}>
 				{
 					this.props.tabs.map((tab, i) => this.printTabs(tab, i))
 				}	
@@ -38,7 +37,7 @@ class CustomTabs extends Component {
 const mapStateToProps = (state) => {
 	return {
 		services: {
-			active_tab: state.services.active_tab
+			tabs: state.services.tabs
 		}
 	}
 }

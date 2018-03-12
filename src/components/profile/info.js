@@ -59,6 +59,10 @@ class InfoProfile extends Component {
   		}
   	}
 
+  	addToPrivate = () => {
+  		console.log(this.props.user.data.selected_img)
+  	}
+
   	onDrop = (picture) => {
         if (picture) {
             store.dispatch(addToGallery(picture[0], this.props.user.token))
@@ -117,19 +121,26 @@ class InfoProfile extends Component {
 									</div>
 									<Row>
 										<Col sm={4}>
-											<BtnMain
-						                        type="button"
-						                        bsStyle="success"
-						                        text={"Remove " + selected.length + ' photos'}
-						                        onClick={this.removePhoto}
-						                        disabled={! selected.length}
-						                    />
-					                    </Col>
-					                    <Col sm={4}>
 						                    <BtnUpload
 						                        onChange={this.onDrop}
 						                        title="Upload photo"
 						                    />
+					                    </Col>
+										<Col sm={4}>
+											<BtnMain
+						                        type="button"
+						                        bsStyle="success"
+						                        text={'Remove ' + selected.length + ' photos'}
+						                        onClick={this.removePhoto}
+						                        disabled={! selected.length} />
+					                    </Col>
+					                    <Col sm={4}>
+					                    	<BtnMain
+						                        type="button"
+						                        bsStyle="success"
+						                        text={"Add to private"}
+						                        onClick={this.addToPrivate}
+						                        disabled={! selected.length} />
 					                    </Col>
 				                    </Row>
 								</Col>
