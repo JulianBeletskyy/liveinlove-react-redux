@@ -5,6 +5,7 @@ const initialState = {
     new_list: [],
     popular_list: [],
     favorite_list: [],
+    search_list: [],
     data: {
         avatar: {},
         birthday: {},

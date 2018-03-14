@@ -66,6 +66,14 @@ body .title {
   background: #27C2D3;
 }
 
+.react-confirm-alert {
+  text-align: center;
+}
+
+.react-confirm-alert-button-group {
+  justify-content: center;
+} 
+
 .ethniticy-block {
     padding: 2px 5px;
 }

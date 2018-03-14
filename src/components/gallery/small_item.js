@@ -2,56 +2,63 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
 import { FormGroup } from 'react-bootstrap'
-import { MainModal } from 'components'
-import { toggleModal } from 'actions'
 import style from './small_item.css'
 
 class SmallItem extends Component {
-    showModal = () => {
-        store.dispatch(toggleModal(true, 'photo_preview'))
+    constructor(props) {
+        super(props);
+        this.state = {
+            active: false
+        };
     }
 
-    removePhoto = () => {
-        if(window.confirm('Are you sure?')) {
-            
-        }
+    showMenu = (event) => {
+        event.stopPropagation()
+        this.setState({active: ! this.state.active})
     }
 
     render() {
-        const { photo_preview } = this.props.modals
+        const activeClass = this.state.active ? style.active : ''
+        const hiddenClass = this.props.image.private && ! this.props.profile ? style.hidden : ''
+        let text = ''
+        let classInfo = ''
+        let textMenu = ''
+        switch (this.props.client) {
+            case true: 
+                text = this.props.image.active ? 'active' : 'unactive';
+                textMenu =  this.props.image.active ? 'unactive' : 'active';
+                classInfo = this.props.image.active ? style.success : style.danger;
+                break;
+            case false: 
+                text = ! this.props.image.private ? 'public' : 'private';
+                textMenu = ! this.props.image.private ? 'private' : 'public';
+                classInfo = ! this.props.image.private ? style.success : style.danger;
+                break;
+            default: text = ''
+        }
         return (
-            <div>
-                <FormGroup>
-                    <div className={style.wrap}>
-                        <div>
-                            <img src={this.props.croped} className={style.img} />
-                            <div className={style.hover}>
-                                <a href="javascript:;" className={style.addMain}>Add Main</a>
-                                <a href="javascript:;" onClick={this.showModal} className={style.preview}>Preview</a>
-                            </div>
-                        </div>
-                        <span className={style.close} onClick={this.removePhoto}><i className="fas fa-times"></i></span>
-                    </div>
-                </FormGroup>
-                <MainModal
-                    body={<div><img src={this.props.original} className={style.img} /></div>}
-                    title="Photo Preview"
-                    show={photo_preview}
-                    keyModal="photo_preview"
-                />
+            <div className={style.wrap} onClick={this.props.onClick}>
+                <img src={this.props.image.src || this.props.image.image} className={style.img + ' ' + hiddenClass} />
+                {
+                    this.props.edit
+                    ?   <span className={style.icon} onClick={this.showMenu}>
+                            <i className="fas fa-pen-square fa-2x"></i>
+                        </span>
+                    : ''
+                }
+                <ul className={style.menu + ' ' + activeClass}>
+                    <span onClick={this.showMenu} className={style.closeBtn}><i className="fas fa-times"></i></span>
+                    <li onClick={(e) => {this.showMenu(e); this.props.removePhoto(e)}} className={style.menuItem + ' ' + 'font-bebas'}>Remove Photo</li>
+                    <li onClick={(e) => {this.showMenu(e); this.props.client ? this.props.toggleActive(e) : this.props.togglePrivate(e)}} className={style.menuItem + ' ' + 'font-bebas'}>Make {textMenu}</li>
+                </ul>
+                {
+                    this.props.info
+                    ? <span className={style.infoImg + ' ' + classInfo}>{text}</span>
+                    : ''
+                }
             </div>
         );
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        modals: {
-            photo_preview: state.modals.photo_preview
-        }
-    }
-}
-
-export default connect(
-    mapStateToProps
-)(SmallItem);
+export default SmallItem

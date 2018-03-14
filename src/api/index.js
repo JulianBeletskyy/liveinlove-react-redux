@@ -351,7 +351,35 @@ export default {
     },
 
     removePhotos(data, token) {
-        return fetch(config.API_URL + 'gallery/hide', {
+        return fetch(config.API_URL + 'gallery/remove', {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    toggleActive(data, url, token) {
+        return fetch(config.API_URL + 'gallery/' + url, {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    togglePrivate(data, url, token) {
+        return fetch(config.API_URL + 'gallery/' + url, {
             method: 'post',
             headers: {
                 'Authorization': 'Bearer ' + token,
@@ -423,6 +451,32 @@ export default {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    getSearchProfileId(profile_id, token) {
+        return fetch(config.API_URL + 'user/search/' + profile_id, {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+    getSearch(data, token) {
+        return fetch(config.API_URL + 'user/search', {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         })
         .then(responseHandler)
         .catch(error => console.log(error))
