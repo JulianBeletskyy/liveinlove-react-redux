@@ -365,6 +365,7 @@ export function getMembers(token) {
         .then(json => {
             if (json.data) {
                 dispatch(setMembers(json.data, 'list'))
+                dispatch(setMembers(json.data, 'search_list'))
             }
         })
         .catch(error => {
@@ -429,10 +430,11 @@ export function getMemberInfo(token, id) {
     }
 }
 
-export function toggleLightBox(value) {
+export function toggleLightBox(value, key) {
     return {
         type: types.TOGGLE_LIGHT_BOX,
-        value
+        value,
+        key
     }
 }
 
@@ -545,6 +547,34 @@ export function removePhotos(value, token) {
     }
 }
 
+export function toggleActive(data, url, token) {
+    return dispatch => {
+        return api.toggleActive(data, url, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(getGallery(token))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export function togglePrivate(data, url, token) {
+    return dispatch => {
+        return api.togglePrivate(data, url, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(getGallery(token))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
 export function setGallery(value) {
     return {
         type: types.SET_GALLERY,
@@ -563,6 +593,18 @@ export function setSelected(value) {
     return {
         type: types.SET_SELECTED,
         value
+    }
+}
+
+export function gotoPrevImg() {    
+    return {
+        type: types.PREV_IMG
+    }
+}
+
+export function gotoNextImg() {    
+    return {
+        type: types.NEXT_IMG
     }
 }
 
@@ -623,6 +665,36 @@ export function setAlert(text, level) {
 export function removeAlert() {
     return {
         type: types.REMOVE_ALERT
+    }
+}
+
+//SEARCH
+
+export function getSearchProfileId(profile_id, token) {
+    return dispatch => {
+        return api.getSearchProfileId(profile_id, token)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setMembers([json.data], 'search_list'))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function getSearch(data, token) {
+    return dispatch => {
+        return api.getSearch(data, token)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setMembers(json.data, 'search_list'))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 }
 

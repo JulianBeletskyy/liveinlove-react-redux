@@ -1,24 +1,11 @@
 import React, { Component } from 'react'
 import Tabs from 'components/tabs'
-import CustomGallery from 'components/gallery/gallery.js'
+import CustomGallery from 'components/gallery/custom_gallery.js'
 import InfoBlock from 'components/members/info_block.js'
 import MessageBlock from 'components/members/message_block.js'
+import GalleryBlock from './gallery_block.js'
 
 class MemberInfo extends Component {
-
-    getGallery = () => {
-        let images = []
-        for (let k in this.props.options.gallery) {
-            images.push({
-                id: this.props.options.gallery[k].id,
-                src: this.props.options.gallery[k].image,
-                thumbnail: this.props.options.gallery[k].image,
-                thumbnailWidth: 150,
-                thumbnailHeight: 150})
-            
-        }
-        return images
-    }
 	
     render() {
         return (
@@ -31,7 +18,14 @@ class MemberInfo extends Component {
             		}, {
             			eventKey: 'gallery', 
             			title: 'Gallery', 
-            			content: <div><CustomGallery images={this.getGallery()} isSelected={false} /></div>
+            			content: <CustomGallery 
+                                    images={this.props.options.gallery}
+                                    info={false}
+                                    edit={false} />
+                    }, {
+                        eventKey: 'video', 
+                        title: 'Video', 
+                        content: <div></div>
                     }, {
                         eventKey: 'message', 
                         title: 'Send Message', 

@@ -5,7 +5,7 @@ import { setClientInfo } from 'actions'
 import { Row, Col } from 'react-bootstrap'
 import Cropper from 'react-cropper'
 import 'cropperjs/dist/cropper.css'
-import CustomGallery from 'components/gallery/gallery.js'
+import CustomGallery from 'components/gallery/custom_gallery.js'
 
 class EditGallery extends Component {
     constructor(props) {
@@ -32,13 +32,12 @@ class EditGallery extends Component {
         }
     }
 
-    setAvatar = (e, k) => {
-        store.dispatch(setClientInfo({temp_avatar: k.target.src}))
+    setAvatar = (e) => {
+        store.dispatch(setClientInfo({temp_avatar: e.src}))
         this.crop()
     }
 
     render() {
-        const images = this.props.user.data.images.public
         return (
             <div>
                 <Row>
@@ -55,11 +54,12 @@ class EditGallery extends Component {
                         />
                     </Col>
                     <Col sm={8}>
-                       <CustomGallery
-                            images={images}
-                            isSelected={false}
-                            onClick={this.setAvatar}
-                        />
+                       <CustomGallery 
+                            images={this.props.user.data.images}
+                            info={false}
+                            edit={false}
+                            onClick={(e) => {this.setAvatar(e)}}
+                            profile={true} />
                     </Col>
                 </Row>
             </div>

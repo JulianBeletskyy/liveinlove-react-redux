@@ -56,11 +56,7 @@ const initialState = {
         membership: {},
         active_gallery: 'main',
         selected_img: [],
-        images: {
-            public: [],
-            privat: [],
-            video: []
-        }
+        images: []
     },
     countries: []
 }
@@ -118,18 +114,9 @@ export default function user(user = initialState, action = {}) {
                 data: temp
             });
         case types.SET_IMAGES:
-            temp.selected_img = []
+            temp.images = []
             for (let k in action.value) {
-                temp.images[k] = []
-                for (let j in action.value[k]) {
-                    temp.images[k].push({
-                        id: action.value[k][j].id,
-                        src: action.value[k][j].image,
-                        thumbnail: action.value[k][j].image,
-                        thumbnailWidth: 150,
-                        thumbnailHeight: 100
-                    })
-                }
+                temp.images.push(action.value[k])
             }
             return Object.assign({}, user, {
                 data: temp

@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { FormGroup, Col, Row } from 'react-bootstrap'
-import { getNewMembers, getMembers } from 'actions'
+import { getNewMembers, getMembers, getSearchProfileId } from 'actions'
 import MemberBlock from 'components/members/member_block.js'
 import store from 'store'
 import Tabs from 'components/tabs'
 import SearchBlock from 'components/members/search_block.js'
 import { TextField } from 'components/form/inputs'
 import BtnMain from 'components/form/buttons/main_button.js'
+import Validator from 'validate'
 
 class MainProfile extends Component {
     constructor(props) {
@@ -16,9 +17,16 @@ class MainProfile extends Component {
         store.dispatch(getMembers(props.user.token))
     }
 
-	render() {
-        const { new_list, popular_list, list } = this.props.members
+    getSearch = () => {
+        let error = 1
+        error *= Validator.check(this.profile_id.value, ['required'], 'Profile ID')
+        if (error) {
+            store.dispatch(getSearchProfileId(this.profile_id.value, this.props.user.token))
+        }
+    }
 
+	render() {
+        const { new_list, popular_list, list, search_list } = this.props.members
 		return (
             <div className="pt-15">
                 <Row>
@@ -30,7 +38,6 @@ class MainProfile extends Component {
                                 inputRef={ref => { this.profile_id = ref }}
                                 value={''}
                                 name="Profile ID"
-                                key="first_name"
                             />
                         </FormGroup>
                     </Col>
@@ -57,7 +64,7 @@ class MainProfile extends Component {
                         }, {
                             eventKey: 'girls', 
                             title: 'Advanced Search', 
-                            content: <div><SearchBlock /><MemberBlock list={list} /></div>
+                            content: <div><SearchBlock /><MemberBlock list={search_list} /></div>
                         }
                     ]}
                     activeKey="popular"
@@ -72,7 +79,8 @@ const mapStateToProps = (state) => {
         members: {
             new_list: state.members.new_list,
             popular_list: state.members.popular_list,
-            list: state.members.list
+            list: state.members.list,
+            search_list: state.members.search_list
         },
         user: {
             token: state.user.token
