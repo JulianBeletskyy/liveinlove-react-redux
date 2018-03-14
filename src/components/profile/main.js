@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { FormGroup, Col, Row } from 'react-bootstrap'
-import { getNewMembers, getMembers, getSearchProfileId } from 'actions'
+import { getNewMembers, getMembers, getPopularMembers, getSearchProfileId } from 'actions'
 import MemberBlock from 'components/members/member_block.js'
 import store from 'store'
 import Tabs from 'components/tabs'
@@ -14,6 +14,7 @@ class MainProfile extends Component {
     constructor(props) {
         super(props)
         store.dispatch(getNewMembers(props.user.token))
+        store.dispatch(getPopularMembers(props.user.token))
         store.dispatch(getMembers(props.user.token))
     }
 
