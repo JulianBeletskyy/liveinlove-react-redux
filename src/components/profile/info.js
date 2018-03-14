@@ -46,7 +46,6 @@ class InfoProfile extends Component {
     }
 
     checkLimit = () => {
-    	let count = 0
     	if (this.props.user.data.role === 'client') {
     		if (this.props.user.data.images.length >= 11) {
     			store.dispatch(setAlert('You can\'t upload more photos in your membership', 'error'))
