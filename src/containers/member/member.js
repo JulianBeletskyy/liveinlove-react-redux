@@ -18,11 +18,11 @@ class Member extends Component {
     }
 
     openLightBox = () => {
-       store.dispatch(toggleLightBox(true))
+       store.dispatch(toggleLightBox('avatar', 0))
     }
 
     closeLightbox = () => {
-        store.dispatch(toggleLightBox(false))
+        store.dispatch(toggleLightBox(''))
     }
 
     toggleFavorite = () => {
@@ -114,12 +114,12 @@ class Member extends Component {
                         }
                     </Grid>
                 </div>
-                <Lightbox
+                {<Lightbox
                     images={[{src: this.props.members.data.avatar.original}]}
-                    isOpen={this.props.services.gallery.avatar}
+                    isOpen={this.props.services.gallery.show_light_box == 'avatar'}
                     backdropClosesModal={true}
                     showImageCount={false}
-                    onClose={this.closeLightbox} />
+                    onClose={this.closeLightbox} />}
             </div>
         );
     }
@@ -129,6 +129,7 @@ const mapStateToProps = (state) => {
     return {
         services: {
             gallery: {
+                show_light_box: state.services.gallery.show_light_box,
                 avatar: state.services.gallery.avatar
             }
         },

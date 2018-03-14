@@ -1,55 +1,120 @@
 :local(.wrap) {
 	position: relative;
+    overflow: hidden;
+    flex-basis: 200px;
+    margin-bottom: 5px;
+    padding: 1px;
 }
 
 :local(.img) {
-	max-width: 100%;
-}
-
-:local(.hover) {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: black;
-	opacity: 0;
-	color: #fff;
-	text-align: center;
-}
-
-:local(.hover a) {
-	color: #fff;
-}
-
-:local(.hover:hover) {
-	opacity: 0.5;
-}
-
-:local(.hover:hover a) {
-	text-decoration: none;
-}
-
-:local(.close) {
-	position: absolute;
-	top: -5px;
-    right: -15px;
-}
-
-:local(.close:hover) {
 	cursor: pointer;
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 0px;
+	object-fit: cover;
+	height: 200px;
 }
 
-:local(.preview) {
-	position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 20%;
+:local(.img:hover + .icon) {
+	display: block;
 }
 
-:local(.addMain) {
-	position: absolute;
-    left: 0;
-    right: 0;
-    top: 20%;
+:local(.hidden) {
+    filter: blur(5px);
 }
+
+:local(.icon) {
+	position: absolute;
+	z-index: 2;
+	top: 8px;
+	right: 8px;
+	opacity: 0.6;
+	cursor: pointer;
+	display: none;
+}
+
+:local(.menu) {
+    transition: opacity 0.3s linear;
+    display: none;
+    opacity: 0;
+    border: none;
+    border-radius: 0;
+    letter-spacing: 0.6px;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    margin-right: -80px;
+    margin-top: -31px;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+}
+
+:local(.infoImg) {
+	position: absolute;
+    bottom: 5px;
+    left: 5px;
+    border-radius: 5px;
+    padding: 0px 5px;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+:local(.infoImg.success) {
+    color: #0fe244;
+    border: 1px solid #0fe244;
+}
+
+:local(.infoImg.danger) {
+    color: #D94C43;
+    border: 1px solid #D94C43;
+}
+
+:local(.menu.active) {
+	opacity: 1;
+    display: block;
+    margin-right: -80px;
+    margin-top: -31px;
+    padding-top: 20px;
+}
+
+:local(.closeBtn) {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    color: #828282;
+}
+
+:local(.menuItem:hover) {
+    background-color: #e2e2e2;
+}
+
+:local(li.menuItem ) {
+   	padding: 3px 20px;
+    color: #333;
+    cursor: default;
+}
+
+:local(.icon:hover) {
+	opacity: 1;
+	display: block;
+}
+
+:local(.galleryWrap) {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+/*
+@media (max-width: 992px) {
+	:local(.galleryWrap) {
+		justify-content: center;
+	}
+}
+*/

@@ -11,6 +11,7 @@ class CustomGallery extends Component {
                 enableImageSelection={this.props.isSelected}
                 onClickThumbnail={this.props.onClick ? this.props.onClick : ''}
                 isOpen={this.props.isOpen}
+                showLightboxThumbnails={true}
             />
         );
     }

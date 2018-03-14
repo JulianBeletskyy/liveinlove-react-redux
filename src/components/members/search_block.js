@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import store from 'store'
+import { setAlert, getSearch } from 'actions'
 import { Row, Col, FormGroup } from 'react-bootstrap'
 import { SelectField } from 'components/form/inputs'
 import BtnMain from 'components/form/buttons/main_button.js'
@@ -8,11 +10,27 @@ class SearchBlock extends Component {
     constructor(props) {
         super(props)
         this.search = {
-            match: {}
+            match: {
+                from: {},
+                to: {}
+            }
         }
     }
 
     getSearch = () => {
+        if (this.search.match.from.value > this.search.match.to.value && this.search.match.to.value > 0) {
+            store.dispatch(setAlert('Match is incorrect', 'error'))
+            return
+        }
+        let data = {
+            from: this.search.match.from.value,
+            to: this.search.match.to.value ? (this.search.match.to.value * 1) + 1 : this.search.match.to.value,
+            eyes_id: this.search.eyes.value,
+            children: this.search.children.value,
+            hair_color_id: this.search.hair_color.value
+        }
+        
+        store.dispatch(getSearch(data, this.props.user.token))
     }
 
     getNumArray = (type, from, to) => {
@@ -121,6 +139,9 @@ const mapStateToProps = (state) => {
         options: {
             hair_colors: state.options.hair_colors,
             eyes: state.options.eyes
+        },
+        user: {
+            token: state.user.token
         }
     }
 }
