@@ -56,7 +56,8 @@ const initialState = {
         membership: {},
         active_gallery: 'main',
         selected_img: [],
-        images: []
+        images: [],
+        video: []
     },
     countries: []
 }
@@ -118,6 +119,11 @@ export default function user(user = initialState, action = {}) {
             for (let k in action.value) {
                 temp.images.push(action.value[k])
             }
+            return Object.assign({}, user, {
+                data: temp
+            });
+        case types.SET_VIDEO:
+            temp.video = action.value
             return Object.assign({}, user, {
                 data: temp
             });

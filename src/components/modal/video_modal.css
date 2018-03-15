@@ -1,0 +1,28 @@
+:local(.modalWrap) .modal-content {
+  background: transparent;
+	box-shadow: 0 0 0 rgba(0,0,0,0);
+	border: none;
+}
+
+:local(.modalWrap).modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+:local(.modalWrap).modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+:local(.modalWrap) .modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.modal-backdrop.in {
+  opacity: 0.3;
+}

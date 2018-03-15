@@ -7,7 +7,8 @@ const initialState = {
     avatar: false,
     photo_preview: false,
     plans: false,
-    credits: false
+    credits: false,
+    video: false
 }
 
 export default function modals(modals = initialState, action = {}) {

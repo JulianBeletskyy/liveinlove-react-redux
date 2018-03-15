@@ -8,8 +8,8 @@ class BtnMain extends Component {
         return (
             <Button
                 type={this.props.type}
-                bsStyle={this.props.bsStyle + ' ' + colorClass}
-                bsClass={style.button}
+                bsStyle={this.props.bsStyle}
+                bsClass={style.button  + ' ' + colorClass}
                 onClick={this.props.onClick}
                 disabled={this.props.disabled}
             >

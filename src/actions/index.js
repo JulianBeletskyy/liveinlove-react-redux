@@ -473,6 +473,7 @@ export function removeFromFavorite(id, token) {
         .then(json => {
             if (json.data) {
                 dispatch(setFavorite(id, false))
+                dispatch(getFavoriteMembers(token))
             }
         })
         .catch(error => {
@@ -511,6 +512,20 @@ export function getGallery(token) {
         .then(json => {
             if (json.data) {
                 dispatch(setImages(json.data))
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export function getVideo(token) {
+    return dispatch => {
+        return api.getVideo(token)
+        .then(json => {
+            if (json.data) {
+                dispatch(setVideo(json.data))
             }
         })
         .catch(error => {
@@ -585,6 +600,13 @@ export function setGallery(value) {
 export function setImages(value) {
     return {
         type: types.SET_IMAGES,
+        value
+    }
+}
+
+export function setVideo(value) {
+    return {
+        type: types.SET_VIDEO,
         value
     }
 }
@@ -690,6 +712,43 @@ export function getSearch(data, token) {
             .then(json => {
                 if (json.data) {
                     dispatch(setMembers(json.data, 'search_list'))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+//MESSAGE
+
+export function getDialogs(token) {
+    return dispatch => {
+        return api.getDialogs(token)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setDialogsList(json.data))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function setDialogsList(value) {
+    return {
+        type: types.SET_DIALOGS_LIST,
+        value,
+    }
+}
+
+export function sendMessage(id, message, token) {
+    return dispatch => {
+        return api.sendMessage(id, message, token)
+            .then(json => {
+                if (json.data) {
+                    console.log(json.data)
                 }
             })
             .catch(error => {

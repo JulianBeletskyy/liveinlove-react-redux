@@ -16,7 +16,7 @@ export default {
             'path': '/profile/*',
             'component': 'Home'
         }, {
-            'path': '/mail',
+            'path': '/mail/*',
             'component': 'Home'
         }, {
             'path': '/girls',
@@ -40,7 +40,7 @@ export default {
             'path': '/profile/*',
             'component': 'Home'
         }, {
-            'path': '/mail',
+            'path': '/mail/*',
             'component': 'Home'
         }, {
             'path': '/contacts/*',

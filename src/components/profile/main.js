@@ -27,7 +27,7 @@ class MainProfile extends Component {
     }
 
 	render() {
-        const { new_list, popular_list, list, search_list } = this.props.members
+        const { new_list, popular_list, search_list } = this.props.members
 		return (
             <div className="pt-15">
                 <Row>
@@ -80,7 +80,6 @@ const mapStateToProps = (state) => {
         members: {
             new_list: state.members.new_list,
             popular_list: state.members.popular_list,
-            list: state.members.list,
             search_list: state.members.search_list
         },
         user: {

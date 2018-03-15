@@ -27,7 +27,7 @@ class ClientHeader extends Component {
         return (
            <ul className={style.navBar + " nav navbar-nav navbar-right"}>
                 <li role="presentation" className={url === 'mail' ? style.active : ''}>
-                    <Link to="/mail">Mail</Link>
+                    <Link to="/mail/main">Mail</Link>
                 </li>
 
                 <li role="presentation" className={url === 'profile' ? style.active : ''}>
