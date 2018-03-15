@@ -2,41 +2,25 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {Tabs, Tab, Row, Col, FormGroup } from 'react-bootstrap'
 import store, { history } from 'store'
-import { setSegment, setGallery, setSelected, addToGallery, removePhotos, setUpload, setAlert } from 'actions'
+import { setSegment, addToGallery, setAlert, getVideo } from 'actions'
 import AboutMe from './about_me.js'
 import style from './style.css'
 import CustomGallery from 'components/gallery/custom_gallery.js'
 import MembershipInfo from './membership_info.js'
-import BtnMain from 'components/form/buttons/main_button.js'
-import BtnUpload from 'components/form/buttons/button_upload.js'
-import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
-import TabItem from 'components/list/tab_item.js'
 import UploadField from 'components/form/inputs/upload_field'
+import VideoBlock from 'components/gallery/video_block.js'
 
 class InfoProfile extends Component {
 
 	constructor(props) {
         super(props)
         store.dispatch(setSegment('profile', props.match.params.tab))
+        store.dispatch(getVideo(props.user.token))
     }
 
     handleSelect(key) {
     	history.push(key)
-  	}
-
-  	removePhoto = () => {
-  		if (this.props.user.data.selected_img.length) {
-  			confirmAlert({
-	  			title: '',
-			    message: 'Are you sure to remove this photos?',      
-			    confirmLabel: 'Confirm',                        
-			    cancelLabel: 'Cancel',                           
-			    onConfirm: () => {
-			    	store.dispatch(removePhotos({'images': this.props.user.data.selected_img}, this.props.user.token))
-			    }
-		    })
-  		}
   	}
 
   	onDrop = (e) => {
@@ -92,6 +76,19 @@ class InfoProfile extends Component {
 						</div>
 					</Tab>
 					{
+						role === 'girl'
+						?	<Tab 
+								eventKey={'video'}
+								title="Video">
+								<div className="pt-15">
+									<VideoBlock
+										video={this.props.user.data.video} />
+								</div>
+							</Tab>
+							
+						: ''
+					}
+					{
 						role === 'client'
 						? 	<Tab 
 								eventKey={'membership'}
@@ -123,7 +120,8 @@ const mapStateToProps = (state) => {
 		user: {
 			data: {
 				role: state.user.data.role,
-				images: state.user.data.images
+				images: state.user.data.images,
+				video: state.user.data.video
 			},
 			token: state.user.token
 		},

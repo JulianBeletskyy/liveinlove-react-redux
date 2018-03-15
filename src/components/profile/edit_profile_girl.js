@@ -94,6 +94,10 @@ class EditProfileGirl extends Component {
         }
   	}
 
+    printEthnicity = (ethnicity, i) => {
+        return (<Col sm={2} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={ethnicity.value} id={ethnicity.id} data="user" type="find_ethnicity"  /></Col>)
+    }
+
     printInterest = (interest, i) => {
         return (<Col sm={2} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={interest.value} id={interest.id} data="user" type="interests" /></Col>)
     }
@@ -215,7 +219,7 @@ class EditProfileGirl extends Component {
   
 	render() {
         const { data } = this.props.user
-  		const { interests } = this.props.options
+  		const { ethnicities, interests } = this.props.options
 		return (
             <div className={style.wrapper + ' girl'}>
     			<Row>
@@ -473,14 +477,7 @@ class EditProfileGirl extends Component {
                                 </Row>
                             </FormGroup>
                             <FormGroup>
-                                <SelectField
-                                    componentClass="select"
-                                    inputRef={ref => { this.user.want_children = ref }}
-                                    options={this.getArray('want_children')}
-                                    value={data.want_children.id}
-                                    label={true}
-                                    placeholder="Do you want children?"
-                                />
+                                <Row><Col sm={12}>{ethnicities.map((ethnicity, i) => this.printEthnicity(ethnicity, i))}</Col></Row>
                             </FormGroup>
                         </div>
                     </Col>

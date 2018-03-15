@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import store from 'store'
-import { FormGroup } from 'react-bootstrap'
 import style from './small_item.css'
 
 class SmallItem extends Component {
@@ -38,7 +35,7 @@ class SmallItem extends Component {
         }
         return (
             <div className={style.wrap} onClick={this.props.onClick}>
-                <img src={this.props.image.src || this.props.image.image} className={style.img + ' ' + hiddenClass} />
+                <img src={this.props.image.src || this.props.image.image} className={style.img + ' ' + hiddenClass} alt="" />
                 {
                     this.props.edit
                     ?   <span className={style.icon} onClick={this.showMenu}>

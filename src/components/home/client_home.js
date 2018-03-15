@@ -7,6 +7,7 @@ import InfoProfile from 'components/profile/info.js'
 import MainPofile from 'components/profile/main.js'
 import { Girls, Contacts } from 'containers'
 import Mail from 'components/mail'
+import Dialog from 'components/mail/dialog.js'
 
 class ClientHome extends Component {
     componentDidUpdate() {
@@ -23,7 +24,8 @@ class ClientHome extends Component {
                             <Switch>
                                 <Route path="/" exact component={MainPofile} />
                                 <Route path="/girls" exact component={Girls} />
-                                <Route path="/mail" exact component={Mail} />
+                                <Route path="/mail/main" exact component={Mail} />
+                                <Route path="/mail/:id" exact component={Dialog} />
                                 <Route path="/contacts/:tab" exact component={Contacts} />
                                 <Route path="/profile/edit/:tab" exact component={Edit} />
                                 <Route path="/profile/:tab" exact component={InfoProfile} />

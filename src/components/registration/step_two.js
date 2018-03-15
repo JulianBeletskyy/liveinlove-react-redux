@@ -77,7 +77,7 @@ class SignUpTwo extends Component {
             guides={false}
             background={false}
         /> 
-        : <img src="/assets/img/default-avatar.jpg" className="default-avatar" />
+        : <img src="/assets/img/default-avatar.jpg" className="default-avatar" alt="" />
 
         return (
             <form onSubmit={this.getSignUpThree} noValidate={true}>

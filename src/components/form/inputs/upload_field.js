@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { FormControl } from 'react-bootstrap'
-import store from 'store'
 import style from './select_field.css'
 import BtnMain from 'components/form/buttons/main_button.js'
 
