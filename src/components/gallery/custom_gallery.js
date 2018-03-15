@@ -74,7 +74,7 @@ class CustomGallery extends Component {
                 {this.props.images.map((image, i) => this.printPreview(image, i))}
                 <Lightbox
                     images={this.props.images}
-                    isOpen={this.props.services.gallery.show_light_box == 'main'}
+                    isOpen={this.props.services.gallery.show_light_box === 'main'}
                     backdropClosesModal={true}
                     showImageCount={true}
                     currentImage={this.props.services.gallery.img_light_box}

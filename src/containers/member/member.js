@@ -108,7 +108,8 @@ class Member extends Component {
                                     </Col>
                                     <Col md={9}>
                                         <MemberInfo
-                                            options={this.props.members.data} />
+                                            options={this.props.members.data}
+                                            client={this.props.user.data.role === 'client'} />
                                     </Col>
                                 </Row>
                         }
@@ -116,7 +117,7 @@ class Member extends Component {
                 </div>
                 {<Lightbox
                     images={[{src: this.props.members.data.avatar.original}]}
-                    isOpen={this.props.services.gallery.show_light_box == 'avatar'}
+                    isOpen={this.props.services.gallery.show_light_box === 'avatar'}
                     backdropClosesModal={true}
                     showImageCount={false}
                     onClose={this.closeLightbox} />}
@@ -137,7 +138,10 @@ const mapStateToProps = (state) => {
             data: state.members.data
         },
         user: {
-            token: state.user.token
+            token: state.user.token,
+            data: {
+                role: state.user.data.role
+            }
         }
     }
 }

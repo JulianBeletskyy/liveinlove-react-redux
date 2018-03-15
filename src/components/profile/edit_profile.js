@@ -76,7 +76,7 @@ class EditProfile extends Component {
   	}
 
     printEthnicity = (ethnicity, i) => {
-        return (<Col sm={2} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={ethnicity.value} id={ethnicity.id} data="user" type="female_ethnicity"  /></Col>)
+        return (<Col sm={2} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={ethnicity.value} id={ethnicity.id} data="user" type="find_ethnicity"  /></Col>)
     }
 
     printInterest = (interest, i) => {

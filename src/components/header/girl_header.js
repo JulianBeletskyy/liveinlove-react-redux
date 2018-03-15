@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import store, { history } from 'store'
-import { setSegment } from 'actions'
+import store from 'store'
 import { connect } from 'react-redux'
 import { NavDropdown } from 'react-bootstrap'
 import style from './style.css'
@@ -22,7 +21,7 @@ class GirlHeader extends Component {
         return (
            <ul className={style.navBar + " nav navbar-nav navbar-right"}>
                 <li role="presentation" className={url === 'mail' ? style.active : ''}>
-                    <Link to="/mail">Mail</Link>
+                    <Link to="/mail/main">Mail</Link>
                 </li>
 
                 <li role="presentation" className={url === 'profile' ? style.active : ''}>

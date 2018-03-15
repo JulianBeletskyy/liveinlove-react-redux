@@ -197,6 +197,19 @@ export default {
         .catch(error => console.log(error))
     },
 
+    getVideo(token) {
+        return fetch(config.API_URL + 'girl/video', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token
+                //'Accept': 'application/json',
+                //'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
     getMemberships() {
         return fetch(config.API_URL + 'memberships/active', {
             method: 'get',
@@ -468,6 +481,7 @@ export default {
         .then(responseHandler)
         .catch(error => console.log(error))
     },
+
     getSearch(data, token) {
         return fetch(config.API_URL + 'user/search', {
             method: 'post',
@@ -477,6 +491,37 @@ export default {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    sendMessage(id, message, token) {
+        const data = {
+            receiver_id: id,
+            original: message
+        }
+        return fetch(config.API_URL + 'user/message/send', {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
+    },
+
+    getDialogs(token) {
+        return fetch(config.API_URL + 'user/message/dialogs', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
         })
         .then(responseHandler)
         .catch(error => console.log(error))
