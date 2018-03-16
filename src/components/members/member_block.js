@@ -5,7 +5,7 @@ import MemberPreview from './preview.js'
 class MemberBlock extends Component {
 
     printList = (member, i) => {
-        return (<Col key={i} sm={3}>
+        return (<Col key={i} sm={3} xs={6}>
                     <MemberPreview
                         options={member} />
                 </Col>)
@@ -13,11 +13,9 @@ class MemberBlock extends Component {
 
     render() {
         return (
-        	<div>
-	            <Row>
-                { this.props.list.map((member, i) => this.printList(member, i)) }
-                </Row>
-            </div>
+            <Row>
+            { this.props.list.map((member, i) => this.printList(member, i)) }
+            </Row>
         );
     }
 }

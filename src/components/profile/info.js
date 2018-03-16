@@ -16,7 +16,9 @@ class InfoProfile extends Component {
 	constructor(props) {
         super(props)
         store.dispatch(setSegment('profile', props.match.params.tab))
-        store.dispatch(getVideo(props.user.token))
+        if (props.user.data.role === 'girl') {
+        	store.dispatch(getVideo(props.user.token))
+        }
     }
 
     handleSelect(key) {

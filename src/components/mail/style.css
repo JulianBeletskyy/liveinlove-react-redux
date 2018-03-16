@@ -1,10 +1,66 @@
 :local(.wrap) {
+	position: relative;
 	padding: 5px;
 	cursor: pointer;
 	margin-bottom: 10px;
     -webkit-box-shadow: 0px 0px 15px 2px rgba(31,35,37,.078);
     box-shadow: 0px 0px 15px 2px rgba(31,35,37,.078);
     transition: box-shadow .3s;
+}
+
+:local(.badge) {
+	position: absolute;
+    background-color: #D94C43;
+    right: 7px;
+    top: 7px;
+    color: #fff;
+    padding: 0 6px;
+    border-radius: 10px;
+}
+
+:local(.loadWrap) {
+	position: relative;
+}
+
+:local(.back) {
+	cursor: pointer;
+}
+
+:local(.chatBody) {
+    background-color: #ECF1F4;
+    padding: 5px;
+    height: 350px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+:local(.messageTime) {
+	font-size: 12px;
+	opacity: 0.7;
+}
+
+:local(.avatar) {
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+}
+
+:local(.messageRow) {
+	padding: 5px; 
+}
+
+:local(.messageWrap) {
+    background-color: #fff;
+    max-width: 45%;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+	:local(.messageWrap) {
+		max-width: 80%;
+	}
 }
 
 :local(.wrap:hover) {
@@ -23,6 +79,13 @@
     padding: 5px;
 }
 
+:local(div.textWrap) {
+	display: block;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 :local(.imgWrap) {
 	width: 50px;
 	display: inline-block;
@@ -38,9 +101,3 @@
 	width: 100%;
 }
 
-:local(.wrap div:last-child) {
-	display: block;
-	overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
