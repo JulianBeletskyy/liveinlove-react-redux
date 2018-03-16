@@ -37,7 +37,6 @@
 }
 
 :local(.navbarDefault .navBar > li > a) {
-	color: white;
 	text-transform: uppercase;
 	font-weight: 700;
 	font-size: 15px;
@@ -45,7 +44,6 @@
 	letter-spacing: 2px;
 	padding-right: 0;
 	padding-left: 0;
-	color: white;
 }
 
 :local(.navbarDefault) .navbar-nav>.open>a,
@@ -54,7 +52,6 @@
 :local(.navbarDefault) .navbar-nav>li>a:focus, 
 :local(.navbarDefault) .navbar-nav>li>a:hover {
 	background-color: transparent;
-	color: white; 
 }
 
 :local(.navBar>li>a:hover),
@@ -63,7 +60,6 @@
 :local(.nav .open>a:focus), 
 :local(.nav .open>a:hover)  {
 	background-color: transparent;
-	color: white;
 }
 
 :local(.navBar > li:hover:after) {
@@ -115,11 +111,13 @@
 }
 
 @media screen and (max-width: 768px) {
-	:local(.navBar > li > ul > a) {
-		color: white;
-	}
-
 	:local(.navbarDefault) .navbar-collapse {
 		margin-top: 15px;
+	}
+}
+
+@media (max-width: 360px) {
+	.nav-tabs>li>a {
+
 	}
 }

@@ -41,28 +41,28 @@ class App extends Component {
         const { login, recovery } = this.props.modals
         return (
             <div className="App">
-                    <Header />
-                        <Switch>
-                            <Route path="/activate/:activate_hash" exact component={Home} />
-                            <Route path="/recovery/:hash" exact component={Home} />
-                            {
-                                routes.map((route, i) => this.printRoutes(route, i))
-                            }
-                        </Switch>
-                    <PublicFooter />
-                    <MainModal
-                        body={<Auth />}
-                        title="Log In"
-                        show={login}
-                        keyModal="login"
-                    />
-                    <MainModal
-                        body={<Recovery />}
-                        title="Recovery"
-                        show={recovery}
-                        keyModal="recovery"
-                    />
-                    <Alert />
+                <Header />
+                    <Switch>
+                        <Route path="/activate/:activate_hash" exact component={Home} />
+                        <Route path="/recovery/:hash" exact component={Home} />
+                        {
+                            routes.map((route, i) => this.printRoutes(route, i))
+                        }
+                    </Switch>
+                <PublicFooter />
+                <MainModal
+                    body={<Auth />}
+                    title="Log In"
+                    show={login}
+                    keyModal="login"
+                />
+                <MainModal
+                    body={<Recovery />}
+                    title="Recovery"
+                    show={recovery}
+                    keyModal="recovery"
+                />
+                <Alert />
             </div>
         );
     }

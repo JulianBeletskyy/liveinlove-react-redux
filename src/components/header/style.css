@@ -101,10 +101,7 @@
 }
 
 @media screen and (max-width: 768px) {
-	:local(.navBar > li > ul > a) {
-		color: white;
-	}
-
+	
 	:local(.navbarDefault) .navbar-collapse {
 		margin-top: 15px;
 	}

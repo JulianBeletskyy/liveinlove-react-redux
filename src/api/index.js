@@ -525,5 +525,18 @@ export default {
         })
         .then(responseHandler)
         .catch(error => console.log(error))
+    },
+
+    getMessages(id, token) {
+        return fetch(config.API_URL + 'user/message/messages/' + id, {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+        .catch(error => console.log(error))
     }
 }

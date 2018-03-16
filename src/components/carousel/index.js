@@ -34,7 +34,7 @@ class Carousel extends Component {
         };
 
         return (
-            <div>
+            <div className="clearfix">
                 <Slider {...settings}>
                     { this.props.items.map((item, i) => this.printItems(item, i))}
                 </Slider>

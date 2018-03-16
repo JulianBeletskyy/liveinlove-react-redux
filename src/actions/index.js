@@ -2,6 +2,7 @@ import * as types from './types.js'
 import api from '../api'
 import Cookies from 'js-cookie'
 import { history } from 'store'
+import { confirmAlert } from 'react-confirm-alert'
 
 // AUTH
 
@@ -736,6 +737,28 @@ export function getDialogs(token) {
     }
 }
 
+export function getMessages(id, token) {
+    return dispatch => {
+        return api.getMessages(id, token)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setMessages(json.data, id))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function setMessages(value, id) {
+    return {
+        type: types.SET_MESSAGES,
+        value,
+        id
+    }
+}
+
 export function setDialogsList(value) {
     return {
         type: types.SET_DIALOGS_LIST,
@@ -748,7 +771,7 @@ export function sendMessage(id, message, token) {
         return api.sendMessage(id, message, token)
             .then(json => {
                 if (json.data) {
-                    console.log(json.data)
+                    
                 }
             })
             .catch(error => {
