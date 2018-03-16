@@ -60,11 +60,14 @@ class CustomGallery extends Component {
         confirmAlert({
             title: '',
             message: 'Are you sure to remove this photos?',
-            confirmLabel: 'Confirm',                        
-            cancelLabel: 'Cancel',                           
-            onConfirm: () => {
-                store.dispatch(removePhotos({'images': [image.id]}, this.props.user.token))
-            }
+            buttons: [
+                {
+                    label: 'Cancel'
+                }, {
+                    label: 'Confirm',
+                    onClick: () => store.dispatch(removePhotos({'images': [image.id]}, this.props.user.token))
+                }
+            ]
         })
     }
 

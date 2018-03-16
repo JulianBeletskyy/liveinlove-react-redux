@@ -14,23 +14,20 @@ class Mail extends Component {
     
     render() {
         return (
-            <div>
-                <Tabs 
-                    tabs={[
-                        {
-                            eventKey: 'messages', 
-                            title: 'Messages', 
-                            content: <MessagesBlock />
-                        }, {
-                            eventKey: 'contacts', 
-                            title: 'Contacts', 
-                            content: <ContactsBlock />
-                        }
-                    ]}
-                    activeKey="messages"
-                    tabKey="mail" />
-                
-            </div>
+            <Tabs 
+                tabs={[
+                    {
+                        eventKey: 'messages', 
+                        title: 'Messages', 
+                        content: <MessagesBlock />
+                    }, {
+                        eventKey: 'contacts', 
+                        title: 'Contacts', 
+                        content: <ContactsBlock />
+                    }
+                ]}
+                activeKey="messages"
+                tabKey="mail" />
         );
     }
 }

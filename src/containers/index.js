@@ -9,4 +9,5 @@ import Girls from './girls/girls.js'
 import Services from './services/services.js'
 import SuccessStories from './success_stories/success_stories.js'
 import Support from './support/support.js'
-export { NotFound, Home, About, Girls, Services, SuccessStories, Support, Blog, Loader, Member, Contacts }
+import Shop from './shop/shop.js'
+export { NotFound, Home, About, Girls, Services, SuccessStories, Support, Blog, Loader, Member, Contacts, Shop }

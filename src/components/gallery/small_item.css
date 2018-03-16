@@ -40,7 +40,7 @@
 }
 
 :local(.img:hover + .icon) {
-	display: block;
+	opacity: 0.8;
 }
 
 :local(.hidden) {
@@ -52,9 +52,8 @@
 	z-index: 2;
 	top: 8px;
 	right: 8px;
-	opacity: 0.6;
+	opacity: 0.3;
 	cursor: pointer;
-	display: none;
 }
 
 :local(.menu) {

@@ -9,6 +9,10 @@
     overflow: hidden;
 }
 
+:local(.padding) {
+    padding: 0 5px;
+}
+
 :local(.table:hover) {
     box-shadow: 5px 8.66px 30px 0 rgba(31,35,37,.078);
 }

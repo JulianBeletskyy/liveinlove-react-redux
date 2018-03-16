@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import store from 'store'
+import store, { history } from 'store'
 import Lightbox from 'react-images'
 import { getMemberInfo, addToFavorite, removeFromFavorite, addViewed, toggleLightBox } from 'actions'
 import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
@@ -15,6 +15,7 @@ class Member extends Component {
     constructor(props) {
         super(props)
         store.dispatch(getMemberInfo(props.user.token, props.match.params.id))
+        console.log(props)
     }
 
     openLightBox = () => {
@@ -103,6 +104,15 @@ class Member extends Component {
                                                 text={this.props.members.data.favorite ? "Remove from favorite" : "Add to favorite"}
                                                 color="main"
                                                 onClick={this.toggleFavorite}
+                                            />
+                                        </FormGroup>
+                                        <FormGroup className="text-center">
+                                            <BtnMain
+                                                type="button"
+                                                bsStyle="success"
+                                                text="Send Gift"
+                                                color="main"
+                                                onClick={() => history.push(history.location.pathname+'/shop', this.props.members.data)}
                                             />
                                         </FormGroup>
                                     </Col>

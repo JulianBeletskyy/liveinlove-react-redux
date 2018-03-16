@@ -10,11 +10,7 @@ class MessagesBlock extends Component {
     
     render() {
         const data = this.props.messages.list
-        return (
-            <div>
-                { data.map((message, i) => this.printMessages(message, i)) }
-            </div>
-        );
+        return data.map((message, i) => this.printMessages(message, i))
     }
 }
 

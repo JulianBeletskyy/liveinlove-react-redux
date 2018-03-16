@@ -1,5 +1,5 @@
-:local(.planItem) {
-    padding: 0 15px;
+:local(.innerClass) {
+	padding: 1px 1px 1px 1px;
 }
 
 :local(.wrapArrow) {
