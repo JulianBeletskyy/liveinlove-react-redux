@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import store from 'store'
 import { setActiveCategory } from 'actions'
 import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
+import { history } from 'store'
 import style from './style.css'
 import AvatarImg from 'components/gallery/avatar_img.js'
 import SmallDivider from 'components/divider/small_divider.js'
@@ -20,6 +21,7 @@ class Shop extends Component {
 
     setCategory = (e) => {
         store.dispatch(setActiveCategory(e.target.id * 1))
+        history.push('/member/'+this.props.match.params.id+'/shop', this.member)
     }
 
     printCategory = (category, i) => {

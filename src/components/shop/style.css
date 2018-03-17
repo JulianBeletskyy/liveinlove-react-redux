@@ -96,12 +96,26 @@
     overflow: hidden;
 }
 
-
 :local(.img) {
     width: 100%;
     object-fit: cover;
     height: 300px;
     transition: all .3s;
+}
+
+:local(.bigImg) {
+    width: 100%;
+}
+
+:local(.title) {
+    color: #222;
+    font-weight: bold;
+    position: relative;
+}
+
+:local(.infoPrice) {
+    font-size: 24px;
+    color: #1EAF7D;
 }
 
 :local(.price) {
