@@ -10,7 +10,6 @@ class MessagePreview extends Component {
 
     render() {
         const dialog = this.props.options
-        const user = this.props.user
         
         return (
             <div className={style.wrap + ' ' + (this.props.client ? '' : 'girl')} onClick={this.goToDialog}>

@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import style from './small_item.css'
 import VideoModal from 'components/modal/video_modal.js'
-import MainModal from 'components/modal/modal.js'
 import { toggleModal, setAlert } from 'actions'
 import store from 'store'
 import { connect } from 'react-redux'
-
 
 class VideoPreview extends Component {
 

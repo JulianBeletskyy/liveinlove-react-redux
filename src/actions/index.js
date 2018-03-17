@@ -780,6 +780,59 @@ export function sendMessage(id, message, token) {
     }
 }
 
+//SHOP
+
+export function getCtegories() {
+    return dispatch => {
+        return api.getCtegories()
+            .then(json => {
+                if (json.data) {
+                    dispatch(setCategories(json.data))
+                    dispatch(setActiveCategory(json.data[0].id))
+                    dispatch(getProducts(json.data[0].id))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function getProducts(id) {
+    return dispatch => {
+        return api.getProducts(id)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setProducts(json.data))
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
+export function setCategories(value) {
+    return {
+        type: types.SET_CATEGORIES,
+        value
+    }
+}
+
+export function setProducts(value) {
+    return {
+        type: types.SET_PRODUCTS,
+        value
+    }
+}
+
+export function setActiveCategory(value) {
+    return {
+        type: types.SET_ACTIVE_CATEGORY,
+        value
+    }
+}
+
 //OPTIONS
 
 export function getOptions(type) {
