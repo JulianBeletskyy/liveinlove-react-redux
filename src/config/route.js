@@ -31,6 +31,9 @@ export default {
             'path': '/member/:id/shop',
             'component': 'Shop'
         }, {
+            'path': '/member/:id/shop/:prodId',
+            'component': 'Shop'
+        }, {
             'path': '*',
             'component': 'NotFound'
         }

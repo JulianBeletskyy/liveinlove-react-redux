@@ -4,8 +4,9 @@ import ProductPreview from './product_preview.js'
 
 class ProductsBlock extends Component {
 	printProducts = (product, i) => {
-		return <Col xs={6}><ProductPreview key={i} product={product} /></Col>
+		return <Col xs={6}><ProductPreview key={i} product={product} prodKey={i} /></Col>
 	}
+
     render() {
         return (
             <Row>

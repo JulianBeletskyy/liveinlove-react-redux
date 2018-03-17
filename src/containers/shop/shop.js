@@ -7,7 +7,9 @@ import style from './style.css'
 import AvatarImg from 'components/gallery/avatar_img.js'
 import SmallDivider from 'components/divider/small_divider.js'
 import ProductsBlock from 'components/shop/products_block.js'
+import ProductInfo from 'components/shop/product_info.js'
 import CategoryLink from 'components/shop/category_link.js'
+import { Route, Switch } from 'react-router-dom'
 
 
 class Shop extends Component {
@@ -34,10 +36,13 @@ class Shop extends Component {
                                 { this.props.shop.categories_list.map((category, i) => this.printCategory(category, i)) }
                             </Col>
                             <Col sm={8}>
-                                <ProductsBlock products={this.props.shop.products_list} />
+                                <Switch>
+                                    <Route path="/member/:id/shop" exact render={() => <ProductsBlock products={this.props.shop.products_list} />} />
+                                    <Route path="/member/:id/shop/:prodKey" exact render={(props) => <ProductInfo product={this.props.shop.products_list[props.match.params.prodKey]} />} />
+                                </Switch>
                             </Col>
                             <Col sm={2} className="text-center">
-                                <FormGroup >
+                                {/*<FormGroup>
                                     <strong>Receiver</strong>
                                 </FormGroup>
                                 <FormGroup>
@@ -45,7 +50,7 @@ class Shop extends Component {
                                 </FormGroup>
                                 <FormGroup>
                                     <span className="font-bebas">{this.member.first_name + ' ' + this.member.last_name}</span>
-                                </FormGroup>
+                                </FormGroup>*/}
                                 <SmallDivider text="Cart" />
                             </Col>
                         </Row>

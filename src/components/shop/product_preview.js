@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { history } from 'store'
 import { FormGroup } from 'react-bootstrap'
 import BtnMain from 'components/form/buttons/main_button.js'
 import style from './style.css'
@@ -6,7 +7,7 @@ import style from './style.css'
 class ProductPreview extends Component {
 
     goToProduct = () => {
-
+        history.push('shop/' + this.props.prodKey)
     }
 
     addToCart = () => {
@@ -15,7 +16,7 @@ class ProductPreview extends Component {
 
     render() {
         const product = this.props.product
-    	
+    	console.log(this.props)
         return (
             <div className={style.prodWrap}>
                 <img className={style.img} src={product.image} alt="" />
@@ -30,16 +31,15 @@ class ProductPreview extends Component {
                                 type="button"
                                 bsStyle="success"
                                 text="Preview"
-                                onClick={this.goToProduct}
-                            />
+                                onClick={this.goToProduct} />
                         </FormGroup>
                         <FormGroup>
                             <BtnMain
                                 type="button"
                                 bsStyle="success"
+                                icon={<i className="fas fa-gift"></i>}
                                 text="Add to cart"
-                                onClick={this.addToCart}
-                            />
+                                onClick={this.addToCart} />
                         </FormGroup>
                     </div>
                 </div>
