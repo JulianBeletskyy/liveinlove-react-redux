@@ -37,12 +37,12 @@ class Shop extends Component {
                             </Col>
                             <Col sm={8}>
                                 <Switch>
-                                    <Route path="/member/:id/shop" exact render={() => <ProductsBlock products={this.props.shop.products_list} />} />
+                                    <Route path="/member/:id/shop" exact render={() => <ProductsBlock member={this.member} products={this.props.shop.products_list} />} />
                                     <Route path="/member/:id/shop/:prodKey" exact render={(props) => <ProductInfo product={this.props.shop.products_list[props.match.params.prodKey]} />} />
                                 </Switch>
                             </Col>
                             <Col sm={2} className="text-center">
-                                {/*<FormGroup>
+                                <FormGroup>
                                     <strong>Receiver</strong>
                                 </FormGroup>
                                 <FormGroup>
@@ -50,7 +50,7 @@ class Shop extends Component {
                                 </FormGroup>
                                 <FormGroup>
                                     <span className="font-bebas">{this.member.first_name + ' ' + this.member.last_name}</span>
-                                </FormGroup>*/}
+                                </FormGroup>
                                 <SmallDivider text="Cart" />
                             </Col>
                         </Row>

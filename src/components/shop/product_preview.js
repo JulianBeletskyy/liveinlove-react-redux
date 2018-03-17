@@ -7,7 +7,8 @@ import style from './style.css'
 class ProductPreview extends Component {
 
     goToProduct = () => {
-        history.push('shop/' + this.props.prodKey)
+        console.log(this.props.member)
+        history.push('shop/' + this.props.prodKey, this.props.member)
     }
 
     addToCart = () => {
@@ -16,7 +17,6 @@ class ProductPreview extends Component {
 
     render() {
         const product = this.props.product
-    	console.log(this.props)
         return (
             <div className={style.prodWrap}>
                 <img className={style.img} src={product.image} alt="" />
