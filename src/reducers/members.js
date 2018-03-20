@@ -1,4 +1,4 @@
-import { SET_MEMBERS, SET_MEMBER_INFO, SET_FAVORITE } from 'actions/types.js'
+import { SET_MEMBERS, SET_MEMBER_INFO, SET_FAVORITE, SET_PAGES, ADD_MEMBERS } from 'actions/types.js'
 
 const initialState = {
     list: [],
@@ -6,6 +6,9 @@ const initialState = {
     popular_list: [],
     favorite_list: [],
     search_list: [],
+    current_page: 1,
+    last_page: 1,
+    next_link: '',
     data: {
         avatar: {},
         birthday: {},
@@ -20,9 +23,24 @@ const initialState = {
 export default function members(members = initialState, action = {}) {
     let temp = Object.assign([], members.data)
     switch (action.type) {
+        case SET_PAGES:
+            return Object.assign({}, members, {
+                current_page: action.value.meta.current_page,
+                last_page: action.value.meta.last_page,
+                next_link: action.value.links.next
+            });
         case SET_MEMBERS:
             return Object.assign({}, members, {
                 [action.key]: action.data
+            });
+        case ADD_MEMBERS:
+            let temp_list = Object.assign([], members.list)
+            for (let item of action.value) {
+                temp_list.push(item)
+            }
+            return Object.assign({}, members, {
+                list: temp_list,
+                search_list: temp_list
             });
         case SET_MEMBER_INFO:
             return Object.assign({}, members, {

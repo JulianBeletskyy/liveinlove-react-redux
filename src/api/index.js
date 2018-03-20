@@ -43,7 +43,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     getFullInfo(token) {
@@ -54,7 +53,6 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     getUserInfo(token) {
@@ -65,7 +63,6 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     getMembers(token) {
@@ -78,7 +75,6 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     getMemberInfo(token, id) {
@@ -91,7 +87,6 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     getNewMembers(token) {
@@ -104,7 +99,19 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
+    },
+
+    getMoreMembers(link, token) {
+        console.log(link)
+        return fetch(link, {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
     },
 
     getPopularMembers(token) {
@@ -117,7 +124,6 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     getFavoriteMembers(token) {
@@ -130,7 +136,6 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     addToFavorite(id, token) {
@@ -141,7 +146,6 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     removeFromFavorite(id, token) {
@@ -152,7 +156,6 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     addViewed(id, token) {
@@ -163,7 +166,6 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     setPlan(plan_id, value_id, token) {
@@ -181,7 +183,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     getGallery(token) {
@@ -194,7 +195,6 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     getVideo(token) {
@@ -207,7 +207,6 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     getMemberships() {
@@ -219,7 +218,17 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
+    },
+
+    getPackages() {
+        return fetch(config.API_URL + 'credits/active', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
     },
 
     updateUserProfile(data, token) {
@@ -233,7 +242,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     activateUser(hash) {
@@ -245,7 +253,6 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     sendRecovery(data) {
@@ -258,7 +265,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     updatePassword(data, hash) {
@@ -271,7 +277,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     changePassword(data, token) {
@@ -285,7 +290,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     signUpStart(data) {
@@ -298,7 +302,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     signUpOne(data) {
@@ -311,7 +314,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     signUpTwo(data) {
@@ -331,7 +333,6 @@ export default {
             body: formData
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     addToGallery(data, token) {
@@ -346,7 +347,6 @@ export default {
             body: formData
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     updateAvatar(data, token) {
@@ -360,7 +360,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     removePhotos(data, token) {
@@ -374,7 +373,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     toggleActive(data, url, token) {
@@ -388,7 +386,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     togglePrivate(data, url, token) {
@@ -402,7 +399,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     signUpTwoGirl(data) {
@@ -415,7 +411,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     signUpThree(data) {
@@ -428,7 +423,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     signUpThreeGirl(data) {
@@ -441,7 +435,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     signUpFinish(data) {
@@ -454,7 +447,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     getOptions(type) {
@@ -466,7 +458,6 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     getSearchProfileId(profile_id, token) {
@@ -479,7 +470,6 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     getSearch(data, token) {
@@ -493,7 +483,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     sendMessage(id, message, token) {
@@ -511,7 +500,6 @@ export default {
             body: JSON.stringify(data)
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     getDialogs(token) {
@@ -524,7 +512,6 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     },
 
     getMessages(id, token) {
@@ -537,6 +524,5 @@ export default {
             }
         })
         .then(responseHandler)
-        .catch(error => console.log(error))
     }
 }

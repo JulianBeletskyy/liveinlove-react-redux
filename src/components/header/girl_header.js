@@ -28,6 +28,10 @@ class GirlHeader extends Component {
                     <Link to="/profile/info">My profile</Link>
                 </li>
 
+                <li role="presentation" className={url === 'men' ? style.active : ''}>
+                    <Link to="/men">Men</Link>
+                </li>
+
                 <NavDropdown 
                     role="presentation"
                     eventKey={2}
@@ -38,10 +42,6 @@ class GirlHeader extends Component {
 
                 <li role="presentation" className={url === 'services' ? style.active : ''}>
                     <Link to="/services">Services</Link>
-                </li>
-
-                <li role="presentation" className={url === 'blog' ? style.active : ''}>
-                    <Link to="/blog">Shop</Link>
                 </li>
 
                 <li>

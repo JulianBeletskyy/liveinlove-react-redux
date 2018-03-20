@@ -118,7 +118,6 @@ class ClientRightMenu extends Component {
                     title="Credits"
                     show={credits}
                     keyModal="credits"
-                    size="sm"
                 />
 			</div>
 		);

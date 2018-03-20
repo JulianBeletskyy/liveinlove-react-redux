@@ -7,6 +7,17 @@
 	background-color: rgba(0,0,0, 0.8);
 }
 
+:local(.badge) {
+	position: absolute;
+    background-color: #279FAA;
+    right: 2px;
+    top: 4px;
+    color: #fff;
+    padding: 0px 5px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
 :local(.navbarDefault) .navbar-brand {
 	padding-top: 0;
 	padding-bottom: 0;

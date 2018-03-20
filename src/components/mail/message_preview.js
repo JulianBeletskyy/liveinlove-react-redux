@@ -10,7 +10,6 @@ class MessagePreview extends Component {
 
     render() {
         const dialog = this.props.options
-        const user = this.props.user
         
         return (
             <div className={style.wrap + ' ' + (this.props.client ? '' : 'girl')} onClick={this.goToDialog}>
@@ -21,14 +20,14 @@ class MessagePreview extends Component {
                     <strong>{dialog.first_name + ' ' + dialog.last_name}</strong>
                 </div>
                 <div>
-                    <span className="small-italic"><i>({dialog.last_message.date})</i></span>
+                    {/*<span className="small-italic"><i>({dialog.last_message.date})</i></span>*/}
                 </div>
                 <div className={style.textWrap}>
-                {
+                {/*
                     dialog.last_message.read
                     ? <span>{dialog.last_message.message}</span>
                     : <strong>{dialog.last_message.message}</strong>
-                } 
+                */}
                 </div>
                 { dialog.unread > 0 ? <span className={style.badge}>{dialog.unread}</span> : '' }
             </div>
