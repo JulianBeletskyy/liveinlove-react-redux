@@ -36,7 +36,7 @@ class Cart extends Component {
                         <strong>${item.count * item.product.price}</strong>
                     </td>
                     <td>
-                        <span onClick={() => this.props.removeItemCart(item.product)}>
+                        <span className={style.cross} onClick={() => this.props.removeItemCart(item.product)}>
                             <i className="fas fa-times text-danger"></i>
                         </span>
                     </td>
@@ -68,20 +68,29 @@ class Cart extends Component {
                     <tbody className={style.tableBody}>
                         {this.props.shop.cart.map((item, i) => this.printCart(item, i))}
                     </tbody>
+                    <tfoot>
+                        <tr className={style.titleTable}>
+                            <td></td>
+                            <td></td>
+                            <td className="text-center"></td>
+                            <td className="text-right font-bebas">
+                                <strong>Total:</strong>
+                            </td>
+                            <td className="text-center font-bebas">
+                                <strong>${this.getTotal()}</strong>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
                 </table>
-                    
-                    <SmallDivider />
-                    <FormGroup className="text-right">
-                        <strong className="font-bebas">Total: {this.getTotal()}</strong>
-                    </FormGroup>
-                    <FormGroup className="text-center">
-                        <BtnMain
-                            type="button"
-                            bsStyle="success"
-                            icon={<i className="fas fa-gift"></i>}
-                            text="Send gift"
-                            onClick={this.sendGift} />
-                    </FormGroup>
+                <FormGroup className="text-center">
+                    <BtnMain
+                        type="button"
+                        bsStyle="success"
+                        icon={<i className="fas fa-gift"></i>}
+                        text="Send gift"
+                        onClick={this.sendGift} />
+                </FormGroup>
             </div>
         );
     }

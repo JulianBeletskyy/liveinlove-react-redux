@@ -19,7 +19,9 @@
     }
 }
 
-:local(.minus) {
+:local(.minus), 
+:local(.plus),
+:local(.cross) {
     cursor: pointer;
 }
 

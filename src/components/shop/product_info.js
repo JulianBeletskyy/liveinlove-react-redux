@@ -4,10 +4,6 @@ import style from './style.css'
 import BtnMain from 'components/form/buttons/main_button.js'
 
 class ProductInfo extends Component {
-    constructor(props) {
-        super(props)
-        console.log(props)
-    }
 	render() {
         return (
             <Row>
