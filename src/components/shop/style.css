@@ -10,8 +10,17 @@
 
 :local(.catWrap) {
 	padding: 5px;
-    display: inline-block;
     text-align: center;
+}
+
+@media (max-width: 768px) {
+    :local(.catWrap) {
+        display: inline-block;
+    }
+}
+
+:local(.minus) {
+    cursor: pointer;
 }
 
 :local(.link:hover .text) {
@@ -131,4 +140,22 @@
     right: 0;
     top: auto;
     background-color: #fff;
+}
+
+:local(.thumbnail) {
+    width: 90px;
+    max-width: 100%;
+    height: auto;
+}
+
+:local(.minus) {
+    float: left;
+}
+
+:local(.plus) {
+    float: right;
+}
+
+:local(.tableBody>tr>td) {
+    vertical-align: middle !important; 
 }

@@ -88,7 +88,6 @@ const mapStateToProps = (state) => {
                 role: state.user.data.role
             }
         },
-        signup: state.signup,
         options: state.options
     }
 }

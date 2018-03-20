@@ -14,7 +14,9 @@ class MessageItem extends Component {
                     <img className={style.avatar} src={message.my ? user.data.avatar.croped : message.avatar} alt="" />
                     <span className={style.messageTime + " pull-right"}><i>({message.date})</i></span>
                     <br />
-                    <span><i>{message.original}</i></span>
+                    <div><span className={style.originalMessage}><i>{message.original}</i></span></div>
+                    <br />
+                    <span><i>{message.translation}</i></span>
                 </div>
             </div>
         )

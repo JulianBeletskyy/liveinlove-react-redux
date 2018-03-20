@@ -1,6 +1,7 @@
 :local(.wrap) {
 	position: relative;
 	overflow: hidden;
+    min-height: 16px;
 }
 
 :local(.text) {

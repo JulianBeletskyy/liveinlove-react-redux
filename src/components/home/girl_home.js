@@ -23,6 +23,7 @@ class GirlHome extends Component {
                         <Col md={9} className="bg-white">
                             <Switch>
                                 <Route path="/" exact component={MainPofile} />
+                                <Route path="/men" exact component={MainPofile} />
                                 <Route path="/mail/main" exact component={Mail} />
                                 <Route path="/mail/:id" exact component={Dialog} />
                                 <Route path="/contacts/:tab" exact component={Contacts} />

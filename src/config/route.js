@@ -28,10 +28,10 @@ export default {
             'path': '/member/:id',
             'component': 'Member'
         }, {
-            'path': '/member/:id/shop',
+            'path': '/shop',
             'component': 'Shop'
         }, {
-            'path': '/member/:id/shop/:prodId',
+            'path': '/shop/:prodId',
             'component': 'Shop'
         }, {
             'path': '*',
@@ -44,6 +44,9 @@ export default {
             'component': 'Home'
         }, {
             'path': '/profile/*',
+            'component': 'Home'
+        }, {
+            'path': '/men',
             'component': 'Home'
         }, {
             'path': '/mail/*',

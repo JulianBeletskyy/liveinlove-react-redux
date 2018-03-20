@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, FormGroup } from 'react-bootstrap'
 import MemberPreview from './preview.js'
 
 class MemberBlock extends Component {
@@ -14,7 +14,16 @@ class MemberBlock extends Component {
     render() {
         return (
             <Row>
-            { this.props.list.map((member, i) => this.printList(member, i)) }
+                { this.props.list.map((member, i) => this.printList(member, i)) }
+                {
+                    this.props.more
+                    ?   <Col xs={12}>
+                            <FormGroup className="font-bebas text-center">
+                                <a href="javascript:;" onClick={this.props.onClick}><span>see more</span></a>
+                            </FormGroup>
+                        </Col>
+                    : ''
+                }
             </Row>
         );
     }

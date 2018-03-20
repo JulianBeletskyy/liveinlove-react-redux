@@ -6,7 +6,11 @@ class SmallDivider extends Component {
 
         return (
             <div className={style.wrap}>
-                <span className={style.text}>{this.props.text}</span>
+	            {
+	            	this.props.text
+	            	? <span className={style.text}>{this.props.text}</span>
+	            	: ''
+	            }
                 <div className={style.divider + ' divider'}></div>
             </div>
         );

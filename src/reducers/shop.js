@@ -1,4 +1,4 @@
-import { SET_ACTIVE_CATEGORY, SET_PRODUCTS, SET_CATEGORIES } from 'actions/types.js'
+import { SET_ACTIVE_CATEGORY, SET_PRODUCTS, SET_CATEGORIES, SET_CART } from 'actions/types.js'
 
 const initialState = {
     categories_list: [{name: 'Flowers', id: 1}, {name: 'Candy', id: 2}, {name: 'Surprise', id: 3}],
@@ -15,7 +15,8 @@ const initialState = {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis eros lobortis, vestibulum turpis ac, pulvinar odio. Praesent vulputate a elit ac mollis. In sit amet ipsum turpis. Pellentesque venenatis, libero vel euismod lobortis, mi metus luctus augue, eget dapibus elit nisi eu massa. Phasellus sollicitudin nisl posuere nibh ultricies, et fringilla dui gravida.'
         }
     ],
-    active_category: 1
+    active_category: 1,
+    cart: []
 }
 
 export default function shop(shop = initialState, action = {}) {
@@ -31,6 +32,10 @@ export default function shop(shop = initialState, action = {}) {
         case SET_PRODUCTS:
             return Object.assign({}, shop, {
                 categories_list: action.value
+            });
+        case SET_CART:
+            return Object.assign({}, shop, {
+                cart: action.value
             });
         default:
             return shop;

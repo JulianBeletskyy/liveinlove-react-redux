@@ -26,3 +26,8 @@
 .modal-backdrop.in {
   opacity: 0.3;
 }
+
+:local(.modalWrap video) {
+  max-width: 100%;
+}
+    

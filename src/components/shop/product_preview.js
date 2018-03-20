@@ -7,12 +7,7 @@ import style from './style.css'
 class ProductPreview extends Component {
 
     goToProduct = () => {
-        console.log(this.props.member)
         history.push('shop/' + this.props.prodKey, this.props.member)
-    }
-
-    addToCart = () => {
-
     }
 
     render() {
@@ -39,7 +34,7 @@ class ProductPreview extends Component {
                                 bsStyle="success"
                                 icon={<i className="fas fa-gift"></i>}
                                 text="Add to cart"
-                                onClick={this.addToCart} />
+                                onClick={this.props.addToCart} />
                         </FormGroup>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { FormGroup, Col, Row } from 'react-bootstrap'
-import { getNewMembers, getMembers, getPopularMembers, getSearchProfileId } from 'actions'
+import { getNewMembers, getMembers, getPopularMembers, getSearchProfileId, getMoreMembers } from 'actions'
 import MemberBlock from 'components/members/member_block.js'
 import store from 'store'
 import Tabs from 'components/tabs'
@@ -26,8 +26,13 @@ class MainProfile extends Component {
         }
     }
 
+    seeMore = () => {
+        store.dispatch(getMoreMembers(this.props.members.next_link, this.props.user.token))
+    }
+
 	render() {
         const { new_list, popular_list, search_list } = this.props.members
+        const more = this.props.members.current_page < this.props.members.last_page
 		return (
             <div className="pt-15">
                 <Row>
@@ -65,7 +70,10 @@ class MainProfile extends Component {
                         }, {
                             eventKey: 'girls', 
                             title: 'Advanced Search', 
-                            content: <div><SearchBlock /><MemberBlock list={search_list} /></div>
+                            content:    <div>
+                                            <SearchBlock />
+                                            <MemberBlock list={search_list} more={more} onClick={this.seeMore} />
+                                        </div>
                         }
                     ]}
                     activeKey="popular"
@@ -80,7 +88,10 @@ const mapStateToProps = (state) => {
         members: {
             new_list: state.members.new_list,
             popular_list: state.members.popular_list,
-            search_list: state.members.search_list
+            search_list: state.members.search_list,
+            current_page: state.members.current_page,
+            last_page: state.members.last_page,
+            next_link: state.members.next_link,
         },
         user: {
             token: state.user.token

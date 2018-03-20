@@ -29,7 +29,7 @@
 :local(.chatBody) {
     background-color: #ECF1F4;
     padding: 5px;
-    height: 350px;
+    height: 320px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -37,6 +37,11 @@
 :local(.messageTime) {
 	font-size: 12px;
 	opacity: 0.7;
+}
+
+:local(.originalMessage) {
+	opacity: 0.7;
+	font-size: 12px;
 }
 
 :local(.avatar) {

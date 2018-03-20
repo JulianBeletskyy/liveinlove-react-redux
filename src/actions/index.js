@@ -2,7 +2,6 @@ import * as types from './types.js'
 import api from '../api'
 import Cookies from 'js-cookie'
 import { history } from 'store'
-import { confirmAlert } from 'react-confirm-alert'
 
 // AUTH
 
@@ -15,9 +14,6 @@ export function login(data) {
                 dispatch(getUserInfo(json.data))
                 dispatch(setToken(json.data))
             }
-        })
-        .catch(error => {
-            console.log(error)
         })
     }
 }
@@ -48,10 +44,6 @@ export function activateUser(hash) {
                 dispatch(getFullInfo(json.data))
                 history.push('/')
             }
-            
-        })
-        .catch(error => {
-            console.log(error)
         })
     }
 }
@@ -65,9 +57,6 @@ export function changePassword(data, token) {
             if (json.data) {
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
     }
 }
 
@@ -80,9 +69,6 @@ export function updatePassword(data, hash) {
                 dispatch(setRecoveryHash(''))
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
     }
 }
 
@@ -93,9 +79,6 @@ export function sendRecovery(data) {
             if (json.data) {
                 dispatch(toggleModal(false, 'recovery'))
             }
-        })
-        .catch(error => {
-            console.log(error)
         })
     }
 }
@@ -155,9 +138,6 @@ export function sendSignUpStart(data) {
                 dispatch(changeStep(1))
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
     }
 }
 
@@ -171,9 +151,6 @@ export function sendSignUpOne(data) {
                     dispatch(changeStep(step))
                 }
             })
-            .catch(error => {
-                console.log(error)
-            })
     }
 }
 
@@ -184,9 +161,6 @@ export function sendSignUpTwo(data, step) {
                 if (json.data) {
                     dispatch(changeStep(step))
                 }
-            })
-            .catch(error => {
-                console.log(error)
             })
     }
 }
@@ -199,9 +173,6 @@ export function sendSignUpTwoGirl(data) {
                     dispatch(setSignUpData(data))
                     dispatch(changeStep(2))
                 }
-            })
-            .catch(error => {
-                console.log(error)
             })
     }
 }
@@ -217,9 +188,6 @@ export function sendSignUpThree(data) {
                     }))
                 }
             })
-            .catch(error => {
-                console.log(error)
-            })
     }
 }
 
@@ -231,9 +199,6 @@ export function sendSignUpThreeGirl(data) {
                     dispatch(setSignUpData(data))
                     dispatch(changeStep(3))
                 }
-            })
-            .catch(error => {
-                console.log(error)
             })
     }
 }
@@ -250,9 +215,6 @@ export function sendSignUpFinish(data) {
                     dispatch(saveFile(emptyFile))
                     dispatch(changeStep(4))
                 }
-            })
-            .catch(error => {
-                console.log(error)
             })
     }
 }
@@ -302,9 +264,6 @@ export function getFullInfo(token) {
                 dispatch(setClientInfo(json.data))
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
     }
 }
 
@@ -316,9 +275,6 @@ export function getUserInfo(token) {
                 dispatch(setClientInfo(json.data))
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
     }
 }
 
@@ -329,9 +285,6 @@ export function updateUserProfile(data, token) {
             if (json.data) {
                 console.log(json.data)
             }
-        })
-        .catch(error => {
-            console.log(error)
         })
     }
 }
@@ -352,9 +305,6 @@ export function updateAvatar(data, token) {
                 dispatch(toggleModal(false, 'avatar'))
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
     }
 }
 
@@ -367,10 +317,20 @@ export function getMembers(token) {
             if (json.data) {
                 dispatch(setMembers(json.data, 'list'))
                 dispatch(setMembers(json.data, 'search_list'))
+                dispatch(setPages(json))
             }
         })
-        .catch(error => {
-            console.log(error)
+    }
+}
+
+export function getMoreMembers(link, token) {
+    return dispatch => {
+        return api.getMoreMembers(link, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(setPages(json))
+                dispatch(addMembers(json.data))
+            }
         })
     }
 }
@@ -383,9 +343,6 @@ export function getNewMembers(token) {
                 dispatch(setMembers(json.data, 'new_list'))
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
     }
 }
 
@@ -396,9 +353,6 @@ export function getPopularMembers(token) {
             if (json.data) {
                 dispatch(setMembers(json.data, 'popular_list'))
             }
-        })
-        .catch(error => {
-            console.log(error)
         })
     }
 }
@@ -411,9 +365,6 @@ export function getFavoriteMembers(token) {
                 dispatch(setMembers(json.data, 'favorite_list'))
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
     }
 }
 
@@ -425,9 +376,20 @@ export function getMemberInfo(token, id) {
                 dispatch(setMemberInfo(json.data))
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
+    }
+}
+
+export function setPages(value) {
+    return {
+        type: types.SET_PAGES,
+        value
+    }
+}
+
+export function addMembers(value) {
+    return {
+        type: types.ADD_MEMBERS,
+        value
     }
 }
 
@@ -462,9 +424,6 @@ export function addToFavorite(id, token) {
                 dispatch(setFavorite(id, true))
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
     }
 }
 
@@ -477,9 +436,6 @@ export function removeFromFavorite(id, token) {
                 dispatch(getFavoriteMembers(token))
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
     }
 }
 
@@ -490,9 +446,6 @@ export function addViewed(id, token) {
             if (json.data) {
                 //dispatch(setMemberInfo(json.data))
             }
-        })
-        .catch(error => {
-            console.log(error)
         })
     }
 }
@@ -515,9 +468,6 @@ export function getGallery(token) {
                 dispatch(setImages(json.data))
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
     }
 }
 
@@ -528,9 +478,6 @@ export function getVideo(token) {
             if (json.data) {
                 dispatch(setVideo(json.data))
             }
-        })
-        .catch(error => {
-            console.log(error)
         })
     }
 }
@@ -543,9 +490,6 @@ export function addToGallery(value, token) {
                 dispatch(getGallery(token))
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
     }
 }
 
@@ -556,9 +500,6 @@ export function removePhotos(value, token) {
             if (json.data) {
                 dispatch(getGallery(token))
             }
-        })
-        .catch(error => {
-            console.log(error)
         })
     }
 }
@@ -571,9 +512,6 @@ export function toggleActive(data, url, token) {
                 dispatch(getGallery(token))
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
     }
 }
 
@@ -584,9 +522,6 @@ export function togglePrivate(data, url, token) {
             if (json.data) {
                 dispatch(getGallery(token))
             }
-        })
-        .catch(error => {
-            console.log(error)
         })
     }
 }
@@ -641,9 +576,6 @@ export function getMemberships() {
                 dispatch(setMemberships(json.data))
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
     }
 }
 
@@ -655,8 +587,16 @@ export function setPlan(plan_id, month_id, token) {
                 dispatch(getUserInfo(token))
             }
         })
-        .catch(error => {
-            console.log(error)
+    }
+}
+
+export function getPackages(token) {
+    return dispatch => {
+        return api.getPackages(token)
+        .then(json => {
+            if (json.data) {
+                dispatch(setPackages(json.data))
+            }
         })
     }
 }
@@ -664,6 +604,20 @@ export function setPlan(plan_id, month_id, token) {
 export function setMemberships(value) {
     return {
         type: types.SET_MEMBERSHIPS,
+        value
+    }
+}
+
+export function setActivePackage(value) {
+    return {
+        type: types.SET_ACTIVE_PACKAGE,
+        value
+    }
+}
+
+export function setPackages(value) {
+    return {
+        type: types.SET_PACKAGES,
         value
     }
 }
@@ -701,9 +655,6 @@ export function getSearchProfileId(profile_id, token) {
                     dispatch(setMembers([json.data], 'search_list'))
                 }
             })
-            .catch(error => {
-                console.log(error)
-            })
     }
 }
 
@@ -714,9 +665,6 @@ export function getSearch(data, token) {
                 if (json.data) {
                     dispatch(setMembers(json.data, 'search_list'))
                 }
-            })
-            .catch(error => {
-                console.log(error)
             })
     }
 }
@@ -731,9 +679,6 @@ export function getDialogs(token) {
                     dispatch(setDialogsList(json.data))
                 }
             })
-            .catch(error => {
-                console.log(error)
-            })
     }
 }
 
@@ -744,9 +689,6 @@ export function getMessages(id, token) {
                 if (json.data) {
                     dispatch(setMessages(json.data, id))
                 }
-            })
-            .catch(error => {
-                console.log(error)
             })
     }
 }
@@ -774,9 +716,6 @@ export function sendMessage(id, message, token) {
                     
                 }
             })
-            .catch(error => {
-                console.log(error)
-            })
     }
 }
 
@@ -792,9 +731,6 @@ export function getCtegories() {
                     dispatch(getProducts(json.data[0].id))
                 }
             })
-            .catch(error => {
-                console.log(error)
-            })
     }
 }
 
@@ -805,9 +741,6 @@ export function getProducts(id) {
                 if (json.data) {
                     dispatch(setProducts(json.data))
                 }
-            })
-            .catch(error => {
-                console.log(error)
             })
     }
 }
@@ -833,6 +766,13 @@ export function setActiveCategory(value) {
     }
 }
 
+export function setCart(value) {
+    return {
+        type: types.SET_CART,
+        value
+    }
+}
+
 //OPTIONS
 
 export function getOptions(type) {
@@ -842,9 +782,6 @@ export function getOptions(type) {
                 if (json.data) {
                     dispatch(setOptions(json.data, type))
                 }
-            })
-            .catch(error => {
-                console.log(error)
             })
     }
 }

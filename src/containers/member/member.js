@@ -15,7 +15,6 @@ class Member extends Component {
     constructor(props) {
         super(props)
         store.dispatch(getMemberInfo(props.user.token, props.match.params.id))
-        console.log(props)
     }
 
     openLightBox = () => {
@@ -106,15 +105,20 @@ class Member extends Component {
                                                 onClick={this.toggleFavorite}
                                             />
                                         </FormGroup>
-                                        <FormGroup className="text-center">
-                                            <BtnMain
-                                                type="button"
-                                                bsStyle="success"
-                                                text="Send Gift"
-                                                color="main"
-                                                onClick={() => history.push(history.location.pathname+'/shop', this.props.members.data)}
-                                            />
-                                        </FormGroup>
+                                        {
+                                            this.props.user.data.role === 'client'
+                                            ?   <FormGroup className="text-center">
+                                                    <BtnMain
+                                                        type="button"
+                                                        bsStyle="success"
+                                                        text="Send Gift"
+                                                        color="main"
+                                                        onClick={() => history.push(history.location.pathname+'/shop')}
+                                                    />
+                                                </FormGroup>
+                                            : ''
+                                        }
+                                            
                                     </Col>
                                     <Col md={9}>
                                         <MemberInfo

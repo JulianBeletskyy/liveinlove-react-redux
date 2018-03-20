@@ -15,8 +15,12 @@ class ProductInfo extends Component {
                     <img className={style.bigImg} src={this.props.product.image} alt="" />
                 </Col>
                 <Col sm={6}>
-                    <div className="font-bebas"><h1 className={style.title}>{this.props.product.name}</h1></div>
-                    <div className="font-bebas"><strong className={style.infoPrice}>{this.props.product.price}</strong></div>
+                    <div className="font-bebas">
+                        <h1 className={style.title}>{this.props.product.name}</h1>
+                    </div>
+                    <div className="font-bebas">
+                        <strong className={style.infoPrice}>{this.props.product.price}</strong>
+                    </div>
                     <FormGroup>
                         <span>{this.props.product.description}</span>
                     </FormGroup>
@@ -25,7 +29,7 @@ class ProductInfo extends Component {
                         bsStyle="success"
                         icon={<i className="fas fa-gift"></i>}
                         text="Add to cart"
-                        onClick={this.addToCart} />
+                        onClick={() => this.props.addToCart(this.props.product)} />
                 </Col>
             </Row>
         );
