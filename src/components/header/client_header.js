@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import store, { history } from 'store'
-import { setSegment } from 'actions'
+import { setSegment, setCart } from 'actions'
 import { connect } from 'react-redux'
 import { NavDropdown } from 'react-bootstrap'
 import style from './style.css'
@@ -12,6 +12,16 @@ class ClientHeader extends Component {
         super(props)
         const first = history.location.pathname.replace('/', '')
         store.dispatch(setSegment(first))
+        store.dispatch(setCart(this.getCart()))
+    }
+
+    getCart = () => {
+        const data = window.localStorage.getItem('cart');
+        return JSON.parse(data ? data : '[]');
+    }
+
+    goToCart = () => {
+        history.push('/shop/cart')
     }
 
     showLogIn = () => {
@@ -50,8 +60,13 @@ class ClientHeader extends Component {
                     <Link to="/services">Services</Link>
                 </li>
 
-                <li role="presentation" className={url === 'blog' ? style.active : ''}>
-                    <Link to="/blog">Shop</Link>
+                <li role="presentation" className={url === 'shop' ? style.active : ''}>
+                    <Link to="/shop">Shop</Link>
+                </li>
+
+                <li role="presentation">
+                    <a href="javascript:;"onClick={this.goToCart}><i className="fas fa-shopping-cart"></i></a>
+                    {this.props.shop.cart.length ? <span className={style.badge}>{this.props.shop.cart.length}</span> : ''}
                 </li>
 
                 <li>
@@ -64,7 +79,10 @@ class ClientHeader extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        segments: state.segments
+        segments: state.segments,
+        shop: {
+            cart: state.shop.cart
+        }
     }
 }
 

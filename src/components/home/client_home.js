@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import Edit from 'components/profile/edit.js'
 import InfoProfile from 'components/profile/info.js'
 import MainPofile from 'components/profile/main.js'
-import { Girls, Contacts } from 'containers'
+import { Contacts } from 'containers'
 import Mail from 'components/mail'
 import Dialog from 'components/mail/dialog.js'
 
@@ -23,7 +23,7 @@ class ClientHome extends Component {
                         <Col md={9} className="bg-white">
                             <Switch>
                                 <Route path="/" exact component={MainPofile} />
-                                <Route path="/girls" exact component={Girls} />
+                                <Route path="/girls" exact component={MainPofile} />
                                 <Route path="/mail/main" exact component={Mail} />
                                 <Route path="/mail/:id" exact component={Dialog} />
                                 <Route path="/contacts/:tab" exact component={Contacts} />

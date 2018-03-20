@@ -13,6 +13,7 @@ import options from './options.js'
 import members from './members.js'
 import services from './services.js'
 import messages from './messages.js'
+import shop from './shop.js'
 import { routerReducer } from 'react-router-redux'
 
 const reducer = combineReducers({
@@ -30,7 +31,8 @@ const reducer = combineReducers({
     options,
     members,
     services,
-    messages
+    messages,
+    shop
 })
 
 export default reducer

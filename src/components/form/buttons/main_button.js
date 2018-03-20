@@ -13,7 +13,7 @@ class BtnMain extends Component {
                 onClick={this.props.onClick}
                 disabled={this.props.disabled}
             >
-                <span>{this.props.text}</span>
+                <span>{this.props.icon} {this.props.text}</span>
             </Button>
         );
     }
