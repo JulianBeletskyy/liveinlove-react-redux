@@ -693,11 +693,30 @@ export function getMessages(id, token) {
     }
 }
 
+export function getContacts(token) {
+    return dispatch => {
+        return api.getContacts(token)
+            .then(json => {
+                if (json.data) {
+                    console.log(json.data)
+                    //dispatch(setContacts(json.data))
+                }
+            })
+    }
+}
+
 export function setMessages(value, id) {
     return {
         type: types.SET_MESSAGES,
         value,
         id
+    }
+}
+
+export function setContacts(value) {
+    return {
+        type: types.SET_CONTACTS,
+        value
     }
 }
 

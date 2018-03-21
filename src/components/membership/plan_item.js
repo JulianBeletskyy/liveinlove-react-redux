@@ -48,7 +48,7 @@ class PlanItem extends Component {
         const { active_btn } = this.props.memberships
         const { id } = this.props.user.data.membership
         const classBtn = active_btn === this.props.options.id ? style.active : ''
-
+        
         return (
             <div className={style.padding}>
                 <div className={style.table + ' text-center'}>
@@ -62,7 +62,11 @@ class PlanItem extends Component {
                     <div>
                         <ul className={style.list + ' text-left'}>
                             <li>Send 1st free letter to any girl: <strong>{this.props.options.free_leter}</strong></li>
-                            <li>Accept/send private photos: <strong>{this.props.options.private_photo}</strong></li>
+                            {
+                                this.props.options.name === 'Free'
+                                ?   <li>Accept private photos: <strong>{this.props.options.private_photo}</strong></li>
+                                :   <li>Accept/send private photos: <strong>{this.props.options.private_photo}</strong></li>
+                            }
                             <li>Set photos in your profile: <strong>{this.props.options.my_photo}</strong></li>
                             <li>View photos in profiles: <strong>{this.props.options.view_photo}</strong></li>
                             <li>View videos in profiles: <strong>{this.props.options.view_video}</strong></li>

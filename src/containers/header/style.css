@@ -116,8 +116,9 @@
 	}
 }
 
-@media (max-width: 360px) {
-	.nav-tabs>li>a {
-
+@media (max-width: 440px) {
+	.nav-tabs > li > a {
+	    padding: 5px;
+    	font-size: 12px;
 	}
 }

@@ -104,6 +104,7 @@ body .title {
 
 .bg-blue {
   background-color: #ECF1F4;
+  background-color: rgba(236, 241, 244, 0.9)
 }
 
 .bg-white {
@@ -166,6 +167,11 @@ body .title {
     .modal-lg {
         width: 60%;
     }
+}
+@media (max-width: 320px) {
+  .fade.in.modal {
+        padding-left: 0px !important;
+  }
 }
 
 

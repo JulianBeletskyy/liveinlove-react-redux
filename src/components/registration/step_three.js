@@ -60,14 +60,12 @@ class SignUpThree extends Component {
                         type="button"
                         text="Prev"
                         orientation="left"
-                        onClick={this.prevStep}
-                    />
+                        onClick={this.prevStep} />
                     <BtnMain
                         type="button"
                         bsStyle="success"
                         text="Finish"
-                        onClick = {this.getConfirm}
-                    />
+                        onClick = {this.getConfirm} />
                 </FormGroup>
             </form>
         );

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import SmallItem from './small_item.js'
 import { connect } from 'react-redux'
 import store from 'store'
-import { toggleLightBox, gotoPrevImg, gotoNextImg, removePhotos, toggleActive, togglePrivate } from 'actions'
+import { toggleLightBox, gotoPrevImg, gotoNextImg, removePhotos, toggleActive, togglePrivate, setAlert } from 'actions'
 import Lightbox from 'react-images'
 import style from './small_item.css'
 import { confirmAlert } from 'react-confirm-alert'
@@ -46,7 +46,20 @@ class CustomGallery extends Component {
     toggleActive = (image, e) => {
         e.stopPropagation()
         let url = image.active ? 'hide' : 'show'
-        store.dispatch(toggleActive({'images': [image.id]}, url, this.props.user.token))
+
+        if ((url == 'show' && this.checkActive()) || url == 'hide') {
+            store.dispatch(toggleActive({'images': [image.id]}, url, this.props.user.token))
+        } else {
+            store.dispatch(setAlert('You can\'t make more active photos', 'error'))
+        }
+    }
+
+    checkActive = () => {
+        let count = 0
+        for (let image of this.props.images) {
+            count += image.active
+        }
+        return count < this.props.user.data.membership.my_photo
     }
 
     togglePrivate = (image, e) => {
@@ -105,7 +118,8 @@ const mapStateToProps = (state) => {
         user: {
             token: state.user.token,
             data: {
-                role: state.user.data.role
+                role: state.user.data.role,
+                membership: state.user.data.membership,
             }
         }
     }
