@@ -9,8 +9,7 @@ class BtnGoogle extends Component {
                 type="button"
                 bsClass={style.button}
                 onClick={this.props.onClick}
-                id="google"
-            >
+                id="google" >
                 <i className="fab fa-google-plus-square"></i>
                 <span>{this.props.title}</span>
             </Button>

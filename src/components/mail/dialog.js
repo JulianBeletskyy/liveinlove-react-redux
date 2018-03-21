@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import store, { history } from 'store'
 import { connect } from 'react-redux'
 import { FormGroup } from 'react-bootstrap'
-import { sendMessage, getMessages } from 'actions'
+import { sendMessageByDialog, getMessages } from 'actions'
 import style from './style.css'
 import { Textarea } from 'components/form/inputs'
 import BtnMain from 'components/form/buttons/main_button.js'
@@ -28,7 +28,7 @@ class Dialog extends Component {
         let error = 1
         error *= Validator.check(this.message.value, ['required'], 'Message')
         if (error) {
-            store.dispatch(sendMessage(this.props.match.params.id, this.message.value, this.props.user.token))
+            store.dispatch(sendMessageByDialog(this.props.match.params.id, this.message.value, this.props.user.token))
             this.message.value = ''
         }
     }
@@ -90,7 +90,8 @@ const mapStateToProps = (state) => {
         },
         messages: {
             dialog: state.messages.dialog.list,
-            id: state.messages.dialog.id
+            id: state.messages.dialog.id,
+            receiver: state.messages.receiver,
         }
     }
 }

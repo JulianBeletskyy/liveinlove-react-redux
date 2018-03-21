@@ -26,20 +26,14 @@ class Edit extends Component {
 		return (
 			<div className={style.wrapTab}>
 				<Tabs id="edit" activeKey={third} onSelect={this.handleSelect}>
-					<Tab 
-						eventKey={'info'} 
-						title="Edit"
-					>
+					<Tab eventKey={'info'} title="Edit" >
 						{
 							role === 'client'
 							? <EditProfile />
 							: <EditProfileGirl />
 						}
 					</Tab>
-					<Tab 
-						eventKey={'password'} 
-						title="Password"
-					>
+					<Tab eventKey={'password'} title="Password" >
 						<PasswordProfile />
 					</Tab>
 				</Tabs>

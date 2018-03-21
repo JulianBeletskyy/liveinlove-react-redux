@@ -36,8 +36,7 @@ class Avatar extends Component {
                     keyModal="avatar"
                     footer={true}
                     size="lg"
-                    onSave={this.save}
-                />
+                    onSave={this.save} />
             </div>
         );
     }

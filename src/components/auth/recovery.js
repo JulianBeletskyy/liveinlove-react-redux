@@ -19,11 +19,9 @@ class Recovery extends Component {
 
         if (! this.props.user.recovery_hash) {
             error *= Validator.check(this.email.value, ['required', 'email'], 'Email')
-        } else {
-            if (this.new_password.value !== this.confirm_password.value) {
-                error = 0
-                store.dispatch(setAlert('The passwords aren\'t same, retype it one more time, please!', 'error'))
-            }
+        } else if (this.new_password.value !== this.confirm_password.value) {
+            error = 0
+            store.dispatch(setAlert('The passwords aren\'t same, retype it one more time, please!', 'error'))
         }
 
         if (error && this.props.user.recovery_hash) {
@@ -51,24 +49,21 @@ class Recovery extends Component {
                             <TextField 
                                 type="email"
                                 placeholder="Enter email"
-                                inputRef={ref => { this.email = ref }}
-                            />
+                                inputRef={ref => { this.email = ref }} />
                         </FormGroup>
                     :   <div>
                             <FormGroup>
                                 <TextField 
                                     type="password"
                                     placeholder="New password"
-                                    inputRef={ref => { this.new_password = ref }}
-                                />
+                                    inputRef={ref => { this.new_password = ref }} />
                             </FormGroup>
 
                             <FormGroup>
                                 <TextField 
                                     type="password"
                                     placeholder="Confirm password"
-                                    inputRef={ref => { this.confirm_password = ref }}
-                                />
+                                    inputRef={ref => { this.confirm_password = ref }} />
                             </FormGroup>
                         </div>
                 }
@@ -76,7 +71,7 @@ class Recovery extends Component {
                     <BtnMain
                         type="submit"
                         bsStyle="success"
-                        text="Recovery"/>
+                        text="Recovery" />
                 </FormGroup>
             </form>
         );

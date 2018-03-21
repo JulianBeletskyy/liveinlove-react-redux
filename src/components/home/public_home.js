@@ -29,8 +29,7 @@ class PublicHome extends Component {
                                 <MainPanel
                                     title="Registration"
                                     iconClass="fas fa-address-card"
-                                    body={<Registration />}
-                                />
+                                    body={<Registration />} />
                             </div>
                         </Col>
 
@@ -48,8 +47,7 @@ class PublicHome extends Component {
                                         type="button"
                                         bsStyle="success"
                                         text="Login"
-                                        onClick={this.showModal}
-                                    />
+                                        onClick={this.showModal} />
                                 </div>
                             </div>
                         </Col>

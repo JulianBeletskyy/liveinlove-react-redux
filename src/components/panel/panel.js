@@ -14,7 +14,7 @@ class MainPanel extends Component {
 					</h3>
 				</Panel.Heading>
 				<Panel.Body>
-							{this.props.body}
+					{this.props.body}
 				</Panel.Body>
 			</Panel>
 		);

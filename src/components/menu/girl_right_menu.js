@@ -13,55 +13,43 @@ class GirlRightMenu extends Component {
 		return (
 			<div className={style.wrapGirl + " p-15"}>
 				<FormGroup className="px-15 text-center">
-					<Avatar 
-						src={data.avatar.croped}
-					/>
+					<Avatar src={data.avatar.croped} />
 				</FormGroup>
-
 				<FormGroup className={style.name + " text-center"}>
-					<div>
-						<h2><strong>{data.first_name + ' ' + data.last_name}</strong></h2>
-						<MiddleString
-							text={data.profile_id}
-							keyName="ID:"
-						/>
-					</div>
+					<h2>
+						<strong>{data.first_name + ' ' + data.last_name}</strong>
+					</h2>
+					<MiddleString
+						text={data.profile_id}
+						keyName="ID:" />
 				</FormGroup>
 				<FormGroup>
-					<SmallDivider
-						text=""
-					/>
+					<SmallDivider text="" />
 				</FormGroup>
 				<FormGroup>
 					<MiddleString
 						text={data.view_profile}
-						keyName="Profile viewed:"
-					/>
+						keyName="Profile viewed:" />
 				</FormGroup>
 				<FormGroup>
-					<SmallDivider
-						text="Profile"
-					/>
+					<SmallDivider text="Profile" />
 				</FormGroup>
 				<FormGroup>
 					<MiddleItem
 						text="View Profile"
 						icon="fas fa-user"
 						link="/profile/info"
-						role="girl"
-					/>
+						role="girl" />
 					<MiddleItem
 						text="Edit Profile"
 						icon="fas fa-cog"
 						link="/profile/edit/info"
-						role="girl"
-					/>
+						role="girl" />
 					<MiddleItem
 						text="Change password"
 						icon="fas fa-unlock-alt"
 						link="/profile/edit/password"
-						role="girl"
-					/>
+						role="girl" />
 				</FormGroup>
 			</div>
 		);

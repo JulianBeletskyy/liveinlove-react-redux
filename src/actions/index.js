@@ -701,6 +701,14 @@ export function setMessages(value, id) {
     }
 }
 
+export function setReceiver(id, avatar) {
+    return {
+        type: types.SET_RECEIVER,
+        id,
+        avatar
+    }
+}
+
 export function setDialogsList(value) {
     return {
         type: types.SET_DIALOGS_LIST,
@@ -714,6 +722,17 @@ export function sendMessage(id, message, token) {
             .then(json => {
                 if (json.data) {
                     
+                }
+            })
+    }
+}
+
+export function sendMessageByDialog(id, message, token) {
+    return dispatch => {
+        return api.sendMessageByDialog(id, message, token)
+            .then(json => {
+                if (json.data) {
+                    dispatch(getMessages(id, token))
                 }
             })
     }

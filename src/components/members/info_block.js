@@ -191,7 +191,6 @@ class InfoBlock extends Component {
                             </Col>
                         : ''
                    }
-                   
                 </Row>
        		</div>
        	);

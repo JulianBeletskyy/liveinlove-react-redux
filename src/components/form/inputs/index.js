@@ -3,5 +3,6 @@ import TextField from './text_field.js'
 import SelectField from './select_field.js'
 import CheckboxField from './checkbox_field.js'
 import Autocomplete from './autocomplete.js'
+import UploadField from './upload_field.js'
 
-export { Textarea, TextField, SelectField, CheckboxField, Autocomplete }
+export { Textarea, TextField, SelectField, CheckboxField, Autocomplete, UploadField }

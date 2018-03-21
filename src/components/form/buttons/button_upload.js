@@ -15,8 +15,7 @@ class BtnUpload extends Component {
                     withPreview={false}
                     withIcon={false}
                     withLabel={false}
-                    buttonClassName={style.button}
-                />
+                    buttonClassName={style.button} />
             </div>
         );
     }
