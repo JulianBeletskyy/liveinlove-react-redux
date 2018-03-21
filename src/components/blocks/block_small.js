@@ -22,10 +22,7 @@ class BlockSmall extends Component {
         }
         
         return (
-            <div 
-                className={className}
-                onClick={this.toggleState}
-            >
+            <div className={className} onClick={this.toggleState}>
                 {this.props.text}
             </div>
         );

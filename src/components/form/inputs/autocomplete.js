@@ -35,12 +35,12 @@ class Autocomplete extends Component {
                 types: ['(cities)'],
                 componentRestrictions: {country: this.props.country}
         };
-        let autocomplete = new window.google.maps.places.Autocomplete(this.input, options)
+        //let autocomplete = new window.google.maps.places.Autocomplete(this.input, options)
         
-        window.google.maps.event.addListener(autocomplete, 'place_changed', () => {
+        /*window.google.maps.event.addListener(autocomplete, 'place_changed', () => {
            var place = autocomplete.getPlace()
            this.input.value = place.vicinity
-        });
+        });*/
 
         let className = style.placeholder
         if (changed.indexOf(this.id) >= 0) {
@@ -57,8 +57,7 @@ class Autocomplete extends Component {
                     id="auocompleteInput"
                     defaultValue={this.props.value}
                     onChange={this.handleChange}
-                    placeholder=" "
-                />
+                    placeholder=" " />
                 {this.props.label ? '' : <div className={className}>{this.props.placeholder}</div>}
                
             </div>

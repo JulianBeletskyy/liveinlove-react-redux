@@ -18,8 +18,8 @@ class Alert extends Component {
     }
 
     showMessages = (messages) => {
-        for (var k in messages) {
-            this.container[messages[k].level](messages[k].text, '', { closeButton: true })
+        for (let message of messages) {
+            this.container[message.level](message.text, '', { closeButton: true })
         }
         store.dispatch(removeAlert())
     }

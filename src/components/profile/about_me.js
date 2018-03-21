@@ -17,9 +17,7 @@ class AboutMe extends Component {
                 <Row>
                     <Col sm={6}>
                         <FormGroup>
-                            <SmallDivider
-                                text="Main Information"
-                            />
+                            <SmallDivider text="Main Information" />
                         </FormGroup>
                         <FormGroup>
                             <div>
@@ -37,21 +35,19 @@ class AboutMe extends Component {
                             <div>
                                 <span className={style.middleTitle + ' title'}>Birthday</span>
                             </div>
-                          <span className="small-italic">{data.birth.day + '.' + data.birth.month + '.' + data.birth.year} ({data.age} years)</span>
+                            <span className="small-italic">{data.birth.day + '.' + data.birth.month + '.' + data.birth.year} ({data.age} years)</span>
                         </FormGroup>
                         <FormGroup>
                             <div>
                                 <span className={style.middleTitle + ' title'}>Personal message</span>
                             </div>
-                          <span className="small-italic">{data.message}</span>
+                            <span className="small-italic">{data.message}</span>
                         </FormGroup>
                     </Col>
 
                     <Col sm={6}>
                         <FormGroup>
-                            <SmallDivider
-                                text="About Me"
-                            />
+                            <SmallDivider text="About Me" />
                         </FormGroup>
                         <Row>
                             <Col sm={6}>
@@ -136,9 +132,7 @@ class AboutMe extends Component {
                     </Col>
                     <Col sm={6}>
                         <FormGroup>
-                            <SmallDivider
-                                text={'I am looking for a ' + (data.role === 'client' ? 'woman' : 'man')}
-                            />
+                            <SmallDivider text={'I am looking for a ' + (data.role === 'client' ? 'woman' : 'man')} />
                         </FormGroup>
                         <FormGroup>
                             <div>
@@ -161,9 +155,7 @@ class AboutMe extends Component {
                         data.role === 'girl'
                         ?   <Col sm={6}>
                                 <FormGroup>
-                                    <SmallDivider
-                                        text="Education"
-                                    />
+                                    <SmallDivider text="Education" />
                                 </FormGroup>
                                 <Row>
                                     <Col sm={6}>
@@ -209,8 +201,7 @@ class AboutMe extends Component {
                                 </Row>
                             </Col>
                         : ''
-                   }
-                   
+                    }
                 </Row>
        		</div>
        	);

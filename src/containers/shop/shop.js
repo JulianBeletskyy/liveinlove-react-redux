@@ -91,14 +91,21 @@ class Shop extends Component {
                                 <Switch>
                                     <Route 
                                         path="/shop" exact 
-                                        render={() => <ProductsBlock member={this.member} products={this.props.shop.products_list} addToCart={(e) => this.addToCart(e)} />} />
+                                        render={() => <ProductsBlock 
+                                            member={this.member} 
+                                            products={this.props.shop.products_list} 
+                                            addToCart={(e) => this.addToCart(e)} />} />
                                     <Route 
                                         path="/shop/cart" exact 
-                                        render={(props) => <Cart addToCart={(e) => this.addToCart(e)} removeItemCart={(e) => this.removeItemCart(e)} removeFromCart={(e) => this.removeFromCart(e)} />} />
+                                        render={(props) => <Cart 
+                                            addToCart={(e) => this.addToCart(e)} 
+                                            removeItemCart={(e) => this.removeItemCart(e)} 
+                                            removeFromCart={(e) => this.removeFromCart(e)} />} />
                                     <Route 
                                         path="/shop/:prodKey" exact 
-                                        render={(props) => <ProductInfo product={this.props.shop.products_list[props.match.params.prodKey]} addToCart={(e) => this.addToCart(e)} />} />
-                                    
+                                        render={(props) => <ProductInfo 
+                                            product={this.props.shop.products_list[props.match.params.prodKey]} 
+                                            addToCart={(e) => this.addToCart(e)} />} />
                                 </Switch>
                             </Col>
                         </Row>

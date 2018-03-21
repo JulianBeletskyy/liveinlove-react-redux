@@ -39,26 +39,18 @@ class Auth extends Component {
                     <TextField 
                         type="email"
                         placeholder="Enter email"
-                        inputRef={ref => { this.auth.email = ref }}
-                    />
+                        inputRef={ref => { this.auth.email = ref }} />
                 </FormGroup>
-
                 <FormGroup>
                     <TextField 
                         type="password" 
                         placeholder="Enter password"
-                        inputRef={ref => { this.auth.password = ref }}
-                     />
+                        inputRef={ref => { this.auth.password = ref }} />
                 </FormGroup>
-
                 <FormGroup className={style.inline} >
-                    <CheckboxField 
-                        text='Remember me'
-                    />
-
+                    <CheckboxField text='Remember me' />
                     <a className="pull-right" href="javascript:;" onClick={this.showRecovery}>Forgot password?</a>
                 </FormGroup>
-
                 <FormGroup className="text-center">
                     <BtnMain
                         type="submit"

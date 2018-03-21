@@ -43,7 +43,6 @@ class MemberPreview extends Component {
                         : <i className="far fa-heart" onClick={this.addToFavorite}></i>
                     }
 	            </div>
-
             </div>
         );
     }

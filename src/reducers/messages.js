@@ -1,11 +1,13 @@
-import { SET_DIALOGS_LIST, SET_MESSAGES } from 'actions/types.js'
+import { SET_DIALOGS_LIST, SET_MESSAGES, SET_RECEIVER } from 'actions/types.js'
 
 const initialState = {
 	list: [],
     dialog: {
         id: 0,
         list: []
-    }
+    },
+    receiver: 0,
+    receiver_avatar: ''
 }
 
 export default function messages(messages = initialState, action = {}) {
@@ -13,6 +15,11 @@ export default function messages(messages = initialState, action = {}) {
     	case SET_DIALOGS_LIST:
             return Object.assign({}, messages, {
                 list: action.value
+            });
+        case SET_RECEIVER:
+            return Object.assign({}, messages, {
+                receiver: action.id,
+                receiver_avatar: action.avatar
             });
         case SET_MESSAGES:
             let temp =  Object.assign({}, messages.dialog);

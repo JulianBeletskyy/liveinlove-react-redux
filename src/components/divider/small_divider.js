@@ -3,7 +3,6 @@ import style from './small.css'
 
 class SmallDivider extends Component {
     render() {
-
         return (
             <div className={style.wrap}>
 	            {

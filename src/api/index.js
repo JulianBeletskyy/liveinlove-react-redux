@@ -502,6 +502,23 @@ export default {
         .then(responseHandler)
     },
 
+    sendMessageByDialog(id, message, token) {
+        const data = {
+            dialog_id: id,
+            original: message
+        }
+        return fetch(config.API_URL + 'user/message/dialog/send', {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+    },
+
     getDialogs(token) {
         return fetch(config.API_URL + 'user/message/dialogs', {
             method: 'get',

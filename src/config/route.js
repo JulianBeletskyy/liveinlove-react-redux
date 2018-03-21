@@ -4,6 +4,9 @@ export default {
             'path': '/',
             'component': 'Home'
         }, {
+            'path': '/girls',
+            'component': 'Home'
+        }, {
             'path': '*',
             'component': 'NotFound'
         }
