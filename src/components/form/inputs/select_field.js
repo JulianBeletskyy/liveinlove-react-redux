@@ -26,11 +26,8 @@ class SelectField extends Component {
                     componentClass={this.props.componentClass} 
                     inputRef={this.props.inputRef}
                     defaultValue={this.props.value}
-                    onChange={this.handleChange.bind(this)}
-                >
-                    {
-                        this.props.options.map((option, i) => this.printOptions(option, i))
-                    }
+                    onChange={this.handleChange.bind(this)} >
+                    { this.props.options.map((option, i) => this.printOptions(option, i)) }
                 </FormControl> 
             </div>
         );

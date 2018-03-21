@@ -7,11 +7,10 @@ class MessageItem extends Component {
         const message = this.props.message
         const user = this.props.user
         const classRight = ! message.my ? 'pull-right' : ''
-        
         return (
             <div className={style.messageRow + ' ' + 'clearfix'}>
                 <div className={style.messageWrap + ' ' + classRight}>
-                    <img className={style.avatar} src={message.my ? user.data.avatar.croped : message.avatar} alt="" />
+                    <img className={style.avatar} src={message.my ? user.data.avatar.croped : message.receiver_avatar} alt="" />
                     <span className={style.messageTime + " pull-right"}><i>({message.date})</i></span>
                     <br />
                     <div><span className={style.originalMessage}><i>{message.original}</i></span></div>

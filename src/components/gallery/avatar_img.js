@@ -7,7 +7,7 @@ class AvatarImg extends Component {
             <div className={style.wrap}>
                 <div 
                     className={style.hover}
-                    onClick={this.props.onClick}>
+                    onClick={this.props.onClick} >
                     <span className={style.span}>{this.props.textHover}</span>
                 </div>
                 <img

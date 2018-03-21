@@ -15,8 +15,7 @@ class MainModal extends Component {
             <Modal 
                 show={this.props.show} 
                 onHide={this.closeModal}
-                bsSize={this.props.size}
-            >
+                bsSize={this.props.size} >
                 <Modal.Header bsClass={style.headerModal + ' modal-header'} closeButton>
                     <h3 className="modal-title title">
                         <i className="fas fa-address-card"></i>

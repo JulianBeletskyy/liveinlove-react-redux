@@ -50,8 +50,7 @@ class EditGallery extends Component {
                             guides={false}
                             background={false}
                             cropend={this.crop}
-                            ready={this.crop}
-                        />
+                            ready={this.crop} />
                     </Col>
                     <Col sm={8}>
                        <CustomGallery 

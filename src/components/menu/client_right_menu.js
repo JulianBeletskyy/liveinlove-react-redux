@@ -27,98 +27,78 @@ class ClientRightMenu extends Component {
 		return (
 			<div className={style.wrapClient + " p-15"}>
 				<FormGroup className="px-15 text-center">
-					<Avatar 
-						src={data.avatar.croped} />
+					<Avatar src={data.avatar.croped} />
 				</FormGroup>
 				<FormGroup className={style.name + " text-center"}>
-					<div>
-						<h2><strong>{data.first_name + ' ' + data.last_name}</strong></h2>
-						<MiddleString
-							text={data.profile_id}
-							keyName="ID:"
-						/>
-					</div>
+					<h2>
+						<strong>{data.first_name + ' ' + data.last_name}</strong>
+					</h2>
+					<MiddleString
+						text={data.profile_id}
+						keyName="ID:" />
 				</FormGroup>
 				<FormGroup>
-					<SmallDivider
-						text=""
-					/>
+					<SmallDivider text="" />
 				</FormGroup>
 				<FormGroup>
 					<MiddleString
 						text={data.membership.name}
 						keyName="Membership:"
 						link={true}
-						onClick={this.showPlans}
-					/>
+						onClick={this.showPlans} />
 				</FormGroup>
 				<FormGroup>
 					<MiddleString
 						text={data.view_profile}
-						keyName="Profile viewed:"
-					/>
+						keyName="Profile viewed:" />
 				</FormGroup>
 				<FormGroup>
-					<SmallDivider
-						text="Profile"
-					/>
+					<SmallDivider text="Profile" />
 				</FormGroup>
 				<FormGroup>
 					<MiddleItem
 						text="View Profile"
 						icon="fas fa-user"
 						link="/profile/info"
-						role="client"
-					/>
+						role="client" />
 					<MiddleItem
 						text="Edit Profile"
 						icon="fas fa-cog"
 						link="/profile/edit/info"
-						role="client"
-					/>
+						role="client" />
 					<MiddleItem
 						text="Change password"
 						icon="fas fa-unlock-alt"
 						link="/profile/edit/password"
-						role="client"
-					/>
+						role="client" />
 					<MiddleItem
 						text="Add Credits"
 						icon="fas fa-credit-card"
 						onClick={this.showAddCredits}
-						role="client"
-					/>
+						role="client" />
 				</FormGroup>
 				<FormGroup>
-					<SmallDivider
-						text="Info"
-					/>
+					<SmallDivider text="Info" />
 				</FormGroup>
 				<FormGroup>
 					<MiddleString
 						text={data.credits}
-						keyName="Money Balance:"
-					/>
+						keyName="Money Balance:" />
 				</FormGroup>
 				<FormGroup>
-				<MiddleString
-						text="0"
-						keyName="Bonus Balance:"
-					/>
+				<MiddleString text="0" keyName="Bonus Balance:" />
 				</FormGroup>
 				<MainModal
                     body={<Plans />}
                     title="Membership"
                     show={plans}
                     keyModal="plans"
-                    size="lg"
-                />
+                    size="lg" />
                 <MainModal
                     body={<Credits />}
                     title="Credits"
                     show={credits}
-                    keyModal="credits"
-                />
+                    keyModal="credits" />
 			</div>
 		);
 	}

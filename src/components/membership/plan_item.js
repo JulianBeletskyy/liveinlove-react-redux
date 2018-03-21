@@ -69,7 +69,7 @@ class PlanItem extends Component {
                             <li>Expression of Interest: <strong>{this.props.options.likes}</strong></li>
                             <li>Discount on ALL services: <strong>{this.props.options.discount}%</strong></li>
                         </ul>
-                       <span className="ult_price_term ult-responsive"></span> 
+                        <span className="ult_price_term ult-responsive"></span> 
                     </div>
                         {
                             this.props.options.id === id

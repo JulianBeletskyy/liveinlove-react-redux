@@ -11,8 +11,7 @@ class BtnMain extends Component {
                 bsStyle={this.props.bsStyle}
                 bsClass={style.button  + ' ' + colorClass}
                 onClick={this.props.onClick}
-                disabled={this.props.disabled}
-            >
+                disabled={this.props.disabled} >
                 <span>{this.props.icon} {this.props.text}</span>
             </Button>
         );

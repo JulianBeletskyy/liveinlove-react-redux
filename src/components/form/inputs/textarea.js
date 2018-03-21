@@ -8,7 +8,6 @@ import { toggleTextarea } from 'actions'
 class Textarea extends Component {
     constructor(props) {
         super(props);
-
         this.input = false
         this.handleChange()
     }
@@ -40,8 +39,7 @@ class Textarea extends Component {
                     inputRef={this.thisRef}
                     bsClass={style.main + ' form-control'}
                     onChange={this.handleChange}
-                    defaultValue={this.props.value}
-                />
+                    defaultValue={this.props.value} />
                 {this.props.label ? '' : <span className={style.placeholder + ' ' + className}>{this.props.placeholder}</span>}
                 
             </div>
