@@ -9,7 +9,7 @@ class PublicFooter extends Component {
                 <Grid>
                     <Row className="title">
                         <Col xs={6}>
-                            Copyright &copy; Liveinlove - All Rights Reserved
+                            Copyright &copy; Lifeinlove - All Rights Reserved
                         </Col>
 
                         <Col xs={6} className="text-right">

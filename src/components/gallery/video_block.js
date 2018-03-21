@@ -4,7 +4,7 @@ import VideoPreview from './video_preview.js'
 
 class VideoBlock extends Component {
     printVideo = (video, i) => {
-        return <VideoPreview key={i} video={video} />
+        return <VideoPreview key={i} video={video} info={this.props.info} />
     }
 
     render() {

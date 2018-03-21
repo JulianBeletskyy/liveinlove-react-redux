@@ -1,4 +1,4 @@
-import { SET_DIALOGS_LIST, SET_MESSAGES, SET_RECEIVER } from 'actions/types.js'
+import { SET_DIALOGS_LIST, SET_MESSAGES, SET_RECEIVER, SET_CONTACTS } from 'actions/types.js'
 
 const initialState = {
 	list: [],
@@ -7,7 +7,8 @@ const initialState = {
         list: []
     },
     receiver: 0,
-    receiver_avatar: ''
+    receiver_avatar: '',
+    contacts: []
 }
 
 export default function messages(messages = initialState, action = {}) {
@@ -20,6 +21,10 @@ export default function messages(messages = initialState, action = {}) {
             return Object.assign({}, messages, {
                 receiver: action.id,
                 receiver_avatar: action.avatar
+            });
+        case SET_CONTACTS:
+            return Object.assign({}, messages, {
+                contacts: action.value,
             });
         case SET_MESSAGES:
             let temp =  Object.assign({}, messages.dialog);

@@ -1,23 +1,27 @@
 import React, { Component } from 'react'
 import style from './style.css'
+import { BtnMain } from 'components/form/buttons'
 
 class ContactPreview extends Component {
     render() {
+        console.log(this.props.options)
         return (
-            <div className={style.wrap + ' ' + (this.props.client ? '' : 'girl')}>
+            <div className={style.wrap + ' ' + (this.props.client ? '' : 'girl')} onClick={this.props.onClick}>
                 <div className={style.imgContactWrap}>
                     <img src={this.props.options.avatar} alt="" />
                 </div>
-                <div>
+                <div className={style.contactInfo}>
                     <strong className="font-bebas">{this.props.options.first_name + ' ' + this.props.options.last_name}</strong>
-                    <div>
-                        <span>{this.props.options.age + ' years'}</span>
-                    </div>
-                    <div>
-                        <span>{this.props.options.country + ', ' + this.props.options.city}</span>
-                    </div>
+                    <br />
+                    <span>{this.props.options.age + ' years'}</span>
                 </div>
-                <div></div>
+                <div className={style.sendBtn}>
+                    <BtnMain
+                        type="button"
+                        bsStyle="success"
+                        text="Send Message"
+                        onClick = {this.props.getMessage} />
+                </div>
             </div>
         );
     }

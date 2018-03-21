@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Tabs from 'components/tabs'
-import { getDialogs } from 'actions'
+import { getDialogs, getContacts } from 'actions'
 import { connect } from 'react-redux'
 import store from 'store'
 import MessagesBlock from './messages_block.js'
@@ -10,6 +10,7 @@ class Mail extends Component {
     constructor(props) {
         super(props)
         store.dispatch(getDialogs(props.user.token))
+        store.dispatch(getContacts(props.user.token))
     }
     
     render() {
