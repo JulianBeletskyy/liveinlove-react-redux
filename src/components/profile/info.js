@@ -84,7 +84,8 @@ class InfoProfile extends Component {
 								title="Video">
 								<div className="pt-15">
 									<VideoBlock
-										video={this.props.user.data.video} />
+										video={this.props.user.data.video}
+										info={true} />
 								</div>
 							</Tab>
 							

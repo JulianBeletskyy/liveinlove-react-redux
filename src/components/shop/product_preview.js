@@ -7,7 +7,7 @@ import style from './style.css'
 class ProductPreview extends Component {
 
     goToProduct = () => {
-        history.push('shop/' + this.props.prodKey, this.props.member)
+        history.push('shop/' + this.props.product.id)
     }
 
     render() {

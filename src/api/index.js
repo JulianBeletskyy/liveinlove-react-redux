@@ -541,5 +541,17 @@ export default {
             }
         })
         .then(responseHandler)
+    },
+
+    getContacts(token) {
+        return fetch(config.API_URL + 'user/message/contacts', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
     }
 }

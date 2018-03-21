@@ -32,6 +32,14 @@ class ClientHeader extends Component {
         store.dispatch(logout())
     }
 
+    countCart = () => {
+        let count = 0
+        for (let prod of this.props.shop.cart) {
+            count += prod.count
+        }
+        return count
+    }
+
     render() {
         const url = this.props.segments.first
         return (
@@ -66,7 +74,7 @@ class ClientHeader extends Component {
 
                 <li role="presentation">
                     <a href="javascript:;"onClick={this.goToCart}><i className="fas fa-shopping-cart"></i></a>
-                    {this.props.shop.cart.length ? <span className={style.badge}>{this.props.shop.cart.length}</span> : ''}
+                    {this.props.shop.cart.length ? <span className={style.badge}>{this.countCart()}</span> : ''}
                 </li>
 
                 <li>
