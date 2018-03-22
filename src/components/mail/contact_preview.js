@@ -12,8 +12,6 @@ class ContactPreview extends Component {
                 </div>
                 <div className={style.contactInfo}>
                     <strong className="font-bebas">{this.props.options.first_name + ' ' + this.props.options.last_name}</strong>
-                    <br />
-                    <span>{this.props.options.age + ' years'}</span>
                 </div>
                 <div className={style.sendBtn}>
                     <BtnMain

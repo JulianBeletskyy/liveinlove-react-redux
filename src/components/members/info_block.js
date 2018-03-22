@@ -12,9 +12,7 @@ class InfoBlock extends Component {
                 <Row>
                     <Col sm={6}>
                         <FormGroup>
-                            <SmallDivider
-                                text="About Me"
-                            />
+                            <SmallDivider text="About Me" />
                         </FormGroup>
                         <Row>
                             <Col sm={12}>

@@ -72,6 +72,7 @@ class PlanItem extends Component {
                             <li>View videos in profiles: <strong>{this.props.options.view_video}</strong></li>
                             <li>Expression of Interest: <strong>{this.props.options.likes}</strong></li>
                             <li>Discount on ALL services: <strong>{this.props.options.discount}%</strong></li>
+                            <li>Share contact details: <strong>{this.props.options.contact_details}</strong></li>
                         </ul>
                         <span className="ult_price_term ult-responsive"></span> 
                     </div>

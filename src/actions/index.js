@@ -698,8 +698,7 @@ export function getContacts(token) {
         return api.getContacts(token)
             .then(json => {
                 if (json.data) {
-                    console.log(json.data)
-                    //dispatch(setContacts(json.data))
+                    dispatch(setContacts(json.data))
                 }
             })
     }
@@ -786,6 +785,13 @@ export function getProducts(id) {
 export function setCategories(value) {
     return {
         type: types.SET_CATEGORIES,
+        value
+    }
+}
+
+export function setReceiverToShop(value) {
+    return {
+        type: types.SET_RECEIVER_TO_SHOP,
         value
     }
 }
