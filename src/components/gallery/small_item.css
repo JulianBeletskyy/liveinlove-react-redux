@@ -28,11 +28,11 @@
 }
 
 :local(.imgVideo) {
-    width: 100%;
     margin-left: 0px;
     margin-top: 0px;
     object-fit: cover;
     height: 200px;
+    padding: 1px;
 }
 
 :local(.hiddenVideo) {
@@ -44,7 +44,7 @@
 }
 
 :local(.hidden) {
-    filter: blur(5px);
+    
 }
 
 :local(.icon) {
@@ -81,7 +81,7 @@
 
 :local(.infoImg) {
 	position: absolute;
-    bottom: 5px;
+    bottom: 8px;
     left: 5px;
     border-radius: 5px;
     padding: 0px 5px;

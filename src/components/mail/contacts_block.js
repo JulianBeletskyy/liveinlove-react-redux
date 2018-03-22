@@ -1,28 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ContactPreview from './contact_preview.js'
+import { history } from 'store'
 
 class ContactsBlock extends Component {
 
     printContacts = (contact , i) => {
-        return (<ContactPreview key={i} options={contact} client={this.props.user.data.role === 'client'} onClick={() => this.goToMember(contact.id)} getMessage={(e) => this.getMessage(e, contact.id)} />)
+        return (<ContactPreview key={i} options={contact} client={this.props.user.data.role === 'client'} onClick={() => this.goToMember(contact.id)} getMessage={(e) => this.getMessage(e, contact.dialog)} />)
     }
 
     goToMember = (id) => {
-        console.log(id)
+        history.push('/member/'+id)
     }
 
     getMessage = (e, id) => {
         e.stopPropagation()
-        console.log(e)
-        console.log(id)
+        history.push('/mail/'+id)
     }
     
     render() {
-        const data = this.props.members.list
+        const contacts = this.props.messages.contacts
         return (
             <div>
-                { data.map((contact, i) => this.printContacts(contact, i)) }
+                { contacts.map((contact, i) => this.printContacts(contact, i)) }
             </div>
         );
     }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { FormGroup, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import store from 'store'
-import { setCart } from 'actions'
+import { setCart, setAlert } from 'actions'
 import style from './style.css'
 import BtnMain from 'components/form/buttons/main_button.js'
 
@@ -104,6 +104,16 @@ class Cart extends Component {
         return total
     }
 
+    showMessage = () => {
+        if (!this.props.receiver) {
+            store.dispatch(setAlert('Choose receiver first', 'error'))
+        } 
+    }
+
+    checkReceiver = (actions) => {
+        return this.props.receiver ? actions.enable() : actions.disable()
+    }
+
     componentDidMount() {
         window.paypal.Button.render({
             env: 'sandbox', // sandbox | production
@@ -119,6 +129,15 @@ class Cart extends Component {
                 sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
                 production: '<insert production client id>'
             },
+
+            validate: (actions) => {
+                this.checkReceiver(actions)
+            },
+
+            onClick: () => {
+                this.showMessage()
+            },
+
             payment: (data, actions) => {
                 return actions.payment.create({
                     payment: {
@@ -140,6 +159,7 @@ class Cart extends Component {
     }
 
 	render() {
+        const hiddenClass = this.props.shop.cart.length ? '' : 'hidden'
         return (
             <Row>
                 <Col sm={10}>
@@ -174,12 +194,7 @@ class Cart extends Component {
                             </tfoot>
                         </table>
                         <FormGroup>
-                        {
-                            this.props.shop.cart.length
-                            ?   <div className="text-right" id="paypal-button-cart"></div>
-                            : ''
-                        }
-                            
+                            <div className={hiddenClass + " text-right"} id="paypal-button-cart"></div> 
                         </FormGroup>
                     </div>
                 </Col>
@@ -191,7 +206,8 @@ class Cart extends Component {
 const mapStateToProps = (state) => {
     return {
         shop: {
-            cart: state.shop.cart
+            cart: state.shop.cart,
+            receiver: state.shop.receiver
         }
     }
 }
