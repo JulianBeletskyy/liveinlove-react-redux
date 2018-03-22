@@ -712,6 +712,13 @@ export function setMessages(value, id) {
     }
 }
 
+export function setAttachMessage(value) {
+    return {
+        type: types.SET_ATTACH_MESSAGE,
+        value
+    }
+}
+
 export function setContacts(value) {
     return {
         type: types.SET_CONTACTS,
