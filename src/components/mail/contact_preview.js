@@ -4,7 +4,6 @@ import { BtnMain } from 'components/form/buttons'
 
 class ContactPreview extends Component {
     render() {
-        console.log(this.props.options)
         return (
             <div className={style.wrap + ' ' + (this.props.client ? '' : 'girl')} onClick={this.props.onClick}>
                 <div className={style.imgContactWrap}>

@@ -22,3 +22,13 @@
 	    width: 100%;
 	}
 }
+
+:local(.joinLink) {
+	color: #27c2d3;
+	text-decoration: underline;
+}
+
+:local(.joinLink:hover) {
+	text-decoration: none;
+	color: #fff;
+}

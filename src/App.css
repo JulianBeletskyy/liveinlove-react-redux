@@ -130,6 +130,10 @@ body .title {
   border-bottom: 1px solid rgba(249, 30, 127, 0.6);
 }
 
+.text-white.main {
+  font-size: 54px;
+  text-align: center;
+}
 
 .blue-color {
   color: #27c2d3;
