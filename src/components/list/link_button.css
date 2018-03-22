@@ -2,6 +2,7 @@
 	padding: 0 5px;
 	float: right;
 	position: relative;
+    text-align: right;
 }
 
 :local(.wrap a:hover),
@@ -17,7 +18,7 @@
     letter-spacing: 0.6px;
     position: absolute;
     top: -9px;
-    right: 100%;
+    right: 65px;
     margin-right: -80px;
     margin-top: -31px;
     float: left;
@@ -46,4 +47,17 @@
    	padding: 3px 20px;
     color: #333;
     cursor: default;
+}
+
+:local(.uploadField) {
+    display: none !important;
+}
+
+:local(.name) {
+    
+}
+
+:local(.close) {
+    padding: 0 5px;
+    cursor: pointer;
 }

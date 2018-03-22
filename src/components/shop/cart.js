@@ -5,6 +5,7 @@ import store from 'store'
 import { setCart, setAlert } from 'actions'
 import style from './style.css'
 import BtnMain from 'components/form/buttons/main_button.js'
+import ReceiverInfo from './receiver_info.js'
 
 class Cart extends Component {
     getCart = () => {
@@ -104,16 +105,6 @@ class Cart extends Component {
         return total
     }
 
-    showMessage = () => {
-        if (!this.props.receiver) {
-            store.dispatch(setAlert('Choose receiver first', 'error'))
-        } 
-    }
-
-    checkReceiver = (actions) => {
-        return this.props.receiver ? actions.enable() : actions.disable()
-    }
-
     componentDidMount() {
         window.paypal.Button.render({
             env: 'sandbox', // sandbox | production
@@ -128,14 +119,6 @@ class Cart extends Component {
             client: {
                 sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
                 production: '<insert production client id>'
-            },
-
-            validate: (actions) => {
-                this.checkReceiver(actions)
-            },
-
-            onClick: () => {
-                this.showMessage()
             },
 
             payment: (data, actions) => {
@@ -160,9 +143,10 @@ class Cart extends Component {
 
 	render() {
         const hiddenClass = this.props.shop.cart.length ? '' : 'hidden'
+        console.log(this.props.shop.receiver)
         return (
             <Row>
-                <Col sm={10}>
+                <Col xs={10}>
                     <div className="table-responsive">
                         <table className="table">
                             <thead>
@@ -193,10 +177,18 @@ class Cart extends Component {
                                 </tr>
                             </tfoot>
                         </table>
-                        <FormGroup>
-                            <div className={hiddenClass + " text-right"} id="paypal-button-cart"></div> 
-                        </FormGroup>
                     </div>
+                    <Row>
+                        <Col xs={6}>
+                            <ReceiverInfo receiver={this.props.shop.receiver} />
+                        </Col>
+                        <Col xs={6}>
+                            <div className={hiddenClass + " text-right"} id="paypal-button-cart"></div>
+                        </Col>
+                    </Row>
+                </Col>
+                <Col xs={2}>
+                    
                 </Col>
             </Row>
         );

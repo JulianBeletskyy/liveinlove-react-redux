@@ -8,7 +8,8 @@ const initialState = {
     photo_preview: false,
     plans: false,
     credits: false,
-    video: false
+    video: false,
+    gallery: false,
 }
 
 export default function modals(modals = initialState, action = {}) {

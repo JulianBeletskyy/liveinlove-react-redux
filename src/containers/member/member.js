@@ -35,7 +35,7 @@ class Member extends Component {
 
     goToShop = () => {
         store.dispatch(setReceiverToShop(this.props.members.data))
-        history.push(history.location.pathname+'/shop')
+        history.push('/shop')
     }
 
     componentDidMount() {

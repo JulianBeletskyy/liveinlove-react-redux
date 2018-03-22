@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { Registration, MainPanel } from 'components'
-import { toggleModal } from 'actions'
+import { toggleModal, toggleRegistration } from 'actions'
 import store from 'store'
 import BtnMain from 'components/form/buttons/main_button.js'
 import style from './style.css'
@@ -36,10 +36,13 @@ class PublicHome extends Component {
                         <Col md={6} sm={12} className={style.wrapLogin + ' ' + activeClass}>
                             <div>
                                 <div>
-                                    <h2 className="text-white">
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    <h1 className="text-white main">
+                                        Premier Matchmaking agency to Find Your Ukrainian Lady
+                                    </h1>
+                                    <h2 className="text-white text-center">
+                                        We are not Gods to predict your future but we have something to make you closer to your dream come true.
+                                        <br />
+                                        <a className={style.joinLink} onClick={() => store.dispatch(toggleRegistration(true))} href="javascript:;"> Join Now</a>!
                                     </h2>
                                </div>
                                <div className="btn-login text-center">

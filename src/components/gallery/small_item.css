@@ -33,6 +33,7 @@
     object-fit: cover;
     height: 200px;
     padding: 1px;
+    width: 100%;
 }
 
 :local(.hiddenVideo) {
@@ -144,6 +145,10 @@
     cursor: pointer;
     color: #27C2D3;
     opacity: 0.8;
+}
+
+:local(.wrapInner) {
+    overflow: hidden;
 }
 
 /*

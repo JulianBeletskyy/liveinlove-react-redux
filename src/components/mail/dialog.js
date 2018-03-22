@@ -9,6 +9,7 @@ import BtnMain from 'components/form/buttons/main_button.js'
 import MessageItem from './message_item.js'
 import Validator from 'validate'
 import { Loader } from 'containers'
+import LinkButton from 'components/list/link_button.js'
 
 class Dialog extends Component {
     constructor(props) {
@@ -69,6 +70,7 @@ class Dialog extends Component {
                                     bsStyle="success"
                                     text="Send"
                                     onClick = {this.send} />
+                                    <LinkButton  />
                             </FormGroup>
                         </div>
                     :   <Loader />
