@@ -33,6 +33,12 @@ class SmallItem extends Component {
                 break;
             default: text = ''
         }
+        
+        if (this.props.forClient) {
+            text = ! this.props.image.private ? 'public' : 'private';
+            textMenu = ! this.props.image.private ? 'private' : 'public';
+            classInfo = ! this.props.image.private ? style.success : style.danger;
+        }
         return (
             <div className={style.wrap} onClick={this.props.onClick}>
                 <img src={this.props.image.src || this.props.image.image} className={style.img + ' ' + hiddenClass} alt="" />

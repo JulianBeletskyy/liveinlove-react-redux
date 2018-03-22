@@ -24,6 +24,7 @@ class CustomGallery extends Component {
                     image={image}
                     profile={this.props.profile}
                     edit={this.props.edit}
+                    forClient={this.props.forClient && this.props.user.data.role === 'client'}
                     info={this.props.info} />)
     }
     

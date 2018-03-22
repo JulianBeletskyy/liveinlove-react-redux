@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store, { history } from 'store'
 import Lightbox from 'react-images'
-import { getMemberInfo, addToFavorite, removeFromFavorite, addViewed, toggleLightBox } from 'actions'
+import { getMemberInfo, addToFavorite, removeFromFavorite, addViewed, toggleLightBox, setReceiverToShop } from 'actions'
 import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
 import style from './style.css'
 import AvatarImg from 'components/gallery/avatar_img.js'
@@ -31,6 +31,11 @@ class Member extends Component {
         } else {
             store.dispatch(addToFavorite(this.props.members.data.id, this.props.user.token))
         }
+    }
+
+    goToShop = () => {
+        store.dispatch(setReceiverToShop(this.props.members.data))
+        history.push(history.location.pathname+'/shop')
     }
 
     componentDidMount() {
@@ -113,7 +118,7 @@ class Member extends Component {
                                                         bsStyle="success"
                                                         text="Send Gift"
                                                         color="main"
-                                                        onClick={() => history.push(history.location.pathname+'/shop')}
+                                                        onClick={this.goToShop}
                                                     />
                                                 </FormGroup>
                                             : ''

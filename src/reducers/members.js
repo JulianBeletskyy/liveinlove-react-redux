@@ -34,13 +34,9 @@ export default function members(members = initialState, action = {}) {
                 [action.key]: action.data
             });
         case ADD_MEMBERS:
-            let temp_list = Object.assign([], members.list)
-            for (let item of action.value) {
-                temp_list.push(item)
-            }
             return Object.assign({}, members, {
-                list: temp_list,
-                search_list: temp_list
+                list: [...members.list, ...action.value],
+                search_list: [...members.search_list, ...action.value]
             });
         case SET_MEMBER_INFO:
             return Object.assign({}, members, {

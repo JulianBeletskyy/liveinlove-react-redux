@@ -4,6 +4,7 @@ import CustomGallery from 'components/gallery/custom_gallery.js'
 import InfoBlock from 'components/members/info_block.js'
 import MessageBlock from 'components/members/message_block.js'
 import VideoBlock from 'components/gallery/video_block.js'
+import { connect } from 'react-redux'
 
 class MemberInfo extends Component {
 	
@@ -21,8 +22,9 @@ class MemberInfo extends Component {
             			title: 'Gallery', 
             			content: <CustomGallery 
                                     images={this.props.options.gallery}
-                                    info={false}
-                                    edit={false} />
+                                    info={this.props.user.data.role === 'client'}
+                                    edit={false}
+                                    forClient={true} />
                     }, 
                     videoTab, 
                     {
@@ -37,4 +39,16 @@ class MemberInfo extends Component {
     }
 }
 
-export default MemberInfo
+const mapStateToProps = (state) => {
+    return {
+        user: {
+            data: {
+                role: state.user.data.role,
+            }
+        }
+    }
+}
+
+export default connect(
+    mapStateToProps
+)(MemberInfo)

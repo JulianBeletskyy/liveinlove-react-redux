@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import store from 'store'
 import { connect } from 'react-redux'
-import { toggleModal, getPackages, setActivePackage } from 'actions'
+import { toggleModal, getPackages, setActivePackage, setAlert } from 'actions'
 import { FormGroup } from 'react-bootstrap'
 import PackageItem from './package_item.js'
 
@@ -16,7 +16,7 @@ class Credits extends Component {
         store.dispatch(setActivePackage(item))
     }
 
-    componentDidMount() {
+    renderPayPal = () => {
         window.paypal.Button.render({
             env: 'sandbox', // sandbox | production
             commit: true,
@@ -31,6 +31,7 @@ class Credits extends Component {
                 sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
                 production: '<insert production client id>'
             },
+
             payment: (data, actions) => {
                 return actions.payment.create({
                     payment: {
@@ -51,18 +52,23 @@ class Credits extends Component {
             }
         }, '#paypal-button');
     }
+    
+    componentDidMount() {
+       this.renderPayPal()
+    }
 
     printPackages = (item, i) => {
         return <PackageItem item={item} key={i} active={this.props.memberships.active_package} onClick={() => this.setPackage(item)} />
     }
 
     render() {
+        const hiddenClass = this.props.memberships.active_package.id ? '' : 'hidden'
         return (
             <div>
                 <FormGroup>
                     { this.props.memberships.packages.map((item, i) => this.printPackages(item, i))}
                 </FormGroup>
-                <div className="text-center" id="paypal-button"></div>
+                    <div className={hiddenClass + " text-center"} id="paypal-button"></div>
             </div>
         );
     }

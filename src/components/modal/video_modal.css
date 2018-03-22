@@ -30,4 +30,11 @@
 :local(.modalWrap video) {
   max-width: 100%;
 }
+
+:local(.closeVideoBtn) {
+  position: absolute;
+  top: -15px;
+  right: 15px;
+  cursor: pointer;
+}
     
