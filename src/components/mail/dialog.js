@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import store, { history } from 'store'
 import { connect } from 'react-redux'
 import { FormGroup } from 'react-bootstrap'
-import { sendMessageByDialog, getMessages } from 'actions'
+import { sendMessageByDialog, getMessages, toggleLightBox } from 'actions'
 import style from './style.css'
 import { Textarea } from 'components/form/inputs'
 import BtnMain from 'components/form/buttons/main_button.js'
@@ -10,26 +10,33 @@ import MessageItem from './message_item.js'
 import Validator from 'validate'
 import { Loader } from 'containers'
 import LinkButton from 'components/list/link_button.js'
+import Lightbox from 'react-images'
 
 class Dialog extends Component {
     constructor(props) {
         super(props)
         this.message = {}
-        
+        this.el = false
+        this.attachment = ''
         if (props.match.params.id) {
             store.dispatch(getMessages(props.match.params.id, props.user.token))
         }
     }
 
     printMessages = (message, i) => {
-        return (<MessageItem key={i} message={message} user={this.props.user} />)
+        return (<MessageItem key={i} showPhoto={() => this.showPhoto(message)} message={message} user={this.props.user} />)
     }
 
     send = () => {
         let error = 1
         error *= Validator.check(this.message.value, ['required'], 'Message')
         if (error) {
-            store.dispatch(sendMessageByDialog(this.props.match.params.id, this.message.value, this.props.user.token))
+            const data = {
+                original: this.message.value,
+                attachment: this.props.messages.attach_message.src || this.props.messages.attach_message,
+                dialog_id: this.props.match.params.id
+            }
+            store.dispatch(sendMessageByDialog(data, this.props.user.token))
             this.message.value = ''
         }
     }
@@ -42,8 +49,17 @@ class Dialog extends Component {
 
     componentDidUpdate() {
         if (this.el) {
-            this.el.scrollTop = this.el.scrollHeight
+            this.el.scrollTop = this.el.scrollHeight * 2
         }
+    }
+
+    showPhoto = (message) => {
+        this.attachment = message.attachment
+        store.dispatch(toggleLightBox('message', 0))
+    }
+
+    closeLightbox = () => {
+        store.dispatch(toggleLightBox(''))
     }
 
     render() {
@@ -75,6 +91,12 @@ class Dialog extends Component {
                         </div>
                     :   <Loader />
                 }
+                <Lightbox
+                    images={[{src: this.attachment}]}
+                    isOpen={this.props.services.gallery.show_light_box === 'message'}
+                    backdropClosesModal={true}
+                    showImageCount={false}
+                    onClose={this.closeLightbox} />
             </div>
         );
     }
@@ -93,7 +115,12 @@ const mapStateToProps = (state) => {
         messages: {
             dialog: state.messages.dialog.list,
             id: state.messages.dialog.id,
-            receiver: state.messages.receiver,
+            attach_message: state.messages.attach_message
+        },
+        services: {
+            gallery: {
+                show_light_box: state.services.gallery.show_light_box
+            }
         }
     }
 }

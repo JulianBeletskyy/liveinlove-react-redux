@@ -485,36 +485,36 @@ export default {
         .then(responseHandler)
     },
 
-    sendMessage(id, message, token) {
-        const data = {
-            receiver_id: id,
-            original: message
-        }
+    sendMessage(data, token) {
+        let formData = new FormData()
+        formData.append('attachment', data.attachment)
+        formData.append('original', data.original)
+        formData.append('receiver_id', data.receiver_id)
         return fetch(config.API_URL + 'user/message/send', {
             method: 'post',
             headers: {
                 'Authorization': 'Bearer ' + token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                //'Accept': 'application/json',
+                //'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: formData
         })
         .then(responseHandler)
     },
 
-    sendMessageByDialog(id, message, token) {
-        const data = {
-            dialog_id: id,
-            original: message
-        }
+    sendMessageByDialog(data, token) {
+        let formData = new FormData()
+        formData.append('attachment', data.attachment)
+        formData.append('original', data.original)
+        formData.append('dialog_id', data.dialog_id)
         return fetch(config.API_URL + 'user/message/dialog/send', {
             method: 'post',
             headers: {
                 'Authorization': 'Bearer ' + token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                //'Accept': 'application/json',
+                //'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: formData
         })
         .then(responseHandler)
     },
@@ -542,6 +542,20 @@ export default {
         })
         .then(responseHandler)
     },
+
+    showAttach(id, token) {
+        return fetch(config.API_URL + 'user/message/attachment/see', {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({message_id: id})
+        })
+        .then(responseHandler)
+    },
+
 
     getContacts(token) {
         return fetch(config.API_URL + 'user/message/contacts', {

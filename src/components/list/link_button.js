@@ -21,7 +21,6 @@ class LinkButton extends Component {
 
     upload = (event) => {
         event.preventDefault()
-        console.log('click')
         const el = document.getElementById('upload')
         el.click()
     }
@@ -58,7 +57,6 @@ class LinkButton extends Component {
     render() {
     	const activeClass = this.state.active ? style.active : ''
         const gallery = this.props.modals.gallery
-        console.log(this.props.messages.attach_message)
         return (
             <div className={style.wrap}>
                 

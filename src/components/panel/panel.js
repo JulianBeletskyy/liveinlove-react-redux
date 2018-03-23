@@ -7,6 +7,11 @@ class MainPanel extends Component {
 		return (
 			<Panel bsClass={style.headerPanel + ' panel'}>
 				<Panel.Heading>
+					{
+						this.props.showClose
+						? 	<span onClick={this.props.onClick} className={style.closeBtn}><i className="fas fa-times pull-right"></i></span>
+						: ''
+					}
 					<h3 className="title">
 						<i className={this.props.iconClass}></i>
 						&nbsp;

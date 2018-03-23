@@ -143,7 +143,6 @@ class Cart extends Component {
 
 	render() {
         const hiddenClass = this.props.shop.cart.length ? '' : 'hidden'
-        console.log(this.props.shop.receiver)
         return (
             <Row>
                 <Col xs={10}>
