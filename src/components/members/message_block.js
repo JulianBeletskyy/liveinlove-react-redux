@@ -18,7 +18,12 @@ class MessageBlock extends Component {
         let error = 1
         error *= Validator.check(this.message.value, ['required'], 'Message')
         if (error) {
-            store.dispatch(sendMessage(this.props.memberId, this.message.value, this.props.user.token))
+            const data = {
+                original: this.message.value,
+                attachment: this.props.messages.attach_message.src || this.props.messages.attach_message,
+                receiver_id: this.props.memberId
+            }
+            store.dispatch(sendMessage(data, this.props.user.token))
             this.message.value = ''
         }
     }
@@ -49,6 +54,9 @@ const mapStateToProps = (state) => {
     return {
         user: {
             token: state.user.token
+        },
+        messages: {
+            attach_message: state.messages.attach_message
         }
     }
 }
