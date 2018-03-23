@@ -1,7 +1,7 @@
 :local(.wrapRegistration) {
     width: 60%;
     z-index: 1;
-    transition: all .3s;
+    transition: width .2s;
 }
 
 :local(.wrapRegistration.active) {
@@ -23,6 +23,13 @@
 	}
 }
 
+@media (min-width: 768px) {
+    :local(.wrapRegistration) {
+	    max-height: 506px;
+	    overflow: hidden;
+	}
+}
+
 :local(.joinLink) {
 	color: #27c2d3;
 	text-decoration: underline;
@@ -31,4 +38,48 @@
 :local(.joinLink:hover) {
 	text-decoration: none;
 	color: #fff;
+}
+
+:local(.advantWrap) {
+	background: #fff;
+    padding: 50px 0px 70px 0px;
+}
+
+:local(.advantItem) {
+	padding: 15px;
+	text-align: center;
+	font-family: "bebas_neue",Helvetica,Arial,sans-serif;
+	letter-spacing: 1px;
+	font-weight: bold;
+	opacity: 0;
+}
+
+:local(.advantTitle) {
+	text-align: center;
+	font-family: "bebas_neue",Helvetica,Arial,sans-serif;
+	letter-spacing: 3px;
+	font-weight: bold;
+    padding-bottom: 50px;
+    font-size:  3.5em;
+}
+
+:local(.advantItem).animated {
+	opacity: 1;
+}
+
+:local(.underlineText) {
+    background-image: -webkit-linear-gradient(top, #34dca2 0, #34dca2 100%);
+    background-image: linear-gradient(to bottom, #34dca2 0, #34dca2 100%);
+    background-position: -3px 85%;
+    background-repeat: no-repeat;
+    background-size: 100% 3px;
+}
+
+:local(.mainPart) {
+	padding-bottom: 70px;
+	height: 100vh;
+}
+
+:local(.advantTitle.active) {
+	opacity: 1;
 }

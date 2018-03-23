@@ -704,11 +704,31 @@ export function getContacts(token) {
     }
 }
 
+export function showAttach(id, token, dialog_id) {
+    return dispatch => {
+        return api.showAttach(id, token)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setAttach(id, json.data, dialog_id))
+                }
+            })
+    }
+}
+
 export function setMessages(value, id) {
     return {
         type: types.SET_MESSAGES,
         value,
         id
+    }
+}
+
+export function setAttach(id, src, dialog_id) {
+    return {
+        type: types.SET_ATTACH,
+        src,
+        id,
+        dialog_id
     }
 }
 
@@ -741,9 +761,9 @@ export function setDialogsList(value) {
     }
 }
 
-export function sendMessage(id, message, token) {
+export function sendMessage(data, token) {
     return dispatch => {
-        return api.sendMessage(id, message, token)
+        return api.sendMessage(data, token)
             .then(json => {
                 if (json.data) {
                     
@@ -752,12 +772,12 @@ export function sendMessage(id, message, token) {
     }
 }
 
-export function sendMessageByDialog(id, message, token) {
+export function sendMessageByDialog(data, token) {
     return dispatch => {
-        return api.sendMessageByDialog(id, message, token)
+        return api.sendMessageByDialog(data, token)
             .then(json => {
                 if (json.data) {
-                    dispatch(getMessages(id, token))
+                    dispatch(getMessages(data.dialog_id, token))
                 }
             })
     }
@@ -846,6 +866,14 @@ export function setOptions(value, option) {
 }
 
 //OTHER
+
+export function setActiveSection(value, key) {
+    return {
+        type: types.SET_ACTIVE_SECTION,
+        value,
+        key
+    }
+}
 
 export function addCredits(value) {
     return {

@@ -1,4 +1,4 @@
-import { SET_ACTIVE_TAB, TOGGLE_LIGHT_BOX, SET_UPLOAD, NEXT_IMG, PREV_IMG } from 'actions/types.js'
+import { SET_ACTIVE_TAB, TOGGLE_LIGHT_BOX, SET_UPLOAD, NEXT_IMG, PREV_IMG, SET_ACTIVE_SECTION } from 'actions/types.js'
 
 const initialState = {
 	tabs: {
@@ -10,7 +10,10 @@ const initialState = {
         show_light_box: '',
         img_light_box: 0
     },
-    upload: false
+    upload: false,
+    sections: {
+        advantages: false
+    }
 }
 
 export default function services(services = initialState, action = {}) {
@@ -41,6 +44,12 @@ export default function services(services = initialState, action = {}) {
         case SET_UPLOAD:
             return Object.assign({}, services, {
                 upload: true
+            });
+        case SET_ACTIVE_SECTION:
+            return Object.assign({}, services, {
+                sections: {
+                    [action.key]: action.value
+                }
             });
         default:
             return services;

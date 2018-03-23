@@ -22,7 +22,6 @@ class VideoBlock extends Component {
             return
         }
         this.videoSrc = video.src || video.video
-        console.log(video)
         store.dispatch(toggleModal(true, 'video'))
     }
 
