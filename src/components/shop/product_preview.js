@@ -17,7 +17,7 @@ class ProductPreview extends Component {
                 <img className={style.img} src={product.image} alt="" />
                 <div className={style.info}>
                     <div className="font-bebas"><strong>{product.name}</strong></div>
-                    <div className="font-bebas"><strong className={style.price}>{product.price}</strong></div>
+                    <div className="font-bebas"><strong className={style.price}>${product.price}</strong></div>
                 </div>
                 <div className={style.btnWrap}>
                     <div className={style.btnInner}>

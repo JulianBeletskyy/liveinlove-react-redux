@@ -15,7 +15,7 @@ class ProductInfo extends Component {
                         <h1 className={style.title}>{this.props.product.name}</h1>
                     </div>
                     <div className="font-bebas">
-                        <strong className={style.infoPrice}>{this.props.product.price}</strong>
+                        <strong className={style.infoPrice}>${this.props.product.price}</strong>
                     </div>
                     <FormGroup>
                         <span>{this.props.product.description}</span>
