@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { setSegment, getUserInfo, getFullInfo, getGallery } from 'actions'
+import { setSegment, getUserInfo, getFullInfo, getGallery, closeNav } from 'actions'
 import * as pages from './containers'
 import store, { history } from './store'
 import routing from './config/route.js'
@@ -16,6 +16,8 @@ class App extends Component {
     constructor(props) {
         super(props)
         history.listen((location, action) => {
+            store.dispatch(closeNav())
+
             let segments = location.pathname.split('/')
             segments.shift()
             let var1, var2, var3
