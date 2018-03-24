@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { FormGroup, Row, Col } from 'react-bootstrap'
+import { Row, Col, FormGroup } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import store from 'store'
-import { setCart, setAlert } from 'actions'
+import { setCart } from 'actions'
 import style from './style.css'
-import BtnMain from 'components/form/buttons/main_button.js'
 import ReceiverInfo from './receiver_info.js'
 
 class Cart extends Component {
@@ -111,7 +110,7 @@ class Cart extends Component {
             commit: true,
             style: {
                 label: 'paypal',
-                size:  'large',    // small | medium | large | responsive
+                size:  'medium',    // small | medium | large | responsive
                 shape: 'rect',     // pill | rect
                 color: 'blue',     // gold | blue | silver | black
                 tagline: false    
@@ -145,7 +144,7 @@ class Cart extends Component {
         const hiddenClass = this.props.shop.cart.length ? '' : 'hidden'
         return (
             <Row>
-                <Col xs={10}>
+                <Col xs={12}>
                     <div className="table-responsive">
                         <table className="table">
                             <thead>
@@ -178,11 +177,13 @@ class Cart extends Component {
                         </table>
                     </div>
                     <Row>
-                        <Col xs={6}>
-                            <ReceiverInfo receiver={this.props.shop.receiver} />
+                        <Col sm={8}>
+                            <FormGroup>
+                                <ReceiverInfo receiver={this.props.shop.receiver} />
+                            </FormGroup>
                         </Col>
-                        <Col xs={6}>
-                            <div className={hiddenClass + " text-right"} id="paypal-button-cart"></div>
+                        <Col sm={4}>
+                            <div className={hiddenClass + " text-center"} id="paypal-button-cart"></div>
                         </Col>
                     </Row>
                 </Col>

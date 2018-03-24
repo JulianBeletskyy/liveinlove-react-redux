@@ -43,8 +43,8 @@ class Member extends Component {
         let date = new Date();
         date = date.getTime() / 1000
         date = date.toFixed(0)
-        localStorage.getItem('viewed')
-        if (! localStorage.length) {
+        let viewed = localStorage.getItem('viewed')
+        if (! viewed) {
             let data = [{[this.props.match.params.id]: date}]
             localStorage.setItem('viewed', JSON.stringify(data))
             store.dispatch(addViewed(this.props.match.params.id, this.props.user.token))
@@ -122,8 +122,7 @@ class Member extends Component {
                                                     />
                                                 </FormGroup>
                                             : ''
-                                        }
-                                            
+                                        } 
                                     </Col>
                                     <Col md={9}>
                                         <MemberInfo
@@ -134,12 +133,12 @@ class Member extends Component {
                         }
                     </Grid>
                 </div>
-                {<Lightbox
+                <Lightbox
                     images={[{src: this.props.members.data.avatar.original}]}
                     isOpen={this.props.services.gallery.show_light_box === 'avatar'}
                     backdropClosesModal={true}
                     showImageCount={false}
-                    onClose={this.closeLightbox} />}
+                    onClose={this.closeLightbox} />
             </div>
         );
     }

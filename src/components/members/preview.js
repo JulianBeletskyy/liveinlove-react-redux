@@ -7,7 +7,7 @@ import { addToFavorite, removeFromFavorite } from 'actions'
 
 class MemberPreview extends Component {
 	goToMember = () => {
-        history.push('/member/' + this.props.options.id)
+        history.push('/member/' + this.props.options.id.toString())
     }
 
     addToFavorite = () => {

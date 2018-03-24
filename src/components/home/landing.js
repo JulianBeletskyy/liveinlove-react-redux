@@ -28,8 +28,8 @@ class Landing extends Component {
         }
         return (
             <div>
-                <div className={style.mainPart}>
-                    <Grid>
+                <Grid>
+                    <div className={style.mainPart}>
                         <Row>
                             <Col md={col} sm={12} >
                                 <div className={style.wrapRegistration + ' ' + activeClass}>
@@ -41,7 +41,6 @@ class Landing extends Component {
                                         body={<Registration />} />
                                 </div>
                             </Col>
-
                             <Col md={6} sm={12} className={style.wrapLogin + ' ' + activeClass}>
                                 <div>
                                     <div>
@@ -63,10 +62,12 @@ class Landing extends Component {
                                     </div>
                                 </div>
                             </Col>
+                            <Col xs={12}>
+                            </Col>
                         </Row>
-                    </Grid>
-                </div>
-                <Advantages />
+                    </div>
+                    <Advantages />
+                </Grid>
             </div>
         )
     }
