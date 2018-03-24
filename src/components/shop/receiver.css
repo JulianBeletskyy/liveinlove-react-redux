@@ -1,0 +1,75 @@
+:local(.style) {
+    border-radius: 0px;
+    border-top-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    box-shadow:inset 0 0 0 0 #fff;
+    position: relative;
+    z-index: 1;
+    background: transparent;
+}
+
+:local(.wrap) {
+    position: relative;
+}
+
+:local(.listWrap) {
+	position: absolute;
+    z-index: 1000;
+    background: #fff;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+:local(.img) {
+	width: 40px;
+	height: auto;
+	border-radius: 20px;
+	margin-right: 10px;
+}
+
+:local(.wrapItem) {
+	padding: 5px;
+	cursor: pointer;
+}
+
+:local(.wrapItem:hover) {
+	background-color: #e2e2e2;	
+}
+
+:local(.removeBtn) {
+	cursor: pointer;
+	padding: 5px;
+}
+
+:local(.listWrap::-webkit-scrollbar) {
+    width: 5px;
+    border-radius: 5px;
+}
+
+/* Track */
+:local(.listWrap::-webkit-scrollbar-track) {
+    background: #f1f1f1;
+}
+ 
+/* Handle */
+:local(.listWrap::-webkit-scrollbar-thumb) {
+    background: #888; 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+:local(.listWrap::-webkit-scrollbar-thumb:hover) {
+    background: #555; 
+}
+
+:local(.underlineText) {
+	border-bottom: 1px solid #34dca2;
+    padding-right: 10px;
+}
+
+:local(.receiver) {
+	position: absolute;
+	top: -23px;
+}

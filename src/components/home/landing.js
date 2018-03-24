@@ -7,7 +7,6 @@ import store from 'store'
 import BtnMain from 'components/form/buttons/main_button.js'
 import style from './style.css'
 import Advantages from './advantages.js'
-import { Route, Switch } from 'react-router-dom'
 
 class Landing extends Component {
     showModal = () => {
@@ -27,48 +26,44 @@ class Landing extends Component {
             col = 12
         }
         return (
-            <div>
-                <Grid>
-                    <div className={style.mainPart}>
-                        <Row>
-                            <Col md={col} sm={12} >
-                                <div className={style.wrapRegistration + ' ' + activeClass}>
-                                    <MainPanel
-                                        title="Registration"
-                                        iconClass="fas fa-address-card"
-                                        onClick={this.closeRegistration}
-                                        showClose={(this.props.signup.step === 0 || this.props.signup.step === 4) && this.props.signup.showRegistration}
-                                        body={<Registration />} />
-                                </div>
-                            </Col>
-                            <Col md={6} sm={12} className={style.wrapLogin + ' ' + activeClass}>
+            <Grid>
+                <div className={style.mainPart}>
+                    <Row>
+                        <Col md={col} sm={12} >
+                            <div className={style.wrapRegistration + ' ' + activeClass}>
+                                <MainPanel
+                                    title="Registration"
+                                    iconClass="fas fa-address-card"
+                                    onClick={this.closeRegistration}
+                                    showClose={(this.props.signup.step === 0 || this.props.signup.step === 4) && this.props.signup.showRegistration}
+                                    body={<Registration />} />
+                            </div>
+                        </Col>
+                        <Col md={6} sm={12} className={style.wrapLogin + ' ' + activeClass}>
+                            <div>
                                 <div>
-                                    <div>
-                                        <h1 className="text-white main">
-                                            Premier Matchmaking agency to Find Your Ukrainian Lady
-                                        </h1>
-                                        <h2 className="text-white text-center">
-                                            We are not Gods to predict your future but we have something to make you closer to your dream come true.
-                                            <br />
-                                            <a className={style.joinLink} onClick={() => store.dispatch(toggleRegistration(true))} href="javascript:;"> Join Now</a>
-                                        </h2>
-                                   </div>
-                                   <div className="btn-login text-center">
-                                        <BtnMain
-                                            type="button"
-                                            bsStyle="success"
-                                            text="Login"
-                                            onClick={this.showModal} />
-                                    </div>
+                                    <h1 className="text-white main">
+                                        Premier Matchmaking agency to Find Your Ukrainian Lady
+                                    </h1>
+                                    <h2 className="text-white text-center">
+                                        We are not Gods to predict your future but we have something to make you closer to your dream come true.
+                                        <br />
+                                        <a className={style.joinLink} onClick={() => store.dispatch(toggleRegistration(true))} href="javascript:;"> Join Now</a>
+                                    </h2>
+                               </div>
+                               <div className="btn-login text-center">
+                                    <BtnMain
+                                        type="button"
+                                        bsStyle="success"
+                                        text="Login"
+                                        onClick={this.showModal} />
                                 </div>
-                            </Col>
-                            <Col xs={12}>
-                            </Col>
-                        </Row>
-                    </div>
-                    <Advantages />
-                </Grid>
-            </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </div>
+                <Advantages />
+            </Grid>
         )
     }
 }
