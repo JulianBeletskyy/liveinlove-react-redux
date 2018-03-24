@@ -13,6 +13,7 @@ export function login(data) {
                 dispatch(toggleModal(false, 'login'))
                 dispatch(getUserInfo(json.data))
                 dispatch(setToken(json.data))
+                dispatch(closeNav())
             }
         })
     }
@@ -866,6 +867,17 @@ export function setOptions(value, option) {
 }
 
 //OTHER
+
+export function closeNav() {
+    const nav = document.getElementById('collapse')
+    if (nav.className.indexOf('in') + 1) {
+        const el = document.getElementsByClassName("navbar-toggle");
+        el[0].click()
+    }
+    return {
+        type: types.CLOSE_NAV
+    }
+}
 
 export function setActiveSection(value, key) {
     return {
