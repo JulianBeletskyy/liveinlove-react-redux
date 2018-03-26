@@ -78,6 +78,7 @@
     list-style: none;
     background-color: #fff;
     background-clip: padding-box;
+    text-align: center;
 }
 
 :local(.infoImg) {

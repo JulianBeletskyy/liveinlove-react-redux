@@ -42,7 +42,7 @@
 
 :local(.advantWrap) {
 	background: #fff;
-    padding: 50px 0px 70px 0px;
+    padding: 50px 15px 70px 15px;
 }
 
 :local(.advantItem) {
@@ -52,6 +52,14 @@
 	letter-spacing: 1px;
 	font-weight: bold;
 	opacity: 0;
+	min-height: 130px;
+    display: table;
+    width: 100%;
+}
+
+:local(.advantItem span) {
+	display: table-cell;
+    vertical-align: middle;
 }
 
 :local(.advantTitle) {
@@ -65,6 +73,8 @@
 
 :local(.advantItem).animated {
 	opacity: 1;
+	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
 }
 
 :local(.underlineText) {
@@ -80,5 +90,5 @@
 }
 
 :local(.advantTitle.active) {
-	opacity: 1;
+    opacity: 1;
 }

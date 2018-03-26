@@ -91,7 +91,7 @@ class Member extends Component {
                                             onClick={this.openLightBox} />
                                         <FormGroup className="text-center">
                                             <h2>
-                                                <strong className="font-bebas">{this.props.members.data.first_name + ' ' + this.props.members.data.last_name}</strong>
+                                                <strong className="font-bebas">{this.props.members.data.first_name}</strong>
                                             </h2>
                                             <strong className="text-grey">ID: {this.props.members.data.profile_id}</strong>
                                         </FormGroup>
@@ -102,13 +102,32 @@ class Member extends Component {
                                             <span>{this.props.members.data.age} years ( {<Zodiac name={this.props.members.data.zodiac} />} )</span>
                                         </FormGroup>
                                         <FormGroup className="text-center">
+                                            <div className={style.contacts}>
+                                                <i className="fas fa-info-circle"></i>
+                                                <div>
+                                                    <i className="far fa-envelope"></i>
+                                                    <span>{this.props.members.data.email}</span>
+                                                </div>
+                                                <div>
+                                                    <i className="fas fa-phone"></i>
+                                                    <span>{this.props.members.data.email}</span>
+                                                </div>
+                                            </div>
+                                        </FormGroup>
+                                        <FormGroup className="text-center">
+                                            <BtnMain
+                                                type="button"
+                                                bsStyle="success"
+                                                text="Share contact details"
+                                                color="main" />
+                                        </FormGroup>
+                                        <FormGroup className="text-center">
                                             <BtnMain
                                                 type="button"
                                                 bsStyle="success"
                                                 text={this.props.members.data.favorite ? "Remove from favorite" : "Add to favorite"}
                                                 color="main"
-                                                onClick={this.toggleFavorite}
-                                            />
+                                                onClick={this.toggleFavorite} />
                                         </FormGroup>
                                         {
                                             this.props.user.data.role === 'client'
@@ -118,8 +137,7 @@ class Member extends Component {
                                                         bsStyle="success"
                                                         text="Send Gift"
                                                         color="main"
-                                                        onClick={this.goToShop}
-                                                    />
+                                                        onClick={this.goToShop} />
                                                 </FormGroup>
                                             : ''
                                         } 
