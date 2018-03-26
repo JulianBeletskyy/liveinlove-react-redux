@@ -129,7 +129,7 @@ class Cart extends Component {
                 tagline: false    
             },
             client: {
-                sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+                sandbox:    'AXacobXZw7juas6mFNcZ5pJ0jcVEbKuY78wH8zd8_s3955vUJ0uD-muT2NyKd1TzLV-bKgGx5yaaXI2I',
                 production: '<insert production client id>'
             },
 

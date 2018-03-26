@@ -3,3 +3,21 @@
     z-index: 1;
     min-height: 1200px;
 }
+
+:local(.contacts i) {
+	color: #828282;
+	margin-right: 10px;
+}
+
+:local(.contacts) {
+	padding: 10px;
+	border: 2px dashed #828282;
+	position: relative;
+}
+
+:local(.contacts > i) {
+    position: absolute;
+    right: -5px;
+    top: 5px;
+    color: #337ab7;
+}

@@ -13,15 +13,15 @@ class Advantages extends Component {
 		this.firstTime = false
 		this.delay = 0
 		this.classAnimated = {
-			first: ' bounceInLeft',
-			second: ' bounceInUp',
-			third: ' bounceInRight',
-			forth: ' bounceInLeft',
-			fifth: ' bounceInUp',
-			sixth: ' bounceInRight',
-			seventh: ' bounceInLeft',
-			eighth: ' bounceInUp',
-			ninth: ' bounceInRight'
+			first: ' slideInUp', // //bounceInLeft
+			second: ' slideInUp',
+			third: ' slideInUp',
+			forth: ' slideInUp',
+			fifth: ' slideInUp',
+			sixth: ' slideInUp',
+			seventh: ' slideInUp',
+			eighth: ' slideInUp',
+			ninth: ' slideInUp'
 		}
 	}
 
@@ -58,47 +58,47 @@ class Advantages extends Component {
 					</Col>
 					<Col xs={12} sm={4}>
 						<div ref={(ref) => this.elements.first = ref} className={style.advantItem}>
-							Free registration with full professional service
+							<span>Free registration with full professional service</span>
 						</div>
 					</Col>
 					<Col xs={12} sm={4}>
 						<div ref={(ref) => this.elements.second = ref} className={style.advantItem}>
-						All letters from ladies are free to read
+							<span>All letters from ladies are free to read</span>
 						</div>
 					</Col>
 					<Col xs={12} sm={4}>
 						<div ref={(ref) => this.elements.third = ref} className={style.advantItem}>
-						All ladies' profiles real and verified
+							<span>All ladies' profiles real and verified</span>
 						</div>
 					</Col>
 					<Col xs={12} sm={4}>
 						<div ref={(ref) => this.elements.forth = ref} className={style.advantItem}>
-						Upgrade your membership and get access to all additional photos and videos of all ladies
+							<span>Upgrade your membership and get access to all additional photos and videos of all ladies</span>
 						</div>
 					</Col>
 					<Col xs={12} sm={4}>
 						<div ref={(ref) => this.elements.fifth = ref} className={style.advantItem}>
-						Live Video Chat and Video Conference that will help you to become closer inspite of distance
+							<span>Live Video Chat and Video Conference that will help you to become closer inspite of distance</span>
 						</div>
 					</Col>
 					<Col xs={12} sm={4}>
 						<div ref={(ref) => this.elements.sixth = ref} className={style.advantItem}>
-						You can find the One among hundreds of beautiful Ukrainian brides
+							<span>You can find the One among hundreds of beautiful Ukrainian brides</span>
 						</div>
 					</Col>
 					<Col xs={12} sm={4}>
 						<div ref={(ref) => this.elements.seventh = ref} className={style.advantItem}>
-						We've helped many couples to find each other
+							<span>We've helped many couples to find each other</span>
 						</div>
 					</Col>
 					<Col xs={12} sm={4}>
 						<div ref={(ref) => this.elements.eighth = ref} className={style.advantItem}>
-						Verify your profile and share direct contact with ladies
+							<span>Verify your profile and share direct contact with ladies</span>
 						</div>
 					</Col>
 					<Col xs={12} sm={4}>
 						<div ref={(ref) => this.elements.ninth = ref} className={style.advantItem}>
-						Personal assistant support
+							<span>Personal assistant support</span>
 						</div>
 					</Col>
 				</Row>
