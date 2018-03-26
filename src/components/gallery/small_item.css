@@ -70,7 +70,7 @@
     margin-right: -80px;
     margin-top: -31px;
     float: left;
-    min-width: 160px;
+    min-width: 140px;
     padding: 5px 0;
     margin: 2px 0 0;
     font-size: 14px;
@@ -103,7 +103,7 @@
 :local(.menu.active) {
 	opacity: 1;
     display: block;
-    margin-right: -80px;
+    margin-right: -70px;
     margin-top: -31px;
     padding-top: 20px;
 }

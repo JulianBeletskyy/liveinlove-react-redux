@@ -7,11 +7,20 @@ class SmallItem extends Component {
         this.state = {
             active: false
         };
+        const app = document.getElementById('root')
+        app.addEventListener('click', () => {
+            this.setState({active: false})
+        })
     }
 
     showMenu = (event) => {
         event.stopPropagation()
         this.setState({active: ! this.state.active})
+    }
+
+    closeMenu = (event) => {
+        event.stopPropagation()
+        this.setState({active: false})
     }
 
     render() {
@@ -50,7 +59,7 @@ class SmallItem extends Component {
                     : ''
                 }
                 <ul className={style.menu + ' ' + activeClass}>
-                    <span onClick={this.showMenu} className={style.closeBtn}><i className="fas fa-times"></i></span>
+                    <span onClick={this.closeMenu} className={style.closeBtn}><i className="fas fa-times"></i></span>
                     <li onClick={(e) => {this.showMenu(e); this.props.removePhoto(e)}} className={style.menuItem + ' ' + 'font-bebas'}>Remove Photo</li>
                     <li onClick={(e) => {this.showMenu(e); this.props.client ? this.props.toggleActive(e) : this.props.togglePrivate(e)}} className={style.menuItem + ' ' + 'font-bebas'}>Make {textMenu}</li>
                 </ul>
