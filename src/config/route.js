@@ -7,6 +7,9 @@ export default {
             'path': '/girls',
             'component': 'Home'
         }, {
+            'path': '/success-stories',
+            'component': 'Home'
+        }, {
             'path': '*',
             'component': 'NotFound'
         }

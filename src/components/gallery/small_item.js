@@ -60,8 +60,8 @@ class SmallItem extends Component {
                 }
                 <ul className={style.menu + ' ' + activeClass}>
                     <span onClick={this.closeMenu} className={style.closeBtn}><i className="fas fa-times"></i></span>
-                    <li onClick={(e) => {this.showMenu(e); this.props.removePhoto(e)}} className={style.menuItem + ' ' + 'font-bebas'}>Remove Photo</li>
-                    <li onClick={(e) => {this.showMenu(e); this.props.client ? this.props.toggleActive(e) : this.props.togglePrivate(e)}} className={style.menuItem + ' ' + 'font-bebas'}>Make {textMenu}</li>
+                    <li onClick={(e) => {this.closeMenu(e); this.props.removePhoto(e)}} className={style.menuItem + ' ' + 'font-bebas'}>Remove Photo</li>
+                    <li onClick={(e) => {this.closeMenu(e); this.props.client ? this.props.toggleActive(e) : this.props.togglePrivate(e)}} className={style.menuItem + ' ' + 'font-bebas'}>Make {textMenu}</li>
                 </ul>
                 {
                     this.props.info

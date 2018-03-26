@@ -30,7 +30,7 @@ class MemberPreview extends Component {
     	            	<div className={style.infoWrap}>
     		                <div className="text-center">
     		                	<div className="font-bebas">
-    		                		<strong className={style.infoName}>{member.first_name + ' ' + member.last_name}</strong>
+    		                		<strong className={style.infoName}>{member.first_name}</strong>
     		            		</div>
     		                	<div>{member.age + ' years'}</div>
     		                	<div>{member.country + ', ' + member.city}</div>
