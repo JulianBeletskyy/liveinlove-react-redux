@@ -61,17 +61,17 @@ class MainProfile extends Component {
                         {
                             eventKey: 'popular', 
                             title: 'Popular', 
-                            content: <MemberBlock list={popular_list} />
+                            content: <MemberBlock like={true} list={popular_list} />
                         }, {
                             eventKey: 'new', 
                             title: 'New', 
-                            content: <MemberBlock list={new_list} />
+                            content: <MemberBlock like={true} list={new_list} />
                         }, {
                             eventKey: 'girls', 
                             title: 'Advanced Search', 
                             content:    <div>
                                             <SearchBlock />
-                                            <MemberBlock list={search_list} more={more} onClick={this.seeMore} />
+                                            <MemberBlock like={true} list={search_list} more={more} onClick={this.seeMore} />
                                         </div>
                         }
                     ]}

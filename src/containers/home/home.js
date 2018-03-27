@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { PublicHome } from 'components'
 import { Loader } from 'containers'
-import { toggleModal, setRecoveryHash, activateUser, getOptions } from 'actions'
+import { toggleModal, setRecoveryHash, activateUser } from 'actions'
 import store, { history } from 'store'
 import style from './style.css';
 import ClientHome from 'components/home/client_home.js';

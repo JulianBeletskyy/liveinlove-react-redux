@@ -14,6 +14,7 @@ class Contacts extends Component {
         return (
             <div className="pt-15">
                 <MemberBlock 
+                    like={true}
                 	list={this.props.members.favorite_list} />
             </div>
         );

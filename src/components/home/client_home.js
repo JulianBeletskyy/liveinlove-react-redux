@@ -39,6 +39,7 @@ class ClientHome extends Component {
                         </Col>
                     </Row>
                 </Grid>
+                
             </div>
         );
     }

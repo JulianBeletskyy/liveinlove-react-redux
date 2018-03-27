@@ -7,6 +7,8 @@ class MemberBlock extends Component {
     printList = (member, i) => {
         return (<Col key={i} sm={3} xs={6}>
                     <MemberPreview
+                        like={this.props.like}
+                        onClick={this.props.onClickItem}
                         options={member} />
                 </Col>)
     }

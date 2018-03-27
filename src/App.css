@@ -109,6 +109,10 @@ body .title {
   z-index: 1;
 }
 
+.pb-50 {
+  padding-bottom: 50px;
+}
+
 .bg-blue {
   background-color: #ECF1F4;
   background-color: rgba(236, 241, 244, 0.9)
