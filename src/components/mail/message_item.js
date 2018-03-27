@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import style from './style.css'
 import { BtnMain } from 'components/form/buttons'
-import { showAttach, toggleLightBox } from 'actions'
+import { showAttach } from 'actions'
 import store, { history } from 'store'
 import { connect } from 'react-redux'
-import Lightbox from 'react-images'
-
 
 class MessageItem extends Component {
     showAttach = () => {

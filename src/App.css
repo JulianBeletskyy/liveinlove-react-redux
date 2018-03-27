@@ -17,6 +17,7 @@ body .title {
   background-image: url('/assets/img/image.jpg');
   background-size: cover;
   background-position: right center;
+  background-attachment: fixed;
 }
 
 .App:after {
@@ -100,6 +101,12 @@ body .title {
 
 .px-15 {
   padding: 0px 15px;
+}
+
+.pt-100 {
+  padding-top: 100px;
+  position: relative;
+  z-index: 1;
 }
 
 .bg-blue {

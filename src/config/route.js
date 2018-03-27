@@ -8,7 +8,10 @@ export default {
             'component': 'Home'
         }, {
             'path': '/success-stories',
-            'component': 'Home'
+            'component': 'SuccessStories'
+        }, {
+            'path': '/success-stories/:id',
+            'component': 'SuccessStories'
         }, {
             'path': '*',
             'component': 'NotFound'

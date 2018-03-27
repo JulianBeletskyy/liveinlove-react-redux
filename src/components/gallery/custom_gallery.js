@@ -48,7 +48,7 @@ class CustomGallery extends Component {
         e.stopPropagation()
         let url = image.active ? 'hide' : 'show'
 
-        if ((url == 'show' && this.checkActive()) || url == 'hide') {
+        if ((url === 'show' && this.checkActive()) || url === 'hide') {
             store.dispatch(toggleActive({'images': [image.id]}, url, this.props.user.token))
         } else {
             store.dispatch(setAlert('You can\'t make more active photos', 'error'))

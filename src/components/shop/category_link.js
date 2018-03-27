@@ -6,7 +6,7 @@ class CategoryLink extends Component {
     	const activeClass = this.props.active === this.props.id ? style.active : ''
         return (
             <div className={style.catWrap}>
-                <a href="javascript:void(0);" className={style.link + ' ' + activeClass} onClick={this.props.onClick}>
+                <a href="javascript:void(0);" id={this.props.id} className={style.link + ' ' + activeClass} onClick={this.props.onClick}>
                     <span id={this.props.id} className={style.text}>{this.props.text}</span>
                 </a>
             </div>

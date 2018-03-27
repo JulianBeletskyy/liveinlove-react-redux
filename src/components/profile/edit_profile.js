@@ -213,8 +213,7 @@ class EditProfile extends Component {
                 		                    value={data.first_name}
                 		                    name="First Name"
                 		                    key="first_name"
-                                            label={true}
-                		                />
+                                            label={true} />
                 		            </FormGroup>
                 		            <FormGroup>
                 		                <TextField
@@ -224,8 +223,7 @@ class EditProfile extends Component {
                 		                    name="Last Name"
                 		                    value={data.last_name}
                 		                    key="last_name"
-                                            label={true}
-                		                />
+                                            label={true} />
                 		            </FormGroup>
                 		            <FormGroup>
                 		                <TextField
@@ -233,8 +231,7 @@ class EditProfile extends Component {
                 		                    placeholder="Enter email"
                 		                    inputRef={ref => { this.user.email = ref }}
                 		                    value={data.email}
-                                            label={true}
-                		                />
+                                            label={true} />
                 		            </FormGroup>
                                 </Col>
                                 <Col sm={6}>

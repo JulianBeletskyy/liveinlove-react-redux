@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store, { history } from 'store'
 import Lightbox from 'react-images'
-import { getMemberInfo, addToFavorite, removeFromFavorite, addViewed, toggleLightBox, setReceiverToShop } from 'actions'
+import { getMemberInfo, addToFavorite, removeFromFavorite, addViewed, toggleLightBox, setReceiverToShop, getContactsDetails } from 'actions'
 import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
 import style from './style.css'
 import AvatarImg from 'components/gallery/avatar_img.js'
@@ -31,6 +31,10 @@ class Member extends Component {
         } else {
             store.dispatch(addToFavorite(this.props.members.data.id, this.props.user.token))
         }
+    }
+
+    getContactsDetails = () => {
+        store.dispatch(getContactsDetails(this.props.user.token, this.props.members.data.id))
     }
 
     goToShop = () => {
@@ -101,26 +105,18 @@ class Member extends Component {
                                         <FormGroup className="text-center">
                                             <span>{this.props.members.data.age} years ( {<Zodiac name={this.props.members.data.zodiac} />} )</span>
                                         </FormGroup>
-                                        <FormGroup className="text-center">
-                                            <div className={style.contacts}>
-                                                <i className="fas fa-info-circle"></i>
-                                                <div>
-                                                    <i className="far fa-envelope"></i>
-                                                    <span>{this.props.members.data.email}</span>
-                                                </div>
-                                                <div>
-                                                    <i className="fas fa-phone"></i>
-                                                    <span>{this.props.members.data.email}</span>
-                                                </div>
-                                            </div>
-                                        </FormGroup>
-                                        <FormGroup className="text-center">
-                                            <BtnMain
-                                                type="button"
-                                                bsStyle="success"
-                                                text="Share contact details"
-                                                color="main" />
-                                        </FormGroup>
+                                        {
+                                            this.props.user.data.role === 'client'
+                                            ?   <FormGroup className="text-center">
+                                                    <BtnMain
+                                                        type="button"
+                                                        bsStyle="success"
+                                                        text="Share contact details"
+                                                        onClick={this.getContactsDetails}
+                                                        color="main" />
+                                                </FormGroup>
+                                            :   ''
+                                        }
                                         <FormGroup className="text-center">
                                             <BtnMain
                                                 type="button"

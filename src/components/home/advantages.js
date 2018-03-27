@@ -1,39 +1,18 @@
 import React, { Component } from 'react'
-import { Row, Col, Grid } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import style from './style.css'
-import store from 'store'
-import { setActiveSection } from 'actions'
 import { connect } from 'react-redux'
 
 class Advantages extends Component {
 	constructor(props) {
 		super(props)
-		this.scroll = 0
 		this.elements = {}
 		this.firstTime = false
-		this.delay = 0
-		this.classAnimated = {
-			first: ' slideInUp', // //bounceInLeft
-			second: ' slideInUp',
-			third: ' slideInUp',
-			forth: ' slideInUp',
-			fifth: ' slideInUp',
-			sixth: ' slideInUp',
-			seventh: ' slideInUp',
-			eighth: ' slideInUp',
-			ninth: ' slideInUp'
-		}
+		this.delay = 100
 	}
 
 	componentDidMount() {
-		window.onscroll = () => {
-			const el = document.getElementById('advantages')
-			if (el) {
-				if (el.scrollHeight >= document.documentElement.scrollTop) {
-					store.dispatch(setActiveSection(true, 'advantages'))
-				}
-			}
-		}
+		this.firstTime = false
 	}
 
 	getClass = () => {
@@ -42,7 +21,7 @@ class Advantages extends Component {
 			for (let k in this.elements) {
 				this.delay += 50
 				window.setTimeout(() => {
-					this.elements[k].className = this.elements[k].className + this.classAnimated[k] + ' animated'
+					this.elements[k].className = this.elements[k].className + ' slideInUp animated'
 				}, this.delay)
 			}
 		}
