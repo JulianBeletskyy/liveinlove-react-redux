@@ -11,7 +11,7 @@ class Advantages extends Component {
 		this.scroll = 0
 		this.elements = {}
 		this.firstTime = false
-		this.delay = 0
+		this.delay = 100
 		this.classAnimated = {
 			first: ' slideInUp', // //bounceInLeft
 			second: ' slideInUp',
@@ -26,15 +26,11 @@ class Advantages extends Component {
 	}
 
 	componentDidMount() {
-		window.onscroll = () => {
-			const el = document.getElementById('advantages')
-			if (el) {
-				if (el.scrollHeight >= document.documentElement.scrollTop) {
-					store.dispatch(setActiveSection(true, 'advantages'))
-				}
-			}
-		}
+		this.firstTime = false
+		
 	}
+
+	
 
 	getClass = () => {
 		if (this.props.services.sections.advantages && ! this.firstTime) {

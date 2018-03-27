@@ -231,6 +231,19 @@ export default {
         .then(responseHandler)
     },
 
+    buyPackage(data, token) {
+        return fetch(config.API_URL + 'client/credits/buy', {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+    },
+
     updateUserProfile(data, token) {
         return fetch(config.API_URL + 'user/profile', {
             method: 'put',
@@ -556,9 +569,32 @@ export default {
         .then(responseHandler)
     },
 
-
     getContacts(token) {
         return fetch(config.API_URL + 'user/message/contacts', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
+    getCategories(token) {
+        return fetch(config.API_URL + 'client/shop/category', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
+    getProducts(id, token) {
+        return fetch(config.API_URL + 'client/shop/product/' + id, {
             method: 'get',
             headers: {
                 'Authorization': 'Bearer ' + token,

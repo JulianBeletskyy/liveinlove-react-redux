@@ -602,6 +602,17 @@ export function getPackages(token) {
     }
 }
 
+export function buyPackage(data, token) {
+    return dispatch => {
+        return api.buyPackage(data, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(getUserInfo(token))
+            }
+        })
+    }
+}
+
 export function setMemberships(value) {
     return {
         type: types.SET_MEMBERSHIPS,
@@ -786,24 +797,24 @@ export function sendMessageByDialog(data, token) {
 
 //SHOP
 
-export function getCtegories() {
+export function getCategories(token) {
     return dispatch => {
-        return api.getCtegories()
+        return api.getCategories(token)
             .then(json => {
                 if (json.data) {
                     dispatch(setCategories(json.data))
-                    dispatch(setActiveCategory(json.data[0].id))
-                    dispatch(getProducts(json.data[0].id))
+                    dispatch(getProducts(json.data[0].id, token))
                 }
             })
     }
 }
 
-export function getProducts(id) {
+export function getProducts(id, token) {
     return dispatch => {
-        return api.getProducts(id)
+        return api.getProducts(id, token)
             .then(json => {
                 if (json.data) {
+                    dispatch(setActiveCategory(id))
                     dispatch(setProducts(json.data))
                 }
             })

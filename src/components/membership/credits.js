@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import store from 'store'
 import { connect } from 'react-redux'
-import { toggleModal, getPackages, setActivePackage, setAlert } from 'actions'
+import { toggleModal, getPackages, setActivePackage, setAlert, buyPackage } from 'actions'
 import { FormGroup } from 'react-bootstrap'
 import PackageItem from './package_item.js'
 
@@ -13,7 +13,11 @@ class Credits extends Component {
     }
 
     setPackage = (item) => {
-        store.dispatch(setActivePackage(item))
+        const data = {
+            id: item.id,
+            price: (item.price - (item.price / 100 * this.props.user.data.membership.discount)).toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
+        }
+        store.dispatch(setActivePackage(data))
     }
 
     renderPayPal = () => {
@@ -28,7 +32,7 @@ class Credits extends Component {
                 tagline: false    
             },
             client: {
-                sandbox:    'AXacobXZw7juas6mFNcZ5pJ0jcVEbKuY78wH8zd8_s3955vUJ0uD-muT2NyKd1TzLV-bKgGx5yaaXI2I', //AXacobXZw7juas6mFNcZ5pJ0jcVEbKuY78wH8zd8_s3955vUJ0uD-muT2NyKd1TzLV-bKgGx5yaaXI2I //AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R
+                sandbox:    'AXacobXZw7juas6mFNcZ5pJ0jcVEbKuY78wH8zd8_s3955vUJ0uD-muT2NyKd1TzLV-bKgGx5yaaXI2I',
                 production: '<insert production client id>'
             },
 
@@ -44,7 +48,12 @@ class Credits extends Component {
                 });
             },
             onAuthorize: (data, actions) => {
-                return actions.payment.execute().then(function() {
+                return actions.payment.execute().then(() => {
+                    const mas = {
+                        paypal_id: data.paymentID,
+                        packege_id: this.props.memberships.active_package.id
+                    }
+                    store.dispatch(buyPackage(mas, this.props.user.token))
                     store.dispatch(toggleModal(false, 'credits'))
                     console.log(data)
                     console.log(actions)
@@ -58,7 +67,7 @@ class Credits extends Component {
     }
 
     printPackages = (item, i) => {
-        return <PackageItem item={item} key={i} active={this.props.memberships.active_package} onClick={() => this.setPackage(item)} />
+        return <PackageItem item={item} key={i} active={this.props.memberships.active_package} discount={this.props.user.data.membership} onClick={() => this.setPackage(item)} />
     }
 
     render() {
@@ -68,7 +77,7 @@ class Credits extends Component {
                 <FormGroup>
                     { this.props.memberships.packages.map((item, i) => this.printPackages(item, i))}
                 </FormGroup>
-                    <div className={hiddenClass + " text-center"} id="paypal-button"></div>
+                <div className={hiddenClass + " text-center"} id="paypal-button"></div>
             </div>
         );
     }
@@ -81,7 +90,10 @@ const mapStateToProps = (state) => {
             active_package: state.memberships.active_package
         },
         user: {
-            token: state.user.token
+            token: state.user.token,
+            data: {
+                membership: state.user.data.membership
+            }
         }
     }
 }

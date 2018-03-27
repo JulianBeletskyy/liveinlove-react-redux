@@ -106,7 +106,7 @@ class Cart extends Component {
         this.props.shop.cart.map((item, i) => {
             total += item.product.price * item.count
         })
-        return total
+        return total.toFixed(2)
     }
 
     setReceiver = (receiver) => {
