@@ -77,6 +77,29 @@ export default {
         .then(responseHandler)
     },
 
+    getPublicMembers(type) {
+        console.log(type)
+        return fetch(config.API_URL + 'members/' + type, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
+     getAllPublicMembers() {
+        return fetch(config.API_URL + 'members', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
     getMemberInfo(token, id) {
         return fetch(config.API_URL + 'user/member/' + id, {
             method: 'get',
@@ -252,6 +275,19 @@ export default {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+    },
+
+    buyVideo(id, token) {
+        return fetch(config.API_URL + 'gallery/video/buy', {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({video_id: id})
         })
         .then(responseHandler)
     },

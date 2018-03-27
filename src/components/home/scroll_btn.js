@@ -7,12 +7,6 @@ class ScrollToTop extends Component {
         scroll.scrollToTop({duration: 300});
     }
 
-    componentDidMount() {
-        /*window.onscroll = () => {
-            console.log(document.documentElement.scrollTop)
-        }*/
-    }
-
     render() {
         return (
             <div id="scrollBtn" className={style.scrollBtn} onClick={this.goToTop}>

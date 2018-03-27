@@ -23,7 +23,7 @@ class MemberPreview extends Component {
         return (
         	<div className="form-group">
 	            <div className={style.wrap} >
-                    <div onClick={this.goToMember}>
+                    <div onClick={this.props.onClick || this.goToMember}>
     	            	<div className={style.imgWrap}>
     	                	<img src={member.avatar} className={style.img} alt="" />
     	            	</div>
@@ -38,9 +38,11 @@ class MemberPreview extends Component {
     	                </div>
                     </div>
                     {
-                        member.favorite
-                        ? <i className="fas fa-heart" onClick={this.removeFromFavorite}></i>
-                        : <i className="far fa-heart" onClick={this.addToFavorite}></i>
+                        this.props.like
+                        ?   member.favorite
+                            ? <i className="fas fa-heart" onClick={this.removeFromFavorite}></i>
+                            : <i className="far fa-heart" onClick={this.addToFavorite}></i>
+                        : ''
                     }
 	            </div>
             </div>

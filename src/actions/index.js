@@ -372,6 +372,28 @@ export function getFavoriteMembers(token) {
     }
 }
 
+export function getPublicMembers(type) {
+    return dispatch => {
+        return api.getPublicMembers(type)
+        .then(json => {
+            if (json.data) {
+                dispatch(setPublicMembers(json.data, type))
+            }
+        })
+    }
+}
+
+export function getAllPublicMembers() {
+    return dispatch => {
+        return api.getAllPublicMembers()
+        .then(json => {
+            if (json.data) {
+                dispatch(setPublicMembers(json.data, 'all'))
+            }
+        })
+    }
+}
+
 export function getMemberInfo(token, id) {
     return dispatch => {
         return api.getMemberInfo(token, id)
@@ -391,6 +413,21 @@ export function getContactsDetails(token, id) {
                 
             }
         })
+    }
+}
+
+export function setPublicMembers(value, key) {
+    return {
+        type: types.SET_PUBLIC_MEMBERS,
+        value,
+        key
+    }
+}
+
+export function setActiveMembers(key) {
+    return {
+        type: types.SET_ACTIVE_MEMBERS,
+        key
     }
 }
 
@@ -622,6 +659,17 @@ export function buyPackage(data, token) {
         .then(json => {
             if (json.data) {
                 dispatch(getUserInfo(token))
+            }
+        })
+    }
+}
+
+export function buyVideo(id, token, member_id) {
+    return dispatch => {
+        return api.buyVideo(id, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(getMemberInfo(token, member_id))
             }
         })
     }
