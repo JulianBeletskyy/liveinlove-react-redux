@@ -43,8 +43,7 @@ class MainProfile extends Component {
                                 placeholder="Profile ID"
                                 inputRef={ref => { this.profile_id = ref }}
                                 value={''}
-                                name="Profile ID"
-                            />
+                                name="Profile ID" />
                         </FormGroup>
                     </Col>
                     <Col sm={4}>

@@ -18,11 +18,11 @@ class PublicHeader extends Component {
     render() {
         return (
             <ul className={style.navBar + ' nav navbar-nav navbar-right'} >
-                <NavDropdown role="presentation" eventKey={1} title="About" id="about-nav-dropdown">
-                  <Link to="/about">About Agency</Link>
-                  <Link to="/how-works">How it works?</Link>
-                  <Link to="/testimonials">Testimonials</Link>
-                  <Link to="stories">Success stories</Link>
+                <NavDropdown role="presentation" title="About" id="dropdown">
+                    <Link to="/about">About Agency</Link>
+                    <Link to="/how-works">How it works?</Link>
+                    <Link to="/testimonials">Testimonials</Link>
+                    <Link to="success-stories">Success stories</Link>
                 </NavDropdown>
 
                 <li role="presentation">

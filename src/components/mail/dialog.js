@@ -54,6 +54,7 @@ class Dialog extends Component {
     }
 
     showPhoto = (message) => {
+        console.log('123')
         this.attachment = message.attachment
         store.dispatch(toggleLightBox('message', 0))
     }

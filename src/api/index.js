@@ -89,6 +89,18 @@ export default {
         .then(responseHandler)
     },
 
+    getContactsDetails(token, id) {
+        return fetch(config.API_URL + 'client/contacts/' + id, {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
     getNewMembers(token) {
         return fetch(config.API_URL + 'user/members/new', {
             method: 'get',
@@ -227,6 +239,19 @@ export default {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
+        })
+        .then(responseHandler)
+    },
+
+    buyPackage(data, token) {
+        return fetch(config.API_URL + 'client/credits/buy', {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         })
         .then(responseHandler)
     },
@@ -556,9 +581,32 @@ export default {
         .then(responseHandler)
     },
 
-
     getContacts(token) {
         return fetch(config.API_URL + 'user/message/contacts', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
+    getCategories(token) {
+        return fetch(config.API_URL + 'client/shop/category', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
+    getProducts(id, token) {
+        return fetch(config.API_URL + 'client/shop/product/' + id, {
             method: 'get',
             headers: {
                 'Authorization': 'Bearer ' + token,

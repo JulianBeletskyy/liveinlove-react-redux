@@ -2,6 +2,7 @@ import * as types from './types.js'
 import api from '../api'
 import Cookies from 'js-cookie'
 import { history } from 'store'
+import Options from 'options'
 
 // AUTH
 
@@ -12,8 +13,10 @@ export function login(data) {
             if (json.data) {
                 dispatch(toggleModal(false, 'login'))
                 dispatch(getUserInfo(json.data))
+                dispatch(getFullInfo(json.data))
                 dispatch(setToken(json.data))
                 dispatch(closeNav())
+                Options.getAll()
             }
         })
     }
@@ -380,6 +383,17 @@ export function getMemberInfo(token, id) {
     }
 }
 
+export function getContactsDetails(token, id) {
+    return dispatch => {
+        return api.getContactsDetails(token, id)
+        .then(json => {
+            if (json.data) {
+                
+            }
+        })
+    }
+}
+
 export function setPages(value) {
     return {
         type: types.SET_PAGES,
@@ -602,6 +616,17 @@ export function getPackages(token) {
     }
 }
 
+export function buyPackage(data, token) {
+    return dispatch => {
+        return api.buyPackage(data, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(getUserInfo(token))
+            }
+        })
+    }
+}
+
 export function setMemberships(value) {
     return {
         type: types.SET_MEMBERSHIPS,
@@ -767,7 +792,7 @@ export function sendMessage(data, token) {
         return api.sendMessage(data, token)
             .then(json => {
                 if (json.data) {
-                    
+                    dispatch(setAttachMessage(false))
                 }
             })
     }
@@ -779,6 +804,7 @@ export function sendMessageByDialog(data, token) {
             .then(json => {
                 if (json.data) {
                     dispatch(getMessages(data.dialog_id, token))
+                    dispatch(setAttachMessage(false))
                 }
             })
     }
@@ -786,24 +812,24 @@ export function sendMessageByDialog(data, token) {
 
 //SHOP
 
-export function getCtegories() {
+export function getCategories(token) {
     return dispatch => {
-        return api.getCtegories()
+        return api.getCategories(token)
             .then(json => {
                 if (json.data) {
                     dispatch(setCategories(json.data))
-                    dispatch(setActiveCategory(json.data[0].id))
-                    dispatch(getProducts(json.data[0].id))
+                    dispatch(getProducts(json.data[0].id, token))
                 }
             })
     }
 }
 
-export function getProducts(id) {
+export function getProducts(id, token) {
     return dispatch => {
-        return api.getProducts(id)
+        return api.getProducts(id, token)
             .then(json => {
                 if (json.data) {
+                    dispatch(setActiveCategory(id))
                     dispatch(setProducts(json.data))
                 }
             })
