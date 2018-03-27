@@ -3,7 +3,7 @@ import { Grid, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { Registration, MainPanel } from 'components'
 import { toggleModal, toggleRegistration, changeStep, setActiveSection } from 'actions'
-import store from 'store'
+import store, { history } from 'store'
 import BtnMain from 'components/form/buttons/main_button.js'
 import style from './style.css'
 import Advantages from './advantages.js'
@@ -11,10 +11,6 @@ import MemberBlock from 'components/members/member_block.js'
 import ScrollToTop from './scroll_btn.js'
 
 class Landing extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     showModal = () => {
         store.dispatch(toggleModal(true, 'login'))
     }
@@ -33,8 +29,7 @@ class Landing extends Component {
 
     toggleScrollBtn = () => {
         const el = document.getElementById('scrollBtn')
-        
-        
+        if (el) {
             if (document.documentElement.scrollTop >= 600) {
                 if (el.className.indexOf('active') + 1 === 0) {
                     el.className = el.className + ' active'
@@ -42,6 +37,7 @@ class Landing extends Component {
             } else {
                 el.className = el.className.replace(' active', '')
             }
+        }   
     }
 
     advantagesAnimate = () => {
@@ -106,14 +102,25 @@ class Landing extends Component {
                     <div className={style.secondPartInner}>
                         <h2 className={style.advantTitle}><span className={style.underlineText}>Girls</span></h2>
                         <Grid>
-                            <Row>
-                                <Col xs={6} className="text-center">
-                                    <span className={style.groupSwitch}>New</span>
-                                </Col>
-                                <Col xs={6} className="text-center">
-                                    <span className={style.groupSwitch}>Popular</span>
-                                </Col>
-                            </Row>
+                            <div>
+                                <Row>
+                                    <Col xs={4} className="text-center">
+                                        <div className={style.groupSwitch}>
+                                            <span className={style.underlineText}>New</span>
+                                        </div>
+                                    </Col>
+                                    <Col xs={4} className="text-center">
+                                        <div className={style.groupSwitch}>
+                                            <span className={style.underlineText}>Popular</span>
+                                        </div>
+                                    </Col>
+                                    <Col xs={4} className="text-center">
+                                        <div className={style.groupSwitch} onClick={() => history.push('/girls')}>
+                                            <span className={style.underlineText}>Show more</span>
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </div>
                             <MemberBlock list={popular_list} />
                         </Grid>
                     </div>

@@ -89,6 +89,18 @@ export default {
         .then(responseHandler)
     },
 
+    getContactsDetails(token, id) {
+        return fetch(config.API_URL + 'client/contacts/' + id, {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
     getNewMembers(token) {
         return fetch(config.API_URL + 'user/members/new', {
             method: 'get',

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store, { history } from 'store'
 import { Row, Col } from 'react-bootstrap'
-import { setActiveCategory, setCart, getCategories, getProducts } from 'actions'
+import { setCart, getCategories, getProducts } from 'actions'
 import ProductsBlock from 'components/shop/products_block.js'
 import ProductInfo from 'components/shop/product_info.js'
 import { Route, Switch } from 'react-router-dom'
@@ -15,7 +15,6 @@ class Shop extends Component {
     }
 
     setCategory = (e) => {
-        console.log(e.target)
         store.dispatch(getProducts(e.target.id * 1, this.props.user.token))
         history.push('/shop')
     }

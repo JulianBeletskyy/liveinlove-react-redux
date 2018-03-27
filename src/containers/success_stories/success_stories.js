@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col } from 'react-bootstrap'
-import SuccessPreview from 'components/stories/preview.js'
+import { Grid } from 'react-bootstrap'
 import StoriesList from 'components/stories'
 import Story from 'components/stories/story.js'
 import { Route, Switch } from 'react-router-dom'

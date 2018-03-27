@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import store from 'store'
 import { connect } from 'react-redux'
-import { toggleModal, getPackages, setActivePackage, setAlert, buyPackage } from 'actions'
+import { toggleModal, getPackages, setActivePackage, buyPackage } from 'actions'
 import { FormGroup } from 'react-bootstrap'
 import PackageItem from './package_item.js'
 
@@ -51,12 +51,10 @@ class Credits extends Component {
                 return actions.payment.execute().then(() => {
                     const mas = {
                         paypal_id: data.paymentID,
-                        packege_id: this.props.memberships.active_package.id
+                        package_id: this.props.memberships.active_package.id
                     }
                     store.dispatch(buyPackage(mas, this.props.user.token))
                     store.dispatch(toggleModal(false, 'credits'))
-                    console.log(data)
-                    console.log(actions)
                 });
             }
         }, '#paypal-button');

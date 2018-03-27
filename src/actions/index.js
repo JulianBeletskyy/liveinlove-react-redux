@@ -2,6 +2,7 @@ import * as types from './types.js'
 import api from '../api'
 import Cookies from 'js-cookie'
 import { history } from 'store'
+import Options from 'options'
 
 // AUTH
 
@@ -12,8 +13,10 @@ export function login(data) {
             if (json.data) {
                 dispatch(toggleModal(false, 'login'))
                 dispatch(getUserInfo(json.data))
+                dispatch(getFullInfo(json.data))
                 dispatch(setToken(json.data))
                 dispatch(closeNav())
+                Options.getAll()
             }
         })
     }
@@ -375,6 +378,17 @@ export function getMemberInfo(token, id) {
         .then(json => {
             if (json.data) {
                 dispatch(setMemberInfo(json.data))
+            }
+        })
+    }
+}
+
+export function getContactsDetails(token, id) {
+    return dispatch => {
+        return api.getContactsDetails(token, id)
+        .then(json => {
+            if (json.data) {
+                
             }
         })
     }
@@ -778,7 +792,7 @@ export function sendMessage(data, token) {
         return api.sendMessage(data, token)
             .then(json => {
                 if (json.data) {
-                    
+                    dispatch(setAttachMessage(false))
                 }
             })
     }
@@ -790,6 +804,7 @@ export function sendMessageByDialog(data, token) {
             .then(json => {
                 if (json.data) {
                     dispatch(getMessages(data.dialog_id, token))
+                    dispatch(setAttachMessage(false))
                 }
             })
     }

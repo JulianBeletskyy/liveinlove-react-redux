@@ -16,8 +16,14 @@ class ScrollToTop extends Component {
     render() {
         return (
             <div id="scrollBtn" className={style.scrollBtn} onClick={this.goToTop}>
-                <i className="fas fa-chevron-up"></i><br />
-                <span>top</span>
+                <div className={style.wrapScroll}>
+                    <div className={style.front}>
+                        <span className={style.innerScroll}>to top</span>
+                    </div>
+                    <div className={style.back}>
+                        <span className={style.innerScroll}><i className="fas fa-chevron-up"></i></span>
+                    </div>
+                </div>
             </div>
         );
     }

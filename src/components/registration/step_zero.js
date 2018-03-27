@@ -9,6 +9,7 @@ import Btn from 'components/form/buttons/button.js'
 //import BtnGoogle from 'components/form/buttons/button_google.js'
 //import BtnFacebook from 'components/form/buttons/button_facebook.js'
 import style from './step_zero.css'
+import Options from 'options'
 
 class SignUpStart extends Component {
     constructor(props) {
@@ -26,7 +27,19 @@ class SignUpStart extends Component {
             this.getSignUpOne()
         } else {
             store.dispatch(toggleRegistration(true))
+            if (! this.checkData()) {
+                Options.getAll()
+            }
         }
+    }
+
+    checkData = () => {
+        for (let k in this.props.options) {
+            if (! this.props.options[k].length) {
+                return false
+            }
+        }
+        return true
     }
 
     getSignUpOne = () => {
@@ -355,9 +368,7 @@ const mapStateToProps = (state) => {
             },
             showRegistration: state.signup.showRegistration
         },
-        options: {
-            countries: state.options.countries
-        }
+        options: state.options
     }
 }
 

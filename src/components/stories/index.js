@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import SuccessPreview from 'components/stories/preview.js'
 
 class StoriesList extends Component {
