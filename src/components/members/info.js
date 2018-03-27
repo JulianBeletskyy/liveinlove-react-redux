@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 class MemberInfo extends Component {
 	
     render() {
-        const videoTab = this.props.client ? {eventKey: 'video', title: 'Video', content: <VideoBlock video={this.props.options.video} />} : {}
+        const videoTab = this.props.client ? {eventKey: 'video', title: 'Video', content: <VideoBlock memberId={this.props.options.id} video={this.props.options.video} />} : {}
         return (
             <Tabs
             	tabs={[

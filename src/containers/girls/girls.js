@@ -1,10 +1,21 @@
 import React, { Component } from 'react'
+import store from 'store'
 import { Grid, Row, Col } from 'react-bootstrap'
+import { getAllPublicMembers } from 'actions'
 import SearchBlock from 'components/members/search_block.js'
 import MemberBlock from 'components/members/member_block.js'
 import { connect } from 'react-redux'
 
 class Girls extends Component {
+    constructor(props) {
+        super(props)
+        store.dispatch(getAllPublicMembers())
+    }
+
+    getRegistration = () => {
+        console.log('registration')
+    }
+
     render() {
         return (
             <Grid>
@@ -12,7 +23,7 @@ class Girls extends Component {
 	            	<Row>
 	            		<Col sm={12}>
 	                		<SearchBlock />
-	                		<MemberBlock list={this.props.members.search_list} />
+	                		<MemberBlock like={false} onClickItem={this.getRegistration} list={this.props.members.public.all} />
 	                	</Col>
 	                </Row>
                 </div>
@@ -24,7 +35,9 @@ class Girls extends Component {
 const mapStateToProps = (state) => {
     return {
         members: {
-            search_list: state.members.search_list
+            public: {
+                all: state.members.public.all
+            }
         }
     }
 }

@@ -2,15 +2,22 @@ import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { Registration, MainPanel } from 'components'
-import { toggleModal, toggleRegistration, changeStep, setActiveSection } from 'actions'
+import { toggleModal, toggleRegistration, changeStep, setActiveSection, getPublicMembers, setActiveMembers } from 'actions'
 import store, { history } from 'store'
 import BtnMain from 'components/form/buttons/main_button.js'
 import style from './style.css'
 import Advantages from './advantages.js'
 import MemberBlock from 'components/members/member_block.js'
 import ScrollToTop from './scroll_btn.js'
+import { animateScroll as scroll } from 'react-scroll'
 
 class Landing extends Component {
+    constructor(props) {
+        super(props)
+        store.dispatch(getPublicMembers('new'))
+        store.dispatch(getPublicMembers('popular'))
+    }
+
     showModal = () => {
         store.dispatch(toggleModal(true, 'login'))
     }
@@ -25,6 +32,11 @@ class Landing extends Component {
             this.advantagesAnimate()
             this.toggleScrollBtn()
         }
+    }
+
+    getRegistration = () => {
+        store.dispatch(toggleRegistration(true))
+        scroll.scrollToTop({duration: 300});
     }
 
     toggleScrollBtn = () => {
@@ -49,6 +61,10 @@ class Landing extends Component {
         }
     }
 
+    toggleMembers = (type) => {
+        store.dispatch(setActiveMembers(type))
+    }
+
     render() {
         let activeClass = ''
         let col = 6
@@ -57,7 +73,7 @@ class Landing extends Component {
             col = 12
         }
 
-        const { popular_list, new_list } = this.props.members
+        const { list, type } = this.props.members.public.active
         return (
             <div>
                 <div className={style.mainPart}>
@@ -102,15 +118,15 @@ class Landing extends Component {
                     <div className={style.secondPartInner}>
                         <h2 className={style.advantTitle}><span className={style.underlineText}>Girls</span></h2>
                         <Grid>
-                            <div>
+                            <div className="pb-50">
                                 <Row>
                                     <Col xs={4} className="text-center">
-                                        <div className={style.groupSwitch}>
+                                        <div className={style.groupSwitch} onClick={() => this.toggleMembers('new')}>
                                             <span className={style.underlineText}>New</span>
                                         </div>
                                     </Col>
                                     <Col xs={4} className="text-center">
-                                        <div className={style.groupSwitch}>
+                                        <div className={style.groupSwitch} onClick={() => this.toggleMembers('popular')}>
                                             <span className={style.underlineText}>Popular</span>
                                         </div>
                                     </Col>
@@ -121,7 +137,7 @@ class Landing extends Component {
                                     </Col>
                                 </Row>
                             </div>
-                            <MemberBlock list={popular_list} />
+                            <MemberBlock like={false} onClickItem={this.getRegistration} list={list} />
                         </Grid>
                     </div>
                 </div>
@@ -139,8 +155,9 @@ const mapStateToProps = (state) => {
             step: state.signup.step
         },
         members: {
-            new_list: state.members.new_list,
-            popular_list: state.members.popular_list,
+            public: {
+                active: state.members.public.active
+            }
         }
     } 
 }

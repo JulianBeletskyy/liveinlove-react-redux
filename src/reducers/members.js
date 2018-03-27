@@ -1,10 +1,19 @@
-import { SET_MEMBERS, SET_MEMBER_INFO, SET_FAVORITE, SET_PAGES, ADD_MEMBERS } from 'actions/types.js'
+import { SET_MEMBERS, SET_MEMBER_INFO, SET_FAVORITE, SET_PAGES, ADD_MEMBERS, SET_PUBLIC_MEMBERS, SET_ACTIVE_MEMBERS } from 'actions/types.js'
 
 const initialState = {
     list: [],
     new_list: [],
     popular_list: [],
     favorite_list: [],
+    public: {
+        all: [],
+        new: [],
+        popular: [],
+        active: {
+            type: 'new',
+            list: []
+        }
+    },
     search_list: [],
     current_page: 1,
     last_page: 1,
@@ -22,6 +31,7 @@ const initialState = {
 
 export default function members(members = initialState, action = {}) {
     let temp = Object.assign([], members.data)
+    let temp_public = Object.assign([], members.public)
     switch (action.type) {
         case SET_PAGES:
             return Object.assign({}, members, {
@@ -33,6 +43,14 @@ export default function members(members = initialState, action = {}) {
             return Object.assign({}, members, {
                 [action.key]: action.data
             });
+        case SET_PUBLIC_MEMBERS:
+            temp_public[action.key] = action.value
+            if (temp_public.active.type === action.key) {
+                temp_public.active.list = action.value
+            }
+            return Object.assign({}, members, {
+                public: temp_public
+            });
         case ADD_MEMBERS:
             return Object.assign({}, members, {
                 list: [...members.list, ...action.value],
@@ -41,6 +59,14 @@ export default function members(members = initialState, action = {}) {
         case SET_MEMBER_INFO:
             return Object.assign({}, members, {
                 data: action.data
+            });
+        case SET_ACTIVE_MEMBERS:
+            temp_public.active = {
+                type: action.key,
+                list: temp_public[action.key]
+            }
+            return Object.assign({}, members, {
+                public: temp_public
             });
         case SET_FAVORITE:
             let temp_lists = {
