@@ -3,7 +3,6 @@ import style from './plans.css'
 
 class PackageItem extends Component {
 	render() {
-		const price = (this.props.item.price - (this.props.item.price / 100 * this.props.discount.discount)).toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
         const activeClass = this.props.active.id === this.props.item.id ? style.active : ''
         const rounded = (this.props.item.price / this.props.item.credits).toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
         return (

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col } from 'react-bootstrap'
+import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { Registration, MainPanel } from 'components'
 import { toggleModal, toggleRegistration, changeStep, setActiveSection, getPublicMembers, setActiveMembers } from 'actions'
@@ -124,17 +124,17 @@ class Landing extends Component {
                                 <Row>
                                     <Col xs={4} className="text-center">
                                         <div className={style.groupSwitch} onClick={() => this.toggleMembers('new')}>
-                                            <span className={style.underlineText}>New</span>
+                                            <span className={type === 'new' ? style.underlineText : ''}>New</span>
                                         </div>
                                     </Col>
                                     <Col xs={4} className="text-center">
                                         <div className={style.groupSwitch} onClick={() => this.toggleMembers('popular')}>
-                                            <span className={style.underlineText}>Popular</span>
+                                            <span className={type === 'popular' ? style.underlineText : ''}>Popular</span>
                                         </div>
                                     </Col>
                                     <Col xs={4} className="text-center">
                                         <div className={style.groupSwitch} onClick={() => history.push('/girls')}>
-                                            <span className={style.underlineText}>Show more</span>
+                                            <span>Show more</span>
                                         </div>
                                     </Col>
                                 </Row>
@@ -150,6 +150,13 @@ class Landing extends Component {
                             <br />
                             <a className={style.searchLink} onClick={() => history.push('/girls')} href="javascript:;"> Search Now!</a>
                         </h2>
+                        <FormGroup className="text-center">
+                            <BtnMain
+                                type="button"
+                                bsStyle="success"
+                                text="Registration"
+                                onClick={this.getRegistration} />
+                        </FormGroup>
                     </Grid>
                 </div>
                 <ScrollToTop />

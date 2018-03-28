@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import store from 'store'
-import { toggleModal, setAlert, buyVideo } from 'actions'
+import { toggleModal, buyVideo } from 'actions'
 import style from './small_item.css'
 import VideoPreview from './video_preview.js'
 import VideoModal from 'components/modal/video_modal.js'
@@ -23,7 +23,7 @@ class VideoBlock extends Component {
     showVideo = (video) => {
         if (! this.props.profile) {
             if (video.private) {
-                if (this.props.user.data.membership.view_video === 'Unlimited') {
+                if (this.props.user.data.membership.view_video === 'Limited') {
                     if (! video.purchased) {
                         confirmAlert({
                             title: '',
