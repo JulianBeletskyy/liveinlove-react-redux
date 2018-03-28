@@ -10,6 +10,7 @@ import Advantages from './advantages.js'
 import MemberBlock from 'components/members/member_block.js'
 import ScrollToTop from './scroll_btn.js'
 import { animateScroll as scroll } from 'react-scroll'
+import Options from 'options'
 
 class Landing extends Component {
     constructor(props) {
@@ -35,6 +36,7 @@ class Landing extends Component {
     }
 
     getRegistration = () => {
+        Options.getAll()
         store.dispatch(toggleRegistration(true))
         scroll.scrollToTop({duration: 300});
     }
@@ -98,7 +100,7 @@ class Landing extends Component {
                                         <h2 className="text-white text-center">
                                             We are not Gods to predict your future but we have something to make you closer to your dream come true.
                                             <br />
-                                            <a className={style.joinLink} onClick={() => store.dispatch(toggleRegistration(true))} href="javascript:;"> Join Now</a>
+                                            <a className={style.joinLink} onClick={this.getRegistration} href="javascript:;"> Join Now</a>
                                         </h2>
                                    </div>
                                    <div className="btn-login text-center">

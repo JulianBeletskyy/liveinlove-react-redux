@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store, { history } from 'store'
 import { Row, Col } from 'react-bootstrap'
-import { setCart, getCategories, getProducts } from 'actions'
+import { setCart, getCategories, getProducts, setActiveCategory } from 'actions'
 import ProductsBlock from 'components/shop/products_block.js'
 import ProductInfo from 'components/shop/product_info.js'
 import { Route, Switch } from 'react-router-dom'
@@ -11,10 +11,22 @@ import CategoryLink from 'components/shop/category_link.js'
 class Shop extends Component {
     constructor(props) {
         super(props)
-        store.dispatch(getCategories(props.user.token))
+        store.dispatch(getCategories(props.user.token)).then((res) => {
+            if (res.length) {
+                let cat_id = 0
+                if (! this.props.shop.active_category) {
+                    cat_id = res[0].id
+                } else {
+                    cat_id = this.props.shop.active_category
+                }
+                store.dispatch(setActiveCategory(cat_id))
+                store.dispatch(getProducts(cat_id, props.user.token))
+            }
+        })
     }
 
     setCategory = (e) => {
+        store.dispatch(setActiveCategory(e.target.id * 1))
         store.dispatch(getProducts(e.target.id * 1, this.props.user.token))
         history.push('/shop')
     }

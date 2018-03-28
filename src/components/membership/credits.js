@@ -59,6 +59,10 @@ class Credits extends Component {
             }
         }, '#paypal-button');
     }
+
+    componentWillUnmount() {
+        store.dispatch(setActivePackage({id: 0, price: ''}))
+    }
     
     componentDidMount() {
        this.renderPayPal()

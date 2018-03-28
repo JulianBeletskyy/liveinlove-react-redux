@@ -664,6 +664,17 @@ export function buyPackage(data, token) {
     }
 }
 
+export function buyProducts(data, token) {
+    return dispatch => {
+        return api.buyProducts(data, token)
+        .then(json => {
+            if (json.data) {
+                //dispatch(getUserInfo(token))
+            }
+        })
+    }
+}
+
 export function buyVideo(id, token, member_id) {
     return dispatch => {
         return api.buyVideo(id, token)
@@ -737,7 +748,11 @@ export function getSearch(data, token) {
         return api.getSearch(data, token)
             .then(json => {
                 if (json.data) {
-                    dispatch(setMembers(json.data, 'search_list'))
+                    if (token) {
+                        dispatch(setMembers(json.data, 'search_list'))
+                    } else {
+                        dispatch(setPublicMembers(json.data, 'all'))
+                    }
                 }
             })
     }
@@ -866,7 +881,8 @@ export function getCategories(token) {
             .then(json => {
                 if (json.data) {
                     dispatch(setCategories(json.data))
-                    dispatch(getProducts(json.data[0].id, token))
+                    return json.data
+                    //dispatch(getProducts(json.data[0].id, token))
                 }
             })
     }
@@ -877,7 +893,7 @@ export function getProducts(id, token) {
         return api.getProducts(id, token)
             .then(json => {
                 if (json.data) {
-                    dispatch(setActiveCategory(id))
+                    //dispatch(setActiveCategory(id))
                     dispatch(setProducts(json.data))
                 }
             })
