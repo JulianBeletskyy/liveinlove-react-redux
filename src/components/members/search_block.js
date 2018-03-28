@@ -73,8 +73,8 @@ class SearchBlock extends Component {
                 <Col sm={6}>
                     <Row>
                         <Col sm={2}>
-                            <FormGroup>
-                                <span className="title">Years</span>
+                            <FormGroup className="p-7-4">
+                                <span>Match</span>
                             </FormGroup>
                         </Col>
                         <Col sm={5}>
