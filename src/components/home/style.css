@@ -84,6 +84,19 @@
     background-size: 100% 3px;
 }
 
+:local(.groupSwitch span.underlineText) {
+    background-size: 100% 3px;
+}
+
+:local(.groupSwitch span) {
+    background-image: -webkit-linear-gradient(top, #34dca2 0, #34dca2 100%);
+    background-image: linear-gradient(to bottom, #34dca2 0, #34dca2 100%);
+    background-position: -3px 85%;
+    background-repeat: no-repeat;
+    background-size: 0% 3px;
+    transition: background-size .3s;
+}
+
 :local(.mainPart) {
     height: 100vh;
 }

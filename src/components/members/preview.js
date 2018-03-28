@@ -22,21 +22,19 @@ class MemberPreview extends Component {
     	const member = this.props.options
         return (
         	<div className="form-group">
-	            <div className={style.wrap} >
-                    <div onClick={this.props.onClick || this.goToMember}>
-    	            	<div className={style.imgWrap}>
-    	                	<img src={member.avatar} className={style.img} alt="" />
-    	            	</div>
-    	            	<div className={style.infoWrap}>
-    		                <div className="text-center">
-    		                	<div className="font-bebas">
-    		                		<strong className={style.infoName}>{member.first_name}</strong>
-    		            		</div>
-    		                	<div>{member.age + ' years'}</div>
-    		                	<div>{member.country + ', ' + member.city}</div>
-    		                </div>
-    	                </div>
-                    </div>
+	            <div className={style.wrap} onClick={this.props.onClick || this.goToMember}>
+	            	<div className={style.imgWrap}>
+	                	<img src={member.avatar} className={style.img} alt="" />
+	            	</div>
+	            	<div className={style.infoWrap}>
+		                <div className="text-center">
+		                	<div className="font-bebas">
+		                		<strong className={style.infoName}>{member.first_name}</strong>
+		            		</div>
+		                	<div>{member.age + ' years'}</div>
+		                	<div>{member.country + ', ' + member.city}</div>
+		                </div>
+	                </div>
                     {
                         this.props.like
                         ?   member.favorite

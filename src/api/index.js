@@ -78,7 +78,6 @@ export default {
     },
 
     getPublicMembers(type) {
-        console.log(type)
         return fetch(config.API_URL + 'members/' + type, {
             method: 'get',
             headers: {
@@ -607,7 +606,9 @@ export default {
     },
 
     getMessages(id, token) {
-        return fetch(config.API_URL + 'user/message/messages/' + id, {
+        let timezone = new Date().getTimezoneOffset()
+        timezone = timezone / 60 * -1
+        return fetch(config.API_URL + 'user/message/messages/' + id + '?timezone=' + timezone, {
             method: 'get',
             headers: {
                 'Authorization': 'Bearer ' + token,

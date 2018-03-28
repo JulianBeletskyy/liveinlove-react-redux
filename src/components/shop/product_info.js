@@ -17,7 +17,7 @@ class ProductInfo extends Component {
 
 	render() {
         return (
-                this.props.match.params.prodId != this.props.shop.product.id
+                this.props.match.params.prodId * 1 !== this.props.shop.product.id
                 ?   <Loader />
                 :   <Row>
                         <Col sm={6}>

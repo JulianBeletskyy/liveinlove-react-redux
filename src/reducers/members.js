@@ -10,7 +10,7 @@ const initialState = {
         new: [],
         popular: [],
         active: {
-            type: 'new',
+            type: 'popular',
             list: []
         }
     },

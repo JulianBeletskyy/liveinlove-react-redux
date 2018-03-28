@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
-import { connect } from 'react-redux'
 import ClientRightMenu from 'components/menu/client_right_menu.js'
 import { Route, Switch } from 'react-router-dom'
 import Edit from 'components/profile/edit.js'
