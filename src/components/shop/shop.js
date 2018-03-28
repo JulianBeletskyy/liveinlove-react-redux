@@ -77,7 +77,7 @@ class Shop extends Component {
                 <Col sm={9}>
                     <Switch>
                         <Route path="/shop" exact render={() => <ProductsBlock products={this.props.shop.products_list} addToCart={(e) => this.addToCart(e)} />} />
-                        <Route path="/shop/:prodId" exact render={(props) => <ProductInfo product={this.getById(props.match.params.prodId)} addToCart={(e) => this.addToCart(e)} />} />
+                        <Route path="/shop/:prodId" exact render={(props) => <ProductInfo {...props} addToCart={(e) => this.addToCart(e)} />} />
                     </Switch>
                 </Col>
             </Row>

@@ -143,6 +143,15 @@ class Landing extends Component {
                         </Grid>
                     </div>
                 </div>
+                <div className={style.thirdPart}>
+                    <Grid>
+                        <h2 className="text-center">
+                            Hundreds of real verified profiles of Ukrainian Ladies! Say YES to the only one among many ladies waiting for fiance's confess:)
+                            <br />
+                            <a className={style.searchLink} onClick={() => history.push('/girls')} href="javascript:;"> Search Now!</a>
+                        </h2>
+                    </Grid>
+                </div>
                 <ScrollToTop />
             </div>
             

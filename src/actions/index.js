@@ -900,6 +900,17 @@ export function getProducts(id, token) {
     }
 }
 
+export function getProduct(id, token) {
+    return dispatch => {
+        return api.getProduct(id, token)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setProduct(json.data))
+                }
+            })
+    }
+}
+
 export function setCategories(value) {
     return {
         type: types.SET_CATEGORIES,
@@ -917,6 +928,13 @@ export function setReceiverToShop(value) {
 export function setProducts(value) {
     return {
         type: types.SET_PRODUCTS,
+        value
+    }
+}
+
+export function setProduct(value) {
+    return {
+        type: types.SET_PRODUCT,
         value
     }
 }
