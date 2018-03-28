@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col, FormGroup } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import store from 'store'
-import { setCart, getMembers, setReceiverToShop } from 'actions'
+import { setCart, getMembers, setReceiverToShop, buyProducts } from 'actions'
 import style from './style.css'
 import ReceiverInfo from './receiver_info.js'
 
@@ -10,6 +10,7 @@ class Cart extends Component {
     constructor(props) {
         super(props)
         store.dispatch(getMembers(props.user.token))
+        this.actions = false
     }
 
     getCart = () => {
@@ -144,18 +145,31 @@ class Cart extends Component {
                     }
                 });
             },
+
             onAuthorize: (data, actions) => {
-                return actions.payment.execute().then(function() {
-                    console.log(data)
-                    console.log(actions)
+                return actions.payment.execute().then(() => {
+                    let temp = {}
+                    for (let k in this.props.shop.cart) {
+                        temp[this.props.shop.cart[k].product.id] = this.props.shop.cart[k].count
+                    }
+
+                    const mas = {
+                        girl_id: this.props.shop.receiver.id,
+                        paypal_id:  data.paymentID,
+                        products: temp
+                    }
+
+                    store.dispatch(buyProducts(mas, this.props.user.token))
+                    this.clearCart()
+                    this.clearReceiver()
                 });
             }
         }, '#paypal-button-cart');
     }
 
 	render() {
-        const hiddenClass = this.props.shop.cart.length ? '' : 'hidden'
-        console.log(this.props.shop.receiver)
+        const hiddenClass = this.props.shop.cart.length && this.props.shop.receiver.id ? '' : 'hidden'
+        
         return (
             <Row>
                 <Col xs={12}>

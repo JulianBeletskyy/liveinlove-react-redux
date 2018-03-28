@@ -316,8 +316,7 @@ class SignUpStart extends Component {
                             <CheckboxField
                                 inputRef={ref => { this.signup.terms = ref }}
                                 text='By clicking "Join Us for Free" above you agree to "Terms of Use" & "Privacy Policy"'
-                                value={terms}
-                            />
+                                value={terms} />
                         </div>
                         <FormGroup>
                             <Btn
