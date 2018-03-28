@@ -656,6 +656,18 @@ export default {
     },
 
     getProducts(id, token) {
+        return fetch(config.API_URL + 'client/shop/product/category/' + id, {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
+    getProduct(id, token) {
         return fetch(config.API_URL + 'client/shop/product/' + id, {
             method: 'get',
             headers: {

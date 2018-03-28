@@ -1,5 +1,6 @@
 import store from 'store'
 import { getOptions } from 'actions'
+import reducer from 'reducers'
 
 export default class Options {
 	static getFunc = {

@@ -92,7 +92,7 @@ class Cart extends Component {
                         </span>
                     </td>
                     <td className="text-center">
-                        <strong>${item.count * item.product.price}</strong>
+                        <strong>${(item.count * item.product.price).toFixed(2)}</strong>
                     </td>
                     <td>
                         <span className={style.cross} onClick={() => this.removeItemCart(item.product)}>
