@@ -208,3 +208,22 @@
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
+:local(.thirdPart) {
+    padding: 50px 0;
+    background-color: #fff;
+    font-family: bebas_neue;
+    letter-spacing: 1px;
+}
+
+:local(.thirdPart) h2 {
+    font-weight: bold;
+}
+
+:local(.searchLink) {
+    color: #27c2d3;
+}
+
+:local(.searchLink:hover) {
+    color: #279faa;
+}

@@ -14,6 +14,7 @@ class Girls extends Component {
         store.dispatch(getAllPublicMembers())
         Options.get('hair_colors')
         Options.get('eyes')
+        scroll.scrollToTop({duration: 0});
     }
 
     getRegistration = () => {
