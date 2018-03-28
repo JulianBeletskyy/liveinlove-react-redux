@@ -3,7 +3,7 @@ import { SET_ACTIVE_CATEGORY, SET_PRODUCTS, SET_CATEGORIES, SET_CART, SET_RECEIV
 const initialState = {
     categories_list: [{name: 'Flowers', id: 1}, {name: 'Candy', id: 2}, {name: 'Surprise', id: 3}],
     products_list: [],
-    active_category: 1,
+    active_category: 0,
     cart: [],
     receiver: {}
 }
@@ -19,6 +19,7 @@ export default function shop(shop = initialState, action = {}) {
                 categories_list: action.value
             });
         case SET_PRODUCTS:
+            console.log(action.value)
             return Object.assign({}, shop, {
                 products_list: action.value
             });

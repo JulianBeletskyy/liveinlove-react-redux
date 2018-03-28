@@ -279,6 +279,19 @@ export default {
         .then(responseHandler)
     },
 
+    buyProducts(data, token) {
+        return fetch(config.API_URL + 'client/shop/buy', {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+    },
+
     buyVideo(id, token) {
         return fetch(config.API_URL + 'gallery/video/buy', {
             method: 'post',
@@ -534,7 +547,8 @@ export default {
     },
 
     getSearch(data, token) {
-        return fetch(config.API_URL + 'user/search', {
+        const url = token ? 'user/search' : 'search'
+        return fetch(config.API_URL + url, {
             method: 'post',
             headers: {
                 'Authorization': 'Bearer ' + token,
