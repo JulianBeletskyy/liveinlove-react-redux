@@ -199,8 +199,7 @@ class SignUpStart extends Component {
                                     onChange={this.toggleRole}
                                     inputRef={ref => { this.role.male = ref }}
                                     className={style.gender}
-                                    inline
-                                >
+                                    inline >
                                     <i className="fas fa-mars fa-2x"></i>
                                 </Radio>
                                 <Radio 
@@ -210,8 +209,7 @@ class SignUpStart extends Component {
                                     onChange={this.toggleRole}
                                     inputRef={ref => { this.role.female = ref }}
                                     className={style.gender}
-                                    inline
-                                >
+                                    inline >
                                     <i className="fas fa-venus fa-2x"></i>
                                 </Radio>
                                 <span className={style.spanFemale}>Female</span>
@@ -228,8 +226,7 @@ class SignUpStart extends Component {
                                         inputRef={ref => { this.signup.first_name = ref }}
                                         value={first_name}
                                         name="First Name"
-                                        key="first_name"
-                                    />
+                                        key="first_name" />
                                 </FormGroup>
                             </Col>
                             <Col sm={col}>
@@ -240,8 +237,7 @@ class SignUpStart extends Component {
                                         inputRef={ref => { this.signup.last_name = ref }}
                                         name="Last Name"
                                         value={last_name}
-                                        key="last_name"
-                                    />
+                                        key="last_name" />
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -250,16 +246,14 @@ class SignUpStart extends Component {
                                 type="email"
                                 placeholder="Enter email"
                                 inputRef={ref => { this.signup.email = ref }}
-                                value={email}
-                            />
+                                value={email} />
                         </FormGroup>
                         <FormGroup>
                             <TextField
                                 type="password"
                                 placeholder="Enter password"
                                 inputRef={ref => { this.signup.password = ref }}
-                                value={password}
-                            />
+                                value={password} />
                         </FormGroup>
                     </Col>
                     <Col xs={12} md={6}>

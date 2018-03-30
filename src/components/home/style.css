@@ -125,6 +125,31 @@
     padding-top: 50px;
 }
 
+:local(.storiesPart) {
+    background-image: url('/assets/img/image.jpg');
+    min-height: 800px;
+    background-size: cover;
+    background-position: right center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+:local(.storiesPart:after) {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.2);
+    z-index: 0;
+}
+
+:local(.carouselWrap) {
+    z-index: 1;
+    position: relative;
+}
+
 :local(.secondPart:after) {
     content: '';
     position: absolute;

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { Registration, MainPanel } from 'components'
-import { toggleModal, toggleRegistration, changeStep, setActiveSection, getPublicMembers, setActiveMembers } from 'actions'
+import { toggleModal, toggleRegistration, changeStep, setActiveSection, getPublicMembers, setActiveMembers, getStories } from 'actions'
 import store, { history } from 'store'
 import BtnMain from 'components/form/buttons/main_button.js'
 import style from './style.css'
@@ -11,12 +11,15 @@ import MemberBlock from 'components/members/member_block.js'
 import ScrollToTop from './scroll_btn.js'
 import { animateScroll as scroll } from 'react-scroll'
 import Options from 'options'
+import SuccessPreview from 'components/stories/preview.js'
+import Carousel from 'components/carousel'
 
 class Landing extends Component {
     constructor(props) {
         super(props)
         store.dispatch(getPublicMembers('new'))
         store.dispatch(getPublicMembers('popular'))
+        store.dispatch(getStories())
     }
 
     showModal = () => {
@@ -33,6 +36,10 @@ class Landing extends Component {
             this.advantagesAnimate()
             this.toggleScrollBtn()
         }
+    }
+
+    printStories = (story, i) => {
+        return <div key={i}><SuccessPreview {...story} /></div>
     }
 
     getRegistration = () => {
@@ -154,12 +161,20 @@ class Landing extends Component {
                             <BtnMain
                                 type="button"
                                 bsStyle="success"
-                                text="Registration"
+                                text="Sign Up"
                                 onClick={this.getRegistration} />
                         </FormGroup>
                     </Grid>
                 </div>
+                <div className={style.storiesPart}>
+                    <div className={style.carouselWrap}>
+                        <Grid>
+                            <Carousel items={this.props.services.stories.list.map((story, i) => this.printStories(story, i))} />
+                        </Grid>
+                    </div>
+                </div>
                 <ScrollToTop />
+                
             </div>
             
         )
@@ -175,6 +190,11 @@ const mapStateToProps = (state) => {
         members: {
             public: {
                 active: state.members.public.active
+            }
+        },
+        services: {
+            stories: {
+                list: state.services.stories.list
             }
         }
     } 
