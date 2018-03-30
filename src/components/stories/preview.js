@@ -3,21 +3,25 @@ import style from './style.css'
 import { history } from 'store'
 
 class SuccessPreview extends Component {
-    goToStory = () => {
-        history.push(history.location.pathname + '/1')
+    goToStory = (id) => {
+        history.push(history.location.pathname + '/' + id)
     }
 
     render() {
+        const text = this.props.story.slice(0, 72) + '...'
         return (
-        	<div className={style.wrap} onClick={this.goToStory}>
+        	<div className={style.wrap} onClick={() => this.goToStory(this.props.id)}>
     			<div className={style.imgBlock}>
-    				<img className={style.imgPreview} src="/assets/img/image.jpg" alt="" />
+    				<img className={style.imgPreview} src={this.props.image} alt="" />
     				<div className={style.textBlock}>
-	        			<span>&nbsp;Graham&nbsp;</span>
+	        			<span>&nbsp;{ this.props.client_name }&nbsp;</span>
 	        			<i className="fas fa-plus"></i>
-	        			<span>&nbsp;Nicole&nbsp;</span>
+	        			<span>&nbsp;{ this.props.girl_name }&nbsp;</span>
 	    			</div>
         		</div>
+                <div className={style.description}>
+                    { text }
+                </div>
             </div>
         );
     }

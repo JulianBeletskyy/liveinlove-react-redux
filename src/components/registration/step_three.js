@@ -48,8 +48,7 @@ class SignUpThree extends Component {
                             <Textarea
                                 inputRef={ref => { this.signup.message = ref }}
                                 value={data.message}
-                                placeholder="Message"
-                            />
+                                placeholder="Message" />
                         </FormGroup>
                         <h4 className="font-bebas">Interests</h4>
                         { interests.map((interest, i) => this.printInterest(interest, i)) }

@@ -224,8 +224,6 @@ export default {
             method: 'get',
             headers: {
                 'Authorization': 'Bearer ' + token
-                //'Accept': 'application/json',
-                //'Content-Type': 'application/json'
             }
         })
         .then(responseHandler)
@@ -236,8 +234,6 @@ export default {
             method: 'get',
             headers: {
                 'Authorization': 'Bearer ' + token
-                //'Accept': 'application/json',
-                //'Content-Type': 'application/json'
             }
         })
         .then(responseHandler)
@@ -673,6 +669,28 @@ export default {
             method: 'get',
             headers: {
                 'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
+    getStories() {
+        return fetch(config.API_URL + 'stories', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
+    getStory(id) {
+        return fetch(config.API_URL + 'stories/' + id, {
+            method: 'get',
+            headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
