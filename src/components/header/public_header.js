@@ -4,6 +4,8 @@ import style from './style.css'
 import { Link } from 'react-router-dom'
 import { NavDropdown } from 'react-bootstrap'
 import { toggleModal, logout } from 'actions'
+import { connect } from 'react-redux'
+
 
 class PublicHeader extends Component {
 
@@ -16,6 +18,7 @@ class PublicHeader extends Component {
     }
 
     render() {
+        const url = this.props.segments.first
         return (
             <ul className={style.navBar + ' nav navbar-nav navbar-right'} >
                 <NavDropdown role="presentation" title="About" id="dropdown">
@@ -37,8 +40,8 @@ class PublicHeader extends Component {
                     <Link to="/success-stories">Success Stories</Link>
                 </li>
 
-                <li role="presentation">
-                    <Link to="/blog">Blog</Link>
+                <li role="presentation" className={url === 'blogs' ? style.active : ''}>
+                    <Link to="/blogs">Blogs</Link>
                 </li>
 
                 <NavDropdown 
@@ -57,4 +60,12 @@ class PublicHeader extends Component {
     }
 }
 
-export default PublicHeader
+const mapStateToProps = (state) => {
+    return {
+        segments: state.segments
+    }
+}
+
+export default connect(
+    mapStateToProps
+)(PublicHeader)

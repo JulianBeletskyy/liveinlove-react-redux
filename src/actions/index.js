@@ -995,6 +995,57 @@ export function setActiveSection(value, key) {
     }
 }
 
+export function getStories() {
+    return dispatch => {
+        return api.getStories()
+            .then(json => {
+                if (json.data) {
+                    dispatch(setStories(json.data))
+                }
+            })
+    }
+}
+
+export function getStory(id) {
+    return dispatch => {
+        return api.getStory(id)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setStory(json.data))
+                }
+            })
+    }
+}
+
+export function setStories(value) {
+    return {
+        type: types.SET_STORIES,
+        value
+    }
+}
+
+export function setStory(value) {
+    return {
+        type: types.SET_STORY,
+        value
+    }
+}
+
+export function setBlogPage(value) {
+    return {
+        type: types.SET_BLOG_PAGE,
+        value
+    }
+}
+
+export function setComment(value, id) {
+    return {
+        type: types.SET_COMMENT,
+        value,
+        id
+    }
+}
+
 export function addCredits(value) {
     return {
         type: types.ADD_CREDITS,

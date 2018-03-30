@@ -1,166 +1,166 @@
 @font-face {
-    font-family: bebas_neue;
-    src: url(./assets/fonts/bebasneue_regular-webfont.woff);
+	font-family: bebas_neue;
+	src: url(./assets/fonts/bebasneue_regular-webfont.woff);
 }
 
 .App {
-    position: relative;
-    background-image: url('/assets/img/image.jpg');
-    background-size: cover;
-    background-position: right center;
-    background-attachment: fixed;
+	position: relative;
+	background-image: url('/assets/img/image.jpg');
+	background-size: cover;
+	background-position: right center;
+	background-attachment: fixed;
 }
 
 .App:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.2);
-  z-index: 0;
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,0.2);
+	z-index: 0;
 }
 
 .slick-dots.slick-thumb {
-  top: 5px;
-  bottom: auto;
-  color: #27c2d3;
+	top: 5px;
+  	bottom: auto;
+  	color: #27c2d3;
 }
 
 .slick-dots.slick-thumb li button:before {
-  color: #27c2d3;
+	color: #27c2d3;
 }
 
 .tile-viewport img {
-  object-fit: cover;
+	object-fit: cover;
 }
 
 .text-white {
-  color: #fff;
-  font-family: bebas_neue;
-  letter-spacing: 1px;
-  font-weight: bold;
+	color: #fff;
+	font-family: bebas_neue;
+	letter-spacing: 1px;
+	font-weight: bold;
 }
 
 .font-bebas {
-  font-family: "bebas_neue",Helvetica,Arial,sans-serif;
-  text-transform: uppercase;
-  color: #828282;
-  letter-spacing: 1px;
+	font-family: "bebas_neue",Helvetica,Arial,sans-serif;
+	text-transform: uppercase;
+	color: #828282;
+	letter-spacing: 1px;
 }
 
 .text-grey {
-  color: #828282;
+	color: #828282;
 }
 
 .react-confirm-alert-button-group > button:last-child {
-  background: #27C2D3;
+	background: #27C2D3;
 }
 
 .react-confirm-alert {
-  text-align: center;
+	text-align: center;
 }
 
 .react-confirm-alert-body {
-  text-align: center;
+	text-align: center;
 }
 
 .react-confirm-alert-button-group {
-  justify-content: center;
+	justify-content: center;
 } 
 
 .ethniticy-block {
-    padding: 2px 5px;
+	padding: 2px 5px;
 }
 
 .pt-66 {
-  padding-top: 66px;
+	padding-top: 66px;
 }
 
 .p-15 {
-  padding: 15px;
+	padding: 15px;
 }
 
 .pt-17 {
-  padding-top: 17px;
+	padding-top: 17px;
 }
 
 .pt-15 {
-  padding-top: 15px;
+	padding-top: 15px;
 }
 
 .px-15 {
-  padding: 0px 15px;
+	padding: 0px 15px;
 }
 
 .pt-100 {
-  padding-top: 100px;
-  position: relative;
-  z-index: 1;
+	padding-top: 100px;
+	position: relative;
+	z-index: 1;
 }
 
 .pb-50 {
-  padding-bottom: 50px;
+	padding-bottom: 50px;
 }
 
 .p-7-4 {
-  padding: 7px 4px;
-  font-family: "bebas_neue",Helvetica,Arial,sans-serif;
+	padding: 7px 4px;
+	font-family: "bebas_neue",Helvetica,Arial,sans-serif;
 }
 
 .bg-blue {
-  background-color: #ECF1F4;
-  background-color: rgba(236, 241, 244, 0.9)
+	background-color: #ECF1F4;
+	background-color: rgba(236, 241, 244, 0.9)
 }
 
 .bg-white {
-  background-color: #fff;
-  min-height: 1200px;
+	background-color: #fff;
+	min-height: 1200px;
 }
 
 .text-blue {
-  color: #4099FF;
+	color: #4099FF;
 }
 
 .client .divider {
-  box-shadow: 5px 0px 20px 1px rgba(39, 194, 211,0.2);
-  border-bottom: 1px solid #27c2d3;
+	box-shadow: 5px 0px 20px 1px rgba(39, 194, 211,0.2);
+	border-bottom: 1px solid #27c2d3;
 }
 
 .divider {
-  border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 }
 
 .girl .divider {
-  box-shadow: 8px 0px 20px 1px rgba(249, 30, 127,0.2);
-  border-bottom: 1px solid rgba(249, 30, 127, 0.6);
+	box-shadow: 8px 0px 20px 1px rgba(249, 30, 127,0.2);
+	border-bottom: 1px solid rgba(249, 30, 127, 0.6);
 }
 
 .text-white.main {
-  font-size: 54px;
-  text-align: center;
+	font-size: 54px;
+	text-align: center;
 }
 
 .blue-color {
-  color: #27c2d3;
+	color: #27c2d3;
 }
 
 .small-italic {
-  font-size: 13px;
-  opacity: 0.7;
-  font-weight: normal;
+	font-size: 13px;
+	opacity: 0.7;
+	font-weight: normal;
 }
 
 .btn-login {
-  padding: 30px;
+	padding: 30px;
 }
 
 .modal-content {
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 0px;
-    border-color: #333333;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 0px;
+	border-color: #333333;
 }
 
 .panel {
@@ -169,207 +169,215 @@
 }
 
 @media (max-width: 768px) {
-  .App:after {
-    background-color: rgba(0,0,0,0.6);
-  }
+	.App:after {
+		background-color: rgba(0,0,0,0.6);
+	}
 }
 
 @media (min-width: 992px) {
-    .modal-lg {
-        width: 60%;
-    }
+	.modal-lg {
+		width: 60%;
+	}
 }
 @media (max-width: 320px) {
-  .fade.in.modal {
-        padding-left: 0px !important;
-  }
+	.fade.in.modal {
+		padding-left: 0px !important;
+	}
 }
 
-
 .fileContainer {
-    padding: 0;
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-    margin: 0;
+	padding: 0;
+	box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	margin: 0;
 }
 
 .fileUploader {
-  display: inline-block;
-  vertical-align: middle;
-  width: auto;
+	display: inline-block;
+	vertical-align: middle;
+	width: auto;
 }
 
 .fileContainer .chooseFileButton {
-    background: #34dca2;
-    border-radius: 0;
-    padding: 15px;
-    margin: 0;
-    font-weight: bold;
+	background: #34dca2;
+	border-radius: 0;
+	padding: 15px;
+	margin: 0;
+	font-weight: bold;
 }
 
 .fileContainer .chooseFileButton:hover {
-    background-color: #1eaf7d;
-    color: #fff;
+	background-color: #1eaf7d;
+	color: #fff;
 }
 
 .fileContainer .uploadPictureContainer {
-    display: none;
+	display: none;
 }
 
 .upload-btn-group {
-    margin: 0 auto;
-    max-width: 180px;
+	margin: 0 auto;
+	max-width: 180px;
 }
 
 .upload-btn-group button {
-    width: 100%;
+	width: 100%;
 }
 
 .default-avatar {
-    width: 240px;
-    margin: 0 auto;
-    display: block;
-    max-width: 100%;
+	width: 240px;
+	margin: 0 auto;
+	display: block;
+	max-width: 100%;
 }
 
 .shadow {
-    padding-top: 100px;
+	padding-top: 100px;
 }
 
 .no-results-page {
-  margin-top: 75px;
-  text-align: center;
+	margin-top: 75px;
+	text-align: center;
 }
+
 .no-results-page:first-child {
-  margin-top: 15px;
+	margin-top: 15px;
 }
+
 .no-results-page__label {
-  margin: 0;
-  color: #34dca2;
-  font-size: 5.714285714285714em;
-  font-family: 'bebas_neue', Helvetica, Arial, sans-serif;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: normal;
-  line-height: 1;
+	margin: 0;
+	color: #34dca2;
+	font-size: 5.714285714285714em;
+	font-family: 'bebas_neue', Helvetica, Arial, sans-serif;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: normal;
+	line-height: 1;
 }
+
 @media (min-width: 768px) {
-    .no-results-page__label {
-        font-size: 12.142857142857142em;
-    }
+	.no-results-page__label {
+		font-size: 12.142857142857142em;
+	}
+
+	.no-results-page__label._404 {
+		font-size: 20em;
+	}
 }
+
 .no-results-page__label._404 {
-  font-size: 10em;
+	font-size: 10em;
 }
-@media (min-width: 768px) {
-  .no-results-page__label._404 {
-    font-size: 20em;
-  }
-}
+
 .no-results-page__label._cart {
-  margin-bottom: 90px;
+	margin-bottom: 90px;
 }
+
 .no-results-page__title {
-  margin-top: 15px;
+	margin-top: 15px;
 }
+
 .no-results-page__desc {
-  margin-bottom: 60px;
-  line-height: 1.75;
-  font-size: 1.571428571428571em;
+	margin-bottom: 60px;
+	line-height: 1.75;
+	font-size: 1.571428571428571em;
 }
+
 .no-results-page__desc strong {
-  color: #222;
+	color: #222;
 }
+
 .no-results-page__link {
-  font-family: 'bebas_neue', Helvetica, Arial, sans-serif;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-weight: bold;
+	font-family: 'bebas_neue', Helvetica, Arial, sans-serif;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	font-weight: bold;
 }
+
 .main-content-wrapper {
-  padding-top: 60px;
-  padding-bottom: 120px;
-  position: relative;
-  background-color: #fff;
-  z-index: 1;
+	padding-top: 60px;
+	padding-bottom: 120px;
+	position: relative;
+	background-color: #fff;
+	z-index: 1;
 }
 
 .navbar .container-fluid {
-  padding: 0;
+ 	padding: 0;
 }
 
 .pace-activity {
-    position: fixed;
-    z-index: 30;
-    top: 50%;
-    left: 50%;
-    margin: -40px 0 0 -40px;
-    height: 80px;
-    width: 80px;
-    -webkit-animation: pace-animate1 1.5s linear infinite;
-    animation: pace-animate1 1.5s linear infinite;
-    clip: rect(0,80px,80px,40px);
-  }
+	position: fixed;
+	z-index: 30;
+	top: 50%;
+	left: 50%;
+	margin: -40px 0 0 -40px;
+	height: 80px;
+	width: 80px;
+	-webkit-animation: pace-animate1 1.5s linear infinite;
+	animation: pace-animate1 1.5s linear infinite;
+	clip: rect(0,80px,80px,40px);
+}
 
   .pace-activity:after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    height: 80px;
-    width: 80px;
-    box-shadow: inset #27C2D3 0 0 0 2px;
-    -webkit-animation: pace-animate2 1.5s ease-in-out infinite;
-    animation: pace-animate2 1.5s ease-in-out infinite;
-    clip: rect(0,80px,80px,40px);
+	content: '';
+	position: absolute;
+	border-radius: 50%;
+	height: 80px;
+	width: 80px;
+	box-shadow: inset #27C2D3 0 0 0 2px;
+	-webkit-animation: pace-animate2 1.5s ease-in-out infinite;
+	animation: pace-animate2 1.5s ease-in-out infinite;
+	clip: rect(0,80px,80px,40px);
 }
 
 .loader-wrap {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background: #fff;
-    opacity: 0.8;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: #fff;
+	opacity: 0.8;
 }
 
 @-webkit-keyframes pace-animate1 {
   0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(220deg);
-    transform: rotate(220deg);
+	-webkit-transform: rotate(220deg);
+	transform: rotate(220deg);
   }
 }
 @keyframes pace-animate1 {
   0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(220deg);
-    transform: rotate(220deg);
+	-webkit-transform: rotate(220deg);
+	transform: rotate(220deg);
   }
 }
 @-webkit-keyframes pace-animate2 {
   0% {
-    -webkit-transform: rotate(-140deg);
-    transform: rotate(-140deg);
+	-webkit-transform: rotate(-140deg);
+	transform: rotate(-140deg);
   }
   100% {
-    -webkit-transform: rotate(140deg);
-    transform: rotate(140deg);
+	-webkit-transform: rotate(140deg);
+	transform: rotate(140deg);
   }
 }
 @keyframes pace-animate2 {
   0% {
-    -webkit-transform: rotate(-140deg);
-    transform: rotate(-140deg);
+	-webkit-transform: rotate(-140deg);
+	transform: rotate(-140deg);
   }
   100% {
-    -webkit-transform: rotate(140deg);
-    transform: rotate(140deg);
+	-webkit-transform: rotate(140deg);
+	transform: rotate(140deg);
   }
 }

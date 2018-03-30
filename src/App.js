@@ -56,14 +56,12 @@ class App extends Component {
                     body={<Auth />}
                     title="Log In"
                     show={login}
-                    keyModal="login"
-                />
+                    keyModal="login" />
                 <MainModal
                     body={<Recovery />}
                     title="Recovery"
                     show={recovery}
-                    keyModal="recovery"
-                />
+                    keyModal="recovery" />
                 <Alert />
             </div>
         );

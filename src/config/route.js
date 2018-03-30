@@ -13,6 +13,12 @@ export default {
             'path': '/success-stories/:id',
             'component': 'SuccessStories'
         }, {
+            'path': '/blogs',
+            'component': 'Blog'
+        }, {
+            'path': '/blogs/:id',
+            'component': 'Blog'
+        }, {
             'path': '*',
             'component': 'NotFound'
         }
