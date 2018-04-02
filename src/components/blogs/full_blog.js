@@ -13,7 +13,6 @@ class FullBlog extends Component {
     constructor(props) {
         super(props)
         props.goToBlog(props.match.params.id)
-        console.log(props.user.data.first_name)
     }
 
 	setComment = () => {
