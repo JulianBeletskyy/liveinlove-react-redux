@@ -40,6 +40,10 @@
 	color: white;
 }
 
+:local(.navBar) a {
+	cursor: pointer;
+}
+
 :local(.navbarDefault) .navbar-nav>.open>a,
 :local(.navbarDefault) .navbar-nav>.open>a:focus, 
 :local(.navbarDefault) .navbar-nav>.open>a:hover,

@@ -11,6 +11,7 @@ import Home from 'containers/home/home.js'
 import { Alert } from './components'
 import style from './App.css'
 import { Auth, MainModal, Recovery } from 'components'
+import Support from 'components/support'
 
 class App extends Component {
     constructor(props) {
@@ -40,7 +41,7 @@ class App extends Component {
         const { data, token } = this.props.user
         const key = token ? data.role : 'public'
         const routes = routing[key]
-        const { login, recovery } = this.props.modals
+        const { login, recovery, support } = this.props.modals
         return (
             <div className="App">
                 <Header />
@@ -62,6 +63,11 @@ class App extends Component {
                     title="Recovery"
                     show={recovery}
                     keyModal="recovery" />
+                <MainModal
+                    body={<Support />}
+                    title="Send Request"
+                    show={support}
+                    keyModal="support" />
                 <Alert />
             </div>
         );
@@ -78,7 +84,8 @@ const mapStateToProps = (state) => {
         },
         modals: {
             login: state.modals.login,
-            recovery: state.modals.recovery
+            recovery: state.modals.recovery,
+            support: state.modals.support
         }
     }
 }

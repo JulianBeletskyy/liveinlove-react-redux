@@ -686,6 +686,17 @@ export function buyVideo(id, token, member_id) {
     }
 }
 
+export function buyPhoto(id, token, member_id) {
+    return dispatch => {
+        return api.buyPhoto(id, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(getMemberInfo(token, member_id))
+            }
+        })
+    }
+}
+
 export function setMemberships(value) {
     return {
         type: types.SET_MEMBERSHIPS,
@@ -987,6 +998,17 @@ export function closeNav() {
     }
 }
 
+export function sendRequest(data) {
+    return dispatch => {
+        return api.sendRequest(data)
+            .then(json => {
+                if (json.data) {
+                    dispatch.toggleModal(false, 'support')
+                }
+            })
+    }
+}
+
 export function setActiveSection(value, key) {
     return {
         type: types.SET_ACTIVE_SECTION,
@@ -1006,6 +1028,39 @@ export function getStories() {
     }
 }
 
+export function getBlogs(page) {
+    return dispatch => {
+        return api.getBlogs(page)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setBlogs(json.data))
+                }
+            })
+    }
+}
+
+export function getPopularBlogs() {
+    return dispatch => {
+        return api.getPopularBlogs()
+            .then(json => {
+                if (json.data) {
+                    dispatch(setPopularBlogs(json.data))
+                }
+            })
+    }
+}
+
+export function getBlog(id) {
+    return dispatch => {
+        return api.getBlog(id)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setBlog(json.data))
+                }
+            })
+    }
+}
+
 export function getStory(id) {
     return dispatch => {
         return api.getStory(id)
@@ -1014,6 +1069,27 @@ export function getStory(id) {
                     dispatch(setStory(json.data))
                 }
             })
+    }
+}
+
+export function setBlogs(data) {
+    return {
+        type: types.SET_BLOGS,
+        data
+    }
+}
+
+export function setPopularBlogs(data) {
+    return {
+        type: types.SET_POPULAR_BLOGS,
+        data
+    }
+}
+
+export function setBlog(data) {
+    return {
+        type: types.SET_BLOG,
+        data
     }
 }
 

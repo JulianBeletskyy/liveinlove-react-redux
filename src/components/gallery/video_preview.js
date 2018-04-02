@@ -4,8 +4,7 @@ import style from './small_item.css'
 class VideoPreview extends Component {
 
     render() {
-        const hiddenClass = this.props.video.private && ! this.props.video.purchased && ! this.props.profile ? style.hiddenVideo : ''
-
+        const hiddenClass = this.props.video.private && ! this.props.video.purchased && ! this.props.profile && this.props.view_video != 'Unlimited' ? style.hiddenVideo : ''
         const text = ! this.props.video.private ? 'public' : 'private'
         const classInfo = ! this.props.video.private ? style.success : style.danger
         return (
