@@ -19,6 +19,10 @@
     }
 }
 
+:local(.hidden) {
+    opacity: 0;
+}
+
 :local(.minus), 
 :local(.plus),
 :local(.cross) {
