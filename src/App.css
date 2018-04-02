@@ -134,7 +134,7 @@
 
 .bg-white {
 	background-color: #fff;
-	min-height: 1200px;
+	min-height: 100vh;
 }
 
 .text-blue {

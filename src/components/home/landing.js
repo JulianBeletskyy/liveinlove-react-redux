@@ -186,7 +186,7 @@ class Landing extends Component {
                     <div className={style.carouselWrap}>
                         <Coverflow width="100%" height="500"
                             displayQuantityOfSide={2}
-                            navigation={false}
+                            navigation={true}
                             enableScroll={true}
                             clickable={true}
                             active={1}
