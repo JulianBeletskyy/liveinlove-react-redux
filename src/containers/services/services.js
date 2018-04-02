@@ -4,9 +4,13 @@ import { Grid } from 'react-bootstrap'
 class Services extends Component {
     render() {
         return (
-            <Grid>
-                <h1>Services</h1>
-            </Grid>
+            <div className="pt-100">
+	            <Grid>
+	            	<div className="bg-white p-15">
+	            		<h1>Services</h1>
+	                </div>
+	            </Grid>
+            </div>
         );
     }
 }

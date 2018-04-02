@@ -19,6 +19,18 @@ export default {
             'path': '/blogs/:id',
             'component': 'Blog'
         }, {
+            'path': '/testimonials',
+            'component': 'Testimonials'
+        }, {
+            'path': '/about',
+            'component': 'About'
+        }, {
+            'path': '/faq',
+            'component': 'Faq'
+        }, {
+            'path': '/services',
+            'component': 'Services'
+        }, {
             'path': '*',
             'component': 'NotFound'
         }

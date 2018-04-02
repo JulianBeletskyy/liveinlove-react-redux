@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { Grid } from 'react-bootstrap'
 
-
-class About extends Component {
+class Testimonials extends Component {
     render() {
         return (
-            <div className="pt-100">
+        	<div className="pt-100">
 	            <Grid>
 	            	<div className="bg-white p-15">
-	            		<h1>About</h1>
+	            		<h1>Testimonials</h1>
 	                </div>
 	            </Grid>
             </div>
@@ -16,4 +15,4 @@ class About extends Component {
     }
 }
 
-export default About
+export default Testimonials
