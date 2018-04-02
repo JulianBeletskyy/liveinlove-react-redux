@@ -4,14 +4,20 @@ import style from './style.css'
 import { connect } from 'react-redux'
 import store, { history } from 'store'
 import Pagination from './pagination.js'
-import { setBlogPage } from 'actions'
+import { setBlogPage, getBlogs } from 'actions'
 
 class Blogs extends Component {
+    constructor(props) {
+        super(props)
+        store.dispatch(getBlogs())
+    }
+
 	goToBlog = (id) => {
 		history.push('/blogs/' + id)
 	}
 
 	changePage = (e) => {
+        store.dispatch(getBlogs('?page=' + e.target.id * 1))
 		store.dispatch(setBlogPage(e.target.id * 1))
 	}
 
@@ -20,21 +26,20 @@ class Blogs extends Component {
                 	<Row>
                 		<Col xs={6}>
                 			<div className={style.imgWrap}>
-                				<img src={"/assets/img/blog-"+blog.id+".jpg"} alt="" />
+                				<img src={blog.image} alt="" />
                 			</div>
                 		</Col>
                 		<Col xs={6}>
                 			<div className={style.popularTitle}>
-                				<h3>HOW MUCH CASH IS THERE IN UKRAINE?</h3>
+                				<h3>{blog.title}</h3>
                 			</div>
                 			<div>
-                				PPL sites are plagued with scams on so many levels, including immigration fraud. Fake messages sent by bots, gift deliveries replaced with cash payouts for ‘brides’, ‘translators’ that impersonate women from photos in written communication, false declarations on visa applications — it’s time for immigration departments and FBI to take a closer look into Russian-owned Ukrainian troll factories that have already extracted hundreds of millions of dollars from Americans via online scams.
+                				{blog.description}
                 			</div>
-
                 		</Col>
                 	</Row>
                 	<div className={style.date}>
-        				March 21, 2018
+        				{blog.created_at}
         			</div>
                 </div>
 	}

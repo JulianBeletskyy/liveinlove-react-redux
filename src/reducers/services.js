@@ -1,4 +1,4 @@
-import { SET_ACTIVE_TAB, TOGGLE_LIGHT_BOX, SET_UPLOAD, NEXT_IMG, PREV_IMG, SET_ACTIVE_SECTION, SET_BLOG_PAGE, SET_COMMENT, SET_STORIES, SET_STORY } from 'actions/types.js'
+import { SET_ACTIVE_TAB, TOGGLE_LIGHT_BOX, SET_UPLOAD, NEXT_IMG, PREV_IMG, SET_ACTIVE_SECTION, SET_BLOG_PAGE, SET_COMMENT, SET_STORIES, SET_STORY, SET_BLOGS, SET_BLOG, SET_POPULAR_BLOGS } from 'actions/types.js'
 
 const initialState = {
 	tabs: {
@@ -15,28 +15,14 @@ const initialState = {
         advantages: false
     },
     blogs: {
-        list: [
-            {id: 1, text: 'How young Russian families live'}, 
-            {id: 2, text: 'How much cash is there in Ukraine?'}, 
-            {id: 3, text: 'Success breeds success'}
-        ],
+        list: [],
+        popular: [],
         active: {
-            id: 1,
-            comments: [
-                {
-                    text: 'His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign, CreativeBloq, Computer Arts, TheFwa and Awwwards.',
-                    date: 'March 21, 2018 23:45',
-                    name: 'JULIA FERDINAND'
-                }, {
-                    text: 'His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign, CreativeBloq, Computer Arts, TheFwa and Awwwards.',
-                    date: 'March 21, 2018 23:45',
-                    name: 'JULIA FERDINAND'
-                }
-            ]
+            comments: []
         },
         pages: {
-            last_page: 3,
-            current_page: 2
+            last_page: 1,
+            current_page: 1
         }
     },
     stories: {
@@ -75,6 +61,24 @@ export default function services(services = initialState, action = {}) {
         case SET_UPLOAD:
             return Object.assign({}, services, {
                 upload: true
+            });
+        case SET_BLOGS:
+            blogs.list = action.data.data
+            blogs.pages.current_page = action.data.current_page
+            blogs.pages.last_page = action.data.last_page
+            return Object.assign({}, services, {
+                blogs
+            });
+        case SET_POPULAR_BLOGS:
+            blogs.popular = action.data
+            return Object.assign({}, services, {
+                blogs
+            });
+        case SET_BLOG:
+            console.log(action.data)
+            blogs.active = action.data
+            return Object.assign({}, services, {
+                blogs
             });
         case SET_BLOG_PAGE:
             blogs.pages.current_page = action.value

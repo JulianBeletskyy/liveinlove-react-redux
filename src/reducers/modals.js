@@ -10,6 +10,7 @@ const initialState = {
     credits: false,
     video: false,
     gallery: false,
+    support: false
 }
 
 export default function modals(modals = initialState, action = {}) {

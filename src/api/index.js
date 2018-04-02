@@ -300,6 +300,19 @@ export default {
         .then(responseHandler)
     },
 
+    buyPhoto(id, token) {
+        return fetch(config.API_URL + 'gallery/photo/buy', {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({photo_id: id})
+        })
+        .then(responseHandler)
+    },
+
     updateUserProfile(data, token) {
         return fetch(config.API_URL + 'user/profile', {
             method: 'put',
@@ -653,7 +666,12 @@ export default {
     },
 
     getProducts(id, token) {
-        return fetch(config.API_URL + 'client/shop/product/category/' + id, {
+        if (id == 0) {
+            id = ''
+        } else {
+            id = '/' + id
+        }
+        return fetch(config.API_URL + 'client/shop/product/category' + id, {
             method: 'get',
             headers: {
                 'Authorization': 'Bearer ' + token,
@@ -669,6 +687,40 @@ export default {
             method: 'get',
             headers: {
                 'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
+    getBlogs(page) {
+        page = page || ''
+        return fetch(config.API_URL + 'blog' + page, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
+    getPopularBlogs() {
+        return fetch(config.API_URL + 'blog/popular', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
+    getBlog(id) {
+        return fetch(config.API_URL + 'blog/' + id, {
+            method: 'get',
+            headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
@@ -694,6 +746,18 @@ export default {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
+        })
+        .then(responseHandler)
+    },
+
+    sendRequest(data) {
+        return fetch(config.API_URL + 'support', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         })
         .then(responseHandler)
     }

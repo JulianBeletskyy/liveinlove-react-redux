@@ -10,6 +10,7 @@
     margin-bottom: 15px;
     position: relative;
     cursor: pointer;
+    background: #fff;
 }
 
 :local(.wrap:hover .imgPreview) {

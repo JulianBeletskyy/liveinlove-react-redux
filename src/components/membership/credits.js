@@ -32,8 +32,8 @@ class Credits extends Component {
                 tagline: false    
             },
             client: {
-                sandbox:    'AXacobXZw7juas6mFNcZ5pJ0jcVEbKuY78wH8zd8_s3955vUJ0uD-muT2NyKd1TzLV-bKgGx5yaaXI2I',
-                production: '<insert production client id>'
+                sandbox:    'AfDGqe6kXnSsTM9gDI2OZdUXxrydoxVCG7CZbp76Nr-NdDvHjyKs7W52X7n8s8_i4k6cQqwF7gor72f_',
+                production: 'AUjZF0corGMnwDfnp4_EGJkFESZn6u96_wnxqVL2XNQ_RCkqnHjLJaNRKSB9j4Ypn4LniWukXuSJ_bF7'
             },
 
             payment: (data, actions) => {

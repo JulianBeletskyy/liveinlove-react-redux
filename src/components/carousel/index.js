@@ -13,11 +13,16 @@ class Carousel extends Component {
     
     render() {
         let settings = {
-            slidesToShow: 3,
+            slidesToShow: this.props.slidesToShow || 3,
             dots: false,
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />,
             dotsClass: 'slick-dots slick-thumb',
+
+            infinite: this.props.infinite || false,
+            arrows: this.props.arrows,
+            autoplay: this.props.autoplay || false,
+
             responsive: [
                 {
                     breakpoint: 1120, 
