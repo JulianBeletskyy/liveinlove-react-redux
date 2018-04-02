@@ -87,7 +87,9 @@ class Cart extends Component {
                                 ?   <span onClick={() => this.removeFromCart(item.product)} className={style.minus}>
                                         <i className="fas fa-minus"></i>
                                     </span>
-                                : ''
+                                :   <span className={style.hidden}>
+                                        <i className="fas fa-minus"></i>
+                                    </span>
                             }
                             
                             {item.count}
