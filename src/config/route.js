@@ -49,6 +49,12 @@ export default {
             'path': '/shop/:prodId',
             'component': 'Shop'
         }, {
+            'path': '/blogs',
+            'component': 'Blog'
+        }, {
+            'path': '/blogs/:id',
+            'component': 'Blog'
+        }, {
             'path': '*',
             'component': 'NotFound'
         }
@@ -72,6 +78,12 @@ export default {
         }, {
             'path': '/member/:id',
             'component': 'Member'
+        }, {
+            'path': '/blogs',
+            'component': 'Blog'
+        }, {
+            'path': '/blogs/:id',
+            'component': 'Blog'
         }, {
             'path': '*',
             'component': 'NotFound'
