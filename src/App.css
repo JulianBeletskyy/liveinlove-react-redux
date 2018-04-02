@@ -40,6 +40,14 @@
 	object-fit: cover;
 }
 
+[aria-selected='true'] .accordion__arrow::before {
+    transform: rotate(-45deg);
+}
+
+[aria-selected='true'] .accordion__arrow::after {
+    transform: rotate(45deg);
+}
+
 .text-white {
 	color: #fff;
 	font-family: bebas_neue;
