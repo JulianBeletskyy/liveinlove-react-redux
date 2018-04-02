@@ -1061,6 +1061,17 @@ export function getBlog(id) {
     }
 }
 
+export function addViewBlog(id) {
+    return dispatch => {
+        return api.addViewBlog(id)
+            .then(json => {
+                if (json.data) {
+                    
+                }
+            })
+    }
+}
+
 export function getStory(id) {
     return dispatch => {
         return api.getStory(id)
@@ -1114,11 +1125,15 @@ export function setBlogPage(value) {
     }
 }
 
-export function setComment(value, id) {
-    return {
-        type: types.SET_COMMENT,
-        value,
-        id
+export function sendComment(data, id) {
+    return dispatch => {
+        return api.sendComment(data)
+            .then(json => {
+                if (json.data) {
+                    dispatch(getBlog(id))
+                    dispatch(getPopularBlogs())
+                }
+            })
     }
 }
 
