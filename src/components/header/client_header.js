@@ -68,6 +68,10 @@ class ClientHeader extends Component {
                     <Link to="/services">Services</Link>
                 </li>
 
+                <li role="presentation" className={url === 'blogs' ? style.active : ''}>
+                    <Link to="/blogs">Blogs</Link>
+                </li>
+
                 <li role="presentation" className={url === 'shop' ? style.active : ''}>
                     <Link to="/shop">Shop</Link>
                 </li>
