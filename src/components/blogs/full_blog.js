@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
-import { setComment, getBlog } from 'actions'
+import { sendComment, getBlog } from 'actions'
 import { Row, Col, FormGroup } from 'react-bootstrap'
 import { TextField, Textarea } from 'components/form/inputs'
 import { BtnMain } from 'components/form/buttons'
@@ -12,7 +12,8 @@ import { Loader } from 'containers'
 class FullBlog extends Component {
     constructor(props) {
         super(props)
-        store.dispatch(getBlog(props.match.params.id))
+        props.goToBlog(props.match.params.id)
+        console.log(props.user.data.first_name)
     }
 
 	setComment = () => {
@@ -22,10 +23,10 @@ class FullBlog extends Component {
 		if (error) {
 			const data = {
 				name: this.name.value,
-				text: this.comment.value,
-				date: new Date().toISOString()
+				comment: this.comment.value,
+				post_id: this.props.match.params.id
 			}
-			store.dispatch(setComment(data, this.props.match.params.id))
+			store.dispatch(sendComment(data, this.props.match.params.id))
 			this.name.value = ''
 			this.comment.value = ''
 		}
@@ -42,6 +43,10 @@ class FullBlog extends Component {
 					</div>
 				</div>
 	}
+
+    componentWillUnmount() {
+        console.log('destroy')
+    }
     
     render() {
     	const blog = this.props.services.blogs.active
@@ -49,7 +54,8 @@ class FullBlog extends Component {
         if (blog.post) {
             html = blog.post.replace(/&nbsp;/g, ' ')
         }
-        
+
+        const name = this.props.user.token ? this.props.user.data.first_name : ''
         return (
                     this.props.match.params.id != blog.id
                     ?   <Loader />
@@ -78,6 +84,7 @@ class FullBlog extends Component {
                                             type="text"
                                             placeholder="First Name"
                                             inputRef={ref => { this.name = ref }}
+                                            value={name}
                                             name="Name"
                                             key="name" />
                                     </FormGroup>
@@ -106,6 +113,10 @@ const mapStateToProps = (state) => {
             blogs: {
             	active: state.services.blogs.active
             }
+        },
+        user: {
+            token: state.user.token,
+            data: state.user.data
         }
     }
 }

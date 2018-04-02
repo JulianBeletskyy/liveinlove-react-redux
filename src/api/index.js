@@ -728,6 +728,17 @@ export default {
         .then(responseHandler)
     },
 
+    addViewBlog(id) {
+        return fetch(config.API_URL + 'blog/' + id + '/view', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
     getStories() {
         return fetch(config.API_URL + 'stories', {
             method: 'get',
@@ -752,6 +763,18 @@ export default {
 
     sendRequest(data) {
         return fetch(config.API_URL + 'support', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+    },
+
+    sendComment(data) {
+        return fetch(config.API_URL + 'comments/create', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
