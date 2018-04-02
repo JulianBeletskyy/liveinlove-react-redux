@@ -44,6 +44,10 @@ class GirlHeader extends Component {
                     <Link to="/services">Services</Link>
                 </li>
 
+                <li role="presentation" className={url === 'blogs' ? style.active : ''}>
+                    <Link to="/blogs">Blogs</Link>
+                </li>
+
                 <li>
                     <a href="javascript:;" onClick={this.logOut}>Log Out</a>
                 </li>
