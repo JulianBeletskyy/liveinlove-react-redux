@@ -5,12 +5,17 @@ import { Link } from 'react-router-dom'
 import { NavDropdown } from 'react-bootstrap'
 import { toggleModal, logout } from 'actions'
 import { connect } from 'react-redux'
+import { Link as SmoothLink } from 'react-scroll'
 
 
 class PublicHeader extends Component {
 
     showLogIn = () => {
         store.dispatch(toggleModal(true, 'login'))
+    }
+
+    showSupport = () => {
+        store.dispatch(toggleModal(true, 'support'))
     }
 
     logOut = () => {
@@ -23,7 +28,9 @@ class PublicHeader extends Component {
             <ul className={style.navBar + ' nav navbar-nav navbar-right'} >
                 <NavDropdown role="presentation" title="About" id="dropdown">
                     <Link to="/about">About Agency</Link>
-                    <Link to="/how-works">How it works?</Link>
+                    <SmoothLink to="hiw" spy={true} smooth={true} offset={50} duration={500}>
+                        How it works?
+                    </SmoothLink>
                     <Link to="/testimonials">Testimonials</Link>
                     <Link to="success-stories">Success stories</Link>
                 </NavDropdown>
@@ -49,7 +56,7 @@ class PublicHeader extends Component {
                     eventKey={2}
                     title="Support" 
                     id="support-nav-dropdown">
-                    <Link to="/send-request">Send Request</Link>
+                    <a href="javascript:;" onClick={this.showSupport}>Send Request</a>
                     <Link to="/faq">FAQ</Link>
                 </NavDropdown>
                 <li>

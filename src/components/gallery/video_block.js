@@ -17,7 +17,7 @@ class VideoBlock extends Component {
     }
 
     printVideo = (video, i) => {
-        return <VideoPreview key={i} video={video} info={this.props.info} profile={this.props.profile} onClick={(video) => this.showVideo(video)} />
+        return <VideoPreview key={i} video={video} info={this.props.info} profile={this.props.profile} {...this.props.user.data.membership} onClick={(video) => this.showVideo(video)} />
     }
 
     showVideo = (video) => {

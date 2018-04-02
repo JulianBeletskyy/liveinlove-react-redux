@@ -9,10 +9,10 @@ import style from './style.css'
 import Advantages from './advantages.js'
 import MemberBlock from 'components/members/member_block.js'
 import ScrollToTop from './scroll_btn.js'
-import { animateScroll as scroll } from 'react-scroll'
+import { animateScroll as scroll, Element } from 'react-scroll'
 import Options from 'options'
 import SuccessPreview from 'components/stories/preview.js'
-import Carousel from 'components/carousel'
+import Coverflow from 'react-coverflow'
 
 class Landing extends Component {
     constructor(props) {
@@ -39,7 +39,19 @@ class Landing extends Component {
     }
 
     printStories = (story, i) => {
-        return <div key={i}><SuccessPreview {...story} /></div>
+        return  <div key={i} onClick={() => this.goToStory(story.id)}>
+                    <img src={story.image} alt={story.client_name} className={style.imgCarousel} />
+                    <div className={style.carouselName}>
+                        <span>{story.client_name}</span>
+                        &nbsp; & &nbsp;
+                        <span>{story.girl_name}</span>
+                    </div>
+                </div>
+    }
+
+    goToStory = (id) => {
+        scroll.scrollToTop({duration: 0});
+        history.push('success-stories/' + id)
     }
 
     getRegistration = () => {
@@ -83,6 +95,7 @@ class Landing extends Component {
         }
 
         const { list, type } = this.props.members.public.active
+
         return (
             <div>
                 <div className={style.mainPart}>
@@ -167,14 +180,71 @@ class Landing extends Component {
                     </Grid>
                 </div>
                 <div className={style.storiesPart}>
+                    <h2 className={style.advantTitle}>
+                        <span className={style.underlineText}>Success Stories</span>
+                    </h2>
                     <div className={style.carouselWrap}>
-                        <Grid>
-                            <Carousel items={this.props.services.stories.list.map((story, i) => this.printStories(story, i))} />
-                        </Grid>
+                        <Coverflow width="100%" height="500"
+                            displayQuantityOfSide={2}
+                            navigation={false}
+                            enableScroll={true}
+                            clickable={true}
+                            active={1}
+                            enableHeading={false}
+                            infiniteScroll={false} >
+                                { this.props.services.stories.list.map((story, i) => this.printStories(story, i)) }
+                        </Coverflow>
                     </div>
                 </div>
+                <div className={style.thirdPart}>
+                    <Grid>
+                        <Element name="hiw" className="element">
+                        </Element>
+                        <h2 className={style.advantTitle}>
+                            How it <span className={style.underlineText}>works?</span>
+                        </h2>
+                        <h2 className="text-center">Take 3 Easy Steps to Start Your Story:</h2>
+                        <div className={style.stepsWrap}>
+                            <Row>
+                                <Col xs={4}>
+                                    
+                                    <div className={style.stepWrap}>
+                                        <div className="text-center">
+                                            <i className="fas fa-user fa-4x"></i>
+                                            <div className={style.stepDesc}>
+                                                <span className="font-arial">Create your profile, add photos</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Col>
+                                <Col xs={4}>
+                                    
+                                    <div className={style.stepWrap}>
+                                        <div className="text-center">
+                                            <i className="fas fa-images fa-4x"></i>
+                                            <div className={style.stepDesc}>
+                                                <span className="font-arial">Browse our Gallery</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Col>
+                                <Col xs={4}>
+                                    
+                                    <div className={style.stepWrap}>
+                                        <div className="text-center">
+                                            <i className="fas fa-comments fa-4x"></i>
+                                            <div className={style.stepDesc}>
+                                                <span className="font-arial">Start Communication</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </div>
+                        <h2 className="text-center">Any questions? Apply to Our Friendly Staff</h2>
+                    </Grid>
+                </div>
                 <ScrollToTop />
-                
             </div>
             
         )

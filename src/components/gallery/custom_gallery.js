@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import SmallItem from './small_item.js'
 import { connect } from 'react-redux'
 import store from 'store'
-import { toggleLightBox, gotoPrevImg, gotoNextImg, removePhotos, toggleActive, togglePrivate, setAlert } from 'actions'
+import { toggleLightBox, gotoPrevImg, gotoNextImg, removePhotos, toggleActive, togglePrivate, setAlert, toggleModal, buyPhoto } from 'actions'
 import Lightbox from 'react-images'
 import style from './small_item.css'
 import { confirmAlert } from 'react-confirm-alert'
@@ -29,6 +29,38 @@ class CustomGallery extends Component {
     }
     
     openLightBox = (image, i) => {
+        if (this.props.forClient) {
+            if (image.private) {
+                if (this.props.user.data.membership.view_photo === 'Limited') {
+                    if (! image.purchased) {
+                        confirmAlert({
+                            title: '',
+                            message: 'You can\'t see this photo',
+                            buttons: [
+                                {
+                                    label: 'Cancel'
+                                }, {
+                                    label: 'Use Credits',
+                                    onClick: () => {
+                                        if (this.props.user.data.credits < 3) {
+                                            store.dispatch(toggleModal(true, 'credits'))
+                                        } else {
+                                            store.dispatch(buyPhoto(image.id, this.props.user.token, this.props.memberId))
+                                        }
+                                    }
+                                }, {
+                                    label: 'Upgrade Membership',
+                                    onClick: () => {
+                                        store.dispatch(toggleModal(true, 'plans'))
+                                    }
+                                }
+                            ]
+                        })
+                        return
+                    }  
+                }
+            }
+        }
         store.dispatch(toggleLightBox('main', i))
     }
 
@@ -121,6 +153,7 @@ const mapStateToProps = (state) => {
             data: {
                 role: state.user.data.role,
                 membership: state.user.data.membership,
+                credits: state.user.data.credits
             }
         }
     }

@@ -23,7 +23,7 @@ class SideBlog extends Component {
 
 	printPopular = (blog, i) => {
 		return 	<FormGroup key={i}>
-					<div className={style.popularWrap} onClick={() => this.goToBlog(blog.id)}>
+					<div className={style.popularWrap} onClick={() => this.props.goToBlog(blog.id)}>
 						<Row>
 							<Col xs={1}>
 								<span className={style.popularTitle}>
@@ -31,10 +31,10 @@ class SideBlog extends Component {
 								</span>
 							</Col>
 							<Col xs={10}>
-								<span className={style.popularTitle}>{blog.text}</span>
+								<span className={style.popularTitle}>{blog.title}</span>
 								<div>
-									<span>110 views</span>
-									<span className="pull-right">29 comments</span>
+									<span>{blog.views} views</span>
+									<span className="pull-right">{blog.comments} comments</span>
 								</div>
 							</Col>
 						</Row>
@@ -43,7 +43,7 @@ class SideBlog extends Component {
 	}
 
     render() {
-    	const list = this.props.services.blogs.list
+    	const list = this.props.services.blogs.popular
         return (
         	<div>
         		<FormGroup className="text-center">
@@ -68,7 +68,9 @@ class SideBlog extends Component {
 const mapStateToProps = (state) => {
     return {
         services: {
-            blogs: state.services.blogs
+            blogs: {
+            	popular: state.services.blogs.popular
+            }
         }
     }
 }

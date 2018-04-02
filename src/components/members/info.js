@@ -7,7 +7,7 @@ import VideoBlock from 'components/gallery/video_block.js'
 import { connect } from 'react-redux'
 
 class MemberInfo extends Component {
-	
+
     render() {
         const videoTab = this.props.client ? {eventKey: 'video', title: 'Video', content: <VideoBlock memberId={this.props.options.id} video={this.props.options.video} />} : {}
         return (
@@ -24,6 +24,7 @@ class MemberInfo extends Component {
                                     images={this.props.options.gallery}
                                     info={this.props.user.data.role === 'client'}
                                     edit={false}
+                                    memberId={this.props.options.id}
                                     forClient={true} />
                     }, 
                     videoTab, 

@@ -17,6 +17,17 @@
 	display: none;
 }
 
+:local(.imgCarousel) {
+    object-fit: cover; 
+    width: 100%;
+}
+
+:local(.carouselName) {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+}
+
 @media (max-width: 768px) {
     :local(.wrapRegistration) {
 	    width: 100%;
@@ -115,6 +126,55 @@
     opacity: 1;
 }
 
+:local(.stepsWrap) {
+    padding-top: 20px;
+}
+
+:local(.stepWrap) {
+    border: 3px solid;
+    padding: 30px 10px 0px 10px;
+    min-height: 165px;
+}
+
+@media (max-width: 515px) {
+    :local(.stepWrap) {
+        padding: 20px 5px 0px 5px;
+    }
+
+    :local(.stepDesc) {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 460px) {
+    :local(.stepWrap) {
+        padding: 20px 0px 0px 0px;
+        min-height: 145px;
+    }
+
+    :local(.stepDesc) {
+        font-size: 10px;
+    }
+
+    :local(.stepDesc) {
+        padding: 10px 0px !important;
+    }
+}
+
+@media (max-width: 350px) {
+    :local(.stepDesc) {
+        font-size: 9px;
+    }
+}
+
+:local(.stepWrap) i {
+    color: #27c2d3;
+}
+
+:local(.stepDesc) {
+    padding: 10px;
+}
+
 :local(.secondPart) {
 	background-image: url('/assets/img/login-bg.jpg');
 	min-height: 800px;
@@ -127,11 +187,11 @@
 
 :local(.storiesPart) {
     background-image: url('/assets/img/image.jpg');
-    min-height: 800px;
     background-size: cover;
     background-position: right center;
     background-attachment: fixed;
     position: relative;
+    padding: 50px 0;
 }
 
 :local(.storiesPart:after) {

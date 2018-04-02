@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
-import { setComment } from 'actions'
+import { setComment, getBlog } from 'actions'
 import { Row, Col, FormGroup } from 'react-bootstrap'
 import { TextField, Textarea } from 'components/form/inputs'
 import { BtnMain } from 'components/form/buttons'
 import style from './style.css'
 import Validator from 'validate'
+import { Loader } from 'containers'
 
 class FullBlog extends Component {
+    constructor(props) {
+        super(props)
+        store.dispatch(getBlog(props.match.params.id))
+    }
+
 	setComment = () => {
 		let error = 1
 		error *= Validator.check(this.name.value, ['required'], 'Name')
@@ -38,44 +44,58 @@ class FullBlog extends Component {
 	}
     
     render() {
-    	const comments = this.props.services.blogs.active.comments
+    	const blog = this.props.services.blogs.active
+        let html = ''
+        if (blog.post) {
+            html = blog.post.replace(/&nbsp;/g, ' ')
+        }
+        
         return (
-        	<div>
-                <FormGroup>
-                	<h1>Full Blog</h1>
-                	<hr />
-                </FormGroup>
-                <div>
-            		<p className={style.popularTitle}>Comments:</p>
-            	</div>
-            	<div>
-            		{ comments.map((comment, i) => this.printComments(comment, i)) }
-            	</div>
-                <Row className="pt-15">
-                	<Col sm={6} smOffset={6}>
-		                <FormGroup>
-		                	<TextField
-                                type="text"
-                                placeholder="First Name"
-                                inputRef={ref => { this.name = ref }}
-                                name="Name"
-                                key="name" />
-		                </FormGroup>
-		                <FormGroup>
-                            <Textarea
-                                inputRef={ref => { this.comment = ref }}
-                                placeholder="Comment" />
-                        </FormGroup>
-                        <FormGroup className="text-right">
-                            <BtnMain
-		                        type="button"
-		                        bsStyle="success"
-		                        text="Comment"
-		                        onClick = {this.setComment} />
-                        </FormGroup>
-	                </Col>
-                </Row>
-            </div>
+                    this.props.match.params.id != blog.id
+                    ?   <Loader />
+                    :   <div>
+                            <FormGroup>
+                                <h2>{blog.title}</h2>
+                            </FormGroup>
+                            <FormGroup>
+                                <img className="img-responsive" src={blog.image} alt="" />
+                                <hr />
+                            </FormGroup>
+                            <FormGroup>
+                                <div dangerouslySetInnerHTML={{__html: html}} />
+                            </FormGroup>
+                            <hr />
+                            <div>
+                                <p className={style.popularTitle}>Comments:</p>
+                            </div>
+                            <div>
+                                { blog.comments.map((comment, i) => this.printComments(comment, i)) }
+                            </div>
+                            <Row className="pt-15">
+                                <Col sm={6} smOffset={6}>
+                                    <FormGroup>
+                                        <TextField
+                                            type="text"
+                                            placeholder="First Name"
+                                            inputRef={ref => { this.name = ref }}
+                                            name="Name"
+                                            key="name" />
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Textarea
+                                            inputRef={ref => { this.comment = ref }}
+                                            placeholder="Comment" />
+                                    </FormGroup>
+                                    <FormGroup className="text-right">
+                                        <BtnMain
+                                            type="button"
+                                            bsStyle="success"
+                                            text="Comment"
+                                            onClick = {this.setComment} />
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                        </div>
         );
     }
 }
@@ -84,9 +104,7 @@ const mapStateToProps = (state) => {
     return {
         services: {
             blogs: {
-            	active: {
-            		comments: state.services.blogs.active.comments
-            	}
+            	active: state.services.blogs.active
             }
         }
     }
