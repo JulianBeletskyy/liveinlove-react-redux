@@ -718,7 +718,9 @@ export default {
     },
 
     getBlog(id) {
-        return fetch(config.API_URL + 'blog/' + id, {
+        let timezone = new Date().getTimezoneOffset()
+        timezone = timezone / 60 * -1
+        return fetch(config.API_URL + 'blog/' + id + '?timezone=' + timezone, {
             method: 'get',
             headers: {
                 'Accept': 'application/json',
@@ -771,10 +773,6 @@ export default {
         
         return fetch(config.API_URL + 'support', {
             method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
             body: formData
         })
         .then(responseHandler)
