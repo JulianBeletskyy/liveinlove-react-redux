@@ -24,17 +24,19 @@ class Blogs extends Component {
 	printBlogs = (blog, i) => {
 		return 	<div key={i} className={style.previewWrap} onClick={() => this.goToBlog(blog.id)}>
                 	<Row>
-                		<Col xs={6}>
+                		<Col sm={6}>
                 			<div className={style.imgWrap}>
                 				<img src={blog.image} alt="" />
                 			</div>
                 		</Col>
-                		<Col xs={6}>
+                		<Col sm={6}>
                 			<div className={style.popularTitle}>
                 				<h3>{blog.title}</h3>
                 			</div>
                 			<div>
                 				{blog.description}
+                                <br />
+                                <br />
                 			</div>
                 		</Col>
                 	</Row>

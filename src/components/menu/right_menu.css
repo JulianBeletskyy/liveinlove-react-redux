@@ -68,3 +68,64 @@
 :local(.buttonHolder a:hover) {
 	background-color: #279ba7;
 }
+
+:local(.mobileWrap) {
+	position: fixed;
+    z-index: 22;
+    top: 170px;
+    right: 0;
+    display: block;
+    transition: -webkit-transform 0.4s;
+    transition: transform 0.4s;
+    transition: transform 0.4s, -webkit-transform 0.4s;
+}
+
+:local(.mobileWrap ul) {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+:local(.mobileWrap li) {
+    margin-bottom: 1px;
+    display: block;
+    float: right;
+    clear: both;
+}
+
+:local(.mobileWrap a) {
+    padding: 10px;
+    display: block;
+    color: white;
+    font-family: 'bebas_neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    background-color: #34dca2;
+}
+
+:local(.mobileWrap span) {
+	display: inline-block;
+    max-width: 0;
+    line-height: 1;
+    vertical-align: middle;
+    overflow: hidden;
+    -webkit-transition: max-width 0.4s, margin-right 0.4s;
+    transition: max-width 0.4s, margin-right 0.4s;
+}
+
+:local(.mobileWrap i) {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+    -webkit-transform: translateY(-2px);
+    -ms-transform: translateY(-2px);
+    transform: translateY(-2px);
+    width: 12px;
+}
+
+:local(.mobileWrap li:hover span) {
+    margin-right: 7px;
+    max-width: 120px;
+}
