@@ -32,6 +32,7 @@ class Landing extends Component {
     }
 
     goToTestimonials = () => {
+        store.dispatch(toggleModal(false, 'testimonials'))
         scroll.scrollToTop({duration: 0})
         history.push('/testimonials')
     }
