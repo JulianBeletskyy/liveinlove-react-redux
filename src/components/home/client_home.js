@@ -34,7 +34,7 @@ class ClientHome extends Component {
                                 <Route path="/profile/:tab" exact component={InfoProfile} />
                             </Switch>
                         </Col>
-                        <Col md={3} xsHidden>
+                        <Col md={3} smHidden xsHidden>
                             <ClientRightMenu />
                         </Col>
                     </Row>
