@@ -1,7 +1,38 @@
 :local(.footer) {
-	background-color: rgba(0,0,0,.9);
-	color: white;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	color: #fff;
+	padding-top: 20px;
+	padding-bottom: 20px;
 	letter-spacing: 1px;
+    background-color: #222222;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 1px;
+    border-left-width: 0;
+    border-style: solid;
+    border-color: #333333;
+    position: relative;
+    z-index: 1;
+}
+
+:local(.footer ul) {
+	padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+:local(.footer a) {
+    font-weight: 400;
+    color: #fff;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+:local(.footer a:hover) {
+	opacity: 1;
+    text-decoration: none;
+}
+
+:local(.bottomFooter) {
+	padding-top: 15px;
+	text-align: right;
 }
