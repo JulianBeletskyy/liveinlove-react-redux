@@ -11,7 +11,7 @@ class UploadField extends Component {
                 <BtnMain
                     type="button"
                     bsStyle="success"
-                    text={'Upload photo'}
+                    text={this.props.text || 'Upload photo'}
                     onClick={this.props.onClick} />
             </div>
         );

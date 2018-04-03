@@ -13,7 +13,6 @@ class FullBlog extends Component {
     constructor(props) {
         super(props)
         props.goToBlog(props.match.params.id)
-        console.log(props.user.data.first_name)
     }
 
 	setComment = () => {
@@ -37,7 +36,7 @@ class FullBlog extends Component {
 					<div>
 						<strong className="text-uppercase">{comment.name}</strong>
 					</div>
-					<div>{ comment.text }</div>
+					<div>{ comment.comment }</div>
 					<div className="text-right">
 						<span className="small-italic"><i>{comment.date}</i></span>
 					</div>

@@ -20,9 +20,13 @@ class StoriesList extends Component {
     render() {
         const stories = this.props.services.stories.list
         return (
-        	<Row>
-                { stories.map((story, i) => this.printStories(story, i)) }
-            </Row>
+            <div>
+                <h1 className="font-bebas">Success Stories</h1>
+                <hr />
+            	<Row>
+                    { stories.map((story, i) => this.printStories(story, i)) }
+                </Row>
+            </div>
         );
     }
 }

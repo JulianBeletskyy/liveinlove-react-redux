@@ -5,8 +5,15 @@ import { BtnMain } from 'components/form/buttons'
 import Validator from 'validate'
 import store from 'store'
 import { sendRequest } from 'actions'
+import UploadField from 'components/form/inputs/upload_field'
 
 class Support extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            file: {}
+        }
+    }
 
 	send = () => {
 		let error = 1
@@ -19,12 +26,24 @@ class Support extends Component {
         		name: this.name.value,
         		email: this.email.value,
         		subject: this.subject.value,
-        		message: this.message.value
+        		message: this.message.value,
+                file: this.state.file
         	}
-
         	store.dispatch(sendRequest(data))
+            this.setState({file: {}})
         }
 	}
+
+    checkLimit = () => {
+        let el = document.getElementById('upload')
+        el.click()
+    }
+
+    onDrop = (e) => {
+         if (e) {
+            this.setState({file: e.target.files[0]})
+        }
+    }
 
     render() {
         return (
@@ -56,6 +75,15 @@ class Support extends Component {
                         inputRef={ref => { this.message = ref }}
                         placeholder="Message" />
                 </FormGroup>
+                <FormGroup>
+                    <span>{this.state.file.name}</span>
+                </FormGroup>
+                <div className="pull-left">
+                    <UploadField
+                        onClick={this.checkLimit}
+                        text="Upload File"
+                        onChange={this.onDrop} />
+                </div>
                 <FormGroup className="text-right">
 	                <BtnMain
 	                    type="button"

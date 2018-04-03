@@ -1,7 +1,6 @@
 :local(.homeWrapper) {
     position: relative;
     z-index: 1;
-    min-height: 1200px;
 }
 
 :local(.contacts i) {

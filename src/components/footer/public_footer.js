@@ -8,14 +8,34 @@ class PublicFooter extends Component {
             <div className={style.footer} >
                 <Grid>
                     <Row className="title">
-                        <Col xs={6}>
-                            Copyright &copy; Lifeinlove - All Rights Reserved
+                        <Col xs={4}>
+                            <ul>
+                                <li><a href="javascript:;">About Us</a></li>
+                                <li><a href="javascript:;">Live Chat</a></li>
+                                <li><a href="javascript:;">Membership</a></li>                            
+                                <li><a href="javascript:;">Join Free</a></li>
+                            </ul>
                         </Col>
-
-                        <Col xs={6} className="text-right">
-                            2018
+                        <Col xs={4}>
+                            <ul>
+                                <li><a href="javascript:;">FAQ</a></li>
+                                <li><a href="javascript:;">How it works</a></li>
+                                <li><a href="javascript:;">Blogs</a></li>                            
+                                <li><a href="javascript:;">Online Safety</a></li>
+                            </ul>
+                        </Col>
+                        <Col xs={4}>
+                            <ul>
+                                <li><a href="javascript:;">iPhone Dating App</a></li>
+                                <li><a href="javascript:;">Android Dating App</a></li>
+                                <li><a href="javascript:;">Success Stories</a></li>                            
+                                <li><a href="javascript:;">Member Login</a></li>
+                            </ul>
                         </Col>
                     </Row>
+                    <div className={style.bottomFooter}>
+                        Copyright &copy; Lifeinlove - All Rights Reserved 2018
+                    </div>
                 </Grid>
             </div>
         );

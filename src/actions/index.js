@@ -1003,7 +1003,7 @@ export function sendRequest(data) {
         return api.sendRequest(data)
             .then(json => {
                 if (json.data) {
-                    dispatch.toggleModal(false, 'support')
+                    dispatch(toggleModal(false, 'support'))
                 }
             })
     }
