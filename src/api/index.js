@@ -771,10 +771,6 @@ export default {
         
         return fetch(config.API_URL + 'support', {
             method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
             body: formData
         })
         .then(responseHandler)

@@ -6,9 +6,10 @@ class About extends Component {
     render() {
         return (
             <div className="pt-100">
-	            <Grid>
-	            	<div className="bg-white p-15">
-	            		<h1>About</h1>
+                <Grid>
+                    <div className="bg-white p-15">
+                        <h1 className="font-bebas">About Agency</h1>
+                        <hr />
 	                </div>
 	            </Grid>
             </div>
