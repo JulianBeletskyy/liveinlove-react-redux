@@ -28,6 +28,75 @@ const initialState = {
     stories: {
         list: [],
         story: {}
+    },
+    testimonials: {
+        list: [
+            {
+                page: 1,
+                list: [
+                    {
+                        text: "His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign.",
+                        rating: 4,
+                        name: "Lisa Monroe",
+                        city: "New York, United States",
+                        img: "http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04-110x110.jpg"
+                    }, {
+                        text: "His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign.",
+                        rating: 5,
+                        name: "Lisa Monroe",
+                        city: "New York, United States",
+                        img: "http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04-110x110.jpg"
+                    }, {
+                        text: "His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign.",
+                        rating: 5,
+                        name: "Lisa Monroe",
+                        city: "New York, United States",
+                        img: "http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04-110x110.jpg"
+                    }, {
+                        text: "His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign.",
+                        rating: 2,
+                        name: "Lisa Monroe",
+                        city: "New York, United States",
+                        img: "http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04-110x110.jpg"
+                    }, {
+                        text: "His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign.",
+                        rating: 5,
+                        name: "Lisa Monroe",
+                        city: "New York, United States",
+                        img: "http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04-110x110.jpg"
+                    }, {
+                        text: "His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign.",
+                        rating: 3,
+                        name: "Lisa Monroe",
+                        city: "New York, United States",
+                        img: "http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04-110x110.jpg"
+                    }
+                ]
+            }, {
+                page: 2,
+                list: [
+                    {
+                        text: "His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign.",
+                        rating: 5,
+                        name: "Lisa Monroe",
+                        city: "New York, United States",
+                        img: "http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04-110x110.jpg"
+                    }, {
+                        text: "His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign.",
+                        rating: 4,
+                        name: "Lisa Monroe",
+                        city: "New York, United States",
+                        img: "http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04-110x110.jpg"
+                    }, {
+                        text: "His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign.",
+                        rating: 5,
+                        name: "Lisa Monroe",
+                        city: "New York, United States",
+                        img: "http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04-110x110.jpg"
+                    }
+                ]
+            }
+        ]    
     }
 }
 

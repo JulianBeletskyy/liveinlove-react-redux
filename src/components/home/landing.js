@@ -13,6 +13,7 @@ import { animateScroll as scroll, Element } from 'react-scroll'
 import Options from 'options'
 import SuccessPreview from 'components/stories/preview.js'
 import Coverflow from 'react-coverflow'
+import TestimonialItem from './testimonial_item.js'
 
 class Landing extends Component {
     constructor(props) {
@@ -70,20 +71,9 @@ class Landing extends Component {
     }
 
     printTestimonials = (item, i) => {
+        if (i > 2) { return false } 
         return  <Col sm={4} key={i}>
-                    <div className={style.testimonialBlock + ' text-center'} onClick={this.showTestimonials}>
-                        <img src="http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04-110x110.jpg" className={style.testimonialImg} alt="" />
-                        <div className={style.testimonialStar}>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                        </div>
-                        <div className={style.testimonialText}>His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign.</div>
-                        <div className={style.testimonialName}>Lisa Monroe</div>
-                        <div className={style.testimonialCity}>New York, United States</div>
-                    </div>
+                    <TestimonialItem onClick={this.showTestimonials} {...item} />
                 </Col>
     }
 
@@ -302,9 +292,9 @@ class Landing extends Component {
                     <div className={style.secondPartInner}>
                         <h2 className={style.advantTitle}><span className={style.underlineText}>Testimonials</span></h2>
                         <Grid>
-                            {
-                                [1,2,3].map((item, i) => this.printTestimonials(item, i))
-                            }
+                            <Row>
+                                { this.props.services.testimonials.list[0].list.map((item, i) => this.printTestimonials(item, i)) }
+                            </Row>
                         </Grid>
                     </div>
                 </div>
@@ -339,7 +329,8 @@ const mapStateToProps = (state) => {
         services: {
             stories: {
                 list: state.services.stories.list
-            }
+            },
+            testimonials: state.services.testimonials
         },
         modals: {
             testimonials: state.modals.testimonials
