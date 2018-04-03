@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
+import { Grid, Row, Col, FormGroup, Carousel } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { Registration, MainPanel } from 'components'
+import { Registration, MainPanel, MainModal } from 'components'
 import { toggleModal, toggleRegistration, changeStep, setActiveSection, getPublicMembers, setActiveMembers, getStories } from 'actions'
 import store, { history } from 'store'
 import BtnMain from 'components/form/buttons/main_button.js'
@@ -26,6 +26,15 @@ class Landing extends Component {
         store.dispatch(toggleModal(true, 'login'))
     }
 
+    showTestimonials = () => {
+        store.dispatch(toggleModal(true, 'testimonials'))
+    }
+
+    goToTestimonials = () => {
+        scroll.scrollToTop({duration: 0})
+        history.push('/testimonials')
+    }
+
     closeRegistration = () => {
         store.dispatch(toggleRegistration(false))
         store.dispatch(changeStep(0))
@@ -47,6 +56,35 @@ class Landing extends Component {
                         <span>{story.girl_name}</span>
                     </div>
                 </div>
+    }
+
+    printMobileStories = (story, i) => {
+        return  <Carousel.Item key={i}>
+                    <img src={story.image} width={900} height={500} alt={story.client_name} className={style.imgCarousel} />
+                    <Carousel.Caption className={style.carouselName}>
+                        <span>{story.client_name}</span>
+                        &nbsp; & &nbsp;
+                        <span>{story.girl_name}</span>
+                    </Carousel.Caption>
+                </Carousel.Item>
+    }
+
+    printTestimonials = (item, i) => {
+        return  <Col sm={4} key={i}>
+                    <div className={style.testimonialBlock + ' text-center'} onClick={this.showTestimonials}>
+                        <img src="http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04-110x110.jpg" className={style.testimonialImg} alt="" />
+                        <div className={style.testimonialStar}>
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                            <i className="fas fa-star"></i>
+                        </div>
+                        <div className={style.testimonialText}>His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign.</div>
+                        <div className={style.testimonialName}>Lisa Monroe</div>
+                        <div className={style.testimonialCity}>New York, United States</div>
+                    </div>
+                </Col>
     }
 
     goToStory = (id) => {
@@ -95,7 +133,7 @@ class Landing extends Component {
         }
 
         const { list, type } = this.props.members.public.active
-
+        const { testimonials } = this.props.modals
         return (
             <div>
                 <div className={style.mainPart}>
@@ -184,16 +222,31 @@ class Landing extends Component {
                         <span className={style.underlineText}>Success Stories</span>
                     </h2>
                     <div className={style.carouselWrap}>
-                        <Coverflow width="100%" height="500"
-                            displayQuantityOfSide={2}
-                            navigation={true}
-                            enableScroll={true}
-                            clickable={true}
-                            active={1}
-                            enableHeading={false}
-                            infiniteScroll={false} >
-                                { this.props.services.stories.list.map((story, i) => this.printStories(story, i)) }
-                        </Coverflow>
+                        <Grid>
+                            <Row>
+                                <Col xs={12} lgHidden mdHidden smHidden>
+                                    <Carousel controls={false}>
+                                        { this.props.services.stories.list.map((story, i) => this.printMobileStories(story, i)) }
+                                    </Carousel>
+                                </Col>
+                            </Row>
+                        </Grid>
+                        <Grid fluid>
+                            <Row>
+                            <Col sm={12} xsHidden>
+                                <Coverflow width="100%" height="500"
+                                    displayQuantityOfSide={2}
+                                    navigation={false}
+                                    enableScroll={true}
+                                    clickable={true}
+                                    active={1}
+                                    enableHeading={false}
+                                    infiniteScroll={false} >
+                                        { this.props.services.stories.list.map((story, i) => this.printStories(story, i)) }
+                                </Coverflow>
+                            </Col>
+                            </Row>
+                        </Grid>
                     </div>
                 </div>
                 <div className={style.thirdPart}>
@@ -203,6 +256,7 @@ class Landing extends Component {
                         <h2 className={style.advantTitle}>
                             How it <span className={style.underlineText}>works?</span>
                         </h2>
+                        <h2 className="text-center">Brick to brick. Step to step. Your choice is made and you feel great:)</h2>
                         <h2 className="text-center">Take 3 Easy Steps to Start Your Story:</h2>
                         <div className={style.stepsWrap}>
                             <Row>
@@ -244,6 +298,26 @@ class Landing extends Component {
                         <h2 className="text-center">Any questions? Apply to Our Friendly Staff</h2>
                     </Grid>
                 </div>
+                <div className={style.testimonialsPart}>
+                    <div className={style.secondPartInner}>
+                        <h2 className={style.advantTitle}><span className={style.underlineText}>Testimonials</span></h2>
+                        <Grid>
+                            {
+                                [1,2,3].map((item, i) => this.printTestimonials(item, i))
+                            }
+                        </Grid>
+                    </div>
+                </div>
+                <MainModal
+                    body={  
+                        <div>
+                            <img src="http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04.jpg" className="img-responsive" alt="" />
+                            <div className="text-center font-bebas pt-15"><a href="javascript:;" onClick={this.goToTestimonials}>View All Testimonials</a></div>
+                        </div>
+                    }
+                    title="Testimonials"
+                    show={testimonials}
+                    keyModal="testimonials" />
                 <ScrollToTop />
             </div>
             
@@ -266,6 +340,9 @@ const mapStateToProps = (state) => {
             stories: {
                 list: state.services.stories.list
             }
+        },
+        modals: {
+            testimonials: state.modals.testimonials
         }
     } 
 }

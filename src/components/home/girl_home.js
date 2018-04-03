@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { Route, Switch } from 'react-router-dom'
 import GirlRightMenu from 'components/menu/girl_right_menu.js'
+import ClientMobileMenu from 'components/menu/client_mobile_menu.js'
 import InfoProfile from 'components/profile/info.js'
 import Edit from 'components/profile/edit.js'
 import MainPofile from 'components/profile/main.js'
@@ -37,6 +38,7 @@ class GirlHome extends Component {
                         </Col>
                     </Row>
                 </Grid>
+                <ClientMobileMenu client={false} />
             </div>
         );
     }

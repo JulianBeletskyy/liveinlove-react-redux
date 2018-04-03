@@ -762,13 +762,20 @@ export default {
     },
 
     sendRequest(data) {
+        let formData = new FormData()
+        formData.append('name', data.name)
+        formData.append('email', data.email)
+        formData.append('subject', data.subject)
+        formData.append('message', data.message)
+        formData.append('file', data.file)
+        
         return fetch(config.API_URL + 'support', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: formData
         })
         .then(responseHandler)
     },

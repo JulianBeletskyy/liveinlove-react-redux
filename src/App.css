@@ -48,11 +48,24 @@
     transform: rotate(45deg);
 }
 
+.title-service {
+	text-align: center;
+	font-weight: bold;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 .text-white {
 	color: #fff;
 	font-family: bebas_neue;
 	letter-spacing: 1px;
 	font-weight: bold;
+}
+
+.carousel-inner>.item>img {
+	height: 500px;
 }
 
 .font-bebas {
@@ -135,6 +148,20 @@
 .bg-white {
 	background-color: #fff;
 	min-height: 100vh;
+}
+
+.bg-gray {
+	background: #F7F7F7;
+	min-height: 300px;
+}
+
+.serviceBackground {
+	padding-top: 150px !important;
+    padding-bottom: 150px !important;
+    background-image: url(http://mint.themes.tvda.pw/wp-content/uploads/2016/11/tamburo.jpg?id=74) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
 }
 
 .text-blue {

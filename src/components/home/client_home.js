@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import ClientRightMenu from 'components/menu/client_right_menu.js'
+import ClientMobileMenu from 'components/menu/client_mobile_menu.js'
 import { Route, Switch } from 'react-router-dom'
 import Edit from 'components/profile/edit.js'
 import InfoProfile from 'components/profile/info.js'
@@ -38,7 +39,7 @@ class ClientHome extends Component {
                         </Col>
                     </Row>
                 </Grid>
-                
+                <ClientMobileMenu client={true} />
             </div>
         );
     }
