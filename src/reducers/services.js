@@ -144,7 +144,6 @@ export default function services(services = initialState, action = {}) {
                 blogs
             });
         case SET_BLOG:
-            console.log(action.data)
             blogs.active = action.data
             return Object.assign({}, services, {
                 blogs

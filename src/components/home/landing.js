@@ -242,9 +242,7 @@ class Landing extends Component {
                 </div>
                 <div className={style.thirdPart}>
                     <Grid>
-                        <Element name="hiw" className="element">
-                        </Element>
-                        <h2 className={style.advantTitle}>
+                        <h2 id="hiw" className={style.advantTitle}>
                             How it <span className={style.underlineText}>works?</span>
                         </h2>
                         <h2 className="text-center">Brick to brick. Step to step. Your choice is made and you feel great:)</h2>

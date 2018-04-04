@@ -64,6 +64,7 @@ class EditProfileGirl extends Component {
                     day: this.user.birth.day.value,
                     year: this.user.birth.year.value
                 },
+                about_children: this.user.about_children.value,
                 country: this.user.country.value,
                 city: this.user.city.value,
                 email: this.user.email.value,

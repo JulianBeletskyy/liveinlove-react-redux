@@ -22,6 +22,12 @@
 	z-index: 0;
 }
 
+@media (min-width: 768px) {
+	.navbar-right {
+		margin-right: -20px;
+	}
+}
+
 .slick-dots.slick-thumb {
 	top: 5px;
   	bottom: auto;
@@ -224,6 +230,7 @@
 		width: 60%;
 	}
 }
+
 @media (max-width: 320px) {
 	.fade.in.modal {
 		padding-left: 0px !important;
