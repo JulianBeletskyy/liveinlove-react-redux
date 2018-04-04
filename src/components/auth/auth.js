@@ -47,6 +47,9 @@ class Auth extends Component {
                         placeholder="Enter password"
                         inputRef={ref => { this.auth.password = ref }} />
                 </FormGroup>
+                <FormGroup className="text-right">
+                    <a href="javascript:;" onClick={this.showRecovery}>Forgot password?</a>
+                </FormGroup>
                 <FormGroup className="text-center">
                     <BtnMain
                         type="submit"
