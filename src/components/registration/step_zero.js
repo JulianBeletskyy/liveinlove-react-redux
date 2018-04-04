@@ -113,7 +113,7 @@ class SignUpStart extends Component {
         let element = document.getElementById('google')
 
         auth2.attachClickHandler(element, {}, (googleUser) => {
-                console.log(googleUser)
+                
             })
        });
     }

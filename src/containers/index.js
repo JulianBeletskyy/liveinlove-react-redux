@@ -7,9 +7,8 @@ import Loader from './loader/loader.js'
 import Blog from './blog/blog.js'
 import Services from './services/services.js'
 import SuccessStories from './success_stories/success_stories.js'
-import Support from './support/support.js'
 import Shop from './shop/shop.js'
 import Girls from './girls/girls.js'
 import Testimonials from './testimonials/testimonials.js'
 import Faq from './faq/faq.js'
-export { NotFound, Home, About, Services, SuccessStories, Support, Blog, Loader, Member, Contacts, Shop, Girls, Testimonials, Faq }
+export { NotFound, Home, About, Services, SuccessStories, Blog, Loader, Member, Contacts, Shop, Girls, Testimonials, Faq }

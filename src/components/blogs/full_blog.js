@@ -42,10 +42,6 @@ class FullBlog extends Component {
 					</div>
 				</div>
 	}
-
-    componentWillUnmount() {
-        console.log('destroy')
-    }
     
     render() {
     	const blog = this.props.services.blogs.active

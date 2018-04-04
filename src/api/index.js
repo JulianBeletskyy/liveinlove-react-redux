@@ -136,7 +136,6 @@ export default {
     },
 
     getMoreMembers(link, token) {
-        console.log(link)
         return fetch(link, {
             method: 'get',
             headers: {

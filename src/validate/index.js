@@ -83,20 +83,4 @@ export default class Validator {
         }
         return 1
     }
-
-    static isEmptyObject(object) {
-        return !object || Object.keys(object).length === 0;
-    }
-
-    static isNoneEmptyObject(object) {
-        return !this.isEmptyObject(object);
-    }
-
-    static isValidString(value, min = 0, max = 255) {
-        return this.isString(value) && value.length >= min && value.length <= max;
-    }
-    
-    static isNumeric(value) {
-        return !Number.isNaN(Number(value));
-    }
 }
