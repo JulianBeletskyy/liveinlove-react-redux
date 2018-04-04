@@ -11,6 +11,7 @@ export function login(data) {
         return api.login(data)
         .then(json => {
             if (json.data) {
+                history.push('/')
                 dispatch(toggleModal(false, 'login'))
                 dispatch(getUserInfo(json.data))
                 dispatch(getFullInfo(json.data))
@@ -287,7 +288,7 @@ export function updateUserProfile(data, token) {
         return api.updateUserProfile(data, token)
         .then(json => {
             if (json.data) {
-                console.log(json.data)
+                dispatch(getFullInfo(token))
             }
         })
     }
@@ -989,12 +990,17 @@ export function setOptions(value, option) {
 
 export function closeNav() {
     const nav = document.getElementById('collapse')
-    if (nav.className.indexOf('in') + 1) {
-        const el = document.getElementsByClassName("navbar-toggle");
-        el[0].click()
+    if (nav) {
+        if (nav.className.indexOf('in') + 1) {
+            const el = document.getElementsByClassName("navbar-toggle");
+            el[0].click()
+        }
+        return {
+            type: types.CLOSE_NAV
+        }
     }
     return {
-        type: types.CLOSE_NAV
+        type: types.DO_NOTHING
     }
 }
 

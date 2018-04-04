@@ -1,8 +1,13 @@
 :local(.brandImg) {
     display: block;
-    max-width: 150px;
+    width: 150px;
     height: auto;
-    width: 100%;
+}
+
+@media (max-width: 992px) {
+	:local(.brandImg) {
+		width: 130px;
+	}
 }
 
 :local(.collapse) {

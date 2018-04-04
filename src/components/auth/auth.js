@@ -47,10 +47,6 @@ class Auth extends Component {
                         placeholder="Enter password"
                         inputRef={ref => { this.auth.password = ref }} />
                 </FormGroup>
-                <FormGroup className={style.inline} >
-                    <CheckboxField text='Remember me' />
-                    <a className="pull-right" href="javascript:;" onClick={this.showRecovery}>Forgot password?</a>
-                </FormGroup>
                 <FormGroup className="text-center">
                     <BtnMain
                         type="submit"

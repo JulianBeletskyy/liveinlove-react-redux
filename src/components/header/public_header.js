@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import store from 'store'
+import store, { history } from 'store'
 import style from './style.css'
 import { Link } from 'react-router-dom'
 import { NavDropdown } from 'react-bootstrap'
 import { toggleModal, logout } from 'actions'
 import { connect } from 'react-redux'
-import { Link as SmoothLink } from 'react-scroll'
+import { Link as SmoothLink, animateScroll as scroll, } from 'react-scroll'
 
 
 class PublicHeader extends Component {
@@ -22,15 +22,20 @@ class PublicHeader extends Component {
         store.dispatch(logout())
     }
 
+    goToHiw = () => {
+       history.push('/')
+       scroll.scrollTo(3310)
+    }
+
     render() {
         const url = this.props.segments.first
         return (
             <ul className={style.navBar + ' nav navbar-nav navbar-right'} >
                 <NavDropdown role="presentation" title="About" id="dropdown">
                     <Link to="/about">About Agency</Link>
-                    <SmoothLink to="hiw" spy={true} smooth={true} offset={50} duration={500}>
+                    <a onClick={this.goToHiw}>
                         How it works?
-                    </SmoothLink>
+                    </a>
                     <Link to="/testimonials">Testimonials</Link>
                     <Link to="success-stories">Success stories</Link>
                 </NavDropdown>
