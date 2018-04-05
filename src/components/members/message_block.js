@@ -20,8 +20,8 @@ class MessageBlock extends Component {
         if (error) {
             const data = {
                 original: this.message.value,
-                attachment: this.props.messages.attach_message.src || this.props.messages.attach_message,
-                receiver_id: this.props.memberId
+                receiver_id: this.props.memberId,
+                attachment: this.props.messages.attach_message.src || this.props.messages.attach_message
             }
             store.dispatch(sendMessage(data, this.props.user.token))
             this.message.value = ''
