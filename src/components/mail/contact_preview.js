@@ -7,10 +7,10 @@ class ContactPreview extends Component {
         return (
             <div className={style.wrap + ' ' + (this.props.client ? '' : 'girl')} onClick={this.props.onClick}>
                 <div className={style.imgContactWrap}>
-                    <img src={this.props.options.avatar} alt="" />
+                    <img src={this.props.avatar} alt="" />
                 </div>
                 <div className={style.contactInfo}>
-                    <strong className="font-bebas">{this.props.options.first_name + ' ' + this.props.options.last_name}</strong>
+                    <strong className="font-bebas">{this.props.first_name + ' ' + this.props.last_name}</strong>
                 </div>
                 <div className={style.sendBtn}>
                     <BtnMain
