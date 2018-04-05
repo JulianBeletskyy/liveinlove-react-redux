@@ -6,7 +6,14 @@ import { history } from 'store'
 class ContactsBlock extends Component {
 
     printContacts = (contact , i) => {
-        return (<ContactPreview key={i} options={contact} client={this.props.user.data.role === 'client'} onClick={() => this.goToMember(contact.id)} getMessage={(e) => this.getMessage(e, contact.dialog)} />)
+        if (contact.id) {
+        return  <ContactPreview 
+                    key={i} 
+                    {...contact} 
+                    client={this.props.user.data.role === 'client'} 
+                    onClick={() => this.goToMember(contact.id)} 
+                    getMessage={(e) => this.getMessage(e, contact.dialog)} />
+        }  
     }
 
     goToMember = (id) => {
@@ -21,9 +28,7 @@ class ContactsBlock extends Component {
     render() {
         const contacts = this.props.messages.contacts
         return (
-            <div>
-                { contacts.map((contact, i) => this.printContacts(contact, i)) }
-            </div>
+            <div>{ contacts.map((contact, i) => this.printContacts(contact, i)) }</div>
         );
     }
 }

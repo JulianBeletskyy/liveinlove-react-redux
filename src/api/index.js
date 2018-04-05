@@ -569,15 +569,15 @@ export default {
 
     sendMessage(data, token) {
         let formData = new FormData()
-        formData.append('attachment', data.attachment)
+        if (data.attachment) {
+            formData.append('attachment', data.attachment)
+        }
         formData.append('original', data.original)
         formData.append('receiver_id', data.receiver_id)
         return fetch(config.API_URL + 'user/message/send', {
             method: 'post',
             headers: {
                 'Authorization': 'Bearer ' + token,
-                //'Accept': 'application/json',
-                //'Content-Type': 'application/json'
             },
             body: formData
         })
@@ -593,8 +593,6 @@ export default {
             method: 'post',
             headers: {
                 'Authorization': 'Bearer ' + token,
-                //'Accept': 'application/json',
-                //'Content-Type': 'application/json'
             },
             body: formData
         })
