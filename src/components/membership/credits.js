@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import store from 'store'
 import { connect } from 'react-redux'
-import { toggleModal, getPackages, setActivePackage, buyPackage } from 'actions'
+import { toggleModal, getPackages, setMembershipsData, buyPackage } from 'actions'
 import { FormGroup } from 'react-bootstrap'
 import PackageItem from './package_item.js'
 
@@ -17,7 +17,7 @@ class Credits extends Component {
             id: item.id,
             price: (item.price - (item.price / 100 * this.props.user.data.membership.discount)).toString().match(/^-?\d+(?:\.\d{0,2})?/)[0]
         }
-        store.dispatch(setActivePackage(data))
+        store.dispatch(setMembershipsData(data, 'active_package'))
     }
 
     renderPayPal = () => {
@@ -61,7 +61,7 @@ class Credits extends Component {
     }
 
     componentWillUnmount() {
-        store.dispatch(setActivePackage({id: 0, price: ''}))
+        store.dispatch(setMembershipsData({id: 0, price: ''}, 'active_package'))
     }
     
     componentDidMount() {

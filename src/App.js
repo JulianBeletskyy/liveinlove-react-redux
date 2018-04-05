@@ -48,9 +48,7 @@ class App extends Component {
                     <Switch>
                         <Route path="/activate/:activate_hash" exact component={Home} />
                         <Route path="/recovery/:hash" exact component={Home} />
-                        {
-                            routes.map((route, i) => this.printRoutes(route, i))
-                        }
+                        { routes.map((route, i) => this.printRoutes(route, i)) }
                     </Switch>
                 <PublicFooter />
                 <MainModal

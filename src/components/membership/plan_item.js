@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
 import style from './plans.css'
-import { openPriceBtn, setPlan, toggleModal } from 'actions'
+import { setMembershipsData, setPlan, toggleModal } from 'actions'
 
 class PlanItem extends Component {
 
@@ -23,11 +23,11 @@ class PlanItem extends Component {
     }
 
     showValues = () => {
-        store.dispatch(openPriceBtn(this.props.options.id))
+        store.dispatch(setMembershipsData(this.props.options.id, 'active_btn'))
     }
 
     hideValues = () => {
-        store.dispatch(openPriceBtn(0))
+        store.dispatch(setMembershipsData(0, 'active_btn'))
     }
 
     setPlan = (val) => {
