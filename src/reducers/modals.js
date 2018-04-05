@@ -15,13 +15,11 @@ const initialState = {
 }
 
 export default function modals(modals = initialState, action = {}) {
-	let key = action.key
     switch (action.type) {
         case types.TOGGLE_MODAL:
             return Object.assign({}, modals, {
-                [key]: action.value
+                [action.key]: action.value
             });
-        
         default:
             return modals;
     }

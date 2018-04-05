@@ -626,7 +626,7 @@ export function getMemberships() {
         return api.getMemberships()
         .then(json => {
             if (json.data) {
-                dispatch(setMemberships(json.data))
+                dispatch(setMembershipsData(json.data, 'plans'))
             }
         })
     }
@@ -648,7 +648,7 @@ export function getPackages(token) {
         return api.getPackages(token)
         .then(json => {
             if (json.data) {
-                dispatch(setPackages(json.data))
+                dispatch(setMembershipsData(json.data, 'packages'))
             }
         })
     }
@@ -698,31 +698,11 @@ export function buyPhoto(id, token, member_id) {
     }
 }
 
-export function setMemberships(value) {
+export function setMembershipsData(value, key) {
     return {
-        type: types.SET_MEMBERSHIPS,
-        value
-    }
-}
-
-export function setActivePackage(value) {
-    return {
-        type: types.SET_ACTIVE_PACKAGE,
-        value
-    }
-}
-
-export function setPackages(value) {
-    return {
-        type: types.SET_PACKAGES,
-        value
-    }
-}
-
-export function openPriceBtn(value) {
-    return {
-        type: types.OPEN_PRICE_BUTTON,
-        value
+        type: types.SET_MEMBERSHIPS_DATA,
+        value,
+        key
     }
 }
 
@@ -1153,13 +1133,6 @@ export function addCredits(value) {
 export function setUpload() {
     return {
         type: types.SET_UPLOAD
-    }
-}
-
-export function toggleTab(value) {
-    return {
-        type: types.TOGGLE_TAB,
-        value
     }
 }
 
