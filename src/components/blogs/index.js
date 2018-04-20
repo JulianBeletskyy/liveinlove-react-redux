@@ -1,15 +1,27 @@
 import React, { Component } from 'react'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, FormGroup } from 'react-bootstrap'
 import style from './style.css'
 import { connect } from 'react-redux'
 import store, { history } from 'store'
 import Pagination from './pagination.js'
-import { setBlogPage, getBlogs } from 'actions'
+import { setBlogPage, getBlogs, filterBlogs } from 'actions'
+import { SearchField } from 'components/form/inputs'
 
 class Blogs extends Component {
     constructor(props) {
         super(props)
         store.dispatch(getBlogs())
+
+        this.state = {
+            query: ''
+        }
+    }
+
+    onInput = () => {
+        this.setState({
+            query: this.search.value
+        })
+        store.dispatch(filterBlogs(this.search.value))
     }
 
 	goToBlog = (id) => {
@@ -47,11 +59,20 @@ class Blogs extends Component {
 	}
 
     render() {
-    	const { list, pages } = this.props.services.blogs
+    	const { filter_list, pages } = this.props.services.blogs
+        
         return (
         	<div>
-        		{ list.map((blog, i) => this.printBlogs(blog, i)) }
-        		<Pagination {...pages} onClick={this.changePage} />
+                <FormGroup>
+                    <SearchField 
+                        type="text"
+                        placeholder="Search"
+                        onInput={this.onInput}
+                        inputRef={ref => { this.search = ref }}
+                        value={this.state.query} />
+                </FormGroup>
+        		{ filter_list.map((blog, i) => this.printBlogs(blog, i)) }
+        		<Pagination {...pages} onClick={this.changePage} search={this.state.query} />
             </div>
         );
     }
@@ -61,7 +82,7 @@ const mapStateToProps = (state) => {
     return {
         services: {
             blogs: {
-            	list: state.services.blogs.list,
+            	filter_list: state.services.blogs.filter_list,
             	pages: state.services.blogs.pages
             }
         }

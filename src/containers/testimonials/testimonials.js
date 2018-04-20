@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import TestimonialItem from 'components/home/testimonial_item.js'
+import TestimonialBig from 'components/home/testimonial_big.js'
 import store, { history } from 'store'
 import Options from 'options'
 import { animateScroll as scroll } from 'react-scroll'
@@ -9,11 +9,13 @@ import { toggleRegistration } from 'actions'
 import { BtnMain } from 'components/form/buttons'
 import Pagination from 'components/blogs/pagination.js'
 import { MainModal } from 'components'
-import { toggleModal } from 'actions'
+import { toggleModal, getPublicMembers } from 'actions'
+import MemberBlockSmall from 'components/members/member_block_small.js'
 
 class Testimonials extends Component {
     constructor(props) {
         super(props)
+        store.dispatch(getPublicMembers('popular'))
         this.state = {
             last_page: 2,
             current_page: 1
@@ -21,8 +23,8 @@ class Testimonials extends Component {
     }
 
     printTestimonials = (item, i) => {
-        return  <Col sm={6} key={i}>
-                    <TestimonialItem onClick={this.showTestimonials} {...item} />
+        return  <Col sm={12} key={i}>
+                    <TestimonialBig onClick={this.showTestimonials} {...item} />
                 </Col>
     }
 
@@ -50,6 +52,7 @@ class Testimonials extends Component {
                         <Row>
                             <Col sm={9}>
                                 <h1 className="font-bebas">Testimonials</h1>
+                                <p className="text-justify">Another concept car that caught attention in Frankfurt was the Mercedes Intelligent Aerodynamic Automobile. A one-off showcase of the brand’s aerodynamic prowess, it boasts a drag coefficient of just 0.19. To accomplish this unprecedented level of slipperiness, Mercedes has developed a dynamic, adaptable body structure that literally changes shape with the push of a button.</p>
                                 <hr />
                                 <Row>
                                     { list.list[this.state.current_page - 1].list.map((item, i) => this.printTestimonials(item, i)) }
@@ -67,6 +70,8 @@ class Testimonials extends Component {
                                         text="Sign Up"
                                         onClick = {this.getSignUp} />
                                 </FormGroup>
+                                <hr />
+                                <MemberBlockSmall {...this.props.members.public.active} onClickItem={this.getSignUp} />
                             </Col>
                         </Row>
 	                </div>
@@ -92,6 +97,11 @@ const mapStateToProps = (state) => {
         },
         modals: {
             testimonials: state.modals.testimonials
+        },
+        members: {
+            public: {
+                active: state.members.public.active
+            }
         }
     } 
 }

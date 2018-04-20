@@ -11,10 +11,14 @@ class Pagination extends Component {
 
     render() {
     	const items = Array.apply(null, Array(this.props.last_page))
+        const search = this.props.search
         return (
-        	<div className={style.wrapPagination}>
-        		{ items.map((item, i) => this.printPagination(item, i)) }
-            </div>
+            ! search
+            ?   <div className={style.wrapPagination}>
+                    { items.map((item, i) => this.printPagination(item, i)) }
+                </div>
+            :   ''
+        	
         );
     }
 }
