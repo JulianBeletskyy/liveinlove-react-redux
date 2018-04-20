@@ -293,15 +293,13 @@ class SignUpStart extends Component {
                                     options={this.getArray('countries')}
                                     value={country}
                                     name="country"
-                                    city={this.signup.city}
-                                />
+                                    city={this.signup.city} />
                             </FormGroup>
                             <FormGroup>
                                 <Autocomplete 
                                     inputRef={ref => { this.signup.city = ref }}
                                     placeholder="City"
-                                    value={city}
-                                />
+                                    value={city} />
                             </FormGroup>
                         </div>
                     </Col>

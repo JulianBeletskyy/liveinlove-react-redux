@@ -30,6 +30,9 @@ class Blog extends Component {
 	            	<div className="bg-white p-15">
 	            		<Row>
 		            		<Col sm={9}>
+	            			 	<h1 className="font-bebas">Blog</h1>
+                                <p className="text-justify">Another concept car that caught attention in Frankfurt was the Mercedes Intelligent Aerodynamic Automobile. A one-off showcase of the brand’s aerodynamic prowess, it boasts a drag coefficient of just 0.19. To accomplish this unprecedented level of slipperiness, Mercedes has developed a dynamic, adaptable body structure that literally changes shape with the push of a button.</p>
+                                <hr />
 			            		<Switch>
 				            		<Route path="/blogs" exact component={Blogs} />
 				            		<Route path="/blogs/:id" exact render={(props) => <FullBlog {...props} goToBlog={(id) => this.getBlog(id)} />} />

@@ -47,7 +47,7 @@ class SideBlog extends Component {
         return (
         	<div>
         		<FormGroup className="text-center">
-                	<img className="img-responsive" src="assets/img/offer.png" alt="" />
+                	<img className="img-responsive" src="/assets/img/offer.png" alt="" />
                 </FormGroup>
                 <FormGroup className="text-center">
                 	<BtnMain
