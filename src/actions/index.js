@@ -1025,6 +1025,13 @@ export function getBlogs(page) {
     }
 }
 
+export function filterBlogs(search) {
+    return {
+        type: types.FILTER_BLOGS,
+        search
+    }
+}
+
 export function getPopularBlogs() {
     return dispatch => {
         return api.getPopularBlogs()

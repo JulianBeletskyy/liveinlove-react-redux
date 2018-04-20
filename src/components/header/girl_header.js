@@ -45,7 +45,7 @@ class GirlHeader extends Component {
                 </li>
 
                 <li role="presentation" className={url === 'blogs' ? style.active : ''}>
-                    <Link to="/blogs">Blogs</Link>
+                    <Link to="/blogs">Blog</Link>
                 </li>
 
                 <li>

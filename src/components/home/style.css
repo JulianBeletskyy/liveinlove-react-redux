@@ -22,6 +22,11 @@
     width: 100%;
 }
 
+:local(.bigTestimonialsImg) {
+    max-width: 100%;
+    height: auto;
+}
+
 :local(.carouselName) {
     position: absolute;
     left: 5px;
@@ -193,9 +198,8 @@
 :local(.testimonialBlock) {
     background-color: #fff;
     border-style: solid;
-    border-width: 30px;
+    border-width: 15px;
     border-color: #fff;
-    cursor: pointer;
     margin-bottom: 15px;
     box-shadow: 0px 0px 20px 1px rgba(0, 0, 0,0.1);
 }
@@ -366,10 +370,6 @@
     background-color: #fff;
     font-family: bebas_neue;
     letter-spacing: 1px;
-}
-
-:local(.thirdPart) h2 {
-    font-weight: bold;
 }
 
 :local(.searchLink) {

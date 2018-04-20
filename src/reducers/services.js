@@ -1,4 +1,4 @@
-import { SET_ACTIVE_TAB, TOGGLE_LIGHT_BOX, SET_UPLOAD, NEXT_IMG, PREV_IMG, SET_ACTIVE_SECTION, SET_BLOG_PAGE, SET_COMMENT, SET_STORIES, SET_STORY, SET_BLOGS, SET_BLOG, SET_POPULAR_BLOGS } from 'actions/types.js'
+import { FILTER_BLOGS, SET_ACTIVE_TAB, TOGGLE_LIGHT_BOX, SET_UPLOAD, NEXT_IMG, PREV_IMG, SET_ACTIVE_SECTION, SET_BLOG_PAGE, SET_COMMENT, SET_STORIES, SET_STORY, SET_BLOGS, SET_BLOG, SET_POPULAR_BLOGS } from 'actions/types.js'
 
 const initialState = {
 	tabs: {
@@ -16,6 +16,7 @@ const initialState = {
     },
     blogs: {
         list: [],
+        filter_list: [],
         popular: [],
         active: {
             comments: []
@@ -67,6 +68,12 @@ const initialState = {
                     }, {
                         text: "His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign.",
                         rating: 3,
+                        name: "Lisa Monroe",
+                        city: "New York, United States",
+                        img: "http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04-110x110.jpg"
+                    }, {
+                        text: "His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign.",
+                        rating: 4,
                         name: "Lisa Monroe",
                         city: "New York, United States",
                         img: "http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04-110x110.jpg"
@@ -133,8 +140,19 @@ export default function services(services = initialState, action = {}) {
             });
         case SET_BLOGS:
             blogs.list = action.data.data
+            blogs.filter_list = action.data.data
             blogs.pages.current_page = action.data.current_page
             blogs.pages.last_page = action.data.last_page
+            return Object.assign({}, services, {
+                blogs
+            });
+        case FILTER_BLOGS:
+            blogs.filter_list = blogs.list
+            if (action.search) {
+                blogs.filter_list = blogs.list.filter((item) => {
+                    return item.title.toLowerCase().indexOf(action.search.toLowerCase()) + 1
+                })
+            }
             return Object.assign({}, services, {
                 blogs
             });

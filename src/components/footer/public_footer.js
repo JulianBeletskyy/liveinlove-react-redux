@@ -27,17 +27,38 @@ class PublicFooter extends Component {
                     <Row className="title">
                         <Col xs={4}>
                             <ul>
-                                <li><a href="javascript:;">Live Chat</a></li>
-                                <li><a href="javascript:;">Membership</a></li>                            
-                                <li><a href="javascript:;">Online Safety</a></li>
-                                <li><a href="javascript:;">How it works</a></li>
+                                <li>
+                                    <i className="far fa-comments"></i>
+                                    <a href="javascript:;">Live Chat</a>
+                                </li>
+                                <li>
+                                    <i className="far fa-user"></i>
+                                    <a href="javascript:;">Membership</a>
+                                </li>                            
+                                <li>
+                                    <i className="fas fa-shield-alt"></i>
+                                    <a href="javascript:;">Online Safety</a>
+                                </li>
+                                <li>
+                                    <i className="fas fa-question-circle"></i>
+                                    <a href="javascript:;">How it works</a>
+                                </li>
                             </ul>
                         </Col>
                         <Col xs={4}>
                             <ul>
-                                <li><a href="javascript:;" onClick={() => this.goTo('/about')}>About Us</a></li>
-                                <li><a href="javascript:;" onClick={() => this.goTo('/faq')}>FAQ</a></li>
-                                <li><a href="javascript:;" onClick={() => this.goTo('/success-stories')}>Success Stories</a></li>
+                                <li>
+                                    <i className="fas fa-info-circle"></i>
+                                    <a href="javascript:;" onClick={() => this.goTo('/about')}>About Us</a>
+                                </li>
+                                <li>
+                                    <i className="fas fa-briefcase"></i>
+                                    <a href="javascript:;" onClick={() => this.goTo('/faq')}>FAQ</a>
+                                </li>
+                                <li>
+                                    
+                                    <a href="javascript:;" onClick={() => this.goTo('/success-stories')}>Success Stories</a>
+                                </li>
                                 <li><a href="javascript:;" onClick={() => this.goTo('/blogs')}>Blogs</a></li>
                             </ul>
                         </Col>
