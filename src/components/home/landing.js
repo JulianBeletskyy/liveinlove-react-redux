@@ -50,25 +50,25 @@ class Landing extends Component {
     }
 
     printStories = (story, i) => {
-        return  <div key={i} onClick={() => this.goToStory(story.id)}>
-                    <img src={story.image} alt={story.client_name} className={style.imgCarousel} />
-                    <div className={style.carouselName}>
-                        <span>{story.client_name}</span>
-                        &nbsp; & &nbsp;
-                        <span>{story.girl_name}</span>
+        if (i > 2) { return false }
+        let description = story.story.slice(0, 250)
+        return  <div className={style.storyWrap} key={i} onClick={() => this.goToStory(story.id)}>
+                    <div className="row">
+                        <div className="col-xs-4">
+                            <img src={story.image} alt={story.client_name} className={style.imgCarousel} />
+                        </div>
+                        <div className="col-sm-8">
+                            <h3 className={style.carouselName}>
+                                <span>{story.client_name}</span>
+                                &nbsp; & &nbsp;
+                                <span>{story.girl_name}</span>
+                            </h3>
+                            <p>
+                                {description}...
+                            </p>
+                        </div>
                     </div>
                 </div>
-    }
-
-    printMobileStories = (story, i) => {
-        return  <Carousel.Item key={i}>
-                    <img src={story.image} width={900} height={500} alt={story.client_name} className={style.imgCarousel} />
-                    <Carousel.Caption className={style.carouselName}>
-                        <span>{story.client_name}</span>
-                        &nbsp; & &nbsp;
-                        <span>{story.girl_name}</span>
-                    </Carousel.Caption>
-                </Carousel.Item>
     }
 
     printTestimonials = (item, i) => {
@@ -76,6 +76,11 @@ class Landing extends Component {
         return  <Col sm={4} key={i}>
                     <TestimonialItem onClick={this.showTestimonials} {...item} />
                 </Col>
+    }
+
+    goToStories = () => {
+        scroll.scrollToTop({duration: 0});
+        history.push('success-stories')
     }
 
     goToStory = (id) => {
@@ -212,31 +217,32 @@ class Landing extends Component {
                     <h2 className={style.advantTitle}>
                         <span className={style.underlineText}>Success Stories</span>
                     </h2>
+
                     <div className={style.carouselWrap}>
                         <Grid>
-                            <Row>
-                                <Col xs={12} lgHidden mdHidden smHidden>
-                                    <Carousel controls={false}>
-                                        { this.props.services.stories.list.map((story, i) => this.printMobileStories(story, i)) }
-                                    </Carousel>
-                                </Col>
-                            </Row>
-                        </Grid>
-                        <Grid fluid>
-                            <Row>
-                            <Col sm={12} xsHidden>
-                                <Coverflow width="100%" height="500"
-                                    displayQuantityOfSide={2}
-                                    navigation={false}
-                                    enableScroll={true}
-                                    clickable={true}
-                                    active={1}
-                                    enableHeading={false}
-                                    infiniteScroll={false} >
-                                        { this.props.services.stories.list.map((story, i) => this.printStories(story, i)) }
-                                </Coverflow>
-                            </Col>
-                            </Row>
+                            <div className={style.storyWrap}>
+                                <div className="row">
+                                    <div className="col-sm-4">
+                                        <div className={style.succesMore}>More then 2000 couples</div>
+                                    </div>
+                                    <div className="col-sm-8">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. Duis aute irur
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                { this.props.services.stories.list.map((story, i) => this.printStories(story, i)) }
+                            </div>
+                            <div className="form-group text-center">
+                                <BtnMain
+                                    type="button"
+                                    bsStyle="success"
+                                    text="More stories"
+                                    onClick={this.goToStories} />
+                            </div>
                         </Grid>
                     </div>
                 </div>
@@ -250,7 +256,6 @@ class Landing extends Component {
                         <div className={style.stepsWrap}>
                             <Row>
                                 <Col xs={4}>
-                                    
                                     <div className={style.stepWrap}>
                                         <div className="text-center">
                                             <i className="fas fa-user fa-4x"></i>
@@ -261,7 +266,6 @@ class Landing extends Component {
                                     </div>
                                 </Col>
                                 <Col xs={4}>
-                                    
                                     <div className={style.stepWrap}>
                                         <div className="text-center">
                                             <i className="fas fa-images fa-4x"></i>
@@ -272,7 +276,6 @@ class Landing extends Component {
                                     </div>
                                 </Col>
                                 <Col xs={4}>
-                                    
                                     <div className={style.stepWrap}>
                                         <div className="text-center">
                                             <i className="fas fa-comments fa-4x"></i>
@@ -294,6 +297,13 @@ class Landing extends Component {
                             <Row>
                                 { this.props.services.testimonials.list[0].list.map((item, i) => this.printTestimonials(item, i)) }
                             </Row>
+                            <div className="form-group text-center">
+                                <BtnMain
+                                    type="button"
+                                    bsStyle="success"
+                                    text="More testimonials"
+                                    onClick={this.goToTestimonials} />
+                            </div>
                         </Grid>
                     </div>
                 </div>

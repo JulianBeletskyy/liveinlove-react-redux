@@ -56,18 +56,33 @@ class PublicFooter extends Component {
                                     <a href="javascript:;" onClick={() => this.goTo('/faq')}>FAQ</a>
                                 </li>
                                 <li>
-                                    
+                                    <i className="far fa-heart"></i>
                                     <a href="javascript:;" onClick={() => this.goTo('/success-stories')}>Success Stories</a>
                                 </li>
-                                <li><a href="javascript:;" onClick={() => this.goTo('/blogs')}>Blogs</a></li>
+                                <li>
+                                    <i className="fas fa-globe"></i>
+                                    <a href="javascript:;" onClick={() => this.goTo('/blogs')}>Blogs</a>
+                                </li>
                             </ul>
                         </Col>
                         <Col xs={4}>
                             <ul>
-                                <li><a href="javascript:;">iPhone Dating App</a></li>
-                                <li><a href="javascript:;">Android Dating App</a></li>
-                                <li><a href="javascript:;" onClick={this.showSignUp}>Join Free</a></li>                            
-                                <li><a href="javascript:;" onClick={this.showLogin}>Member Login</a></li>
+                                <li>
+                                    <i className="fab fa-apple"></i>
+                                    <a href="javascript:;">iPhone Dating App</a>
+                                </li>
+                                <li>
+                                    <i className="fab fa-android"></i>
+                                    <a href="javascript:;">Android Dating App</a>
+                                </li>
+                                <li>
+                                    <i className="fas fa-user-plus"></i>
+                                    <a href="javascript:;" onClick={this.showSignUp}>Join Free</a>
+                                </li>                            
+                                <li>
+                                    <i className="fas fa-sign-in-alt"></i>
+                                    <a href="javascript:;" onClick={this.showLogin}>Member Login</a>
+                                </li>
                             </ul>
                         </Col>
                     </Row>
