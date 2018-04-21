@@ -13,6 +13,9 @@ export default {
             'path': '/success-stories/:id',
             'component': 'SuccessStories'
         }, {
+            'path': '/how-it-works',
+            'component': 'Works'
+        }, {
             'path': '/blogs',
             'component': 'Blog'
         }, {
