@@ -33,27 +33,29 @@ class PublicHeader extends Component {
             <ul className={style.navBar + ' nav navbar-nav navbar-right'} >
                 <NavDropdown role="presentation" title="About" id="dropdown">
                     <Link to="/about">About Agency</Link>
-                    <a onClick={this.goToHiw}>
-                        How it works?
-                    </a>
+                    <Link to="/how-it-works">How it works?</Link>
                     <Link to="/testimonials">Testimonials</Link>
                     <Link to="success-stories">Success stories</Link>
                 </NavDropdown>
 
-                <li role="presentation">
+                <li role="presentation" className={url === 'girls' ? style.active : ''}>
                     <Link to="/girls">Girls</Link>
                 </li>
 
-                <li role="presentation">
+                <li role="presentation" className={url === 'services' ? style.active : ''}>
                     <Link to="/services">Services</Link>
                 </li>
 
-                <li role="presentation">
+                <li role="presentation" className={url === 'success-stories' ? style.active : ''}>
                     <Link to="/success-stories">Success Stories</Link>
                 </li>
 
                 <li role="presentation" className={url === 'blogs' ? style.active : ''}>
                     <Link to="/blogs">Blog</Link>
+                </li>
+
+                <li role="presentation" className={url === 'how-it-works' ? style.active : ''}>
+                    <Link to="/how-it-works">How it works?</Link>
                 </li>
 
                 <NavDropdown 
