@@ -27,14 +27,15 @@
     height: auto;
 }
 
+:local(.storyWrap) {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
 :local(.carouselName) {
-    position: absolute;
-    left: 5px;
-    bottom: 5px;
-    background: #fff;
-    padding: 5px;
-    color: #333;
-    right: auto;
+    
 }
 
 @media (max-width: 768px) {
@@ -186,7 +187,7 @@
 }
 
 :local(.secondPart) {
-	background-image: url('/assets/img/login-bg.jpg');
+	background-image: url('/assets/img/image-51.jpg');
 	min-height: 800px;
 	background-size: cover;
   	background-position: right center;
@@ -232,9 +233,9 @@
 }
 
 :local(.testimonialsPart) {
-    background-color: #F3F4F6;
+    background-image: url('/assets/img/image-31.jpg');
     background-size: cover;
-    background-position: right center;
+    background-position: right top;
     background-attachment: fixed;
     position: relative;
     padding-top: 50px;
@@ -242,15 +243,16 @@
 }
 
 :local(.storiesPart) {
-    background-image: url('/assets/img/image.jpg');
+    background-image: url('/assets/img/image-21.jpg');
     background-size: cover;
-    background-position: right center;
+    background-position: right top;
     background-attachment: fixed;
     position: relative;
     padding: 50px 0;
 }
 
-:local(.storiesPart:after) {
+:local(.storiesPart:after),
+:local(.testimonialsPart:after) {
     content: '';
     position: absolute;
     left: 0;
@@ -264,6 +266,12 @@
 :local(.carouselWrap) {
     z-index: 1;
     position: relative;
+}
+
+:local(.succesMore) {
+    font-size: 28px;
+    text-align: center;
+    padding-top: 10px;
 }
 
 :local(.secondPart:after) {
