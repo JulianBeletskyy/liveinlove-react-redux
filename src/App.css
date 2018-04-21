@@ -74,6 +74,17 @@
 	padding-top: 15px;
 }
 
+.works-title {
+	font-family: bebas_neue;
+	font-size: 24px;
+}
+
+.works-small-title {
+	font-family: bebas_neue;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
 .service-black-title {
 	color: #FEFEFE;
 	
@@ -216,6 +227,14 @@
 	padding-bottom: 50px;
 }
 
+.mb-35 {
+	margin-bottom: 35px;
+}
+
+.color-888 {
+	color: #888;
+}
+
 .p-7-4 {
 	padding: 7px 4px;
 	font-family: "bebas_neue",Helvetica,Arial,sans-serif;
@@ -234,6 +253,10 @@
 .bg-gray {
 	background: #F7F7F7;
 	min-height: 300px;
+}
+
+.bg-light {
+	background-color: #F3F4F6;
 }
 
 .serviceBackground {
