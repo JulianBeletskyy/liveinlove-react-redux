@@ -34,13 +34,6 @@
   	color: #27c2d3;
 }
 
-.service-title-left {
-	font-size: 20px;
-	font-weight: bold;
-	text-align: right;
-	margin-bottom: 30px;
-}
-
 .bottom-service {
 	background-color: #222327;
 }
@@ -52,6 +45,7 @@
 
 .service-black-wrap {
 	display: table;
+    padding-bottom: 40px;
 }
 
 .service-black-icon {
@@ -70,13 +64,36 @@
 	color: #FEFEFE;
 }
 
+.pv-40 {
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.underline-text {
+	background-image: -webkit-linear-gradient(top, #34dca2 0, #34dca2 100%);
+    background-image: linear-gradient(to bottom, #34dca2 0, #34dca2 100%);
+    background-position: -3px 85%;
+    background-repeat: no-repeat;
+    background-size: 100% 3px;
+}
+
 .black-service {
 	padding-top: 15px;
+}
+
+.works-member-block {
+	padding: 0px 0px;
 }
 
 .works-title {
 	font-family: bebas_neue;
 	font-size: 24px;
+}
+
+.works-big-title {
+	font-family: bebas_neue;
+	font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .works-small-title {
@@ -108,9 +125,18 @@
 
 .service-title-right {
 	font-size: 20px;
-	font-weight: bold;
 	color: #34DCA2;
 	margin-bottom: 30px;
+	font-family: bebas_neue;
+    letter-spacing: 1px;
+}
+
+.service-title-left {
+	font-size: 20px;
+	text-align: right;
+	margin-bottom: 30px;
+	font-family: bebas_neue;
+    letter-spacing: 1px;
 }
 
 .service-number {
