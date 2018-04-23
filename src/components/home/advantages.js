@@ -37,32 +37,32 @@ class Advantages extends Component {
 					</Col>
 					<Col xs={12} sm={4}>
 						<div ref={(ref) => this.elements.first = ref} className={style.advantItem}>
-							<span><i className="fas fa-clipboard-list fa-2x"></i><br />Free registration with full professional service</span>
+							<span><i className="fas fa-clipboard-list fa-3x"></i><br />Free registration with full professional service</span>
 						</div>
 					</Col>
 					<Col xs={12} sm={4}>
 						<div ref={(ref) => this.elements.second = ref} className={style.advantItem}>
-							<span><i className="fas fa-clipboard-list fa-2x"></i><br />All letters from ladies are free to read</span>
+							<span><i className="fas fa-clipboard-list fa-3x"></i><br />All letters from ladies are free to read</span>
 						</div>
 					</Col>
 					<Col xs={12} sm={4}>
 						<div ref={(ref) => this.elements.third = ref} className={style.advantItem}>
-							<span><i className="fas fa-clipboard-list fa-2x"></i><br />All ladies' profiles real and verified</span>
+							<span><i className="fas fa-clipboard-list fa-3x"></i><br />All ladies' profiles real and verified</span>
 						</div>
 					</Col>
 					<Col xs={12} sm={4}>
 						<div ref={(ref) => this.elements.forth = ref} className={style.advantItem}>
-							<span><i className="fas fa-clipboard-list fa-2x"></i><br />Upgrade your membership and get access to all additional photos and videos of all ladies</span>
+							<span><i className="fas fa-clipboard-list fa-3x"></i><br />Upgrade your membership and get access to all additional photos and videos of all ladies</span>
 						</div>
 					</Col>
 					<Col xs={12} sm={4}>
 						<div ref={(ref) => this.elements.fifth = ref} className={style.advantItem}>
-							<span><i className="fas fa-clipboard-list fa-2x"></i><br />Live Video Chat and Video Conference that will help you to become closer inspite of distance</span>
+							<span><i className="fas fa-clipboard-list fa-3x"></i><br />Live Video Chat and Video Conference that will help you to become closer inspite of distance</span>
 						</div>
 					</Col>
 					<Col xs={12} sm={4}>
 						<div ref={(ref) => this.elements.sixth = ref} className={style.advantItem}>
-							<span><i className="fas fa-clipboard-list fa-2x"></i><br />You can find the One among hundreds of beautiful Ukrainian brides</span>
+							<span><i className="fas fa-clipboard-list fa-3x"></i><br />You can find the One among hundreds of beautiful Ukrainian brides</span>
 						</div>
 					</Col>
 				</Row>
