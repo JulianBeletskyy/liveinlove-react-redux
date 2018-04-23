@@ -61,7 +61,7 @@ class Services extends Component {
                         <div className="bottom-service">
                             <div className="text-center service-small-title form-group">OUR SERVICE</div>
                             <div div className="bottom-service-title text-center form-group">HIGHLY CREATIVE WEBSITE SOLUTIONS</div>
-                            <div className="text-center service-middle-title form-group">We craft beautiful and unique digital experiences. With more than ten years of knowledge and expertise we design and code clean awesome websites and apps, we build brands and help them succeed!</div>
+                            <div className="text-center service-middle-title pv-40">We craft beautiful and unique digital experiences. With more than ten years of knowledge and expertise we design and code clean awesome websites and apps, we build brands and help them succeed!</div>
                             <div className="clearfix black-service">
                                 <div className="col-xs-6">
                                     <div className="service-black-wrap">

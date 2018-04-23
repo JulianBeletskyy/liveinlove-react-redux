@@ -41,7 +41,7 @@ class PublicFooter extends Component {
                                 </li>
                                 <li>
                                     <i className="fas fa-question-circle"></i>
-                                    <a href="javascript:;">How it works</a>
+                                    <a href="javascript:;" onClick={() => this.goTo('/how-it-works')}>How it works</a>
                                 </li>
                             </ul>
                         </Col>
