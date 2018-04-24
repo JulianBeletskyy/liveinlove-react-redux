@@ -8,7 +8,7 @@ class About extends Component {
             <div className="pt-100">
                 <Grid>
                     <div className="bg-white p-15">
-                        <h1 className="font-bebas">About Agency</h1>
+                        <h1 className="font-bebas">About Company</h1>
                         <hr />
                         <div className="text-center">
                             <h2 className={style.title}>Unique, truly responsive and functional websites that impress!</h2>

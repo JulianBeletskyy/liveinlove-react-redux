@@ -32,7 +32,7 @@ class PublicHeader extends Component {
         return (
             <ul className={style.navBar + ' nav navbar-nav navbar-right'} >
                 <NavDropdown role="presentation" title="About" id="dropdown">
-                    <Link to="/about">About Agency</Link>
+                    <Link to="/about">About Company</Link>
                     <Link to="/how-it-works">How it works?</Link>
                     <Link to="/testimonials">Testimonials</Link>
                     <Link to="success-stories">Success stories</Link>

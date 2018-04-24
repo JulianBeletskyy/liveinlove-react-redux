@@ -43,3 +43,9 @@
     letter-spacing: 1px;
     font-weight: 400;
 }
+
+:local(.lastname) {
+    position: absolute;
+    opacity: 0.8;
+    font-size: 12px;
+}

@@ -29,7 +29,7 @@ class SignUpOne extends Component {
         error *= Validator.check(this.signup.eyes.value, ['required'], 'Eyes Color')
         error *= Validator.check(this.signup.hair_color.value, ['required'], 'Hair Color')
         error *= Validator.check(this.signup.hair_length.value, ['required'], 'Hair Length')
-        error *= Validator.check(this.signup.ethnicity.value, ['required'], 'Ethnicity')
+        //error *= Validator.check(this.signup.ethnicity.value, ['required'], 'Ethnicity')
         error *= Validator.check(this.signup.marital.value, ['required'], 'Marital')
         error *= Validator.check(this.signup.children.value, ['required'], 'Children')
         error *= Validator.check(this.props.signup.data.find_ethnicity, ['reqiredArray'], 'Ethnicity Match')

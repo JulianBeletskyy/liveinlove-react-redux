@@ -19,7 +19,7 @@ class MessagePreview extends Component {
                     <img src={dialog.receiver_avatar} alt="" />
                 </div>
                 <div className="font-bebas">
-                    <strong>{dialog.receiver_first_name + ' ' + dialog.receiver_last_name}</strong>
+                    <strong>{dialog.receiver_first_name}</strong>
                 </div>
                 <div>
                     {<span className="small-italic"><i>({dialog.last_message.date})</i></span>}

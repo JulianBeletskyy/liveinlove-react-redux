@@ -25,7 +25,7 @@ class PublicFooter extends Component {
             <div className={style.footer} >
                 <Grid>
                     <Row className="title">
-                        <Col xs={4}>
+                        <Col sm={4}>
                             <ul>
                                 <li>
                                     <i className="far fa-comments"></i>
@@ -45,7 +45,7 @@ class PublicFooter extends Component {
                                 </li>
                             </ul>
                         </Col>
-                        <Col xs={4}>
+                        <Col sm={4}>
                             <ul>
                                 <li>
                                     <i className="fas fa-info-circle"></i>
@@ -65,7 +65,7 @@ class PublicFooter extends Component {
                                 </li>
                             </ul>
                         </Col>
-                        <Col xs={4}>
+                        <Col sm={4}>
                             <ul>
                                 <li>
                                     <i className="fab fa-apple"></i>

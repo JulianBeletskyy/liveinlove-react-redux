@@ -69,6 +69,12 @@
 	padding-bottom: 40px;
 }
 
+.member-switch {
+	cursor: pointer;
+	font-family: bebas_neue;
+	letter-spacing: 1px;
+}
+
 .underline-text {
 	background-image: -webkit-linear-gradient(top, #34dca2 0, #34dca2 100%);
     background-image: linear-gradient(to bottom, #34dca2 0, #34dca2 100%);
@@ -124,7 +130,7 @@
 }
 
 .service-title-right {
-	font-size: 20px;
+	font-size: 24px;
 	color: #34DCA2;
 	margin-bottom: 30px;
 	font-family: bebas_neue;
@@ -132,18 +138,19 @@
 }
 
 .service-title-left {
-	font-size: 20px;
+	font-size: 24px;
 	text-align: right;
 	margin-bottom: 30px;
 	font-family: bebas_neue;
     letter-spacing: 1px;
+    font-weight: bold;
 }
 
 .service-number {
     font-size: 32px;
     font-weight: bold;
     color: #34DCA2;
-    padding: 30px;
+    font-family: bebas_neue;
 }
 
 .coverflow__container__2RGwF {
@@ -167,12 +174,19 @@
 }
 
 .title-service {
-	text-align: center;
 	font-weight: bold;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	font-family: bebas_neue;
+	letter-spacing: 1px;
+	font-size: 24px;
+	padding-bottom: 10px;
+}
+
+.content-service {
+	padding-top: 15px;
+}
+
+.service-wrap-title {
+	padding: 15px;
 }
 
 .text-white {

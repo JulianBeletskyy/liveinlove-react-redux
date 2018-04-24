@@ -53,14 +53,14 @@ class MemberCarousel extends Component {
             prevArrow: <PrevArrow />,
             responsive: [
                 {
-                    breakpoint: 1120, 
-                    settings: {
-                        slidesToShow: 4,
-                        arrows: false
-                    }
-                }, {
-                    breakpoint: 1650,
+                    breakpoint: 1650, 
                     settings: {slidesToShow: 6}
+                }, {
+                    breakpoint: 768,
+                    settings: {slidesToShow: 4}
+                }, {
+                    breakpoint: 460,
+                    settings: {slidesToShow: 2}
                 }
             ]
         };

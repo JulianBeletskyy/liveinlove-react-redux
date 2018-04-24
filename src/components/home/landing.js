@@ -138,7 +138,7 @@ class Landing extends Component {
                             <Col md={col} sm={12} >
                                 <div className={style.wrapRegistration + ' ' + activeClass}>
                                     <MainPanel
-                                        title="Registration"
+                                        title="Free Sign Up"
                                         iconClass="fas fa-address-card"
                                         onClick={this.closeRegistration}
                                         showClose={(this.props.signup.step === 0 || this.props.signup.step === 4) && this.props.signup.showRegistration}
