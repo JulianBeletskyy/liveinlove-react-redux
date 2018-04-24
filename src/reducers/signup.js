@@ -12,7 +12,7 @@ const initialState = {
         city: '',
         email: '',
         password: '',
-        terms: false,
+        terms: true,
         birth: {},
         match: {},
         height_id: '',

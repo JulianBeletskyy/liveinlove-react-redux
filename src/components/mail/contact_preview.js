@@ -10,7 +10,7 @@ class ContactPreview extends Component {
                     <img src={this.props.avatar} alt="" />
                 </div>
                 <div className={style.contactInfo}>
-                    <strong className="font-bebas">{this.props.first_name + ' ' + this.props.last_name}</strong>
+                    <strong className="font-bebas">{this.props.first_name}</strong>
                 </div>
                 <div className={style.sendBtn}>
                     <BtnMain
