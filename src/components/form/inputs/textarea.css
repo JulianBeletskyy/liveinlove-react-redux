@@ -1,6 +1,5 @@
 :local(.main) {
     border-radius: 0px;
-    resize: none;
 }
 
 :local(textarea.main) {

@@ -237,6 +237,7 @@ class SignUpStart extends Component {
                                         inputRef={ref => { this.signup.last_name = ref }}
                                         name="Last Name"
                                         value={last_name}
+                                        lastname={true}
                                         key="last_name" />
                                 </FormGroup>
                             </Col>

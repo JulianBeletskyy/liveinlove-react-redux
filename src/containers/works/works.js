@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import store from 'store'
+import store, { history } from 'store'
 import Block from './block.js'
 import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-bootstrap'
 import style from './style.css'
 import TestimonialItem from 'components/home/testimonial_item.js'
 import { Registration, MainPanel } from 'components'
-import { toggleRegistration, getPublicMembers } from 'actions'
+import { toggleRegistration, getPublicMembers, setActiveMembers } from 'actions'
 import Options from 'options'
 import MemberCarousel from 'components/carousel/member_carousel.js'
 
@@ -16,7 +16,12 @@ class Works extends Component {
 		store.dispatch(toggleRegistration(true))
 		Options.getAll()
         store.dispatch(getPublicMembers('popular'))
+        store.dispatch(getPublicMembers('new'))
 	}
+
+    toggleMembers = (type) => {
+        store.dispatch(setActiveMembers(type))
+    }
 
 	printBlock = (item, i) => {
 		return <Col key={i} sm={4}><Block /></Col>
@@ -30,8 +35,8 @@ class Works extends Component {
     }
 
     render() {
-		const list = ['1', '2', '3', '4', '5', '6']
-
+		const blocks = ['1', '2', '3', '4', '5', '6']
+        const { list, type } = this.props.members.public.active
     	return (
     		<div className="pt-100">
                 <Grid>
@@ -41,7 +46,7 @@ class Works extends Component {
                         <h2 className="text-center form-group p-15 works-big-title">HIGHLY CREATIVE <span className="underline-text">WEBSITE SOLUTIONS</span></h2>
                         <div className="text-center form-group p-15 mb-35 color-888">We craft beautiful and unique digital experiences. With more than ten years of knowledge and expertise we design and code clean awesome websites and apps, we build brands and help them succeed!</div>
                         <Row>
-                        	{list.map((item, i) => this.printBlock(item, i))}
+                        	{blocks.map((item, i) => this.printBlock(item, i))}
                         </Row>
                         <div className="bg-light p-15">
                         	<Row>
@@ -80,7 +85,26 @@ class Works extends Component {
                                 { this.props.services.testimonials.list[0].list.map((item, i) => this.printTestimonials(item, i)) }
                             </div>
                             <div className="col-sm-12 clearfix pv-40">
-                                <MemberCarousel items={this.props.members.public.active.list} />
+                                <div className="form-group">
+                                    <Row>
+                                        <Col xs={4} className="text-center">
+                                            <div className="member-switch" onClick={() => this.toggleMembers('new')}>
+                                                <span className={type === 'new' ? 'underline-text' : ''}>New</span>
+                                            </div>
+                                        </Col>
+                                        <Col xs={4} className="text-center">
+                                            <div className="member-switch" onClick={() => this.toggleMembers('popular')}>
+                                                <span className={type === 'popular' ? 'underline-text' : ''}>Popular</span>
+                                            </div>
+                                        </Col>
+                                        <Col xs={4} className="text-center">
+                                            <div className="member-switch" onClick={() => history.push('/girls')}>
+                                                <span>Show more</span>
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                </div>
+                                <MemberCarousel items={list} />
                             </div>
                         </div>
                         <MainPanel
@@ -103,9 +127,7 @@ const mapStateToProps = (state) => {
             testimonials: state.services.testimonials
         },
         members: {
-            public: {
-                active: state.members.public.active
-            }
+            public: state.members.public
         }
     } 
 }

@@ -38,7 +38,7 @@ class EditProfile extends Component {
         error *= Validator.check(this.user.eyes.value, ['required'], 'Eyes Color')
         error *= Validator.check(this.user.hair_color.value, ['required'], 'Hair Color')
         error *= Validator.check(this.user.hair_length.value, ['required'], 'Hair Length')
-        error *= Validator.check(this.user.ethnicity.value, ['required'], 'Ethnicity')
+        //error *= Validator.check(this.user.ethnicity.value, ['required'], 'Ethnicity')
         error *= Validator.check(this.user.marital.value, ['required'], 'Marital')
         error *= Validator.check(this.user.children.value, ['required'], 'Children')
         error *= Validator.check(this.user.message.value, ['required'], 'Message')
@@ -223,6 +223,7 @@ class EditProfile extends Component {
                 		                    name="Last Name"
                 		                    value={data.last_name}
                 		                    key="last_name"
+                                            lastname={true}
                                             label={true} />
                 		            </FormGroup>
                 		            <FormGroup>

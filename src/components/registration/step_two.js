@@ -75,8 +75,7 @@ class SignUpTwo extends Component {
             style={{ height: '200px', width: '100%', margin: '0 auto' }}
             aspectRatio={1 / 1}
             guides={false}
-            background={false}
-        /> 
+            background={false} /> 
         : <img src="/assets/img/default-avatar.jpg" className="default-avatar" alt="" />
 
         return (
@@ -87,25 +86,30 @@ class SignUpTwo extends Component {
                             <FormGroup>
                                 <BtnUpload
                                     onChange={this.onDrop}
-                                    title="upload photo"
-                                />
+                                    title="upload photo" />
                             </FormGroup>
                             <FormGroup>
                                 <BtnFacebook
                                     title="Upload from Facebook"
-                                    onClick={this.facebookSignUp}
-                                 />
+                                    onClick={this.facebookSignUp} />
                             </FormGroup>
                             <FormGroup>
                                 <BtnGoogle
-                                    title="Upload from Google"
-                                />
+                                    title="Upload from Google" />
                             </FormGroup>
                         </div>
                     </Col>
                     <Col sm={2}>
                         <div className="title text-center text-step-two">
-                            <p><strong>How Ladies See You Matters</strong></p>
+                            <FormGroup className="text-center">
+                                <p><strong>How Ladies See You Matters</strong></p>
+                            </FormGroup>
+                            <FormGroup className="text-center">
+                                <span className="small-italic">
+                                    Use A Clear Photo <br />
+                                    Be Alone In Your Photo <br />
+                                    Be In A Well-Lit Place</span>
+                            </FormGroup>
                         </div>
                     </Col>
                     <Col sm={5}>
@@ -113,24 +117,18 @@ class SignUpTwo extends Component {
                             { content }
                         </FormGroup>
                     </Col>
-
                 </Row>
-                <FormGroup className="text-center">
-                    <span className="small-italic">Use A Clear Photo Be Alone In Your Photo Be In A Well-Lit Place</span>
-                </FormGroup>
                 <FormGroup className="text-center">
                     <Btn
                         type="button"
                         text="Prev"
                         orientation="left"
-                        onClick={this.prevStep}
-                    />
+                        onClick={this.prevStep} />
                     <Btn
                         type="button"
                         text="Next"
                         orientation="right"
-                        onClick={this.getConfirm}
-                    />
+                        onClick={this.getConfirm} />
                 </FormGroup>
             </form>
         );
