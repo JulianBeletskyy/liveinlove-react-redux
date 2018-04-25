@@ -208,6 +208,7 @@
 :local(.testimonialImg) {
     border-radius: 50%;
     max-width: 100%;
+    display: unset !important;
 }
 
 :local(.testimonialText) {

@@ -20,6 +20,7 @@ class SignUpThree extends Component {
         error *= Validator.check(this.signup.message.value, ['required'], 'Message')
         error *= Validator.check(this.props.signup.data.interest, ['reqiredArray'], 'Interests')
         if (error) {
+            let localStorage = window.localStorage
             let data = {
                 message: this.signup.message.value,
                 interest_id: this.props.signup.data.interest,

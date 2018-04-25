@@ -189,7 +189,8 @@ export function sendSignUpThree(data) {
                 if (json.data) {
                     dispatch(sendSignUpFinish({
                         'remember_token': json.data,
-                        'url': window.location.href + 'activate/{hash}'
+                        'url': window.location.href + 'activate/{hash}',
+                        'device_id': localStorage.getItem('deviceId'),
                     }))
                 }
             })
