@@ -60,20 +60,22 @@ class PlanItem extends Component {
                         { this.props.options.values.map((value, i) => this.printPrice(value, i)) }
                     </div>
                     <div>
-                        <ul className={style.list + ' text-left'}>
-                            <li>Send 1st free letter to any girl: <strong>{this.props.options.free_leter}</strong></li>
-                            {
-                                this.props.options.name === 'Free'
-                                ?   <li>Accept private photos: <strong>{this.props.options.private_photo}</strong></li>
-                                :   <li>Accept/send private photos: <strong>{this.props.options.private_photo}</strong></li>
-                            }
-                            <li>Set photos in your profile: <strong>{this.props.options.my_photo}</strong></li>
-                            <li>View photos in profiles: <strong>{this.props.options.view_photo}</strong></li>
-                            <li>View videos in profiles: <strong>{this.props.options.view_video}</strong></li>
-                            <li>Expression of Interest: <strong>{this.props.options.likes}</strong></li>
-                            <li>Discount on ALL services: <strong>{this.props.options.discount}%</strong></li>
-                            <li>Share contact details: <strong>{this.props.options.contact_details}</strong></li>
-                        </ul>
+                        <div className={style.list + ' text-left'}>
+                            <div>
+                                <div>Send 1st free letter to any girl:<strong>{this.props.options.free_leter}</strong></div>
+                                {
+                                    this.props.options.name === 'Free'
+                                    ? <div>Accept private photos:<strong>{this.props.options.private_photo}</strong></div>
+                                    : <div>Accept/send private photos:<strong>{this.props.options.private_photo}</strong></div>
+                                }
+                                <div>Set photos in your profile:<strong>{this.props.options.my_photo}</strong></div>
+                                <div>View photos in profiles:<strong>{this.props.options.view_photo}</strong></div>
+                                <div>View videos in profiles:<strong>{this.props.options.view_video}</strong></div>
+                                <div>Expression of Interest:<strong>{this.props.options.likes}</strong></div>
+                                <div>Discount on ALL services:<strong>{this.props.options.discount}%</strong></div>
+                                <div>Share contact details:<strong>{this.props.options.contact_details}</strong></div>
+                            </div>
+                        </div>
                         <span className="ult_price_term ult-responsive"></span> 
                     </div>
                         {

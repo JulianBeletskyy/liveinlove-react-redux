@@ -4,6 +4,7 @@ import store from 'store'
 import { getMemberships } from 'actions'
 import PlanItem from './plan_item.js'
 import Carousel from 'components/carousel'
+import style from './plans.css'
 
 class Plans extends Component {
     constructor(props) {
@@ -13,17 +14,16 @@ class Plans extends Component {
     }
 
     printPlans(plan, i) {
-        return (<PlanItem key={i} options={plan} />)
+        return (<div className="col-lg-3 col-md-6" key={i}><PlanItem options={plan} /></div>)
     }
 
     render() {
         const { plans } = this.props.memberships
 
         return (
-            <div>
-                <Carousel items={plans.map((plan, i) => this.printPlans(plan, i))} />
+            <div className="row">
+                {plans.map((plan, i) => this.printPlans(plan, i))}
             </div>
-
         );
     }
 }

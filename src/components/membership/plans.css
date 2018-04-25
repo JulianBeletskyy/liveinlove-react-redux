@@ -3,7 +3,7 @@
     background-color: #f3f4f6;
     color: #888;
     box-shadow: none;
-    padding: 40px 40px 0;
+    padding: 40px 10px 0;
     font-size: 1em;
     position: relative;
     overflow: hidden;
@@ -11,6 +11,9 @@
 
 :local(.padding) {
     padding: 0 5px;
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-bottom: 10px;
 }
 
 :local(.table:hover) {
@@ -26,9 +29,19 @@
     list-style-type: none;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 1660px) {
     :local(.list) {
         font-size: 11px;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1294px) {
+    :local(.list) {
+        font-size: 9px;
+    }
+
+    :local(.price_12 .price) {
+        font-size: 37px;
     }
 }
 
@@ -75,7 +88,7 @@
 }
 
 :local(.price_12 .price) {
-    font-size: 40px;
+    font-size: 37px;
 }
 
 :local(.priceBlock) {
@@ -106,7 +119,7 @@
     -webkit-transition: color .4s,background-color .4s;
     transition: color .4s,background-color .4s;
     border: 0;
-    padding: .8125em 40px;
+    padding: .8125em 10px;
     background-color: #27c2d3;
     color: #fff;
     width: 100%;
@@ -114,7 +127,7 @@
 }
 
 :local(.btnWrap) {
-    margin: 0 -40px;
+    margin: 0 -10px;
     width: auto;
 }
 
@@ -139,7 +152,7 @@
     -webkit-transition: color .4s,background-color .4s;
     transition: color .4s,background-color .4s;
     border: 0;
-    padding: .8125em 40px;
+    padding: .8125em 10px;
     background-color: #ccc;
     color: #fff;
     width: 100%;
@@ -179,4 +192,14 @@
 :local(.wrapPackage:hover),
 :local(.wrapPackage.active) {
     background-color: #27C2D3;
+}
+
+:local(.wrapPlans) {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap:wrap;
+}
+
+:local(.wrapPlans > div) {
+    flex-basis: 270px;
 }

@@ -16,6 +16,7 @@ import Support from 'components/support'
 class App extends Component {
     constructor(props) {
         super(props)
+        this.deviceId()
         history.listen((location, action) => {
             store.dispatch(closeNav())
 
@@ -35,6 +36,19 @@ class App extends Component {
 
     printRoutes(route, i) {
         return (<Route key={i} path={route.path} exact component={pages[route.component]} />)
+    }
+
+    chr4() {
+        return Math.random().toString(16).slice(-4);
+    }
+
+    deviceId() {
+        let localStorage = window.localStorage
+        let deviceId = localStorage.getItem('deviceId')
+        let temp = this.chr4() + this.chr4() + '-' + this.chr4() +'-' + this.chr4() +'-' + this.chr4() + '-' + this.chr4() + this.chr4() + this.chr4()
+        if (! deviceId) {
+            localStorage.setItem('deviceId', temp)
+        }
     }
     
     render() {

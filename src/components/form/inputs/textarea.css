@@ -4,7 +4,10 @@
 
 :local(textarea.main) {
     height: 100px;
-    
+}
+
+.member :local(textarea.main) {
+    height: 180px;
 }
 
 :local(.main:focus) {
