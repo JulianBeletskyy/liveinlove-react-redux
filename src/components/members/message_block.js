@@ -31,7 +31,7 @@ class MessageBlock extends Component {
     render() {
         return (
         	<div>
-                <FormGroup>
+                <FormGroup className="member">
     	           <Textarea
                         inputRef={ref => { this.message = ref }}
                         value={''}

@@ -14,6 +14,9 @@ import Options from 'options'
 import SuccessPreview from 'components/stories/preview.js'
 import Coverflow from 'react-coverflow'
 import TestimonialItem from './testimonial_item.js'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 class Landing extends Component {
     constructor(props) {
@@ -72,7 +75,7 @@ class Landing extends Component {
     }
 
     printTestimonials = (item, i) => {
-        if (i > 2) { return false } 
+        //if (i > 2) { return false } 
         return  <Col sm={4} key={i}>
                     <TestimonialItem onClick={this.showTestimonials} {...item} />
                 </Col>
@@ -130,6 +133,24 @@ class Landing extends Component {
 
         const { list, type } = this.props.members.public.active
         const { testimonials } = this.props.modals
+
+        const settings = {
+            slidesToShow: 3,
+            dots: false,
+            infinite: true,
+            autoplay: false,
+
+            responsive: [
+                {
+                    breakpoint: 1120, 
+                    settings: {slidesToShow: 2}
+                },{
+                    breakpoint: 798, 
+                    settings: {slidesToShow: 1}
+                }
+            ]
+        };
+
         return (
             <div>
                 <div className={style.mainPart}>
@@ -161,152 +182,161 @@ class Landing extends Component {
                                         <BtnMain
                                             type="button"
                                             bsStyle="success"
-                                            text="Login"
-                                            onClick={this.showModal} />
+                                            text="Sign Up"
+                                            onClick={this.getRegistration} />
                                     </div>
                                 </div>
                             </Col>
                         </Row>
                     </Grid>
                 </div>
-                <Advantages />
-                <div className={style.secondPart}>
-                    <div className={style.secondPartInner}>
-                        <h2 className={style.advantTitle}><span className={style.underlineText}>Girls</span></h2>
-                        <Grid>
-                            <div className="pb-50">
-                                <Row>
-                                    <Col xs={4} className="text-center">
-                                        <div className={style.groupSwitch} onClick={() => this.toggleMembers('new')}>
-                                            <span className={type === 'new' ? style.underlineText : ''}>New</span>
-                                        </div>
-                                    </Col>
-                                    <Col xs={4} className="text-center">
-                                        <div className={style.groupSwitch} onClick={() => this.toggleMembers('popular')}>
-                                            <span className={type === 'popular' ? style.underlineText : ''}>Popular</span>
-                                        </div>
-                                    </Col>
-                                    <Col xs={4} className="text-center">
-                                        <div className={style.groupSwitch} onClick={() => history.push('/girls')}>
-                                            <span>Show more</span>
-                                        </div>
-                                    </Col>
-                                </Row>
+                {
+                    !this.props.signup.showRegistration
+                    ? <div>
+                        <Advantages />
+                        <div className={style.secondPart}>
+                            <div className={style.secondPartInner}>
+                                <h2 className={style.advantTitle}><span className={style.underlineText}>Girls</span></h2>
+                                <Grid>
+                                    <div className="pb-50">
+                                        <Row>
+                                            <Col xs={4} className="text-center">
+                                                <div className={style.groupSwitch} onClick={() => this.toggleMembers('new')}>
+                                                    <span className={type === 'new' ? style.underlineText : ''}>New</span>
+                                                </div>
+                                            </Col>
+                                            <Col xs={4} className="text-center">
+                                                <div className={style.groupSwitch} onClick={() => this.toggleMembers('popular')}>
+                                                    <span className={type === 'popular' ? style.underlineText : ''}>Popular</span>
+                                                </div>
+                                            </Col>
+                                            <Col xs={4} className="text-center">
+                                                <div className={style.groupSwitch} onClick={() => history.push('/girls')}>
+                                                    <span>Show more</span>
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                    </div>
+                                    <MemberBlock like={false} onClickItem={this.getRegistration} list={list} />
+                                </Grid>
                             </div>
-                            <MemberBlock like={false} onClickItem={this.getRegistration} list={list} />
-                        </Grid>
-                    </div>
-                </div>
-                <div className={style.thirdPart}>
-                    <Grid>
-                        <h2 className="text-center">
-                            Hundreds of real verified profiles of Ukrainian Ladies! Say YES to the only one among many ladies waiting for fiance's confess:)
-                            <br />
-                            <a className={style.searchLink} onClick={() => history.push('/girls')} href="javascript:;"> Search Now!</a>
-                        </h2>
-                        <FormGroup className="text-center">
-                            <BtnMain
-                                type="button"
-                                bsStyle="success"
-                                text="Sign Up"
-                                onClick={this.getRegistration} />
-                        </FormGroup>
-                    </Grid>
-                </div>
-                <div className={style.storiesPart}>
-                    <h2 className={style.advantTitle}>
-                        <span className={style.underlineText}>Success Stories</span>
-                    </h2>
-
-                    <div className={style.carouselWrap}>
-                        <Grid>
-                            <div className={style.storyWrap}>
-                                <div className="row">
-                                    <div className="col-sm-4">
-                                        <div className={style.succesMore}>More then 2000 couples</div>
-                                    </div>
-                                    <div className="col-sm-8">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irur
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                { this.props.services.stories.list.map((story, i) => this.printStories(story, i)) }
-                            </div>
-                            <div className="form-group text-center">
-                                <BtnMain
-                                    type="button"
-                                    bsStyle="success"
-                                    text="More stories"
-                                    onClick={this.goToStories} />
-                            </div>
-                        </Grid>
-                    </div>
-                </div>
-                <div className={style.thirdPart}>
-                    <Grid>
-                        <h2 id="hiw" className={style.advantTitle}>
-                            How it <span className={style.underlineText}>works?</span>
-                        </h2>
-                        <h2 className="text-center">Brick to brick. Step to step. Your choice is made and you feel great:)</h2>
-                        <h2 className="text-center">Take 3 Easy Steps to Start Your Story:</h2>
-                        <div className={style.stepsWrap}>
-                            <Row>
-                                <Col xs={4}>
-                                    <div className={style.stepWrap}>
-                                        <div className="text-center">
-                                            <i className="fas fa-user fa-4x"></i>
-                                            <div className={style.stepDesc}>
-                                                <span className="font-arial">Create your profile, add photos</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col xs={4}>
-                                    <div className={style.stepWrap}>
-                                        <div className="text-center">
-                                            <i className="fas fa-images fa-4x"></i>
-                                            <div className={style.stepDesc}>
-                                                <span className="font-arial">Browse our Gallery</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col xs={4}>
-                                    <div className={style.stepWrap}>
-                                        <div className="text-center">
-                                            <i className="fas fa-comments fa-4x"></i>
-                                            <div className={style.stepDesc}>
-                                                <span className="font-arial">Start Communication</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Col>
-                            </Row>
                         </div>
-                        <h2 className="text-center">Any questions? Apply to Our Friendly Staff</h2>
-                    </Grid>
-                </div>
-                <div className={style.testimonialsPart}>
-                    <div className={style.secondPartInner}>
-                        <h2 className={style.advantTitle}><span className={style.underlineText}>Testimonials</span></h2>
-                        <Grid>
-                            <Row>
-                                { this.props.services.testimonials.list[0].list.map((item, i) => this.printTestimonials(item, i)) }
-                            </Row>
-                            <div className="form-group text-center">
-                                <BtnMain
-                                    type="button"
-                                    bsStyle="success"
-                                    text="More testimonials"
-                                    onClick={this.goToTestimonials} />
+                        <div className={style.thirdPart}>
+                            <Grid>
+                                <h2 className="text-center">
+                                    Hundreds of real verified profiles of Ukrainian Ladies! Say YES to the only one among many ladies waiting for fiance's confess:)
+                                    <br />
+                                    <a className={style.searchLink} onClick={() => history.push('/girls')} href="javascript:;"> Search Now!</a>
+                                </h2>
+                                <FormGroup className="text-center">
+                                    <BtnMain
+                                        type="button"
+                                        bsStyle="success"
+                                        text="Sign Up"
+                                        onClick={this.getRegistration} />
+                                </FormGroup>
+                            </Grid>
+                        </div>
+                        <div className={style.storiesPart}>
+                            <h2 className={style.advantTitle}>
+                                <span className={style.underlineText}>Success Stories</span>
+                            </h2>
+
+                            <div className={style.carouselWrap}>
+                                <Grid>
+                                    <div className={style.storyWrap}>
+                                        <div className="row">
+                                            <div className="col-sm-4">
+                                                <div className={style.succesMore}>More then 2000 couples</div>
+                                            </div>
+                                            <div className="col-sm-8">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                                consequat. Duis aute irur
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        { this.props.services.stories.list.map((story, i) => this.printStories(story, i)) }
+                                    </div>
+                                    <div className="form-group text-center">
+                                        <BtnMain
+                                            type="button"
+                                            bsStyle="success"
+                                            text="More stories"
+                                            onClick={this.goToStories} />
+                                    </div>
+                                </Grid>
                             </div>
-                        </Grid>
+                        </div>
+                        <div className={style.thirdPart}>
+                            <Grid>
+                                <h2 id="hiw" className={style.advantTitle}>
+                                    How it <span className={style.underlineText}>works?</span>
+                                </h2>
+                                <h2 className="text-center">Brick to brick. Step to step. Your choice is made and you feel great:)</h2>
+                                <h2 className="text-center">Take 3 Easy Steps to Start Your Story:</h2>
+                                <div className={style.stepsWrap}>
+                                    <Row>
+                                        <Col xs={4}>
+                                            <div className={style.stepWrap}>
+                                                <div className="text-center">
+                                                    <i className="fas fa-user fa-4x"></i>
+                                                    <div className={style.stepDesc}>
+                                                        <span className="font-arial">Create your profile, add photos</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Col>
+                                        <Col xs={4}>
+                                            <div className={style.stepWrap}>
+                                                <div className="text-center">
+                                                    <i className="fas fa-images fa-4x"></i>
+                                                    <div className={style.stepDesc}>
+                                                        <span className="font-arial">Browse our Gallery</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Col>
+                                        <Col xs={4}>
+                                            <div className={style.stepWrap}>
+                                                <div className="text-center">
+                                                    <i className="fas fa-comments fa-4x"></i>
+                                                    <div className={style.stepDesc}>
+                                                        <span className="font-arial">Start Communication</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                </div>
+                                <h2 className="text-center">Any questions? Apply to Our Friendly Staff</h2>
+                            </Grid>
+                        </div>
+                        <div className={style.testimonialsPart}>
+                            <div className={style.secondPartInner}>
+                                <h2 className={style.advantTitle}><span className={style.underlineText}>Testimonials</span></h2>
+                                <Grid>
+                                    <Row>
+                                        <Slider {...settings}>
+                                            { this.props.services.testimonials.list[0].list.map((item, i) => this.printTestimonials(item, i)) }
+                                        </Slider>
+                                    </Row>
+                                    <div className="form-group text-center">
+                                        <BtnMain
+                                            type="button"
+                                            bsStyle="success"
+                                            text="More testimonials"
+                                            onClick={this.goToTestimonials} />
+                                    </div>
+                                </Grid>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    : ''
+                }
+                
                 <MainModal
                     body={  
                         <div>

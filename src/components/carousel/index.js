@@ -13,7 +13,7 @@ class Carousel extends Component {
     
     render() {
         let settings = {
-            slidesToShow: this.props.slidesToShow || 3,
+            slidesToShow: this.props.slidesToShow || 4,
             dots: false,
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />,
