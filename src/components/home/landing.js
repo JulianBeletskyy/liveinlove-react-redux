@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col, FormGroup, Carousel } from 'react-bootstrap'
+import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { Registration, MainPanel, MainModal } from 'components'
 import { toggleModal, toggleRegistration, changeStep, setActiveSection, getPublicMembers, setActiveMembers, getStories } from 'actions'
@@ -9,10 +9,8 @@ import style from './style.css'
 import Advantages from './advantages.js'
 import MemberBlock from 'components/members/member_block.js'
 import ScrollToTop from './scroll_btn.js'
-import { animateScroll as scroll, Element } from 'react-scroll'
+import { animateScroll as scroll } from 'react-scroll'
 import Options from 'options'
-import SuccessPreview from 'components/stories/preview.js'
-import Coverflow from 'react-coverflow'
 import TestimonialItem from './testimonial_item.js'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";

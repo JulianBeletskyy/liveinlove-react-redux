@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import store from 'store'
-import { Row, Col, FormGroup } from 'react-bootstrap'
+import { FormGroup } from 'react-bootstrap'
 import { getStory } from 'actions'
 import { connect } from 'react-redux'
 import style from './style.css'

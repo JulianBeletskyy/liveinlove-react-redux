@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import store from 'store'
 import { getMemberships } from 'actions'
 import PlanItem from './plan_item.js'
-import Carousel from 'components/carousel'
-import style from './plans.css'
 
 class Plans extends Component {
     constructor(props) {

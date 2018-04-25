@@ -153,10 +153,6 @@
     font-family: bebas_neue;
 }
 
-.coverflow__container__2RGwF {
-	background-color: transparent !important;
-}
-
 .slick-dots.slick-thumb li button:before {
 	color: #27c2d3;
 }
@@ -529,10 +525,6 @@
 	bottom: 0;
 	background: #fff;
 	opacity: 0.8;
-}
-
-.coverflow__figure__zEOhf {
-	box-shadow:  none;
 }
 
 @-webkit-keyframes pace-animate1 {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Grid } from 'react-bootstrap'
 import style from './right_menu.css'
 import store, { history } from 'store'
 import { toggleModal } from 'actions'

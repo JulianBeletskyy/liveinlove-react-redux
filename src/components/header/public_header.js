@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { NavDropdown } from 'react-bootstrap'
 import { toggleModal, logout } from 'actions'
 import { connect } from 'react-redux'
-import { Link as SmoothLink, animateScroll as scroll, } from 'react-scroll'
+import { animateScroll as scroll } from 'react-scroll'
 
 
 class PublicHeader extends Component {

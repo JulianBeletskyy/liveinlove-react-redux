@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col } from 'react-bootstrap'
 import style from './style.css'
-
 
 class Pagination extends Component {
 	printPagination = (item, i) => {

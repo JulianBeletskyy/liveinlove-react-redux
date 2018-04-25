@@ -3,9 +3,8 @@ import store from 'store/'
 import { FormGroup } from 'react-bootstrap'
 import { login, toggleModal } from 'actions'
 import Validator from 'validate'
-import { TextField, CheckboxField } from 'components/form/inputs'
+import { TextField } from 'components/form/inputs'
 import BtnMain from 'components/form/buttons/main_button.js'
-import style from './style.css'
 
 class Auth extends Component {
     constructor(props) {

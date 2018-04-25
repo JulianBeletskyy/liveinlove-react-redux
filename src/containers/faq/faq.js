@@ -13,7 +13,6 @@ import {
 } from 'react-accessible-accordion'
 import 'react-accessible-accordion/dist/fancy-example.css';
 import 'react-accessible-accordion/dist/minimal-example.css';
-import SideBlog from 'components/blogs/side.js'
 import { BtnMain } from 'components/form/buttons'
 import { SearchField } from 'components/form/inputs'
 import MemberBlockSmall from 'components/members/member_block_small.js'
