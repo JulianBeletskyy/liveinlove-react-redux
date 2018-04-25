@@ -8,7 +8,7 @@ class TestimonialBig extends Component {
             <div className={style.testimonialBlock}>
                 <div className="row">
                     <div className="col-xs-4 text-center">
-                        <img src="http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04-110x110.jpg" className={style.bigTestimonialsImg} alt="" />
+                        <img src="assets/img/testimonials-small.jpg" className={style.bigTestimonialsImg} alt="" />
                         <div className={style.testimonialStar}>
                             { Array.apply(null, Array(this.props.rating)).map((item, i) => <i key={i} className="fas fa-star"></i>) }
                         </div>

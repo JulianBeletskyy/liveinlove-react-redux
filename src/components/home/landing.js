@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react'
 import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
 import { connect } from 'react-redux'
@@ -334,11 +335,10 @@ class Landing extends Component {
                     </div>
                     : ''
                 }
-                
                 <MainModal
                     body={  
                         <div>
-                            <img src="http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04.jpg" className="img-responsive" alt="" />
+                            <img src="assets/img/testimonials-big.jpg" className="img-responsive" alt="" />
                             <div className="text-center font-bebas pt-15"><a href="javascript:;" onClick={this.goToTestimonials}>View All Testimonials</a></div>
                         </div>
                     }

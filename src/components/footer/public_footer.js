@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import store, { history } from 'store'
