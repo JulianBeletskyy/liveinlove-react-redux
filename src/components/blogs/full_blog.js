@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
-import { sendComment, getBlog } from 'actions'
+import { sendComment } from 'actions'
 import { Row, Col, FormGroup } from 'react-bootstrap'
 import { TextField, Textarea } from 'components/form/inputs'
 import { BtnMain } from 'components/form/buttons'
