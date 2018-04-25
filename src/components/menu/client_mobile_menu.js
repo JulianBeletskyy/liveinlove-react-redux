@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react'
 import style from './right_menu.css'
 import store, { history } from 'store'

@@ -38,9 +38,9 @@ const initialState = {
                     {
                         text: "His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign.",
                         rating: 4,
-                        name: "Lisa Monroe",
+                        name: "Lisa Monroe 2",
                         city: "New York, United States",
-                        img: "http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04-110x110.jpg"
+                        img: "assets/img/testimonials-small.jpg"
                     }, {
                         text: "His work has been featured in magazines including .Net Magazine, Communication Arts, Web Designer Mag, WebDesign Index and prestigious design sites like FastCoDesign.",
                         rating: 5,

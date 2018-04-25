@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react'
 import store, { history } from 'store'
 import { setSegment, setCart } from 'actions'
