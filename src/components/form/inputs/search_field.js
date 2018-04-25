@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import store from 'store'
-import { removePlaceholder, setPlaceholder } from 'actions'
 import style from './autocomplete.css'
 
 class SearchField extends Component {

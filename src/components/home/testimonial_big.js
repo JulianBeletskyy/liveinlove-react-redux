@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Grid } from 'react-bootstrap'
 import style from './style.css'
 import { BtnMain } from 'components/form/buttons'
 
