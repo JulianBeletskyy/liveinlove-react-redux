@@ -377,6 +377,17 @@ export function getFavoriteMembers(token) {
     }
 }
 
+export function getInterestsMembers(token) {
+    return dispatch => {
+        return api.getInterestsMembers(token)
+        .then(json => {
+            if (json.data) {
+                dispatch(setMembers(json.data, 'interest_list'))
+            }
+        })
+    }
+}
+
 export function getPublicMembers(type) {
     return dispatch => {
         return api.getPublicMembers(type)
@@ -484,6 +495,15 @@ export function addToFavorite(id, token) {
     }
 }
 
+export function addToInterest(id, token) {
+    return dispatch => {
+        return api.addToInterest(id, token)
+        .then(json => {
+            dispatch(setInterest(id, true))
+        })
+    }
+}
+
 export function removeFromFavorite(id, token) {
     return dispatch => {
         return api.removeFromFavorite(id, token)
@@ -492,6 +512,15 @@ export function removeFromFavorite(id, token) {
                 dispatch(setFavorite(id, false))
                 dispatch(getFavoriteMembers(token))
             }
+        })
+    }
+}
+
+export function removeFromInterest(id, token) {
+    return dispatch => {
+        return api.removeFromInterest(id, token)
+        .then(json => {
+            dispatch(setInterest(id, false))
         })
     }
 }
@@ -510,6 +539,14 @@ export function addViewed(id, token) {
 export function setFavorite(id, value) {    
     return {
         type: types.SET_FAVORITE,
+        id,
+        value
+    }
+}
+
+export function setInterest(id, value) {    
+    return {
+        type: types.SET_INTEREST,
         id,
         value
     }

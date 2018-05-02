@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store, { history } from 'store'
 import Lightbox from 'react-images'
-import { getMemberInfo, addToFavorite, removeFromFavorite, addViewed, toggleLightBox, setReceiverToShop, getContactsDetails } from 'actions'
+import { getMemberInfo, addToFavorite, removeFromFavorite, addViewed, toggleLightBox, setReceiverToShop, getContactsDetails, addToInterest, removeFromInterest } from 'actions'
 import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
 import style from './style.css'
 import AvatarImg from 'components/gallery/avatar_img.js'
@@ -30,6 +30,14 @@ class Member extends Component {
             store.dispatch(removeFromFavorite(this.props.members.data.id, this.props.user.token))
         } else {
             store.dispatch(addToFavorite(this.props.members.data.id, this.props.user.token))
+        }
+    }
+
+    toggleInterest = () => {
+        if (this.props.members.data.interest) {
+             store.dispatch(removeFromInterest(this.props.members.data.id, this.props.user.token))
+        } else {
+            store.dispatch(addToInterest(this.props.members.data.id, this.props.user.token))
         }
     }
 
@@ -134,6 +142,18 @@ class Member extends Component {
                                                         text="Send Gift"
                                                         color="main"
                                                         onClick={this.goToShop} />
+                                                </FormGroup>
+                                            : ''
+                                        }
+                                        {
+                                            this.props.user.data.role === 'client'
+                                            ?   <FormGroup className="text-center">
+                                                    <BtnMain
+                                                        type="button"
+                                                        bsStyle="success"
+                                                        text={this.props.members.data.interest ? "Remove from interest" : "Express the interest"}
+                                                        color="pink"
+                                                        onClick={this.toggleInterest} />
                                                 </FormGroup>
                                             : ''
                                         } 

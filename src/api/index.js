@@ -176,6 +176,18 @@ export default {
         .then(responseHandler)
     },
 
+    getInterestsMembers(token) {
+        return fetch(config.API_URL + 'user/members/interest', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
     addToFavorite(id, token) {
         return fetch(config.API_URL + 'user/members/favorite/' + id + '/add', {
             method: 'get',
@@ -186,8 +198,28 @@ export default {
         .then(responseHandler)
     },
 
+    addToInterest(id, token) {
+        return fetch(config.API_URL + 'user/members/interest/' + id + '/add', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+        .then(responseHandler)
+    },
+
     removeFromFavorite(id, token) {
         return fetch(config.API_URL + 'user/members/favorite/' + id + '/remove', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+        .then(responseHandler)
+    },
+
+    removeFromInterest(id, token) {
+        return fetch(config.API_URL + 'user/members/interest/' + id + '/remove', {
             method: 'get',
             headers: {
                 'Authorization': 'Bearer ' + token
