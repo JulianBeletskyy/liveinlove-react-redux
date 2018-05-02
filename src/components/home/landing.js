@@ -181,7 +181,7 @@ class Landing extends Component {
                                         <BtnMain
                                             type="button"
                                             bsStyle="success"
-                                            text="Sign Up"
+                                            text="Free Sign Up"
                                             onClick={this.getRegistration} />
                                     </div>
                                 </div>

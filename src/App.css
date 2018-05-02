@@ -43,6 +43,21 @@
     padding: 20px 0px;
 }
 
+.about-slider .slick-next {
+	right: 5px;
+}
+
+.testimonials-slider .slick-next:before,
+.testimonials-slider .slick-prev:before {
+	color: #888;
+	opacity: 0.5;
+}
+
+.about-slider .slick-prev {
+	left: 5px;
+    z-index: 1;
+}
+
 .service-black-wrap {
 	display: table;
     padding-bottom: 40px;
@@ -110,7 +125,6 @@
 
 .service-black-title {
 	color: #FEFEFE;
-	
 	letter-spacing: 1px;
 	padding-top: 15px;
     display: table-cell;
@@ -259,6 +273,10 @@
 	z-index: 1;
 }
 
+.pt-50 {
+	padding-top: 50px;
+}
+
 .pb-50 {
 	padding-bottom: 50px;
 }
@@ -269,6 +287,10 @@
 
 .color-888 {
 	color: #888;
+}
+
+.color-green {
+	color: #34DCA2;
 }
 
 .p-7-4 {

@@ -12,6 +12,7 @@ import { Alert } from './components'
 import style from './App.css'
 import { Auth, MainModal, Recovery } from 'components'
 import Support from 'components/support'
+import Services from 'services'
 
 class App extends Component {
     constructor(props) {
@@ -28,6 +29,7 @@ class App extends Component {
         })
 
         if (props.user.token) {
+            Services.checkAuth()
             store.dispatch(getUserInfo(props.user.token))
             store.dispatch(getFullInfo(props.user.token))
             store.dispatch(getGallery(props.user.token))
