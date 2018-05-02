@@ -18,15 +18,23 @@
 }
 
 :local(.lastPart) {
-	padding: 50px 0;
+	padding: 100px 0;
 	text-align: center;
+	background-color: #34DCA2;
+    letter-spacing: .1em;
+	font-family: "bebas_neue",Helvetica,Arial,sans-serif;
+	color: #fff;
 }
 
-:local(.lastPart span) {
+:local(.lastPart h1) {
+	font-size: 58px;
 	font-weight: bold;
-	font-family: "bebas_neue",Helvetica,Arial,sans-serif;
-	color: #828282;
-	letter-spacing: 1px;
+	letter-spacing: .05em;
+}
+
+:local(.lastPart a) {
+	color: #222323;
+	text-decoration: underline;
 }
 
 :local(.thirdPart) {
