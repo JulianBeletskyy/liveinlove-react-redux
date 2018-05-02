@@ -1,10 +1,12 @@
-import { SET_MEMBERS, SET_MEMBER_INFO, SET_FAVORITE, SET_PAGES, ADD_MEMBERS, SET_PUBLIC_MEMBERS, SET_ACTIVE_MEMBERS } from 'actions/types.js'
+import { SET_MEMBERS, SET_MEMBER_INFO, SET_FAVORITE, SET_PAGES, ADD_MEMBERS, SET_PUBLIC_MEMBERS, SET_ACTIVE_MEMBERS, SET_INTEREST } from 'actions/types.js'
 
 const initialState = {
     list: [],
     new_list: [],
     popular_list: [],
     favorite_list: [],
+    interest_list: [],
+    active_list: [],
     public: {
         all: [],
         new: [],
@@ -41,7 +43,8 @@ export default function members(members = initialState, action = {}) {
             });
         case SET_MEMBERS:
             return Object.assign({}, members, {
-                [action.key]: action.data
+                [action.key]: action.data,
+                active_list: action.data
             });
         case SET_PUBLIC_MEMBERS:
             temp_public[action.key] = action.value
@@ -91,6 +94,11 @@ export default function members(members = initialState, action = {}) {
                 list: temp_lists.list,
                 new_list: temp_lists.new_list,
                 popular_list: temp_lists.popular_list,
+                data: temp
+            });
+        case SET_INTEREST:
+            temp.interest = action.value
+            return Object.assign({}, members, {
                 data: temp
             });
         default:
