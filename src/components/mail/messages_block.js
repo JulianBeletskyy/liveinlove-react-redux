@@ -5,7 +5,7 @@ import MessagePreview from './message_preview.js'
 class MessagesBlock extends Component {
 
     printMessages = (message , i) => {
-        return (<MessagePreview key={i} options={message} client={this.props.user.data.role === 'client'} />)
+        return (<MessagePreview key={i} options={message} firstname={this.props.user.data.first_name} client={this.props.user.data.role === 'client'} />)
     }
     
     render() {
@@ -21,7 +21,8 @@ const mapStateToProps = (state) => {
         },
         user: {
             data: {
-                role: state.user.data.role
+                role: state.user.data.role,
+                first_name: state.user.data.first_name
             }
         }
     }

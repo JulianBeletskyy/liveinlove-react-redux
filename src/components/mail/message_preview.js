@@ -13,11 +13,11 @@ class MessagePreview extends Component {
     render() {
         const dialog = this.props.options
         let text = dialog.last_message.message
-
         if (dialog.last_message.message.indexOf('[$link]') + 1) {
-            text = text.replace('[$link]', dialog.receiver_first_name)
+            const name = this.props.client ? this.props.firstname : dialog.receiver_first_name
+            text = text.replace('[$link]', name)
         }
-        
+
         return (
             <div className={style.wrap + ' ' + (this.props.client ? '' : 'girl')} onClick={this.goToDialog}>
                 <div className={style.imgWrap}>

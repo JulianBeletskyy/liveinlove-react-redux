@@ -229,28 +229,10 @@ class About extends Component {
                                 { this.props.services.testimonials.list[0].list.map((item, i) => this.printTestimonials(item, i)) }
                             </Slider>
                         </div>
-
-
                         <div className={style.lastPart}>
-                            <hr />
-                            <h2 className={style.title}>Contacts</h2>
-                            <Row>
-                                <Col sm={4}>
-                                    <i className="fas fa-map-marker-alt"></i>
-                                    &nbsp;
-                                    <span>172 14th Street, Office 503, NY</span>
-                                </Col>
-                                <Col sm={4}>
-                                    <i className="fas fa-phone"></i>
-                                    &nbsp;
-                                    <span>987.654.3210</span>
-                                </Col>
-                                <Col sm={4}>
-                                    <i className="fas fa-envelope"></i>
-                                    &nbsp;
-                                    <span>lifein.love@gmail.com</span>
-                                </Col>
-                            </Row>
+                            <h4>SO WHAT’S NEXT?</h4>
+                            <h1>ARE YOU READY? <a href="javascript:;" onClick={this.getSignUp}>LET’S WORK!</a></h1>
+                            
                         </div>
 	                </div>
 	            </Grid>
