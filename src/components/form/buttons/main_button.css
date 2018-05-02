@@ -40,6 +40,10 @@
     background-color: #F9006E;
 }
 
+:local(.button).pink:hover {
+    background-color: #d1045c;
+}
+
 :local(.button:hover) {
     background-color: #279faa;
     color: #fff;

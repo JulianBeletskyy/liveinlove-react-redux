@@ -12,6 +12,11 @@ class MessagePreview extends Component {
 
     render() {
         const dialog = this.props.options
+        let text = dialog.last_message.message
+
+        if (dialog.last_message.message.indexOf('[$link]') + 1) {
+            text = text.replace('[$link]', dialog.receiver_first_name)
+        }
         
         return (
             <div className={style.wrap + ' ' + (this.props.client ? '' : 'girl')} onClick={this.goToDialog}>
@@ -27,8 +32,8 @@ class MessagePreview extends Component {
                 <div className={style.textWrap}>
                 {
                     dialog.last_message.read
-                    ? <span>{dialog.last_message.message}</span>
-                    : <strong>{dialog.last_message.message}</strong>
+                    ? <span>{text}</span>
+                    : <strong>{text}</strong>
                 }
                 </div>
                 { dialog.unread > 0 ? <span className={style.badge}>{dialog.unread}</span> : '' }
