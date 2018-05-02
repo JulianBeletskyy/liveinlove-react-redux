@@ -3,6 +3,7 @@ import api from '../api'
 import Cookies from 'js-cookie'
 import { history } from 'store'
 import Options from 'options'
+import Services from 'services'
 
 // AUTH
 
@@ -12,12 +13,14 @@ export function login(data) {
         .then(json => {
             if (json.data) {
                 history.push('/')
+                Services.checkAuth()
                 dispatch(toggleModal(false, 'login'))
                 dispatch(getUserInfo(json.data))
                 dispatch(getFullInfo(json.data))
                 dispatch(setToken(json.data))
                 dispatch(closeNav())
                 Options.getAll()
+
             }
         })
     }

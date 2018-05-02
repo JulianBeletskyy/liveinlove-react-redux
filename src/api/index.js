@@ -1,10 +1,15 @@
 import * as config from '../config'
-import { setAlert } from 'actions'
+import { setAlert, logout } from 'actions'
 import store from 'store'
 import 'whatwg-fetch'
 
 const responseHandler = (response) => {
+    if (response.status == 401) {
+        store.dispatch(logout())
+        return
+    }
     let promise = response.json()
+
     let ok = response.ok
     
     promise.then(response => {

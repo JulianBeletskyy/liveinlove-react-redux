@@ -23,7 +23,7 @@ class Works extends Component {
     }
 
 	printBlock = (item, i) => {
-		return <Col key={i} sm={4}><Block /></Col>
+		return <Col key={i} sm={4}><Block icon="far fa-heart fa-3x" title="MADE WITH LOVE" /></Col>
 	}
 
 	printTestimonials = (item, i) => {
