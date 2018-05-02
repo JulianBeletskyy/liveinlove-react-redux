@@ -24,9 +24,9 @@ class MessageItem extends Component {
         const classRight = ! message.my ? 'pull-right' : ''
 
         let text = message.original
-
         if (message.original.indexOf('[$link]') + 1) {
-            text = text.replace('[$link]', '<a href="/member/'+message.receiver_id+'">'+message.receiver_first_name+'</a>')
+            const name = this.props.user.data.role === 'client' ? this.props.user.data.first_name : message.receiver_first_name
+            text = text.replace('[$link]', '<a href="/member/'+message.receiver_id+'">'+name+'</a>')
         }
 
         return (
@@ -64,7 +64,8 @@ const mapStateToProps = (state) => {
             token: state.user.token,
             data: {
                 avatar: state.user.data.avatar,
-                role: state.user.data.role
+                role: state.user.data.role,
+                first_name: state.user.data.first_name,
             }
         },
         services: {
