@@ -53,6 +53,11 @@
 	opacity: 0.5;
 }
 
+.testimonials-slider .slick-dots {
+	position: unset;
+	margin-bottom: 10px;
+}
+
 .about-slider .slick-prev {
 	left: 5px;
     z-index: 1;
@@ -245,6 +250,54 @@
 
 .ethniticy-block {
 	padding: 2px 5px;
+}
+
+.fade-slide {
+	opacity: 0;
+}
+
+.back-shadow {
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.1);
+	right: 0;
+	left: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.letter-4 {
+	letter-spacing: 4px;
+}
+
+@media (max-width: 768px) {
+	.letter-4 {
+		letter-spacing: 1px;
+	}
+
+	.fs-48 {
+		font-size: 38px;
+	}
+}
+
+.fs-16 {
+	font-size: 16px;
+	letter-spacing: .1em;
+}
+
+.fs-18 {
+	font-size: 18px;
+}
+
+.fs-36 {
+	font-size: 36px;
+}
+
+.fs-48 {
+	font-size: 48px;
+}
+
+.lh-18 {
+	line-height: 1.8;
 }
 
 .pt-66 {
