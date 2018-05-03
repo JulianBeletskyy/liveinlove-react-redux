@@ -18,7 +18,8 @@ class About extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            count: false
+            count: false,
+            activeSlide: 0
         }
 
         document.addEventListener('scroll', this.checkScroll)
@@ -61,6 +62,27 @@ class About extends Component {
                 </div>
     }
 
+    printMainSlider = (item, i) => {
+        let className = i == this.state.activeSlide ? 'fadeInDown animated' : 'fade-slide'
+        return  <div key={i} className={style['sliderItem' + i]}>
+                    <div className={style.mainSliderInner}>
+                        <div className="font-bebas fs-48 letter-4">
+                            <div style={{color: '#fff'}} className={className}><strong>Complete & <span className="underline-text">Highly Creative</span> Website Solutions</strong></div>
+                        </div>
+                        <div className="lh-18 fs-18 hidden-xs form-group">
+                            <div style={{color: '#fff'}} className={className}>After years of evolution in the digital space, we've produced cutting-edge creative for start ups and Fortune 500 companies spanning tech, e-commerce, hospitality, healthcare, and beyond.</div>
+                        </div>
+                        <div className={className + ' text-center'}>
+                            <BtnMain
+                                type="button"
+                                bsStyle="success"
+                                text="Free Sign Up"
+                                onClick = {this.getSignUp} />
+                        </div>
+                    </div>
+                </div>
+    }
+
     printCount = (item, i) => {
         let option = {}
         switch(i) {
@@ -78,7 +100,7 @@ class About extends Component {
                 break
         }
         return  <Col key={i} sm={3} className="text-center works-big-title">
-                    <div className="works-title color-green">
+                    <div className="works-title color-green fs-36">
                         <CountUp 
                             start={0} 
                             end={option.count} 
@@ -86,7 +108,7 @@ class About extends Component {
                             decimals={3} 
                             duration={2} />
                     </div>
-                    <div>
+                    <div className="fs-18">
                         {option.title}
                     </div>
                 </Col>
@@ -102,6 +124,10 @@ class About extends Component {
         return Array.apply(null, Array(num))
     }
 
+    addFadeClass = (index) => {
+        this.setState({activeSlide: index})
+    }
+
     render() {
         const settings = {
             slidesToShow: 1,
@@ -109,6 +135,15 @@ class About extends Component {
             dots: false,
             infinite: true,
             autoplay: true,
+        }
+
+        const mainSettings = {
+            slidesToShow: 1,
+            accessibility: false,
+            dots: false,
+            infinite: true,
+            autoplay: true,
+            afterChange: this.addFadeClass
         }
 
         const testimonialsSettings = {
@@ -134,8 +169,19 @@ class About extends Component {
                     <div className="bg-white p-15">
                         <h1 className="font-bebas">About Company</h1>
                         <hr />
-                        <h2 className="text-center form-group p-15 works-big-title">WE CRAFT <span className="underline-text">ELEGANT SOLUTIONS</span></h2>
-                        <div className="text-center form-group p-15 mb-35 color-888">We craft beautiful and unique digital experiences. With more than ten years of knowledge and expertise we design and code clean awesome websites and apps, we build brands and help them succeed!</div>
+
+                        <div className="main-slider about-slider">
+                            <Slider {...mainSettings}>
+                                { this.getArray(3).map((item, i) => this.printMainSlider(item, i)) }
+                            </Slider>
+                        </div>
+
+                        <h2 className="text-center form-group p-15 works-big-title fs-48">WE CRAFT <span className="underline-text">ELEGANT SOLUTIONS</span></h2>
+                        <div className="row">
+                            <div className="col-sm-8 col-sm-offset-2">
+                                <div className="text-center form-group p-15 mb-35 color-888 fs-18 lh-18">We craft beautiful and unique digital experiences. With more than ten years of knowledge and expertise we design and code clean awesome websites and apps, we build brands and help them succeed!</div>
+                            </div>
+                        </div>
                         <Row>
                             { this.getArray(6).map((item, i) => this.printBlock(item, i)) }
                         </Row>
@@ -158,13 +204,13 @@ class About extends Component {
                         <div className="pt-50">
                             <Row>
                                 <Col sm={6}>
-                                    <div className="works-title works-big-title">
-                                        UNIQUE, TRULY RESPONSIVE AND FUNCTIONAL WEBSITES THAT IMPRESS!
+                                    <div className="works-title works-big-title fs-36">
+                                        UNIQUE, <span className="underline-text">TRULY RESPONSIVE</span> AND FUNCTIONAL WEBSITES THAT IMPRESS!
                                     </div>
-                                    <div className="color-888 pt-15">
+                                    <div className="color-888 pt-15 fs-18 lh-18 form-group">
                                         We craft unique digital experiences. With more than 10 years of knowledge and expertise we design and code clean websites and apps, we build brands and help them succeed!
                                     </div>
-                                    <div className="works-big-title color-green pt-15">
+                                    <div className="works-big-title color-green pt-15 fs-16">
                                         START YOUR BUSINESS TODAY
                                     </div>
                                     <div className="color-888 pt-15">
@@ -189,16 +235,16 @@ class About extends Component {
                         <div className="pt-50 pb-50">
                             <Row>
                                 <Col sm={4}>
-                                    <div className="works-small-title">WE ARE AWESOME</div>
-                                    <div className="color-888">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis eros lobortis, vestibulum turpis ac, pulvinar odio. Praesent vulputate a elit ac mollis. In sit amet ipsum turpis.</div>
+                                    <div className="works-small-title lh-18 fs-16">WE ARE AWESOME</div>
+                                    <div className="color-888 pt-15 lh-18">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis eros lobortis, vestibulum turpis ac, pulvinar odio. Praesent vulputate a elit ac mollis. In sit amet ipsum turpis.</div>
                                 </Col>
                                 <Col sm={4}>
-                                    <div className="works-small-title">WE ARE CREATIVE</div>
-                                    <div className="color-888">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis eros lobortis, vestibulum turpis ac, pulvinar odio. Praesent vulputate a elit ac mollis. In sit amet ipsum turpis.</div>
+                                    <div className="works-small-title lh-18 fs-16">WE ARE CREATIVE</div>
+                                    <div className="color-888 pt-15 lh-18">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis eros lobortis, vestibulum turpis ac, pulvinar odio. Praesent vulputate a elit ac mollis. In sit amet ipsum turpis.</div>
                                 </Col>
                                 <Col sm={4}>
-                                    <div className="works-small-title">WE ARE PERFECT</div>
-                                    <div className="color-888">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis eros lobortis, vestibulum turpis ac, pulvinar odio. Praesent vulputate a elit ac mollis. In sit amet ipsum turpis.</div>
+                                    <div className="works-small-title lh-18 fs-16">WE ARE PERFECT</div>
+                                    <div className="color-888 pt-15 lh-18">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis eros lobortis, vestibulum turpis ac, pulvinar odio. Praesent vulputate a elit ac mollis. In sit amet ipsum turpis.</div>
                                 </Col>
                             </Row>
                         </div>
@@ -209,22 +255,22 @@ class About extends Component {
                                     <img src="/assets/img/about-4.jpg" alt="" className="img-responsive" />
                                 </Col>
                                 <Col sm={6}>
-                                    <div className="works-title works-big-title pt-50">
+                                    <div className="works-title works-big-title pt-50 fs-36">
                                         SEE WHAT <span className="underline-text">EVERYONE IS WORKING ON</span>
                                     </div>
-                                    <div className="color-888 pt-15 form-group">
+                                    <div className="color-888 pt-15 form-group fs-18 lh-18">
                                         We craft unique digital experiences. With more than 10 years of knowledge and expertise we design and code clean websites and apps, we build brands and help them succeed!
                                     </div>
                                     <BtnMain
                                         type="button"
                                         bsStyle="success"
-                                        text="Sign Up"
+                                        text="Free Sign Up"
                                         onClick = {this.getSignUp} />
                                 </Col>
                             </Row>
                         </div>
 
-                        <div className="pt-50 px-15 testimonials-slider">
+                        <div className="pt-50 pb-50 px-15 testimonials-slider">
                             <Slider {...testimonialsSettings}>
                                 { this.props.services.testimonials.list[0].list.map((item, i) => this.printTestimonials(item, i)) }
                             </Slider>

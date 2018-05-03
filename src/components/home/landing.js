@@ -74,7 +74,6 @@ class Landing extends Component {
     }
 
     printTestimonials = (item, i) => {
-        //if (i > 2) { return false } 
         return  <Col sm={4} key={i}>
                     <TestimonialItem onClick={this.showTestimonials} {...item} />
                 </Col>
@@ -145,7 +144,7 @@ class Landing extends Component {
                     settings: {slidesToShow: 2}
                 },{
                     breakpoint: 798, 
-                    settings: {slidesToShow: 1}
+                    settings: {slidesToShow: 1, arrows: false, dots: true}
                 }
             ]
         };
@@ -317,7 +316,7 @@ class Landing extends Component {
                             <div className={style.secondPartInner}>
                                 <h2 className={style.advantTitle}><span className={style.underlineText}>Testimonials</span></h2>
                                 <Grid>
-                                    <Row>
+                                    <Row className="testimonials-slider">
                                         <Slider {...settings}>
                                             { this.props.services.testimonials.list[0].list.map((item, i) => this.printTestimonials(item, i)) }
                                         </Slider>
