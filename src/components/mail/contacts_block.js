@@ -12,7 +12,7 @@ class ContactsBlock extends Component {
                     {...contact} 
                     client={this.props.user.data.role === 'client'} 
                     onClick={() => this.goToMember(contact.id)} 
-                    getMessage={(e) => this.getMessage(e, contact.dialog)} />
+                    getMessage={(e) => this.getMessage(e, contact)} />
         }  
     }
 
@@ -20,9 +20,9 @@ class ContactsBlock extends Component {
         history.push('/member/'+id)
     }
 
-    getMessage = (e, id) => {
+    getMessage = (e, contact) => {
         e.stopPropagation()
-        history.push('/mail/'+id)
+        history.push('/mail/main/new', contact)
     }
     
     render() {

@@ -75,3 +75,5 @@ export const SET_SEGMENT = 'SET_SEGMENT'
 export const DO_NOTHING = 'DO_NOTHING'
 
 export const SET_MEMBERSHIPS_DATA = 'SET_MEMBERSHIPS_DATA'
+
+export const SET_MAIL = 'SET_MAIL'

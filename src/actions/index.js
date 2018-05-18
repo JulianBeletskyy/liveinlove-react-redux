@@ -11,16 +11,17 @@ export function login(data) {
     return dispatch => {
         return api.login(data)
         .then(json => {
-            if (json.data) {
-                history.push('/')
-                Services.checkAuth()
-                dispatch(toggleModal(false, 'login'))
-                dispatch(getUserInfo(json.data))
-                dispatch(getFullInfo(json.data))
-                dispatch(setToken(json.data))
-                dispatch(closeNav())
-                Options.getAll()
-
+            if (json) {
+                if (json.data) {
+                    history.push('/')
+                    Services.checkAuth()
+                    dispatch(toggleModal(false, 'login'))
+                    dispatch(getUserInfo(json.data))
+                    dispatch(getFullInfo(json.data))
+                    dispatch(setToken(json.data))
+                    dispatch(closeNav())
+                    Options.getAll()
+                }
             }
         })
     }
@@ -792,6 +793,40 @@ export function getSearch(data, token) {
 }
 
 //MESSAGE
+
+export const getMail = (url, key, token) => dispatch => {
+    return api.getMail(url, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(setMail(json.data, key))
+            }
+        })
+}
+
+export const saveDraft = (data, token, id) => dispatch => {
+    return api.saveDraft(data, token, id)
+        .then(json => {
+            if (json.data) {
+            }
+        })
+}
+
+export const removeDraft = (id, token) => dispatch => {
+    return api.removeDraft(id, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(getMail('draft', 'drafts', token))
+            }
+        })
+}
+
+export function setMail(data, key) {
+    return {
+        type: types.SET_MAIL,
+        data,
+        key
+    }
+}
 
 export function getDialogs(token) {
     return dispatch => {

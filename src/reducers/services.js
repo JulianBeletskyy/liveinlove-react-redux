@@ -4,7 +4,7 @@ const initialState = {
 	tabs: {
 		member_profile: 'info',
 		main: 'popular',
-        mail: 'messages'
+        mail: 'inbox'
 	},
     gallery: {
         show_light_box: '',

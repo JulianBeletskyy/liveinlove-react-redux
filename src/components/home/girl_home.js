@@ -9,6 +9,8 @@ import MainPofile from 'components/profile/main.js'
 import { Contacts } from 'containers'
 import Mail from 'components/mail'
 import Dialog from 'components/mail/dialog.js'
+import FullMail from 'components/mail/full_mail.js'
+import EditDraft from 'components/mail/edit_draft.js'
 
 class GirlHome extends Component {
     componentDidUpdate() {
@@ -25,6 +27,8 @@ class GirlHome extends Component {
                             <Switch>
                                 <Route path="/" exact component={MainPofile} />
                                 <Route path="/men" exact component={MainPofile} />
+                                <Route path="/mail/main/drafts/:id" exact component={EditDraft} />
+                                <Route path="/mail/main/:id" exact component={FullMail} />
                                 <Route path="/mail/main" exact component={Mail} />
                                 <Route path="/mail/:id" exact component={Dialog} />
                                 <Route path="/contacts/:tab" exact component={Contacts} />
