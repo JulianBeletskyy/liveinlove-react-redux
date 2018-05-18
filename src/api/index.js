@@ -4,10 +4,10 @@ import store from 'store'
 import 'whatwg-fetch'
 
 const responseHandler = (response) => {
-    if (response.status == 401) {
+    /*if (response.status == 401) {
         store.dispatch(logout())
         return
-    }
+    }*/
     let promise = response.json()
 
     let ok = response.ok
@@ -611,6 +611,9 @@ export default {
         }
         formData.append('original', data.original)
         formData.append('receiver_id', data.receiver_id)
+        if (data.draft_id) {
+            formData.append('draft_id', data.draft_id)
+        }
         return fetch(config.API_URL + 'user/message/send', {
             method: 'post',
             headers: {
@@ -636,6 +639,18 @@ export default {
         .then(responseHandler)
     },
 
+    getMail(url, token) {
+        return fetch(config.API_URL + 'user/message/' + url, {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
     getDialogs(token) {
         return fetch(config.API_URL + 'user/message/dialogs', {
             method: 'get',
@@ -644,6 +659,37 @@ export default {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
+        })
+        .then(responseHandler)
+    },
+
+    removeDraft(id, token) {
+        return fetch(config.API_URL + 'user/message/draft/' + id, {
+            method: 'delete',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
+    saveDraft(data, token, id) {
+        let formData = new FormData()
+        if (data.attachment) {
+            formData.append('attachment', data.attachment)
+        }
+        formData.append('original', data.original)
+        formData.append('receiver_id', data.receiver_id)
+        const url = id ? ('user/message/draft/' + id) : 'user/message/draft'
+
+        return fetch(config.API_URL + url, {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            },
+            body: formData
         })
         .then(responseHandler)
     },

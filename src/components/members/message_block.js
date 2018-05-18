@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { FormGroup } from 'react-bootstrap'
 import store from 'store'
-import { sendMessage } from 'actions'
+import { sendMessage, saveDraft } from 'actions'
 import { connect } from 'react-redux'
 import Textarea from 'components/form/inputs/textarea.js'
 import BtnMain from 'components/form/buttons/main_button.js'
@@ -28,6 +28,21 @@ class MessageBlock extends Component {
         }
     }
 
+    saveDraft = () => {
+        let error = 1
+        error *= Validator.check(this.message.value, ['required'], 'Message')
+        if (error) {
+            
+            const data = {
+                original: this.message.value,
+                receiver_id: this.props.memberId,
+                attachment: this.props.messages.attach_message.src || this.props.messages.attach_message
+            }
+            store.dispatch(saveDraft(data, this.props.user.token))
+            this.message.value = ''
+        }
+    }
+
     render() {
         return (
         	<div>
@@ -43,6 +58,11 @@ class MessageBlock extends Component {
                         bsStyle="success"
                         text="Send"
                         onClick = {this.send} />
+                    <BtnMain
+                            type="button"
+                            bsStyle="success"
+                            text="Save to drats"
+                            onClick = {this.saveDraft} />
                     <LinkButton  />
                 </FormGroup>
             </div>

@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import Tabs from 'components/tabs'
-import { getDialogs, getContacts } from 'actions'
+import { getDialogs, getContacts, getMail } from 'actions'
 import { connect } from 'react-redux'
 import store from 'store'
 import MessagesBlock from './messages_block.js'
 import ContactsBlock from './contacts_block.js'
+import MessagesList from './messages_list.js'
 
 class Mail extends Component {
     constructor(props) {
         super(props)
-        store.dispatch(getDialogs(props.user.token))
+        store.dispatch(getMail('incoming', 'inbox', this.props.user.token))
         store.dispatch(getContacts(props.user.token))
     }
     
@@ -18,16 +19,25 @@ class Mail extends Component {
             <Tabs 
                 tabs={[
                     {
-                        eventKey: 'messages', 
-                        title: 'Messages', 
-                        content: <MessagesBlock />
+                        eventKey: 'inbox', 
+                        title: 'Inbox',
+                        data: 'inbox',
+                        content: <MessagesList type="inbox" />
+                    }, {
+                        eventKey: 'sent', 
+                        title: 'Sent Mail', 
+                        content: <MessagesList type="sent" />
+                    }, {
+                        eventKey: 'drafts', 
+                        title: 'Drafts', 
+                        content: <MessagesList type="drafts" />
                     }, {
                         eventKey: 'contacts', 
                         title: 'Contacts', 
                         content: <ContactsBlock />
                     }
                 ]}
-                activeKey="messages"
+                activeKey="inbox"
                 tabKey="mail" />
         );
     }
