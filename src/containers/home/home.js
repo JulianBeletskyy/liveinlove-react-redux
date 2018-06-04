@@ -55,7 +55,7 @@ class Home extends Component {
     render() {
         const { token, data } = this.props.user
         return (
-            <div className={style.homeWrapper}>
+            <div className={style.homeWrapper + ' clearfix'}>
                 {
                     ! token
                     ? <PublicHome />
