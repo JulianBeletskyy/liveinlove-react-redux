@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
 import { getMemberships } from 'actions'
-import paypal from 'paypal-rest-sdk'
-const payments = paypal.v1.payments
 
 class Subscription extends Component {
     constructor(props) {
