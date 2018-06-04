@@ -10,8 +10,6 @@
     border-left-width: 0;
     border-style: solid;
     border-color: #333333;
-    position: relative;
-    z-index: 1;
 }
 
 :local(.footer ul) {
