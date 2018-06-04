@@ -12,6 +12,8 @@ import Avatar from 'components/gallery/avatar.js'
 import MainModal from 'components/modal/modal.js'
 import Credits from 'components/membership/credits.js'
 import Plans from 'components/membership/plans.js'
+import PlansTable from 'components/membership/plans_table.js'
+import Subscription from 'components/membership/subscription.js'
 
 class ClientRightMenu extends Component {
 	showPlans = () => {
