@@ -67,6 +67,10 @@
     z-index: 1;
 }
 
+.member-gallery .slick-prev:before, .slick-next:before {
+	color: transparent;
+}
+
 .service-black-wrap {
 	display: table;
     padding-bottom: 40px;
@@ -260,6 +264,14 @@
 	opacity: 0;
 }
 
+.girl-color {
+	color: #f9006e;
+}
+
+.client-color {
+	color: #27C2D3;
+}
+
 .back-shadow {
 	position: absolute;
 	background-color: rgba(0, 0, 0, 0.1);
@@ -281,6 +293,20 @@
 	.fs-48 {
 		font-size: 38px;
 	}
+}
+
+.link-icon {
+	padding-bottom: 10px;
+}
+
+.link-icon i {
+	color: #828282;
+	padding-right: 5px;
+}
+
+.link-icon a {
+	text-decoration: none;
+	color: inherit;
 }
 
 .fs-16 {
@@ -385,6 +411,10 @@
 
 .text-blue {
 	color: #4099FF;
+}
+
+.text-dark-blue {
+	color: #07179E;
 }
 
 .client .divider {
