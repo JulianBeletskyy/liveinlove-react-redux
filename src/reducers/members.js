@@ -27,7 +27,9 @@ const initialState = {
         weight: {},
         match: {},
         interests_value: [],
-        find_ethnicity_value: []
+        find_ethnicity_value: [],
+        gallery: [],
+        age: ''
     }
 }
 
