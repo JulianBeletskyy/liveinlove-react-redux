@@ -11,7 +11,8 @@ const initialState = {
     video: false,
     gallery: false,
     support: false,
-    testimonials: false
+    testimonials: false,
+    message: false,
 }
 
 export default function modals(modals = initialState, action = {}) {
