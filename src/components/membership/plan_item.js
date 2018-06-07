@@ -31,6 +31,7 @@ class PlanItem extends Component {
     }
 
     setPlan = (val) => {
+        this.props.onChoose(val)
         store.dispatch(setPlan(this.props.options.id, val.id, this.props.user.token))
         this.hideValues()
         store.dispatch(toggleModal(false, 'plans'))
