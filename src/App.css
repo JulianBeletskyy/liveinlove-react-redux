@@ -68,6 +68,15 @@
 	opacity: 0.5;
 }
 
+.remove-languages {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+	cursor: pointer;
+	color: #828282;
+}
+
 .testimonials-slider .slick-dots {
 	position: unset;
 	margin-bottom: 10px;

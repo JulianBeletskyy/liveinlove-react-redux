@@ -18,13 +18,12 @@ class SignUpThree extends Component {
 
     getConfirm = () => {
         let error = 1
-        //error *= Validator.check(this.signup.message.value, ['required'], 'Message')
-        //error *= Validator.check(this.props.signup.data.interest, ['reqiredArray'], 'Interests')
         if (error) {
             let data = {
                 about_me: this.signup.about_me.value,
                 like_to_meet: this.signup.like_to_meet.value,
                 interest_id: this.props.signup.data.interest,
+                mobile: this.props.signup.mobile,
                 remember_token: this.props.signup.remember_token
             }
             store.dispatch(sendSignUpFour(data, 4))

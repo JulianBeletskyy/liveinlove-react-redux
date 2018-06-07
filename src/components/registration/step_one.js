@@ -19,56 +19,31 @@ class SignUpOne extends Component {
     getSignUpTwo = (event) => {
         event.preventDefault()
         let error = 1
-        /*for (let k in this.signup.match) {
-            if (error) {
-                error *= Validator.check(this.signup.match[k].value, ['required'], 'Ideal Match')
-            }
-        }
-        error *= Validator.check(this.signup.height.value, ['required'], 'Height')
-        error *= Validator.check(this.signup.weight.value, ['required'], 'Weight')
-        error *= Validator.check(this.signup.eyes.value, ['required'], 'Eyes Color')
-        error *= Validator.check(this.signup.hair_color.value, ['required'], 'Hair Color')
-        error *= Validator.check(this.signup.hair_length.value, ['required'], 'Hair Length')
-        //error *= Validator.check(this.signup.ethnicity.value, ['required'], 'Ethnicity')
-        error *= Validator.check(this.signup.marital.value, ['required'], 'Marital')
-        error *= Validator.check(this.signup.children.value, ['required'], 'Children')
-        error *= Validator.check(this.props.signup.data.find_ethnicity, ['reqiredArray'], 'Ethnicity Match')
 
-        if (this.props.signup.data.role === 'girl') {
-            error *= Validator.check(this.signup.religion.value, ['required'], 'Religions')
-        }*/
-
-        
         if (error) {
             const data = {
-                route: this.props.signup.data.role,
                 height_id: this.signup.height.value,
                 weight_id: this.signup.weight.value,
-
                 body_style: this.signup.body_style.value,
-                eye_wear: this.signup.eye_wear.value,
-                smoke: this.signup.smoke.value,
-                drink: this.signup.drink.value,
-                want_children: this.signup.want_children.value,
-
                 eyes_id: this.signup.eyes.value,
+                eye_wear: this.signup.eye_wear.value,
                 hair_color_id: this.signup.hair_color.value,
                 hair_length_id: this.signup.hair_length.value,
                 ethnicity_id: this.signup.ethnicity.value,
                 marital_status_id: this.signup.marital.value,
                 children: this.signup.children.value,
-                //find_ethnicity: this.props.signup.data.find_ethnicity,
+                smoke_id: this.signup.smoke.value,
+                drink_id: this.signup.drink.value,
+                want_children_id: this.signup.want_children.value,
                 match: {
                     from: this.signup.match.from.value,
                     to: this.signup.match.to.value
                 },
-                interest: this.props.signup.data.interest,
-                //want_children_id: this.signup.want_children ? this.signup.want_children.value : '',
-                religion_id: this.signup.religion.value,
                 remember_token: this.props.signup.remember_token
             }
-            
-            store.dispatch(sendSignUpOne(data))
+
+            const step = this.props.signup.data.role === 'client' ? 7 : 5
+            store.dispatch(sendSignUpOne(data, this.props.signup.data.role, step))
         }
     }
 
@@ -259,7 +234,7 @@ class SignUpOne extends Component {
                                 componentClass="select"
                                 inputRef={ref => { this.signup.smoke = ref }}
                                 options={this.getArray('smoke')}
-                                value={data.smoke}
+                                value={data.smoke_id}
                             />
                         </FormGroup>
                         <FormGroup>
@@ -267,7 +242,7 @@ class SignUpOne extends Component {
                                 componentClass="select"
                                 inputRef={ref => { this.signup.drink = ref }}
                                 options={this.getArray('drink')}
-                                value={data.drink}
+                                value={data.drink_id}
                             />
                         </FormGroup>
                     </Col>
@@ -302,7 +277,7 @@ class SignUpOne extends Component {
                                 componentClass="select"
                                 inputRef={ref => { this.signup.want_children = ref }}
                                 options={this.getArray('want_children')}
-                                value={data.want_children}
+                                value={data.want_children_id}
                             />
                         </FormGroup>
                     </Col>

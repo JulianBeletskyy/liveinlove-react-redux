@@ -61,6 +61,10 @@ class SignUpStart extends Component {
         error *= Validator.check(this.signup.country.value, ['required'], 'Country')
         error *= Validator.check(this.signup.city.value, ['required'], 'City')
         error *= Validator.check(this.signup.terms.checked, ['checked'], 'Terms & Privacy')
+
+        if (this.signup.role === 'girl') {
+            error *= Validator.check(this.signup.mobile.value, ['required'], 'Phone')
+        }
         
         if (error) {
             let data = {
@@ -83,9 +87,10 @@ class SignUpStart extends Component {
                 data.facebook = this.signup.facebook.value
                 data.vk = this.signup.vk.value
                 data.other_social = this.signup.other_social.value
+                data.mobile = this.signup.mobile.value
             }
 
-            const step = this.props.signup.data.role === 'client' ? 1 : 8
+            const step = this.signup.role === 'client' ? 1 : 8
             store.dispatch(sendSignUpStart(data, step))
         }
     }
@@ -420,7 +425,6 @@ class SignUpStart extends Component {
                                 text="Join Us for Free"
                                 orientation="right"
                                 onClick={this.showRegistration} />
-                            <a href="javascript:;" className="skip-link" onClick={this.skip}>Skip</a>
                         </FormGroup>
                         <FormGroup>
                         </FormGroup>

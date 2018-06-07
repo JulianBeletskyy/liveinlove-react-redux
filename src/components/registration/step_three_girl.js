@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup, Row, Col } from 'react-bootstrap'
-import { changeStep, sendSignUpThreeGirl } from 'actions'
+import { changeStep, sendSignUpThreeGirl, sendSignUpFour, setAlert } from 'actions'
 import TextField from 'components/form/inputs/text_field.js'
 import Textarea from 'components/form/inputs/textarea.js'
 import Btn from 'components/form/buttons/button.js'
@@ -22,16 +22,35 @@ class SignUpThreeGirl extends Component {
         event.preventDefault()
         let error = 1
 
-        error *= Validator.check(this.signup.mobile.value, ['required', 'integer'], 'Phone')
+        for (var k in this.signup.match) {
+            if (error) {
+                error *= Validator.check(this.signup.match[k].value, ['required'], 'Future Partner')
+            }
+        }
+
+        error *= Validator.check(this.signup.about_me.value, ['required'], 'About me')
+        error *= Validator.check(this.signup.like_to_meet.value, ['required'], 'Like to meet')
+        error *= Validator.check(this.signup.leisure_time.value, ['required'], 'About Leisure time')
+        error *= Validator.check(this.props.signup.data.interest, ['required'], 'Inter')
+        if (this.props.signup.data.interest.length < 5) {
+            store.dispatch(setAlert('Pick at least 5 interest', 'error'))
+            error = 0
+        }
+        
 
         if (error) {
             let data = {
-                mobile: this.signup.mobile.value,
-                about_children: this.signup.about_children ? this.signup.about_children.value : '',
+                about_me: this.signup.about_me.value,
+                like_to_meet: this.signup.like_to_meet.value,
+                leisure_time: this.signup.leisure_time.value,
+                interest_id: this.props.signup.data.interest,
+                match: {
+                    from: this.signup.match.from.value,
+                    to: this.signup.match.to.value
+                },
                 remember_token: this.props.signup.remember_token
             }
-
-            store.dispatch(sendSignUpThreeGirl(data))
+            store.dispatch(sendSignUpFour(data, 4))
         }
     }
 
@@ -90,7 +109,7 @@ class SignUpThreeGirl extends Component {
                             <Row>
                                 <Col sm={4}>
                                     <div>
-                                        <span className="title">Future Partner Preferred age</span>
+                                        <span className="text-uppercase font-bebas">Future Partner Preferred age</span>
                                     </div>
                                 </Col>
                                 <Col sm={4}>
@@ -130,7 +149,6 @@ class SignUpThreeGirl extends Component {
                                 type="submit"
                                 text="Finish"
                                 orientation="right" />
-                            <a href="javascript:;" className="skip-link" onClick={this.skip}>Skip</a>
                         </div>
 
                     </Col>
@@ -143,12 +161,7 @@ class SignUpThreeGirl extends Component {
 const mapStateToProps = (state) => {
     return {
         signup: {
-            data: {
-                children: state.signup.data.children,
-                mobile: state.signup.data.mobile,
-                about_children: state.signup.data.about_children,
-                match: state.signup.data.match,
-            },
+            data: state.signup.data,
             remember_token: state.signup.remember_token
         },
         options: {

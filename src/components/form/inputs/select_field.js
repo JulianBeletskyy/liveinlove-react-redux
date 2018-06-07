@@ -14,6 +14,9 @@ class SelectField extends Component {
             this.props.city.value = ''
             store.dispatch(setCountry(event.target.value))
         }
+        if (this.props.name === 'language' || this.props.name === 'language_level') {
+            this.props.onChange(event.target.value)
+        }
     }
 
     render() {

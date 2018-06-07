@@ -12,6 +12,11 @@ class SignUpTwoClient extends Component {
     constructor(props) {
         super(props)
         this.signup = {}
+        this.state = {
+            languages: [],
+            current_lang: '',
+            current_level: ''
+        }
     }
 
     getSignUpTwo = (event) => {
@@ -20,16 +25,16 @@ class SignUpTwoClient extends Component {
         
         if (error) {
             const data = {
-                education: this.signup.education.value,
-                field_of_work: this.signup.field_of_work.value,
+                education_id: this.signup.education.value,
                 living_situation: this.signup.living_situation.value,
+                field_of_work: this.signup.field_of_work.value,
                 employment_status: this.signup.employment_status.value,
-                languages: [{}],
+                languages: this.state.languages,
                 remember_token: this.props.signup.remember_token
             }
             const step = this.props.signup.data.role === 'client' ? 2 : 5
 
-            store.dispatch(sendSignUpTwo(data, step, this.props.signup.data.role))
+            store.dispatch(sendSignUpTwo(data, this.props.signup.data.role, step))
         }
     }
 
@@ -49,6 +54,7 @@ class SignUpTwoClient extends Component {
             case 'living_situation': name = 'Living Situation'; break;
             case 'field_of_work': name = 'Field of work'; break;
             case 'primary_language': name = 'Language'; break;
+            case 'language_level': name = 'Level'; break;
             case 'employment_status': name = 'Employment Status'; break;
             
             default: name = ''; break;
@@ -64,6 +70,54 @@ class SignUpTwoClient extends Component {
         return temp
     }
 
+    setLanguage = val => {
+        this.setState({current_lang: val})
+        if (this.state.current_level) {
+            this.addLanguage({lang: val, level: this.state.current_level})
+        }
+    }
+
+    setLanguageLevel = val => {
+        this.setState({current_level: val})
+        if (this.state.current_lang) {
+            this.addLanguage({lang: this.state.current_lang, level: val})
+        }
+    }
+
+    addLanguage = val => {
+        this.setState({
+            languages: [...this.state.languages, val],
+            current_lang: '',
+            current_level: ''
+        })
+
+        this.signup.languages.value = ''
+        this.signup.languages_level.value = ''
+    }
+
+    removeLanguages = index => e => {
+        const languages = this.state.languages.filter((item, i) => i !== index)
+        this.setState({languages})
+    }
+
+    printLanguages = (item, i) => {
+        const lang = this.props.options.primary_language.find(row => row.id === item.lang * 1).value
+        const level = this.props.options.language_level.find(row => row.id === item.level * 1).value
+        return <div key={i} className="position-relative">
+                    <div className="row">
+                        <div className="col-xs-6">
+                            <span>{lang}</span>
+                        </div>
+                        <div className="col-xs-6">
+                            <span>{level}</span>
+                        </div>
+                    </div>
+                    <i className="fas fa-times pull-right remove-languages" onClick={this.removeLanguages(i)}></i>
+                    <hr style={{marginTop: 5}} />
+                </div>
+    }
+
+
     render() {
         const { data } = this.props.signup
         return (
@@ -78,7 +132,7 @@ class SignUpTwoClient extends Component {
                                 componentClass="select"
                                 inputRef={ref => { this.signup.education = ref }}
                                 options={this.getArray('education')}
-                                value={data.education}
+                                value={data.education_id}
                             />
                         </FormGroup>
                         <FormGroup>
@@ -89,7 +143,14 @@ class SignUpTwoClient extends Component {
                                 value={data.field_of_work}
                             />
                         </FormGroup>
-                        
+                        <FormGroup>
+                            <SelectField
+                                componentClass="select"
+                                inputRef={ref => { this.signup.employment_status = ref }}
+                                options={this.getArray('employment_status')}
+                                value={data.employment_status}
+                            />
+                        </FormGroup>
                     </Col>
                     <Col xs={12} md={6}>
                         <FormGroup>
@@ -101,23 +162,34 @@ class SignUpTwoClient extends Component {
                             />
                         </FormGroup>
                         <FormGroup>
-                            <SelectField
-                                componentClass="select"
-                                inputRef={ref => { this.signup.primary_language = ref }}
-                                options={this.getArray('primary_language')}
-                                value={data.primary_language}
-                            />
+                            {this.state.languages.map((item, i) => this.printLanguages(item, i))}
                         </FormGroup>
-                    </Col>
-                    <Col xs={12} md={6}>
-                        <FormGroup>
-                            <SelectField
-                                componentClass="select"
-                                inputRef={ref => { this.signup.employment_status = ref }}
-                                options={this.getArray('employment_status')}
-                                value={data.employment_status}
-                            />
-                        </FormGroup>
+                        {
+                            this.state.languages.length < 5
+                            ?   <FormGroup>
+                                    <Row>
+                                        <Col xs={6}>
+                                            <SelectField
+                                                componentClass="select"
+                                                inputRef={ref => { this.signup.languages = ref }}
+                                                options={this.getArray('primary_language')}
+                                                name="language"
+                                                onChange={this.setLanguage}
+                                                value={this.state.current_lang} />
+                                        </Col>
+                                        <Col xs={6}>
+                                            <SelectField
+                                                componentClass="select"
+                                                inputRef={ref => { this.signup.languages_level = ref }}
+                                                options={this.getArray('language_level')}
+                                                onChange={this.setLanguageLevel}
+                                                name="language_level"
+                                                value={this.state.current_level} />
+                                        </Col>
+                                    </Row>
+                                </FormGroup>
+                            :   ''
+                        }
                     </Col>
                     <Col xs={12} className="text-center">
                         <div className="position-relative">

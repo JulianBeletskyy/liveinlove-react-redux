@@ -432,8 +432,8 @@ export default {
         .then(responseHandler)
     },
 
-    signUpOne(data) {
-        return fetch(config.API_URL + 'signup/' + data.route + '/step/two', {
+    signUpOne(data, role) {
+        return fetch(config.API_URL + 'signup/' + role + '/step/two', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',

@@ -160,20 +160,19 @@ export function sendSignUpStart(data, step) {
     }
 }
 
-export function sendSignUpOne(data) {
+export function sendSignUpOne(data, role, step) {
     return dispatch => {
-        return api.signUpOne(data)
+        return api.signUpOne(data, role)
             .then(json => {
                 if (json.data) {
                     dispatch(setSignUpData(data))
-                    const step = data.route === 'client' ? 7 : 5
                     dispatch(changeStep(step))
                 }
             })
     }
 }
 
-export function sendSignUpTwo(data, step, role) {
+export function sendSignUpTwo(data, role, step) {
     return dispatch => {
         return api.signUpTwo(data, role)
             .then(json => {
@@ -185,7 +184,7 @@ export function sendSignUpTwo(data, step, role) {
     }
 }
 
-export function sendSignUpThree(data, step, role) {
+export function sendSignUpThree(data, role, step) {
     return dispatch => {
         return api.signUpThree(data, role)
             .then(json => {
@@ -203,12 +202,11 @@ export function sendSignUpFour(data, step) {
             .then(json => {
                 if (json.data) {
                     dispatch(setSignUpData(data))
-                    dispatch(setEmptySignUpData())
-                    const emptyImage = ''
-                    const emptyFile = new FormData()
-                    dispatch(saveImage(emptyImage))
-                    dispatch(saveFile(emptyFile))
-                    dispatch(changeStep(step))
+                    dispatch(sendSignUpFinish({
+                        'remember_token': json.data,
+                        'url': window.location.href + 'activate/{hash}',
+                        'device_id': localStorage.getItem('deviceId'),
+                    }))
                 }
             })
     }
@@ -225,6 +223,7 @@ export function sendSignUpFinish(data) {
                     dispatch(saveImage(emptyImage))
                     dispatch(saveFile(emptyFile))
                     dispatch(changeStep(4))
+
                 }
             })
     }

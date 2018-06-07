@@ -29,7 +29,6 @@ class SignUpOneGirl extends Component {
         
         if (error) {
             const data = {
-                route: this.props.signup.data.role,
                 height_id: this.signup.height.value,
                 weight_id: this.signup.weight.value,
                 body_style: this.signup.body_style.value,
@@ -39,8 +38,8 @@ class SignUpOneGirl extends Component {
                 hair_length_id: this.signup.hair_length.value,
                 remember_token: this.props.signup.remember_token
             }
-            
-            store.dispatch(sendSignUpOne(data))
+            const step = this.props.signup.data.role === 'client' ? 7 : 5
+            store.dispatch(sendSignUpOne(data, this.props.signup.data.role, step))
         }
     }
 
@@ -193,7 +192,6 @@ class SignUpOneGirl extends Component {
                                 type="submit"
                                 text="Next"
                                 orientation="right" />
-                            <a href="javascript:;" className="skip-link" onClick={this.skip}>Skip</a>
                         </div>
                     </Col>
                 </Row>

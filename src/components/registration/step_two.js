@@ -25,10 +25,8 @@ class SignUpTwo extends Component {
         let crop
         if (this.refs.cropper) {
             crop = this.refs.cropper.getData()
-        }
-        
+        }        
         let error = 1
-        //error *= Validator.check(this.props.signup.avatar, ['required'], 'Avatar')
 
         if (error) {
             let data = {
@@ -42,7 +40,7 @@ class SignUpTwo extends Component {
 
             const step = this.props.signup.data.role === 'client' ? 3 : 6
             if (crop) {
-                store.dispatch(sendSignUpThree(data, step, this.props.signup.data.role))
+                store.dispatch(sendSignUpThree(data, this.props.signup.data.role, step))
             } else {
                 this.skip()
             }
@@ -142,7 +140,11 @@ class SignUpTwo extends Component {
                         text="Next"
                         orientation="right"
                         onClick={this.getConfirm} />
-                        <a href="javascript:;" className="skip-link" onClick={this.skip}>Skip</a>
+                        {
+                            this.props.signup.data.role === 'client'
+                            ?   <a href="javascript:;" className="skip-link" onClick={this.skip}>Skip</a>
+                            :   ''
+                        }
                 </FormGroup>
             </form>
         );

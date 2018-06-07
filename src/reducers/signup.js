@@ -40,7 +40,8 @@ const initialState = {
         mobile: '',
         facebook: '',
         vk: '',
-        other_social: ''
+        other_social: '',
+        languages: []
     },
     send_email: '',
     remember_token: '',

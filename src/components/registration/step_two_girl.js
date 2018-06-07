@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup, Row, Col } from 'react-bootstrap'
-import { changeStep, sendSignUpTwoGirl } from 'actions'
+import { changeStep, sendSignUpTwoGirl, sendSignUpTwo, setAlert } from 'actions'
 import SelectField from 'components/form/inputs/select_field.js'
 import TextField from 'components/form/inputs/text_field.js'
 import Btn from 'components/form/buttons/button.js'
@@ -12,6 +12,12 @@ import Textarea from 'components/form/inputs/textarea.js'
 class SignUpTwoGirl extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            languages: [],
+            current_lang: '',
+            current_level: ''
+        }
+
         this.signup = {
             child: {}
         }
@@ -33,28 +39,34 @@ class SignUpTwoGirl extends Component {
         error *= Validator.check(this.signup.employment_status.value, ['required'], 'Employment status')
         error *= Validator.check(this.signup.living_situation.value, ['required'], 'Living Situation')
         error *= Validator.check(this.signup.future_goals.value, ['required'], 'Future goals')
-        error *= Validator.check(this.signup.primary_language.value, ['required'], 'Language')
+        
+        if (! this.state.languages.find(item => item.lang == 1)) {
+            store.dispatch(setAlert('English language is requared', 'error'))
+            error = 0
+        }
+        if (! this.state.languages.find(item => item.lang == 2)) {
+            store.dispatch(setAlert('Russian language is requared', 'error'))
+            error = 0
+        }
 
         if (error) {
             let data = {
-                education_id: this.signup.education.value,
-                smoke_id: this.signup.smoke.value,
-                drink_id: this.signup.drink.value,
-                primary_language_id: this.signup.primary_language.value,
-
                 marital_status_id: this.signup.marital.value,
                 children: this.signup.children.value,
-                want_children: this.signup.want_children.value,
-                about_family: this.signup.about_family.value,
-                religions: this.signup.religions.value,
-                field_of_work: this.signup.field_of_work.value,
+                want_children_id: this.signup.want_children.value,
+                smoke_id: this.signup.smoke.value,
+                drink_id: this.signup.drink.value,
+                religion_id: this.signup.religions.value,
+                education_id: this.signup.education.value,
                 employment_status: this.signup.employment_status.value,
                 living_situation: this.signup.living_situation.value,
+                about_family: this.signup.about_family.value,
+                field_of_work: this.signup.field_of_work.value,
+                languages: this.state.languages,
                 future_goals: this.signup.future_goals.value,
-
                 remember_token: this.props.signup.remember_token
             }
-            store.dispatch(sendSignUpTwoGirl(data))
+            store.dispatch(sendSignUpTwo(data, this.props.signup.data.role, 2))
         }
     }
 
@@ -79,8 +91,8 @@ class SignUpTwoGirl extends Component {
             case 'living_situation': name = 'Living Situation'; break;
             case 'employment_status': name = 'Employment Status'; break;
             case 'field_of_work': name = 'Field of work'; break;
-
-            case 'primary_language': name = 'Primary Language'; break;
+            case 'primary_language': name = 'Language'; break;
+            case 'language_level': name = 'Level'; break;
             
             default: name = ''; break;
         }
@@ -105,6 +117,63 @@ class SignUpTwoGirl extends Component {
             temp.push({'value': year, 'name': year})
         }
         return temp
+    }
+
+    printLanguages = (item, i) => {
+        const lang = this.props.options.primary_language.find(row => row.id === item.lang * 1).value
+        const level = this.props.options.language_level.find(row => row.id === item.level * 1).value
+        return <div key={i} className="position-relative">
+                    <div className="row">
+                        <div className="col-xs-6">
+                            <span>{lang}</span>
+                        </div>
+                        <div className="col-xs-6">
+                            <span>{level}</span>
+                        </div>
+                    </div>
+                    <i className="fas fa-times pull-right remove-languages" onClick={this.removeLanguages(i)}></i>
+                    <hr style={{marginTop: 5}} />
+                </div>
+    }
+
+    getLanguageArray = () => {
+        let array = this.getArray('primary_language')
+        array = array.filter(item => ! this.state.languages.find(row => row.lang == item.value))
+        if (this.state.languages.length < 2) {
+            array = array.filter(item => item.value == 1 || item.value == 2 || ! item.value)
+        }
+
+        return array
+    }
+
+    setLanguage = val => {
+        this.setState({current_lang: val})
+        if (this.state.current_level) {
+            this.addLanguage({lang: val, level: this.state.current_level})
+        }
+    }
+
+    setLanguageLevel = val => {
+        this.setState({current_level: val})
+        if (this.state.current_lang) {
+            this.addLanguage({lang: this.state.current_lang, level: val})
+        }
+    }
+
+    addLanguage = val => {
+        this.setState({
+            languages: [...this.state.languages, val],
+            current_lang: '',
+            current_level: ''
+        })
+
+        this.signup.languages.value = ''
+        this.signup.languages_level.value = ''
+    }
+
+    removeLanguages = index => e => {
+        const languages = this.state.languages.filter((item, i) => i !== index)
+        this.setState({languages})
     }
     
 
@@ -131,7 +200,7 @@ class SignUpTwoGirl extends Component {
                                 options={this.getArray('children')}
                                 value={data.children} />
                         </FormGroup>
-                        <FormGroup>
+                        {/*<FormGroup>
                             <Row style={{marginBottom: -8}}>
                                 <Col sm={4}>
                                     <SelectField
@@ -155,7 +224,7 @@ class SignUpTwoGirl extends Component {
                                         value={data.child.year} />
                                 </Col>
                             </Row>
-                        </FormGroup>
+                        </FormGroup>*/}
                         <FormGroup>
                             <SelectField
                                 componentClass="select"
@@ -222,12 +291,35 @@ class SignUpTwoGirl extends Component {
                                 value={data.living_situation} />
                         </FormGroup>
                         <FormGroup>
-                            <SelectField
-                                componentClass="select"
-                                inputRef={ref => { this.signup.primary_language = ref }}
-                                options={this.getArray('primary_language')}
-                                value={data.primary_language} />
+                            {this.state.languages.map((item, i) => this.printLanguages(item, i))}
                         </FormGroup>
+                        {
+                            this.state.languages.length < 5
+                            ?   <FormGroup>
+                                    <Row>
+                                        <Col xs={6}>
+                                            <SelectField
+                                                componentClass="select"
+                                                inputRef={ref => { this.signup.languages = ref }}
+                                                options={this.getLanguageArray()}
+                                                name="language"
+                                                onChange={this.setLanguage}
+                                                value={this.state.current_lang} />
+                                        </Col>
+                                        <Col xs={6}>
+                                            <SelectField
+                                                componentClass="select"
+                                                inputRef={ref => { this.signup.languages_level = ref }}
+                                                options={this.getArray('language_level')}
+                                                onChange={this.setLanguageLevel}
+                                                name="language_level"
+                                                value={this.state.current_level} />
+                                        </Col>
+                                    </Row>
+                                </FormGroup>
+                            :   ''
+                        }
+                            
                         <FormGroup>
                             <Textarea
                                 inputRef={ref => { this.signup.future_goals = ref }}
@@ -246,7 +338,6 @@ class SignUpTwoGirl extends Component {
                                 type="submit"
                                 text="Next"
                                 orientation="right" />
-                            <a href="javascript:;" className="skip-link" onClick={this.skip}>Skip</a>
                         </div>
                     </Col>
                 </Row>
