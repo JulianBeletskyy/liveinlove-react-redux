@@ -422,9 +422,7 @@ class EditProfile extends Component {
                                     </Col>
                                 </Row>
                             </FormGroup>
-                            <FormGroup>
-                                <Row><Col sm={12}>{ethnicities.map((ethnicity, i) => this.printEthnicity(ethnicity, i))}</Col></Row>
-                            </FormGroup>
+                            
                         </div>
                     </Col>
                     <Col sm={12}>

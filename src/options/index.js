@@ -17,7 +17,15 @@ export default class Options {
         smoke: () => {store.dispatch(getOptions('smoke'))},
         primary_language: () => {store.dispatch(getOptions('primary_language'))},
         language_level: () => {store.dispatch(getOptions('language_level'))},
-        drink: () => {store.dispatch(getOptions('drink'))}
+        drink: () => {store.dispatch(getOptions('drink'))},
+        body_style: () => {store.dispatch(getOptions('body_style'))},
+        children: () => {store.dispatch(getOptions('children'))},
+        smoke: () => {store.dispatch(getOptions('smoke'))},
+        want_children: () => {store.dispatch(getOptions('want_children'))},
+        eye_wear: () => {store.dispatch(getOptions('eye_wear'))},
+        living_situation: () => {store.dispatch(getOptions('living_situation'))},
+        field_of_work: () => {store.dispatch(getOptions('field_of_work'))},
+        employment_status: () => {store.dispatch(getOptions('employment_status'))},
     }
 
 	static getAll() {

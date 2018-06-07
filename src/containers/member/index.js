@@ -122,7 +122,6 @@ class Member extends Component {
     render() {
         const member = this.props.members.data
         const { message } = this.props.modals
-        console.log(member)
         return (
             <div className={style.homeWrapper}>
                 <div className="pt-66 bg-blue">
@@ -382,18 +381,12 @@ class Member extends Component {
                                         </div>
                                         <div>
                                             <h4 className="text-dark-blue"><strong>More about me</strong></h4>
-                                            <div>{member.message}</div>
+                                            <div>{member.about_me}</div>
                                         </div>
                                         <div>
                                             <h4 className="text-dark-blue"><strong>The one I would like to meet</strong></h4>
                                             <div>
-                                                I'm looking for someone to share my life with. I intend to find
-                                                someone to marry, have a child with, and hopefully spend the
-                                                rest of my life with. I'm attracted to men who are not afraid to
-                                                stand up for themselves, yet who are also not afraid to be
-                                                vulnerable. I'm attracted to intelligent, educated men who
-                                                have things to say and who are not afraid to express their
-                                                opinions. If you smile a lot, you will melt my heart.
+                                                {member.like_to_meet}
                                             </div>
                                         </div>
                                         {
@@ -402,19 +395,19 @@ class Member extends Component {
                                                     <div>
                                                         <h4 className="text-dark-blue"><strong>More about my leisure time</strong></h4>
                                                         <div>
-                                                            My leisure time I spend with my friends: go shopping, clubs, dance, and any other active time spending.
+                                                            {member.leisure_time}
                                                         </div>
                                                     </div>
                                                     <div>
                                                         <h4 className="text-dark-blue"><strong>About my family</strong></h4>
                                                         <div>
-                                                            My family is very small. I have only mother and granny, but they mean a lot to me. I live separately from them, only with a cat.
+                                                            {member.about_family}
                                                         </div>
                                                     </div>
                                                     <div>
                                                         <h4 className="text-dark-blue"><strong>My Future Goals</strong></h4>
                                                         <div>
-                                                            I'm not particularly original in this matter. I just want to find my own destiny, soul mate, build a family with him and live happily together.
+                                                            {member.future_goals}
                                                         </div>
                                                     </div>
                                                 </div>

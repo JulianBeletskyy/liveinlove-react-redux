@@ -3,7 +3,7 @@ import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup, Col, Radio, Row } from 'react-bootstrap'
 import Validator from 'validate'
-import { sendSignUpStart, setSignUpData, saveImage, saveFile, setEmptyData, toggleRegistration } from 'actions'
+import { sendSignUpStart, setSignUpData, saveImage, saveFile, setEmptyData, toggleRegistration, getMyCountry, changeStep } from 'actions'
 import { TextField, SelectField, CheckboxField, Autocomplete } from 'components/form/inputs'
 import Btn from 'components/form/buttons/button.js'
 //import BtnGoogle from 'components/form/buttons/button_google.js'
@@ -20,6 +20,10 @@ class SignUpStart extends Component {
         }
         this.role = {}
         store.dispatch(setEmptyData())
+
+        this.state = {
+            gender: 'client'
+        }
     }
 
     showRegistration = () => {
@@ -57,9 +61,13 @@ class SignUpStart extends Component {
         error *= Validator.check(this.signup.country.value, ['required'], 'Country')
         error *= Validator.check(this.signup.city.value, ['required'], 'City')
         error *= Validator.check(this.signup.terms.checked, ['checked'], 'Terms & Privacy')
+
+        if (this.signup.role === 'girl') {
+            error *= Validator.check(this.signup.mobile.value, ['required'], 'Phone')
+        }
         
         if (error) {
-            const data = {
+            let data = {
                 first_name: this.signup.first_name.value,
                 last_name: this.signup.last_name.value,
                 role: this.signup.role,
@@ -74,7 +82,16 @@ class SignUpStart extends Component {
                 password: this.signup.password.value,
                 terms: this.signup.terms.checked
             }
-            store.dispatch(sendSignUpStart(data))
+
+            if (this.signup.role === 'girl') {
+                data.facebook = this.signup.facebook.value
+                data.vk = this.signup.vk.value
+                data.other_social = this.signup.other_social.value
+                data.mobile = this.signup.mobile.value
+            }
+
+            const step = this.signup.role === 'client' ? 1 : 8
+            store.dispatch(sendSignUpStart(data, step))
         }
     }
 
@@ -120,6 +137,9 @@ class SignUpStart extends Component {
 
     toggleRole = () => {
         this.signup.role = this.role.female.checked ? 'girl' : 'client'
+        this.setState({
+            gender: this.signup.role
+        })
     }
 
     monthArray = () => {
@@ -178,13 +198,26 @@ class SignUpStart extends Component {
 
     componentDidMount() {
         //this.googleSignUp()
+        
+    }
+
+    componentDidUpdate() {
+        if (!this.signup.country.value) {
+            this.signup.country.value = this.props.signup.data.country
+        }
+    }
+
+    skip = () => {
+        const step = this.props.signup.data.role === 'client' ? 1 : 8
+        store.dispatch(changeStep(step))
     }
 
     render() {
-        const { role, first_name, last_name, email, password, birth, country, city, terms } = this.props.signup.data
+        const { role, first_name, last_name, email, password, birth, country, city, terms, mobile, facebook, vk, other_social } = this.props.signup.data
         const { showRegistration } = this.props.signup
         const activeClass = showRegistration ? style.active : ''
         const col = showRegistration ? 6 : 12
+
         return (
             <form noValidate={true}>
                 <Row>
@@ -237,7 +270,7 @@ class SignUpStart extends Component {
                                         inputRef={ref => { this.signup.last_name = ref }}
                                         name="Last Name"
                                         value={last_name}
-                                        lastname={true}
+                                        description={'* Your last name is not visible.'}
                                         key="last_name" />
                                 </FormGroup>
                             </Col>
@@ -256,37 +289,83 @@ class SignUpStart extends Component {
                                 inputRef={ref => { this.signup.password = ref }}
                                 value={password} />
                         </FormGroup>
+                        {
+                            this.state.gender === 'girl'
+                            ?   <div>
+                                    <FormGroup>
+                                        <Row>
+                                            <Col sm={4}>
+                                                <SelectField
+                                                    componentClass="select"
+                                                    inputRef={ref => { this.signup.birth.month = ref }}
+                                                    options={this.monthArray()}
+                                                    value={birth.month}
+                                                />
+                                            </Col>
+                                            <Col sm={4}>
+                                                <SelectField
+                                                    componentClass="select"
+                                                    inputRef={ref => { this.signup.birth.day = ref }}
+                                                    options={this.dayArray()}
+                                                    value={birth.day}
+                                                />
+                                            </Col>
+                                            <Col sm={4}>
+                                                <SelectField
+                                                    componentClass="select"
+                                                    inputRef={ref => { this.signup.birth.year = ref }}
+                                                    options={this.yearArray()}
+                                                    value={birth.year}
+                                                />
+                                            </Col>
+                                        </Row>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <TextField
+                                            type="text"
+                                            placeholder="Phone"
+                                            inputRef={ref => { this.signup.mobile = ref }}
+                                            value={mobile} />
+                                    </FormGroup>
+                                </div>
+                            :   ''
+                        }
+                            
                     </Col>
                     <Col xs={12} md={6}>
                         <div className={style.rightPart + ' ' + activeClass}>
-                            <FormGroup>
-                                <Row>
-                                    <Col sm={4}>
-                                        <SelectField
-                                            componentClass="select"
-                                            inputRef={ref => { this.signup.birth.month = ref }}
-                                            options={this.monthArray()}
-                                            value={birth.month}
-                                        />
-                                    </Col>
-                                    <Col sm={4}>
-                                        <SelectField
-                                            componentClass="select"
-                                            inputRef={ref => { this.signup.birth.day = ref }}
-                                            options={this.dayArray()}
-                                            value={birth.day}
-                                        />
-                                    </Col>
-                                    <Col sm={4}>
-                                        <SelectField
-                                            componentClass="select"
-                                            inputRef={ref => { this.signup.birth.year = ref }}
-                                            options={this.yearArray()}
-                                            value={birth.year}
-                                        />
-                                    </Col>
-                                </Row>
-                            </FormGroup>
+                            {
+                                this.state.gender === 'client'
+                                ?   <FormGroup>
+                                        <Row>
+                                            <Col sm={4}>
+                                                <SelectField
+                                                    componentClass="select"
+                                                    inputRef={ref => { this.signup.birth.month = ref }}
+                                                    options={this.monthArray()}
+                                                    value={birth.month}
+                                                />
+                                            </Col>
+                                            <Col sm={4}>
+                                                <SelectField
+                                                    componentClass="select"
+                                                    inputRef={ref => { this.signup.birth.day = ref }}
+                                                    options={this.dayArray()}
+                                                    value={birth.day}
+                                                />
+                                            </Col>
+                                            <Col sm={4}>
+                                                <SelectField
+                                                    componentClass="select"
+                                                    inputRef={ref => { this.signup.birth.year = ref }}
+                                                    options={this.yearArray()}
+                                                    value={birth.year}
+                                                />
+                                            </Col>
+                                        </Row>
+                                    </FormGroup>
+                                :   ''
+                            }
                             <FormGroup>
                                 <SelectField
                                     componentClass="select"
@@ -302,6 +381,34 @@ class SignUpStart extends Component {
                                     placeholder="City"
                                     value={city} />
                             </FormGroup>
+                            {
+                                this.state.gender === 'girl'
+                                ?   <div>
+                                        <FormGroup>
+                                            <TextField
+                                                type="text"
+                                                placeholder="Facebook"
+                                                inputRef={ref => { this.signup.facebook = ref }}
+                                                value={facebook} />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <TextField
+                                                type="text"
+                                                placeholder="VK"
+                                                inputRef={ref => { this.signup.vk = ref }}
+                                                value={vk} />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <TextField
+                                                type="text"
+                                                placeholder="Other social media"
+                                                inputRef={ref => { this.signup.other_social = ref }}
+                                                value={other_social} />
+                                        </FormGroup>
+                                    </div>
+                                :   ''
+                            }  
+
                         </div>
                     </Col>
                     <Col xs={12} className="text-center">
@@ -317,8 +424,7 @@ class SignUpStart extends Component {
                                 bsStyle="success"
                                 text="Join Us for Free"
                                 orientation="right"
-                                onClick={this.showRegistration}
-                            />
+                                onClick={this.showRegistration} />
                         </FormGroup>
                         <FormGroup>
                         </FormGroup>
@@ -356,7 +462,8 @@ const mapStateToProps = (state) => {
                 birth: state.signup.data.birth,
                 country: state.signup.data.country,
                 city: state.signup.data.city,
-                terms: state.signup.data.terms
+                terms: state.signup.data.terms,
+                mobile: state.signup.data.mobile
             },
             showRegistration: state.signup.showRegistration
         },

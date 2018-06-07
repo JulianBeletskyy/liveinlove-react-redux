@@ -31,19 +31,22 @@ const PrevArrow = (props) => {
 }
 
 class MemberGallery extends Component {
-    printItems = (item, i) =>  <div 
-                                    key={i}
-                                    className="pointer"
-                                    onClick={this.props.onClick(i)}
-                                    style={{
-                                            backgroundImage: `url(${item.src})`,
-                                            backgroundSize: 'cover',
-                                            backgroundPosition: 'center',
-                                            height: 100
-                                        }}>
-                                </div>
+    printItems = (item, i) =>  {
+        return  <div 
+                    key={i}
+                    className="pointer"
+                    onClick={this.props.onClick(i)}
+                    style={{
+                            backgroundImage: `url(${item.src})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            height: 100
+                        }}>
+                </div>
+    }
     render() {
-    	console.log(this.props)
+        const arrayLength = this.props.list.length <= 3 ? 3 - this.props.list.length : 0
+        const fakeList = Array.apply(null, Array(arrayLength))
         const settings = {
             slidesToShow: 3,
             dots: false,
@@ -57,6 +60,7 @@ class MemberGallery extends Component {
         	<div className="member-gallery">
 	            <Slider {...settings}>
 	                { this.props.list.map((item, i) => this.printItems(item, i))}
+                    {fakeList.map((item, i) => <div key={i}></div>)}
 	            </Slider>
 			</div>
         );
