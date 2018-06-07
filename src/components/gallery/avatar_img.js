@@ -11,7 +11,7 @@ class AvatarImg extends Component {
                     <span className={style.span}>{this.props.textHover}</span>
                 </div>
                 <img
-                    src={this.props.src}
+                    src={this.props.src || '/assets/img/default-avatar.jpg'}
                     className={style.img}
                     alt="" />
             </div>

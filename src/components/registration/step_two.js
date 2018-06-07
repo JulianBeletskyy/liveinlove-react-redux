@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
-import { changeStep, sendSignUpTwo, saveImage,  saveFile} from 'actions'
+import { changeStep, sendSignUpTwo, saveImage,  saveFile, sendSignUpThree} from 'actions'
 import { FormGroup, Row, Col } from 'react-bootstrap'
 import Btn from 'components/form/buttons/button.js'
 import BtnFacebook from 'components/form/buttons/button_facebook.js'
@@ -22,23 +22,34 @@ class SignUpTwo extends Component {
     }
 
     getConfirm = () => {
-        let crop = this.refs.cropper.getData()
+        let crop
+        if (this.refs.cropper) {
+            crop = this.refs.cropper.getData()
+        }        
         let error = 1
-        error *= Validator.check(this.props.signup.avatar, ['required'], 'Avatar')
-        
+
         if (error) {
             let data = {
-                width: crop.width.toFixed(),
-                height: crop.height.toFixed(),
-                x: crop.x.toFixed(),
-                y: crop.y.toFixed(),
+                width: crop ? crop.width.toFixed() : '',
+                height: crop ? crop.height.toFixed() : '',
+                x: crop ? crop.x.toFixed() : '',
+                y: crop ? crop.y.toFixed() : '',
                 avatar: this.props.signup.avatar,
                 remember_token: this.props.signup.remember_token
             }
 
             const step = this.props.signup.data.role === 'client' ? 3 : 6
-            store.dispatch(sendSignUpTwo(data, step))
+            if (crop) {
+                store.dispatch(sendSignUpThree(data, this.props.signup.data.role, step))
+            } else {
+                this.skip()
+            }
         }
+    }
+
+    skip = () => {
+        const step = this.props.signup.data.role === 'client' ? 3 : 6
+        store.dispatch(changeStep(step))
     }
 
     facebookSignUp = () => {
@@ -118,7 +129,7 @@ class SignUpTwo extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
-                <FormGroup className="text-center">
+                <FormGroup className="text-center position-relative">
                     <Btn
                         type="button"
                         text="Prev"
@@ -129,6 +140,11 @@ class SignUpTwo extends Component {
                         text="Next"
                         orientation="right"
                         onClick={this.getConfirm} />
+                        {
+                            this.props.signup.data.role === 'client'
+                            ?   <a href="javascript:;" className="skip-link" onClick={this.skip}>Skip</a>
+                            :   ''
+                        }
                 </FormGroup>
             </form>
         );

@@ -44,7 +44,7 @@ export default class Validator {
     }
 
     static alphabet(value, name) {
-        let letters = /^[A-Za-z]+$/
+        let letters = /^[\sA-Za-z]+$/
         if (value.match(letters)) {
             return 1
         }

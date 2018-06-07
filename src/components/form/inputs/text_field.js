@@ -45,7 +45,7 @@ class TextField extends Component {
                     onChange={this.handleChange}
                     defaultValue={this.props.value} />
                 {this.props.label ? '' : <div className={className}>{this.props.placeholder}</div>}
-                {this.props.lastname ? <span className={style.lastname}>* Your last name is not visible.</span> : ''}
+                {this.props.description ? <span className={style.lastname}>{this.props.description}</span> : ''}
             </div>
         );
     }
