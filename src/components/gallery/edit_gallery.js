@@ -18,23 +18,21 @@ class EditGallery extends Component {
     }
 
     crop = () => {
-        if (this.refs.cropper) {
-            let crop = this.refs.cropper.getData()
-            let data = {
-                width: crop.width.toFixed(),
-                height: crop.height.toFixed(),
-                x: crop.x.toFixed(),
-                y: crop.y.toFixed(),
-                avatar: this.props.user.data.temp_avatar
-            }
-            
-            store.dispatch(setClientInfo({cropped_data: data}))
+        let crop = this.refs.cropper.getData()
+
+        let data = {
+            width: crop.width.toFixed(),
+            height: crop.height.toFixed(),
+            x: crop.x.toFixed(),
+            y: crop.y.toFixed(),
+            avatar: this.props.user.data.temp_avatar
         }
+        store.dispatch(setClientInfo({cropped_data: data}))
     }
 
     setAvatar = (e) => {
         store.dispatch(setClientInfo({temp_avatar: e.src}))
-        this.crop()
+        //this.crop()
     }
 
     render() {

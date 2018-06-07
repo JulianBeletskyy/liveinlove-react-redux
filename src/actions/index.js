@@ -136,7 +136,17 @@ export function setEmptySignUpData() {
     }
 }
 
-export function sendSignUpStart(data) {
+export function getMyCountry() {
+    return dispatch => {
+        return api.getMyCountry()
+        .then(json => {
+            dispatch(setSignUpData({country: json.countryCode}))
+            dispatch(setCountry(json.countryCode))
+        })
+    }
+}
+
+export function sendSignUpStart(data, step) {
     return dispatch => {
         return api.signUpStart(data)
         .then(json => {
@@ -144,7 +154,7 @@ export function sendSignUpStart(data) {
                 dispatch(setTempToken(json.data))
                 dispatch(setSignUpData(data))
                 dispatch(setSendEmail(data.email))
-                dispatch(changeStep(1))
+                dispatch(changeStep(step))
             }
         })
     }
@@ -156,58 +166,49 @@ export function sendSignUpOne(data) {
             .then(json => {
                 if (json.data) {
                     dispatch(setSignUpData(data))
-                    const step = data.route === 'client' ? 2 : 5
+                    const step = data.route === 'client' ? 7 : 5
                     dispatch(changeStep(step))
                 }
             })
     }
 }
 
-export function sendSignUpTwo(data, step) {
+export function sendSignUpTwo(data, step, role) {
     return dispatch => {
-        return api.signUpTwo(data)
+        return api.signUpTwo(data, role)
             .then(json => {
                 if (json.data) {
+                    dispatch(setSignUpData(data))
                     dispatch(changeStep(step))
                 }
             })
     }
 }
 
-export function sendSignUpTwoGirl(data) {
+export function sendSignUpThree(data, step, role) {
     return dispatch => {
-        return api.signUpTwoGirl(data)
+        return api.signUpThree(data, role)
             .then(json => {
                 if (json.data) {
                     dispatch(setSignUpData(data))
-                    dispatch(changeStep(2))
+                    dispatch(changeStep(step))
                 }
             })
     }
 }
 
-export function sendSignUpThree(data) {
+export function sendSignUpFour(data, step) {
     return dispatch => {
-        return api.signUpThree(data)
-            .then(json => {
-                if (json.data) {
-                    dispatch(sendSignUpFinish({
-                        'remember_token': json.data,
-                        'url': window.location.href + 'activate/{hash}',
-                        'device_id': localStorage.getItem('deviceId'),
-                    }))
-                }
-            })
-    }
-}
-
-export function sendSignUpThreeGirl(data) {
-    return dispatch => {
-        return api.signUpThreeGirl(data)
+        return api.signUpFour(data)
             .then(json => {
                 if (json.data) {
                     dispatch(setSignUpData(data))
-                    dispatch(changeStep(3))
+                    dispatch(setEmptySignUpData())
+                    const emptyImage = ''
+                    const emptyFile = new FormData()
+                    dispatch(saveImage(emptyImage))
+                    dispatch(saveFile(emptyFile))
+                    dispatch(changeStep(step))
                 }
             })
     }
@@ -228,6 +229,50 @@ export function sendSignUpFinish(data) {
             })
     }
 }
+
+
+/*export function sendSignUpThree(data) {
+    return dispatch => {
+        return api.signUpThree(data)
+            .then(json => {
+                if (json.data) {
+                    dispatch(sendSignUpFinish({
+                        'remember_token': json.data,
+                        'url': window.location.href + 'activate/{hash}',
+                        'device_id': localStorage.getItem('deviceId'),
+                    }))
+                }
+            })
+    }
+}*/
+
+export function sendSignUpTwoGirl(data) {
+    return dispatch => {
+        return api.signUpTwoGirl(data)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setSignUpData(data))
+                    dispatch(changeStep(2))
+                }
+            })
+    }
+}
+
+
+
+export function sendSignUpThreeGirl(data) {
+    return dispatch => {
+        return api.signUpThreeGirl(data)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setSignUpData(data))
+                    dispatch(changeStep(3))
+                }
+            })
+    }
+}
+
+
 
 export function setSendEmail(value) {
     return {
@@ -1029,6 +1074,9 @@ export function getOptions(type) {
             .then(json => {
                 if (json.data) {
                     dispatch(setOptions(json.data, type))
+                    if (type === 'countries') {
+                        dispatch(getMyCountry())
+                    }
                 }
             })
     }

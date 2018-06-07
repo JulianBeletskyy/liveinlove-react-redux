@@ -26,6 +26,17 @@
 	cursor: pointer;
 }
 
+.position-relative {
+	position: relative;
+}
+
+.skip-link {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
 @media (min-width: 768px) {
 	.navbar-right {
 		margin-right: -20px;

@@ -4,10 +4,11 @@ import store from 'store'
 import { FormGroup, Col, Row } from 'react-bootstrap'
 import BtnMain from 'components/form/buttons/main_button.js'
 import Btn from 'components/form/buttons/button.js'
-import { changeStep, sendSignUpThree } from 'actions'
+import { changeStep, sendSignUpThree, sendSignUpFour } from 'actions'
 import BlockSmall from 'components/blocks/block_small.js'
 import Textarea from 'components/form/inputs/textarea.js'
 import Validator from 'validate'
+import TextField from 'components/form/inputs/text_field.js'
 
 class SignUpThree extends Component {
     constructor(props) {
@@ -17,15 +18,16 @@ class SignUpThree extends Component {
 
     getConfirm = () => {
         let error = 1
-        error *= Validator.check(this.signup.message.value, ['required'], 'Message')
-        error *= Validator.check(this.props.signup.data.interest, ['reqiredArray'], 'Interests')
+        //error *= Validator.check(this.signup.message.value, ['required'], 'Message')
+        //error *= Validator.check(this.props.signup.data.interest, ['reqiredArray'], 'Interests')
         if (error) {
             let data = {
-                message: this.signup.message.value,
+                about_me: this.signup.about_me.value,
+                like_to_meet: this.signup.like_to_meet.value,
                 interest_id: this.props.signup.data.interest,
                 remember_token: this.props.signup.remember_token
             }
-            store.dispatch(sendSignUpThree(data))
+            store.dispatch(sendSignUpFour(data, 4))
         }
     }
 
@@ -46,12 +48,31 @@ class SignUpThree extends Component {
                     <Col sm={12}>
                         <FormGroup>
                             <Textarea
-                                inputRef={ref => { this.signup.message = ref }}
-                                value={data.message}
-                                placeholder="Message" />
+                                inputRef={ref => { this.signup.about_me = ref }}
+                                value={data.about_me}
+                                placeholder="More about me"
+                                label={true} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Textarea
+                                inputRef={ref => { this.signup.like_to_meet = ref }}
+                                value={data.like_to_meet}
+                                placeholder="The one I would like to meet"
+                                label={true} />
                         </FormGroup>
                         <h4 className="font-bebas">Interests</h4>
                         { interests.map((interest, i) => this.printInterest(interest, i)) }
+                        <Row>
+                            <Col sm={6}>
+                                <FormGroup>
+                                    <TextField
+                                        type="text"
+                                        placeholder="Phone"
+                                        inputRef={ref => { this.signup.mobile = ref }}
+                                        value={data.mobile} />
+                                </FormGroup>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
                 <FormGroup className="text-center">

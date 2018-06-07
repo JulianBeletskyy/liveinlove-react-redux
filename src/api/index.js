@@ -410,6 +410,16 @@ export default {
         .then(responseHandler)
     },
 
+    getMyCountry() {
+        return fetch('http://ip-api.com/json', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+            },
+        })
+        .then(responseHandler)
+    },
+
     signUpStart(data) {
         return fetch(config.API_URL + 'signup/start', {
             method: 'post',
@@ -423,7 +433,7 @@ export default {
     },
 
     signUpOne(data) {
-        return fetch(config.API_URL + 'signup/' + data.route + '/step/one', {
+        return fetch(config.API_URL + 'signup/' + data.route + '/step/two', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -434,7 +444,99 @@ export default {
         .then(responseHandler)
     },
 
-    signUpTwo(data) {
+    signUpTwo(data, role) {
+        return fetch(config.API_URL + 'signup/' + role + '/step/three', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+    },
+
+
+    signUpThree(data, role) {
+        let formData = new FormData()
+        formData.append('avatar', data.avatar)
+        formData.append('height', data.height)
+        formData.append('width', data.width)
+        formData.append('x', data.x)
+        formData.append('y', data.y)
+        formData.append('remember_token', data.remember_token)
+
+        return fetch(config.API_URL + 'signup/' + role + '/step/four', {
+            method: 'post',
+            
+            body: formData
+        })
+        .then(responseHandler)
+    },
+
+    signUpFour(data) {
+        return fetch(config.API_URL + 'signup/last', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+    },
+
+    signUpFinish(data) {
+        return fetch(config.API_URL + 'signup/finish', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+    },
+
+    /*signUpTwoGirl(data) {
+        return fetch(config.API_URL + 'signup/girl/step/two', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+    },*/
+
+    /*signUpThree(data) {
+        return fetch(config.API_URL + 'signup/last', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+    },*/
+
+    signUpThreeGirl(data) {
+        return fetch(config.API_URL + 'signup/girl/step/four', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+    },
+
+    
+
+    /*signUpTwo(data) {
         let formData = new FormData()
         formData.append('avatar', data.avatar)
         formData.append('height', data.height)
@@ -445,13 +547,11 @@ export default {
 
         return fetch(config.API_URL + 'signup/client/step/two', {
             method: 'post',
-            /*headers: {
-                //'Content-Type': 'multipart/form-data'
-            },*/
+            
             body: formData
         })
         .then(responseHandler)
-    },
+    },*/
 
     addToGallery(data, token) {
         let formData = new FormData()
@@ -519,53 +619,7 @@ export default {
         .then(responseHandler)
     },
 
-    signUpTwoGirl(data) {
-        return fetch(config.API_URL + 'signup/girl/step/two', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(responseHandler)
-    },
-
-    signUpThree(data) {
-        return fetch(config.API_URL + 'signup/last', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(responseHandler)
-    },
-
-    signUpThreeGirl(data) {
-        return fetch(config.API_URL + 'signup/girl/step/four', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(responseHandler)
-    },
-
-    signUpFinish(data) {
-        return fetch(config.API_URL + 'signup/finish', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(responseHandler)
-    },
+    
 
     getOptions(type) {
         return fetch(config.API_URL + type, {

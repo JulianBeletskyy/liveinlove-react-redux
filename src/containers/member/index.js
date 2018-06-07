@@ -122,7 +122,6 @@ class Member extends Component {
     render() {
         const member = this.props.members.data
         const { message } = this.props.modals
-        console.log(member)
         return (
             <div className={style.homeWrapper}>
                 <div className="pt-66 bg-blue">

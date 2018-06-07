@@ -15,6 +15,7 @@ const initialState = {
         terms: true,
         birth: {},
         match: {},
+        child: {},
         height_id: '',
         weight_id: '',
         eyes_id: '',
@@ -36,7 +37,10 @@ const initialState = {
         english_language_id: '',
         russian_language_id: '',
         about_children: '',
-        mobile: ''
+        mobile: '',
+        facebook: '',
+        vk: '',
+        other_social: ''
     },
     send_email: '',
     remember_token: '',
@@ -66,6 +70,7 @@ export default function signup(signup = initialState, action = {}) {
                 send_email: action.value
             });
         case types.SET_EMPTY_SIGNUP_DATA:
+            console.log(signup.empty_data)
             return Object.assign({}, signup, {
                 data: Object.assign({}, signup.empty_data, {})
             });

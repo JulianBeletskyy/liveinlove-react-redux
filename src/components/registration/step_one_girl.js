@@ -8,7 +8,7 @@ import Btn from 'components/form/buttons/button.js'
 import BlockSmall from 'components/blocks/block_small.js'
 import Validator from 'validate'
 
-class SignUpOne extends Component {
+class SignUpOneGirl extends Component {
     constructor(props) {
         super(props)
         this.signup = {
@@ -19,52 +19,24 @@ class SignUpOne extends Component {
     getSignUpTwo = (event) => {
         event.preventDefault()
         let error = 1
-        /*for (let k in this.signup.match) {
-            if (error) {
-                error *= Validator.check(this.signup.match[k].value, ['required'], 'Ideal Match')
-            }
-        }
         error *= Validator.check(this.signup.height.value, ['required'], 'Height')
         error *= Validator.check(this.signup.weight.value, ['required'], 'Weight')
         error *= Validator.check(this.signup.eyes.value, ['required'], 'Eyes Color')
+        error *= Validator.check(this.signup.eye_wear.value, ['required'], 'Eyes Wear')
         error *= Validator.check(this.signup.hair_color.value, ['required'], 'Hair Color')
         error *= Validator.check(this.signup.hair_length.value, ['required'], 'Hair Length')
-        //error *= Validator.check(this.signup.ethnicity.value, ['required'], 'Ethnicity')
-        error *= Validator.check(this.signup.marital.value, ['required'], 'Marital')
-        error *= Validator.check(this.signup.children.value, ['required'], 'Children')
-        error *= Validator.check(this.props.signup.data.find_ethnicity, ['reqiredArray'], 'Ethnicity Match')
-
-        if (this.props.signup.data.role === 'girl') {
-            error *= Validator.check(this.signup.religion.value, ['required'], 'Religions')
-        }*/
-
+        error *= Validator.check(this.signup.body_style.value, ['required'], 'Body style')
         
         if (error) {
             const data = {
                 route: this.props.signup.data.role,
                 height_id: this.signup.height.value,
                 weight_id: this.signup.weight.value,
-
                 body_style: this.signup.body_style.value,
                 eye_wear: this.signup.eye_wear.value,
-                smoke: this.signup.smoke.value,
-                drink: this.signup.drink.value,
-                want_children: this.signup.want_children.value,
-
                 eyes_id: this.signup.eyes.value,
                 hair_color_id: this.signup.hair_color.value,
                 hair_length_id: this.signup.hair_length.value,
-                ethnicity_id: this.signup.ethnicity.value,
-                marital_status_id: this.signup.marital.value,
-                children: this.signup.children.value,
-                //find_ethnicity: this.props.signup.data.find_ethnicity,
-                match: {
-                    from: this.signup.match.from.value,
-                    to: this.signup.match.to.value
-                },
-                interest: this.props.signup.data.interest,
-                //want_children_id: this.signup.want_children ? this.signup.want_children.value : '',
-                religion_id: this.signup.religion.value,
                 remember_token: this.props.signup.remember_token
             }
             
@@ -111,6 +83,7 @@ class SignUpOne extends Component {
             case 'eyes': name = 'Eyes Color'; break;
             case 'marital_statuses': name = 'Marital Status'; break;
             case 'religions': name = 'Religions'; break;
+            case 'want_children': name = 'Do You Want Children?'; break;
             case 'body_style': name = 'Body Style'; break;
             case 'eye_wear': name = 'Eye wear'; break;
             case 'children': name = 'Children'; break;
@@ -161,41 +134,23 @@ class SignUpOne extends Component {
                                 componentClass="select"
                                 inputRef={ref => { this.signup.height = ref }}
                                 options={this.heightsArray()}
-                                value={data.height_id}
-                            />
+                                value={data.height_id} />
                         </FormGroup>
                         <FormGroup>
                             <SelectField
                                 componentClass="select"
                                 inputRef={ref => { this.signup.weight = ref }}
                                 options={this.weightsArray()}
-                                value={data.weight_id}
-                            />
+                                value={data.weight_id} />
                         </FormGroup>
                         <FormGroup>
                             <SelectField
                                 componentClass="select"
                                 inputRef={ref => { this.signup.body_style = ref }}
                                 options={this.getArray('body_style')}
-                                value={data.body_style}
-                            />
+                                value={data.body_style} />
                         </FormGroup>
-                        <FormGroup>
-                            <SelectField
-                                componentClass="select"
-                                inputRef={ref => { this.signup.eyes = ref }}
-                                options={this.getArray('eyes')}
-                                value={data.eyes_id}
-                            />
-                        </FormGroup>
-                         <FormGroup>
-                            <SelectField
-                                componentClass="select"
-                                inputRef={ref => { this.signup.eye_wear = ref }}
-                                options={this.getArray('eye_wear')}
-                                value={data.eye_wear}
-                            />
-                        </FormGroup>
+                        
                     </Col>
                     <Col xs={12} md={6}>
                         <FormGroup>
@@ -203,107 +158,28 @@ class SignUpOne extends Component {
                                 componentClass="select"
                                 inputRef={ref => { this.signup.hair_color = ref }}
                                 options={this.getArray('hair_colors')}
-                                value={data.hair_color_id}
-                            />
+                                value={data.hair_color_id} />
                         </FormGroup>
                         <FormGroup>
                             <SelectField
                                 componentClass="select"
                                 inputRef={ref => { this.signup.hair_length = ref }}
                                 options={this.getArray('hair_lengths')}
-                                value={data.hair_length_id}
-                            />
+                                value={data.hair_length_id} />
                         </FormGroup>
                         <FormGroup>
                             <SelectField
                                 componentClass="select"
-                                inputRef={ref => { this.signup.ethnicity = ref }}
-                                options={this.getArray('ethnicities')}
-                                value={data.ethnicity_id}
-                            />
+                                inputRef={ref => { this.signup.eyes = ref }}
+                                options={this.getArray('eyes')}
+                                value={data.eyes_id} />
                         </FormGroup>
-                        <FormGroup>
+                         <FormGroup>
                             <SelectField
                                 componentClass="select"
-                                inputRef={ref => { this.signup.religion = ref }}
-                                options={this.getArray('religions')}
-                                value={data.religion_id}
-                            />
-                        </FormGroup>
-                    </Col>
-                    <Col xs={12} className="text-center">
-                        <h3 className="title">Lifestyle</h3>
-                    </Col>
-                    <Col xs={12} md={6}>
-                        <FormGroup>
-                            <SelectField
-                                componentClass="select"
-                                inputRef={ref => { this.signup.marital = ref }}
-                                options={this.getArray('marital_statuses')}
-                                value={data.marital_status_id}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <SelectField
-                                componentClass="select"
-                                inputRef={ref => { this.signup.children = ref }}
-                                options={this.getArray('children')}
-                                value={data.children}
-                            />
-                        </FormGroup>
-
-                    </Col>
-                    <Col xs={12} md={6}>
-                        <FormGroup>
-                            <SelectField
-                                componentClass="select"
-                                inputRef={ref => { this.signup.smoke = ref }}
-                                options={this.getArray('smoke')}
-                                value={data.smoke}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <SelectField
-                                componentClass="select"
-                                inputRef={ref => { this.signup.drink = ref }}
-                                options={this.getArray('drink')}
-                                value={data.drink}
-                            />
-                        </FormGroup>
-                    </Col>
-                    <Col xs={12} md={6}>
-                        <FormGroup>
-                            <Row>
-                                <Col sm={4}>
-                                    <span className="title">Future Partner<br /> Preferred age</span>
-                                </Col>
-                                <Col sm={4}>
-                                    <SelectField
-                                        componentClass="select"
-                                        inputRef={ref => { this.signup.match.from = ref }}
-                                        options={this.getNumArray('from', 18, 99)}
-                                        value={data.match.from}
-                                    />
-                                </Col>
-                                <Col sm={4}>
-                                    <SelectField
-                                        componentClass="select"
-                                        inputRef={ref => { this.signup.match.to = ref }}
-                                        options={this.getNumArray('to', 99, 18)}
-                                        value={data.match.to}
-                                    />
-                                </Col>
-                            </Row>
-                        </FormGroup>
-                    </Col>
-                    <Col xs={12} md={6}>
-                        <FormGroup>
-                            <SelectField
-                                componentClass="select"
-                                inputRef={ref => { this.signup.want_children = ref }}
-                                options={this.getArray('want_children')}
-                                value={data.want_children}
-                            />
+                                inputRef={ref => { this.signup.eye_wear = ref }}
+                                options={this.getArray('eye_wear')}
+                                value={data.eye_wear} />
                         </FormGroup>
                     </Col>
                     <Col xs={12} className="text-center">
@@ -335,4 +211,4 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps
-)(SignUpOne);
+)(SignUpOneGirl);
