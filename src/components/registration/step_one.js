@@ -250,13 +250,13 @@ class SignUpOne extends Component {
                         <FormGroup>
                             <Row>
                                 <Col sm={4}>
-                                    <span className="title">Future Partner<br /> Preferred age</span>
+                                    <span className="title font-bebas">Future Partner<br /> Preferred age</span>
                                 </Col>
                                 <Col sm={4}>
                                     <SelectField
                                         componentClass="select"
                                         inputRef={ref => { this.signup.match.from = ref }}
-                                        options={this.getNumArray('from', 18, 99)}
+                                        options={this.getNumArray('from', 18, 55)}
                                         value={data.match.from}
                                     />
                                 </Col>
@@ -264,7 +264,7 @@ class SignUpOne extends Component {
                                     <SelectField
                                         componentClass="select"
                                         inputRef={ref => { this.signup.match.to = ref }}
-                                        options={this.getNumArray('to', 99, 18)}
+                                        options={this.getNumArray('to', 55, 18)}
                                         value={data.match.to}
                                     />
                                 </Col>

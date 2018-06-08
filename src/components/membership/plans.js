@@ -35,7 +35,7 @@ class Plans extends Component {
                 id: param.membership_id,
                 name: plan.name,
                 period: param.month,
-                amount: param.month_payment,
+                amount: param.one_payment,
                 user_id: this.props.user.data.id,
                 value_id: param.id
             }

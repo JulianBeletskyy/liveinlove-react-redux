@@ -10,11 +10,13 @@ class SelectField extends Component {
     }
 
     handleChange = (event) => {
+        const onChanges = ['language', 'language_level', 'children']
+
         if (this.props.name === 'country') {
             this.props.city.value = ''
             store.dispatch(setCountry(event.target.value))
         }
-        if (this.props.name === 'language' || this.props.name === 'language_level') {
+        if (onChanges.find(item => item === this.props.name)) {
             this.props.onChange(event.target.value)
         }
     }

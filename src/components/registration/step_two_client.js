@@ -106,10 +106,10 @@ class SignUpTwoClient extends Component {
         return <div key={i} className="position-relative">
                     <div className="row">
                         <div className="col-xs-6">
-                            <span>{lang}</span>
+                            <span className="font-bebas">{lang}</span>
                         </div>
                         <div className="col-xs-6">
-                            <span>{level}</span>
+                            <span className="font-bebas">{level}</span>
                         </div>
                     </div>
                     <i className="fas fa-times pull-right remove-languages" onClick={this.removeLanguages(i)}></i>
