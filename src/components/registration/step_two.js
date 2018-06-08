@@ -63,7 +63,7 @@ class SignUpTwo extends Component {
     }
 
     prevStep = () => {
-        const step = this.props.signup.data.role === 'client' ? 1 : 5
+        const step = this.props.signup.data.role === 'client' ? 7 : 5
         store.dispatch(changeStep(step))
     }
 
@@ -92,6 +92,11 @@ class SignUpTwo extends Component {
         return (
             <form onSubmit={this.getSignUpThree} noValidate={true}>
                 <Row>
+                    <Col xs={12} className="text-center">
+                        <FormGroup>
+                            <h3 className="title">Choose and load primary photo to your profile</h3>
+                        </FormGroup>
+                    </Col>
                     <Col sm={5}>
                         <div className="upload-btn-group">
                             <FormGroup>
@@ -112,9 +117,6 @@ class SignUpTwo extends Component {
                     </Col>
                     <Col sm={2}>
                         <div className="title text-center text-step-two">
-                            <FormGroup className="text-center">
-                                <p><strong>How Ladies See You Matters</strong></p>
-                            </FormGroup>
                             <FormGroup className="text-center">
                                 <span className="small-italic">
                                     Use A Clear Photo <br />

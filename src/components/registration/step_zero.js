@@ -6,8 +6,8 @@ import Validator from 'validate'
 import { sendSignUpStart, setSignUpData, saveImage, saveFile, setEmptyData, toggleRegistration, getMyCountry, changeStep } from 'actions'
 import { TextField, SelectField, CheckboxField, Autocomplete } from 'components/form/inputs'
 import Btn from 'components/form/buttons/button.js'
-//import BtnGoogle from 'components/form/buttons/button_google.js'
-//import BtnFacebook from 'components/form/buttons/button_facebook.js'
+import BtnGoogle from 'components/form/buttons/button_google.js'
+import BtnFacebook from 'components/form/buttons/button_facebook.js'
 import style from './step_zero.css'
 import Options from 'options'
 
@@ -217,7 +217,6 @@ class SignUpStart extends Component {
         const { showRegistration } = this.props.signup
         const activeClass = showRegistration ? style.active : ''
         const col = showRegistration ? 6 : 12
-
         return (
             <form noValidate={true}>
                 <Row>
@@ -428,21 +427,17 @@ class SignUpStart extends Component {
                         </FormGroup>
                         <FormGroup>
                         </FormGroup>
-                        {/*<FormGroup>
-                            <Row>
-                                <Col sm={6}>
-                                    <BtnFacebook
-                                        title="Sign Up with Facebook"
-                                        onClick={this.facebookSignUp}
-                                    />
-                                </Col>
-                                <Col sm={6}>
-                                    <BtnGoogle
-                                        title="Sign Up with Google"
-                                    />
-                                </Col>
-                            </Row>
-                        </FormGroup>*/}
+                        <FormGroup>
+                            <h4 className="">Join With</h4>
+                            <div className="social-button text-center">
+                                <div className="form-group">
+                                    <BtnFacebook title="Join Up with Facebook" />
+                                </div>
+                                <div>
+                                    <BtnGoogle title="Join Up with Google" />
+                                </div>
+                            </div>
+                        </FormGroup>
                     </Col>
                 </Row>
             </form>

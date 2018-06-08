@@ -116,7 +116,7 @@ class SignUpThreeGirl extends Component {
                                     <SelectField
                                         componentClass="select"
                                         inputRef={ref => { this.signup.match.from = ref }}
-                                        options={this.getNumArray('from', 18, 99)}
+                                        options={this.getNumArray('from', 19, 70)}
                                         value={data.match.from}
                                     />
                                 </Col>
@@ -124,7 +124,7 @@ class SignUpThreeGirl extends Component {
                                     <SelectField
                                         componentClass="select"
                                         inputRef={ref => { this.signup.match.to = ref }}
-                                        options={this.getNumArray('to', 99, 18)}
+                                        options={this.getNumArray('to', 70, 19)}
                                         value={data.match.to}
                                     />
                                 </Col>

@@ -30,6 +30,37 @@
 	position: relative;
 }
 
+.text-step-two {
+	margin-top: 20px;
+}
+
+.social-button {
+	display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pac-container {
+	box-shadow: unset !important;
+	border: 1px solid #828282 !important;
+}
+
+.masked-input {
+	border-radius: 0px;
+    border-top-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    box-shadow:inset 0 0 0 0 #fff;
+    position: relative;
+    z-index: 1;
+    background: transparent;
+}
+
+.masked-input:focus {
+	box-shadow:inset 0 0 0 0 #fff;
+    box-shadow: 0 0 0 0 #fff;
+}
+
 .skip-link {
 	position: absolute;
 	right: 0;

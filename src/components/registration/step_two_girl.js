@@ -8,15 +8,23 @@ import TextField from 'components/form/inputs/text_field.js'
 import Btn from 'components/form/buttons/button.js'
 import Validator from 'validate'
 import Textarea from 'components/form/inputs/textarea.js'
+import Options from 'options'
+import InputMask from 'react-input-mask'
 
 class SignUpTwoGirl extends Component {
     constructor(props) {
         super(props)
         this.state = {
             languages: [],
+            childrens: [],
             current_lang: '',
-            current_level: ''
+            current_level: '',
+            children: '',
+            current_childSex: '',
+            current_childBirth: ''
         }
+
+        Options.get('children')
 
         this.signup = {
             child: {}
@@ -27,8 +35,18 @@ class SignUpTwoGirl extends Component {
         event.preventDefault()
         let error = 1
 
+        if (this.state.children === 1) {
+            error *= Validator.check(this.signup.children.value, ['required'], 'About Children')
+            if (this.state.childrens.length < 1 && error) {
+                store.dispatch(setAlert('About Children is requared', 'error'))
+                error = 0
+            }
+        } else if (this.state.children !== 2) {
+            store.dispatch(setAlert('About Children is requared', 'error'))
+            error = 0
+        }
+
         error *= Validator.check(this.signup.marital.value, ['required'], 'Marital status')
-        error *= Validator.check(this.signup.children.value, ['required'], 'Children')
         error *= Validator.check(this.signup.smoke.value, ['required'], 'Smoking')
         error *= Validator.check(this.signup.drink.value, ['required'], 'Drink')
         error *= Validator.check(this.signup.want_children.value, ['required'], 'Want children')
@@ -52,7 +70,8 @@ class SignUpTwoGirl extends Component {
         if (error) {
             let data = {
                 marital_status_id: this.signup.marital.value,
-                children: this.signup.children.value,
+                children: this.state.children === 2 ? this.state.children : this.signup.children.value,
+                about_children: this.state.childrens,
                 want_children_id: this.signup.want_children.value,
                 smoke_id: this.signup.smoke.value,
                 drink_id: this.signup.drink.value,
@@ -82,7 +101,7 @@ class SignUpTwoGirl extends Component {
         let name = ''
         switch(type) {
             case 'marital_statuses': name = 'Marital Status'; break;
-            case 'children': name = 'Children'; break;
+            case 'children': name = 'About Children'; break;
             case 'want_children': name = 'Want Children'; break;
             case 'drink': name = 'Do You Drink?'; break;
             case 'smoke': name = 'Do You Smoking?'; break;
@@ -104,6 +123,11 @@ class SignUpTwoGirl extends Component {
                 'name': this.props.options[type][k].value
             })
         }
+
+        if (type === 'children') {
+            temp = temp.filter(item => item.value !== 2)
+        }
+
         return temp
     }
 
@@ -125,10 +149,10 @@ class SignUpTwoGirl extends Component {
         return <div key={i} className="position-relative">
                     <div className="row">
                         <div className="col-xs-6">
-                            <span>{lang}</span>
+                            <span className="font-bebas">{lang}</span>
                         </div>
                         <div className="col-xs-6">
-                            <span>{level}</span>
+                            <span className="font-bebas">{level}</span>
                         </div>
                     </div>
                     <i className="fas fa-times pull-right remove-languages" onClick={this.removeLanguages(i)}></i>
@@ -175,6 +199,48 @@ class SignUpTwoGirl extends Component {
         const languages = this.state.languages.filter((item, i) => i !== index)
         this.setState({languages})
     }
+
+    setChildren = val => {
+        this.setState({children: val * 1})
+    }
+
+    changeChildSex = val => {
+        this.setState({current_childSex: val})
+    }
+
+    changeChildBirth = e => {
+        this.setState({current_childBirth: e.target.value})
+        const digits = e.target.value.match(/\d/g)
+        if (digits && digits.length > 7) {
+            this.setState({
+                childrens: [...this.state.childrens, {sex: this.state.current_childSex, birth: e.target.value}],
+                current_childSex: '',
+                current_childBirth: ''
+            })
+
+            this.signup.childSex.value = ''
+        }
+    }
+
+    removeChildrens = index => e => {
+        const childrens = this.state.childrens.filter((item, i) => i !== index)
+        this.setState({childrens})
+    }
+
+    printChildrens = (item, i) => {
+        return  <div key={i} className="position-relative">
+                    <div className="row">
+                        <div className="col-xs-6">
+                            <span className="text-capitalize">{item.sex}</span>
+                        </div>
+                        <div className="col-xs-6">
+                            <span>{item.birth}</span>
+                        </div>
+                    </div>
+                    <i className="fas fa-times pull-right remove-languages" onClick={this.removeChildrens(i)}></i>
+                    <hr style={{marginTop: 5}} />
+                </div>
+    }
     
 
     render() {
@@ -196,35 +262,56 @@ class SignUpTwoGirl extends Component {
                         <FormGroup>
                             <SelectField
                                 componentClass="select"
-                                inputRef={ref => { this.signup.children = ref }}
-                                options={this.getArray('children')}
-                                value={data.children} />
+                                inputRef={ref => { this.signup.children_yes_no = ref }}
+                                options={[{value: '', name: 'Do you have children?'}, {value: 1, name: 'Yes'}, {value: 2, name: 'No'}]}
+                                name="children"
+                                onChange={this.setChildren}
+                                value={this.state.children} />
                         </FormGroup>
-                        {/*<FormGroup>
-                            <Row style={{marginBottom: -8}}>
-                                <Col sm={4}>
-                                    <SelectField
-                                        componentClass="select"
-                                        inputRef={ref => { this.signup.child.number = ref }}
-                                        options={[{value: 1, name: 1}]}
-                                        value={data.child.number} />
-                                </Col>
-                                <Col sm={4}>
-                                    <SelectField
-                                        componentClass="select"
-                                        inputRef={ref => { this.signup.child.sex = ref }}
-                                        options={[{value: 'male', name: 'Male'}, {value: 'female', name: 'Female'}]}
-                                        value={data.child.sex} />
-                                </Col>
-                                <Col sm={4}>
-                                    <SelectField
-                                        componentClass="select"
-                                        inputRef={ref => { this.signup.child.year = ref }}
-                                        options={this.yearArray()}
-                                        value={data.child.year} />
-                                </Col>
-                            </Row>
-                        </FormGroup>*/}
+                        {
+                            this.state.children === 1
+                            ?   <div>
+                                    <FormGroup>
+                                        <SelectField
+                                            componentClass="select"
+                                            inputRef={ref => { this.signup.children = ref }}
+                                            options={this.getArray('children')}
+                                            value={data.children} />
+                                    </FormGroup>
+                                    <FormGroup>
+                                        {this.state.childrens.map((item, i) => this.printChildrens(item, i))}
+                                    </FormGroup>
+                                        {
+                                            this.state.childrens.length < 3
+                                            ?   <FormGroup>
+                                                    <Row style={{marginBottom: -8}}>
+                                                        <Col sm={6}>
+                                                            <SelectField
+                                                                componentClass="select"
+                                                                inputRef={ref => { this.signup.childSex = ref }}
+                                                                onChange={this.changeChildSex}
+                                                                name="children"
+                                                                options={[{value: '', name: 'Sex'}, {value: 'male', name: 'Male'}, {value: 'female', name: 'Female'}]}
+                                                                value={this.state.current_childSex} />
+                                                        </Col>
+                                                        <Col sm={6}>
+                                                            <InputMask 
+                                                                mask="99/99/9999" 
+                                                                disabled={this.state.current_childSex === ''}
+                                                                placeholder="DD/MM/YYYY" 
+                                                                onChange={this.changeChildBirth}
+                                                                value={this.state.current_childBirth}
+                                                                className="form-control masked-input" />
+                                                        </Col>
+                                                    </Row>
+                                                </FormGroup>
+                                            :   ''
+                                        }
+                                </div>
+                            :   ''
+                        }
+                            
+                        
                         <FormGroup>
                             <SelectField
                                 componentClass="select"

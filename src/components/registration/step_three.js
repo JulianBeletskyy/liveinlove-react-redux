@@ -9,11 +9,13 @@ import BlockSmall from 'components/blocks/block_small.js'
 import Textarea from 'components/form/inputs/textarea.js'
 import Validator from 'validate'
 import TextField from 'components/form/inputs/text_field.js'
+import Options from 'options'
 
 class SignUpThree extends Component {
     constructor(props) {
         super(props)
         this.signup = {}
+        Options.get('interests')
     }
 
     getConfirm = () => {
@@ -59,8 +61,10 @@ class SignUpThree extends Component {
                                 placeholder="The one I would like to meet"
                                 label={true} />
                         </FormGroup>
-                        <h4 className="font-bebas">Interests</h4>
-                        { interests.map((interest, i) => this.printInterest(interest, i)) }
+                        <div><span className="font-bebas fs-18">Interests <span className="small-italic">(pick at least 5)</span></span></div>
+                        <div className="form-group">
+                            { interests.map((interest, i) => this.printInterest(interest, i)) }
+                        </div>
                         <Row>
                             <Col sm={6}>
                                 <FormGroup>
@@ -68,6 +72,7 @@ class SignUpThree extends Component {
                                         type="text"
                                         placeholder="Phone"
                                         inputRef={ref => { this.signup.mobile = ref }}
+                                        description="* Please do not post any contact details in your profile. We review each profile manually."
                                         value={data.mobile} />
                                 </FormGroup>
                             </Col>

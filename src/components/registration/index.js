@@ -16,7 +16,9 @@ class Registration extends Component {
     }
 
     render() {
+
         const { step } = this.props.signup
+        console.log(step)
         let content = <SignUpStart />
         switch (step) {
             case 1: content = <SignUpOne />; break;
