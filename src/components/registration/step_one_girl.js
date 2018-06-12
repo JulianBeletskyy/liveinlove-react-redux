@@ -36,7 +36,7 @@ class SignUpOneGirl extends Component {
                 eyes_id: this.signup.eyes.value,
                 hair_color_id: this.signup.hair_color.value,
                 hair_length_id: this.signup.hair_length.value,
-                remember_token: this.props.signup.remember_token
+                custom_remember_token: this.props.signup.custom_remember_token
             }
             const step = this.props.signup.data.role === 'client' ? 7 : 5
             store.dispatch(sendSignUpOne(data, this.props.signup.data.role, step))

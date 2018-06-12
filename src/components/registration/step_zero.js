@@ -22,7 +22,7 @@ class SignUpStart extends Component {
         store.dispatch(setEmptyData())
 
         this.state = {
-            gender: 'client'
+            gender: 'client',
         }
     }
 

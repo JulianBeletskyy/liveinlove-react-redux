@@ -39,7 +39,7 @@ class SignUpOne extends Component {
                     from: this.signup.match.from.value,
                     to: this.signup.match.to.value
                 },
-                remember_token: this.props.signup.remember_token
+                custom_remember_token: this.props.signup.custom_remember_token
             }
 
             const step = this.props.signup.data.role === 'client' ? 7 : 5

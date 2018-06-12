@@ -114,6 +114,14 @@ class Member extends Component {
         store.dispatch(toggleModal(true, 'message'))
     }
 
+    getAge = date => {
+        const [d,m,y] = date.split('/')
+        const birthday = new Date(`${y}-${m}-${d}`)
+        const ageDifMs = Date.now() - birthday.getTime()
+        const ageDate = new Date(ageDifMs)
+        return `${Math.abs(ageDate.getUTCFullYear() - 1970)} age`
+    }
+
     getImages = () =>
         (this.props.members.data.gallery.map(item => {
             return {src: item.src}
@@ -130,9 +138,10 @@ class Member extends Component {
                             ! this.checkRequest()
                             ?   <Loader />
                             :   <Row>
-                                    <Col md={4}>
+                                    <Col md={3} lg={4}>
                                         <div className="form-group">
                                             <AvatarMember
+                                                className="margin-auto"
                                                 src={this.props.members.data.avatar.croped} 
                                                 onClick={this.openLightBox} />
                                         </div>
@@ -142,7 +151,7 @@ class Member extends Component {
                                             :   ''
                                         }
                                     </Col>
-                                    <Col md={4}>
+                                    <Col md={5} lg={4} className="nowrap">
                                         <div>
                                             <strong className={`font-bebas fs-36 ${member.role}-color`}>{member.first_name}</strong>
                                             <strong className="fs-18">,&nbsp;{member.age} (age)</strong>
@@ -201,7 +210,7 @@ class Member extends Component {
                                                 <span className="font-bebas fs-18">Body style: </span>
                                             </div>
                                             <div className="col-xs-7">
-                                                <div></div>
+                                                <div>{member.body_style.value || 'N/A'}</div>
                                             </div>
                                         </div>
                                         <div className="row">
@@ -217,7 +226,7 @@ class Member extends Component {
                                                 <span className="font-bebas fs-18">Eyewear: </span>
                                             </div>
                                             <div className="col-xs-7">
-                                                <div>{member.eyes}</div>
+                                                <div>{member.eye_wear.value || 'N/A'}</div>
                                             </div>
                                         </div>
                                         <div className="row">
@@ -241,7 +250,7 @@ class Member extends Component {
                                                 <span className="font-bebas fs-18">Ethnicity: </span>
                                             </div>
                                             <div className="col-xs-7">
-                                                <div>{member.ethnicity}</div>
+                                                <div>{member.ethnicity || 'N/A'}</div>
                                             </div>
                                         </div>
                                         <div className="row">
@@ -268,6 +277,19 @@ class Member extends Component {
                                                 <div>{member.children}</div>
                                             </div>
                                         </div>
+                                        {
+                                            this.props.user.data.role === 'client' && member.about_children.length
+                                            ?   <div className="row">
+                                                    <div className="col-xs-5">
+                                                        <span className="font-bebas fs-18">About Children: </span>
+                                                    </div>
+                                                    <div className="col-xs-7">
+                                                        <div>{member.about_children.map((item, i) => <div><span className="text-capitalize">{item.sex}</span> - {this.getAge(item.bith)}</div>)}</div>
+                                                    </div>
+                                                </div>
+                                            :   ''
+                                        }
+                                            
                                         <div className="row">
                                             <div className="col-xs-5">
                                                 <span className="font-bebas fs-18">Want children: </span>
@@ -289,7 +311,7 @@ class Member extends Component {
                                                 <span className="font-bebas fs-18">Field of work: </span>
                                             </div>
                                             <div className="col-xs-7">
-                                                <div>{member.occupation}</div>
+                                                <div>{member.field_of_work.value || 'N/A'}</div>
                                             </div>
                                         </div>
                                         <div className="row">
@@ -297,7 +319,7 @@ class Member extends Component {
                                                 <span className="font-bebas fs-18">Employment Status: </span>
                                             </div>
                                             <div className="col-xs-7">
-                                                <div>{member.profession}</div>
+                                                <div>{member.employment_status.value || 'N/A'}</div>
                                             </div>
                                         </div>
                                         <div className="row">
@@ -321,47 +343,47 @@ class Member extends Component {
                                                 <span className="font-bebas fs-18">Languages: </span>
                                             </div>
                                             <div className="col-xs-7">
-                                                <div>{member.primary_language}, {member.russian_language}</div>
+                                                <div>{member.languages.map((item, i) => <div key={i}>{item.name} - {item.level_value}</div>)}</div>
                                             </div>
                                         </div>
                                     </Col>
                                     <Col md={4}>
                                         <div className="row">
-                                            <div className="col-xs-6">
+                                            <div className="col-sm-6 col-lg-6 col-md-12">
                                                 <LinkIcon 
                                                     text={this.props.members.data.interest ? "Remove from interest" : "Express the interest"}
                                                     onClick={this.toggleInterest}
                                                     color="#FF8DA1" 
                                                     icon="fas fa-heart" />
                                             </div>
-                                            <div className="col-xs-6">
+                                            <div className="col-sm-6 col-lg-6 col-md-12">
                                                 <LinkIcon 
                                                     text={member.favorite ? "Remove from favorite" : "Add to favorite"}
                                                     onClick={this.toggleFavorite}
                                                     color="#FFD700"
                                                     icon="fas fa-star" />
                                             </div>
-                                            <div className="col-xs-6">
+                                            <div className="col-sm-6 col-lg-6 col-md-12">
                                                 <LinkIcon
                                                     onClick={this.openModal}
                                                     text="Send Letter"
                                                     color="#27C2D3"
                                                     icon="fas fa-envelope" />
                                             </div>
-                                            <div className="col-xs-6">
+                                            <div className="col-sm-6 col-lg-6 col-md-12">
                                                 <LinkIcon text="Invite to Video-Chat" icon="fas fa-comment" color="#FF0000" />
                                             </div>
                                             {
                                                 this.props.user.data.role === 'client'
                                                 ?   <div>
-                                                        <div className="col-xs-6">
+                                                        <div className="col-sm-6 col-lg-6 col-md-12">
                                                             <LinkIcon 
                                                                 text="Share contact details"
                                                                 onClick={this.getContactsDetails}
                                                                 color="#6A74C3"
                                                                 icon="fas fa-address-card" />
                                                         </div>
-                                                        <div className="col-xs-6">
+                                                        <div className="col-sm-6 col-lg-6 col-md-12">
                                                             <LinkIcon 
                                                                 text="Send gift"
                                                                 color="#40E0D0"

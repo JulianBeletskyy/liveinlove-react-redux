@@ -26,6 +26,14 @@
 	cursor: pointer;
 }
 
+.margin-auto {
+	margin: 0 auto;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
 .position-relative {
 	position: relative;
 }

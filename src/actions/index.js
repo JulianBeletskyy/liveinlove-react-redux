@@ -203,7 +203,7 @@ export function sendSignUpFour(data, step) {
                 if (json.data) {
                     dispatch(setSignUpData(data))
                     dispatch(sendSignUpFinish({
-                        'remember_token': json.data,
+                        'custom_remember_token': json.data,
                         'url': window.location.href + 'activate/{hash}',
                         'device_id': localStorage.getItem('deviceId'),
                     }))
@@ -236,7 +236,7 @@ export function sendSignUpFinish(data) {
             .then(json => {
                 if (json.data) {
                     dispatch(sendSignUpFinish({
-                        'remember_token': json.data,
+                        'custom_remember_token': json.data,
                         'url': window.location.href + 'activate/{hash}',
                         'device_id': localStorage.getItem('deviceId'),
                     }))
