@@ -2,7 +2,7 @@ import * as types from '../actions/types.js'
 
 const initialState = {
     step: 0,
-    showRegistration: true,
+    showRegistration: false,
     empty_data: {},
     data: { 
         first_name: '',

@@ -23,7 +23,6 @@ class SignUpStart extends Component {
 
         this.state = {
             gender: 'client',
-            count: 0
         }
     }
 
@@ -224,7 +223,7 @@ class SignUpStart extends Component {
                     <Col xs={12}>
                         <FormGroup>
                             <div className="text-center title">
-                                <span className={style.spanMale}>Male {this.state.count}</span>
+                                <span className={style.spanMale}>Male</span>
                                 <Radio 
                                     name="sex" 
                                     value="male"
