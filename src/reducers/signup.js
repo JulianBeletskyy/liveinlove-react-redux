@@ -2,7 +2,7 @@ import * as types from '../actions/types.js'
 
 const initialState = {
     step: 0,
-    showRegistration: false,
+    showRegistration: true,
     empty_data: {},
     data: { 
         first_name: '',
@@ -44,7 +44,7 @@ const initialState = {
         languages: []
     },
     send_email: '',
-    remember_token: '',
+    custom_remember_token: '',
     avatar: '',
     file: new FormData(),
     country: ''
@@ -93,7 +93,7 @@ export default function signup(signup = initialState, action = {}) {
             });
         case types.SET_TEMP_TOKEN:
             return Object.assign({}, signup, {
-                remember_token: action.value
+                custom_remember_token: action.value
             });
         case types.SET_ACTIVE_BLOCK_SIGNUP:
             temp[action.key].push(action.id)

@@ -22,7 +22,8 @@ class SignUpStart extends Component {
         store.dispatch(setEmptyData())
 
         this.state = {
-            gender: 'client'
+            gender: 'client',
+            count: 0
         }
     }
 
@@ -223,7 +224,7 @@ class SignUpStart extends Component {
                     <Col xs={12}>
                         <FormGroup>
                             <div className="text-center title">
-                                <span className={style.spanMale}>Male</span>
+                                <span className={style.spanMale}>Male {this.state.count}</span>
                                 <Radio 
                                     name="sex" 
                                     value="male"

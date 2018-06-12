@@ -30,7 +30,7 @@ class SignUpTwoClient extends Component {
                 field_of_work: this.signup.field_of_work.value,
                 employment_status: this.signup.employment_status.value,
                 languages: this.state.languages,
-                remember_token: this.props.signup.remember_token
+                custom_remember_token: this.props.signup.custom_remember_token
             }
             const step = this.props.signup.data.role === 'client' ? 2 : 5
 
