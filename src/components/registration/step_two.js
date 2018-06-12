@@ -35,7 +35,7 @@ class SignUpTwo extends Component {
                 x: crop ? crop.x.toFixed() : '',
                 y: crop ? crop.y.toFixed() : '',
                 avatar: this.props.signup.avatar,
-                remember_token: this.props.signup.remember_token
+                custom_remember_token: this.props.signup.custom_remember_token
             }
 
             const step = this.props.signup.data.role === 'client' ? 3 : 6

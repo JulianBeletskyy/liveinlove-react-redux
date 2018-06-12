@@ -34,7 +34,6 @@ class SignUpTwoGirl extends Component {
     getSignUpThree = (event) => {
         event.preventDefault()
         let error = 1
-
         if (this.state.children === 1) {
             error *= Validator.check(this.signup.children.value, ['required'], 'About Children')
             if (this.state.childrens.length < 1 && error) {
@@ -83,7 +82,7 @@ class SignUpTwoGirl extends Component {
                 field_of_work: this.signup.field_of_work.value,
                 languages: this.state.languages,
                 future_goals: this.signup.future_goals.value,
-                remember_token: this.props.signup.remember_token
+                custom_remember_token: this.props.signup.custom_remember_token
             }
             store.dispatch(sendSignUpTwo(data, this.props.signup.data.role, 2))
         }
@@ -437,7 +436,7 @@ const mapStateToProps = (state) => {
     return {
         signup: {
             data: state.signup.data,
-            remember_token: state.signup.remember_token
+            custom_remember_token: state.signup.custom_remember_token
         },
         options: state.options
     }

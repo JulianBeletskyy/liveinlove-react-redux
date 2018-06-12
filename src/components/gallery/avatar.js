@@ -17,7 +17,6 @@ class Avatar extends Component {
     }
 
     save = () => {
-        console.log(this.props.user.data)
         store.dispatch(updateAvatar(this.props.user.data.cropped_data, this.props.user.token))
     }
 

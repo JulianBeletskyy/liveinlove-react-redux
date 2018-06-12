@@ -464,7 +464,7 @@ export default {
         formData.append('width', data.width)
         formData.append('x', data.x)
         formData.append('y', data.y)
-        formData.append('remember_token', data.remember_token)
+        formData.append('custom_remember_token', data.custom_remember_token)
 
         return fetch(config.API_URL + 'signup/' + role + '/step/four', {
             method: 'post',
@@ -543,7 +543,7 @@ export default {
         formData.append('width', data.width)
         formData.append('x', data.x)
         formData.append('y', data.y)
-        formData.append('remember_token', data.remember_token)
+        formData.append('custom_remember_token', data.custom_remember_token)
 
         return fetch(config.API_URL + 'signup/client/step/two', {
             method: 'post',

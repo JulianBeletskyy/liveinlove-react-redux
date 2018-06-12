@@ -9,6 +9,7 @@ import Btn from 'components/form/buttons/button.js'
 import Validator from 'validate'
 import BlockSmall from 'components/blocks/block_small.js'
 import { SelectField } from 'components/form/inputs'
+import Options from 'options'
 
 class SignUpThreeGirl extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class SignUpThreeGirl extends Component {
         this.signup = {
             match: {}
         }
+        Options.get('interests')
     }
 
     getSignUpThree = (event) => {
@@ -48,7 +50,7 @@ class SignUpThreeGirl extends Component {
                     from: this.signup.match.from.value,
                     to: this.signup.match.to.value
                 },
-                remember_token: this.props.signup.remember_token
+                custom_remember_token: this.props.signup.custom_remember_token
             }
             store.dispatch(sendSignUpFour(data, 4))
         }
@@ -79,7 +81,7 @@ class SignUpThreeGirl extends Component {
     }
 
     printInterest = (interest, i) => {
-        return (<Col sm={3} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={interest.value} id={interest.id} data="signup" type={"interest"} /></Col>)
+        return (<Col lg={3} md={4} sm={6} xs={12} className="text-center ethniticy-block" key={i}><BlockSmall text={interest.value} id={interest.id} data="signup" type={"interest"} /></Col>)
     }
 
     render() {
@@ -105,6 +107,9 @@ class SignUpThreeGirl extends Component {
                         </FormGroup>
                         <h4 className="font-bebas">Interests</h4>
                         { interests.map((interest, i) => this.printInterest(interest, i)) }
+                        
+                    </Col>
+                    <Col xs={12}>
                         <FormGroup>
                             <Row>
                                 <Col sm={4}>
@@ -162,7 +167,7 @@ const mapStateToProps = (state) => {
     return {
         signup: {
             data: state.signup.data,
-            remember_token: state.signup.remember_token
+            custom_remember_token: state.signup.custom_remember_token
         },
         options: {
             interests: state.options.interests

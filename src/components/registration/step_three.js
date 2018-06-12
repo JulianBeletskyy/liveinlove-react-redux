@@ -26,7 +26,7 @@ class SignUpThree extends Component {
                 like_to_meet: this.signup.like_to_meet.value,
                 interest_id: this.props.signup.data.interest,
                 mobile: this.props.signup.mobile,
-                remember_token: this.props.signup.remember_token
+                custom_remember_token: this.props.signup.custom_remember_token
             }
             store.dispatch(sendSignUpFour(data, 4))
         }
@@ -37,7 +37,7 @@ class SignUpThree extends Component {
     }
 
     printInterest = (interest, i) => {
-        return (<Col sm={3} xs={6} className="text-center ethniticy-block" key={i}><BlockSmall text={interest.value} id={interest.id} data="signup" type={"interest"} /></Col>)
+        return (<Col lg={3} md={4} sm={6} xs={12} className="text-center ethniticy-block" key={i}><BlockSmall text={interest.value} id={interest.id} data="signup" type={"interest"} /></Col>)
     }
 
     render() {
@@ -65,21 +65,19 @@ class SignUpThree extends Component {
                         <div className="form-group">
                             { interests.map((interest, i) => this.printInterest(interest, i)) }
                         </div>
-                        <Row>
-                            <Col sm={6}>
-                                <FormGroup>
-                                    <TextField
-                                        type="text"
-                                        placeholder="Phone"
-                                        inputRef={ref => { this.signup.mobile = ref }}
-                                        description="* Please do not post any contact details in your profile. We review each profile manually."
-                                        value={data.mobile} />
-                                </FormGroup>
-                            </Col>
-                        </Row>
+                    </Col>
+                    <Col sm={6}>
+                        <FormGroup>
+                            <TextField
+                                type="text"
+                                placeholder="Phone"
+                                inputRef={ref => { this.signup.mobile = ref }}
+                                description="* Please do not post any contact details in your profile. We review each profile manually."
+                                value={data.mobile} />
+                        </FormGroup>
                     </Col>
                 </Row>
-                <FormGroup className="text-center">
+                <FormGroup className="text-center pt-15">
                     <Btn
                         type="button"
                         text="Prev"
@@ -100,7 +98,7 @@ const mapStateToProps = (state) => {
     return {
         signup: {
             data: state.signup.data,
-            remember_token: state.signup.remember_token
+            custom_remember_token: state.signup.custom_remember_token
         },
         options: {
             interests: state.options.interests

@@ -8,7 +8,7 @@ class AvatarMember extends Component {
                 <img
                     onClick={this.props.onClick}
                     src={this.props.src}
-                    className="img-responsive pointer"
+                    className={"img-responsive pointer " + this.props.className}
                     alt="" />
             </div>
         );
