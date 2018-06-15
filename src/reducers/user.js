@@ -57,7 +57,23 @@ const initialState = {
         active_gallery: 'main',
         selected_img: [],
         images: [],
-        video: []
+        video: [],
+        body_style: {},
+        eye_wear: {},
+        religion: {},
+        living_situation: {},
+        education: {},
+        field_of_work: {},
+        employment_status: {},
+        about_me: '',
+        like_to_meet: '',
+        about_family: '',
+        leisure_time: '',
+        future_goals: '',
+        facebook: '',
+        vk: '',
+        other_social: '',
+        languages: []
     },
     countries: []
 }

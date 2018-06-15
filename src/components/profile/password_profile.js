@@ -56,7 +56,7 @@ class PasswordProfile extends Component {
                         label={true}
                     />
                 </FormGroup>
-                <FormGroup>
+                <FormGroup className="text-right">
                     <BtnMain
                             type="button"
                             bsStyle="success"
