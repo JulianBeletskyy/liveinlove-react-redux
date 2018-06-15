@@ -35,6 +35,7 @@ class SignUpOne extends Component {
                 smoke_id: this.signup.smoke.value,
                 drink_id: this.signup.drink.value,
                 want_children_id: this.signup.want_children.value,
+                religion_id: this.signup.religion.value,
                 match: {
                     from: this.signup.match.from.value,
                     to: this.signup.match.to.value

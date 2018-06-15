@@ -8,7 +8,7 @@ import Textarea from 'components/form/inputs/textarea.js'
 import Btn from 'components/form/buttons/button.js'
 import Validator from 'validate'
 import BlockSmall from 'components/blocks/block_small.js'
-import { SelectField } from 'components/form/inputs'
+import { SelectField, CheckboxField } from 'components/form/inputs'
 import Options from 'options'
 
 class SignUpThreeGirl extends Component {
@@ -33,7 +33,9 @@ class SignUpThreeGirl extends Component {
         error *= Validator.check(this.signup.about_me.value, ['required'], 'About me')
         error *= Validator.check(this.signup.like_to_meet.value, ['required'], 'Like to meet')
         error *= Validator.check(this.signup.leisure_time.value, ['required'], 'About Leisure time')
-        error *= Validator.check(this.props.signup.data.interest, ['required'], 'Inter')
+        error *= Validator.check(this.props.signup.data.interest, ['required'], 'Interests')
+        error *= Validator.check(this.signup.terms.checked, ['checked'], 'Terms & Privacy')
+        
         if (this.props.signup.data.interest.length < 5) {
             store.dispatch(setAlert('Pick at least 5 interest', 'error'))
             error = 0
@@ -105,7 +107,7 @@ class SignUpThreeGirl extends Component {
                                 placeholder="The one I would like to meet"
                                 label={true} />
                         </FormGroup>
-                        <h4 className="font-bebas">Interests</h4>
+                        <div><span className="font-bebas fs-18">Interests <span className="small-italic">(pick at least 5)</span></span></div>
                         { interests.map((interest, i) => this.printInterest(interest, i)) }
                         
                     </Col>
@@ -144,15 +146,14 @@ class SignUpThreeGirl extends Component {
                         </FormGroup>
                     </Col>
                     <Col xs={12} className="text-center">
+                        <CheckboxField
+                            inputRef={ref => { this.signup.terms = ref }}
+                            text='By clicking "Join Us for Free" above you agree to "Terms of Use" & "Privacy Policy"'
+                            value={false} />
                         <div className="position-relative">
                             <Btn
-                                type="button"
-                                text="Prev"
-                                orientation="left"
-                                onClick={this.prevStep} />
-                            <Btn
                                 type="submit"
-                                text="Finish"
+                                text="Add profile to the women's gallery"
                                 orientation="right" />
                         </div>
 

@@ -62,6 +62,24 @@ class SignUpTwo extends Component {
         }, {scope: 'public_profile, email'});
     }
 
+    googleSignUp = () => {
+        window.gapi.load('auth2', () => {
+            let auth2 = window.gapi.auth2.init({
+                'client_id': '614936763337-p55fs7mrcgtknam26o26g6766mdjlmgv.apps.googleusercontent.com',
+                'cookiepolicy': 'single_host_origin',
+                'scope': 'profile email'
+            });
+            let element = document.getElementById('google')
+
+            auth2.attachClickHandler(element, {}, (googleUser) => {
+                store.dispatch(saveImage(googleUser.w3.Paa))
+                let file = new File([''], googleUser.w3.Paa, {type: 'image'})
+                store.dispatch(saveFile(file))
+                this.setState({social: true})
+            })
+       });
+    }
+
     prevStep = () => {
         const step = this.props.signup.data.role === 'client' ? 7 : 5
         store.dispatch(changeStep(step))
@@ -76,6 +94,10 @@ class SignUpTwo extends Component {
                 store.dispatch(saveImage(reader.result))
             }
         }
+    }
+
+    componentDidMount() {
+        this.googleSignUp()
     }
 
     render() {
@@ -111,7 +133,8 @@ class SignUpTwo extends Component {
                             </FormGroup>
                             <FormGroup>
                                 <BtnGoogle
-                                    title="Upload from Google" />
+                                    title="Upload from Google"
+                                    onClick={this.googleSignUp} />
                             </FormGroup>
                         </div>
                     </Col>
