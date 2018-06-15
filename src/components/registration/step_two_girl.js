@@ -24,8 +24,6 @@ class SignUpTwoGirl extends Component {
             current_childBirth: ''
         }
 
-        Options.get('children')
-
         this.signup = {
             child: {}
         }
@@ -121,6 +119,14 @@ class SignUpTwoGirl extends Component {
                 'value': this.props.options[type][k].id,
                 'name': this.props.options[type][k].value
             })
+        }
+
+        if (type === 'religions') {
+            temp = temp.filter(item => [1, 2, 8, 10, 11, 16, 17, 19].indexOf(item.value) === -1)
+        }
+
+        if (type === 'field_of_work') {
+            temp = temp.filter(item => [5, 35, 36].indexOf(item.value) === -1)
         }
 
         if (type === 'children') {
@@ -227,7 +233,7 @@ class SignUpTwoGirl extends Component {
     }
 
     printChildrens = (item, i) => {
-        return  <div key={i} className="position-relative">
+        return  <div key={i} className="position-relative font-bebas">
                     <div className="row">
                         <div className="col-xs-6">
                             <span className="text-capitalize">{item.sex}</span>

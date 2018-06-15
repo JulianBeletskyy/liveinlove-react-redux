@@ -29,8 +29,7 @@ class TextField extends Component {
     render() {
         const { changed } = this.props.textField
         let className = style.placeholder
-
-        if (changed.indexOf(this.id) >= 0) {
+        if (changed.indexOf(this.id) >= 0 || this.props.social) {
             className += (' ' + style.active)
         }
 

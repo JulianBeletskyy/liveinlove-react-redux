@@ -23,6 +23,7 @@ class SignUpStart extends Component {
 
         this.state = {
             gender: 'client',
+            social: false
         }
     }
 
@@ -60,7 +61,10 @@ class SignUpStart extends Component {
         error *= Validator.check(this.signup.password.value, ['required'], 'Password')
         error *= Validator.check(this.signup.country.value, ['required'], 'Country')
         error *= Validator.check(this.signup.city.value, ['required'], 'City')
-        error *= Validator.check(this.signup.terms.checked, ['checked'], 'Terms & Privacy')
+
+        if (this.signup.role === 'client') {
+            error *= Validator.check(this.signup.terms.checked, ['checked'], 'Terms & Privacy')
+        }
 
         if (this.signup.role === 'girl') {
             error *= Validator.check(this.signup.mobile.value, ['required'], 'Phone')
@@ -80,7 +84,10 @@ class SignUpStart extends Component {
                 city: this.signup.city.value,
                 email: this.signup.email.value,
                 password: this.signup.password.value,
-                terms: this.signup.terms.checked
+            }
+
+            if (this.signup.role === 'client') {
+                data.terms = this.signup.terms.checked
             }
 
             if (this.signup.role === 'girl') {
@@ -98,24 +105,28 @@ class SignUpStart extends Component {
     facebookSignUp = () => {
         window.FB.login((response) => {
             window.FB.api('/me', {fields: ['first_name, last_name, email, picture.width(2048), gender, locale']}, (response) => {
-                this.signup.first_name.value = response.first_name
-                this.signup.last_name.value = response.last_name
-                this.signup.email.value = response.email
-                this.role.female.checked = response.gender === 'female'
-                this.role.male.checked = response.gender === 'male'
 
-                store.dispatch(saveImage(response.picture.data.url))
-                let file = new File([''], response.picture.data.url, {type: 'image'})
-                store.dispatch(saveFile(file))
+                if (response.first_name) {
+                    this.signup.first_name.value = response.first_name
+                    this.signup.last_name.value = response.last_name
+                    this.signup.email.value = response.email
+                    this.role.female.checked = response.gender === 'female'
+                    this.role.male.checked = response.gender === 'male'
 
-                const data = {
-                    first_name: response.first_name,
-                    last_name: response.last_name,
-                    email: response.email,
-                    role: response.gender === 'female' ? 'girl' : 'client'
-                }
-                this.signup.role = data.role
-                store.dispatch(setSignUpData(data))
+                    store.dispatch(saveImage(response.picture.data.url))
+                    let file = new File([''], response.picture.data.url, {type: 'image'})
+                    store.dispatch(saveFile(file))
+
+                    const data = {
+                        first_name: response.first_name,
+                        last_name: response.last_name,
+                        email: response.email,
+                        role: response.gender === 'female' ? 'girl' : 'client'
+                    }
+                    this.signup.role = data.role
+                    store.dispatch(setSignUpData(data))
+                    this.setState({social: true})
+                }  
             });
         }, {scope: 'public_profile, email'});
     }
@@ -127,10 +138,25 @@ class SignUpStart extends Component {
                 'cookiepolicy': 'single_host_origin',
                 'scope': 'profile email'
             });
-        let element = document.getElementById('google')
+            let element = document.getElementById('google')
+            console.log(element)
 
-        auth2.attachClickHandler(element, {}, (googleUser) => {
-                
+            auth2.attachClickHandler(element, {}, (googleUser) => {
+
+                this.signup.first_name.value = googleUser.w3.ofa
+                this.signup.last_name.value = googleUser.w3.wea
+                this.signup.email.value = googleUser.w3.U3
+                const data = {
+                    first_name: googleUser.w3.ofa,
+                    last_name: googleUser.w3.wea,
+                    email: googleUser.w3.U3,
+                }
+
+                store.dispatch(saveImage(googleUser.w3.Paa))
+                let file = new File([''], googleUser.w3.Paa, {type: 'image'})
+                store.dispatch(saveFile(file))
+                store.dispatch(setSignUpData(data))
+                this.setState({social: true})
             })
        });
     }
@@ -197,7 +223,7 @@ class SignUpStart extends Component {
     }
 
     componentDidMount() {
-        //this.googleSignUp()
+        this.googleSignUp()
         
     }
 
@@ -258,6 +284,7 @@ class SignUpStart extends Component {
                                         inputRef={ref => { this.signup.first_name = ref }}
                                         value={first_name}
                                         name="First Name"
+                                        social={this.state.social}
                                         key="first_name" />
                                 </FormGroup>
                             </Col>
@@ -269,6 +296,7 @@ class SignUpStart extends Component {
                                         inputRef={ref => { this.signup.last_name = ref }}
                                         name="Last Name"
                                         value={last_name}
+                                        social={this.state.social}
                                         description={'* Your last name is not visible.'}
                                         key="last_name" />
                                 </FormGroup>
@@ -279,6 +307,7 @@ class SignUpStart extends Component {
                                 type="email"
                                 placeholder="Enter email"
                                 inputRef={ref => { this.signup.email = ref }}
+                                social={this.state.social}
                                 value={email} />
                         </FormGroup>
                         <FormGroup>
@@ -412,10 +441,15 @@ class SignUpStart extends Component {
                     </Col>
                     <Col xs={12} className="text-center">
                         <div className={style.terms + ' ' + activeClass}>
-                            <CheckboxField
-                                inputRef={ref => { this.signup.terms = ref }}
-                                text='By clicking "Join Us for Free" above you agree to "Terms of Use" & "Privacy Policy"'
-                                value={terms} />
+                            {
+                                this.signup.role === 'client'
+                                ?   <CheckboxField
+                                        inputRef={ref => { this.signup.terms = ref }}
+                                        text='By clicking "Join Us for Free" above you agree to "Terms of Use" & "Privacy Policy"'
+                                        value={terms} />
+                                :   ''
+                            }
+                            
                         </div>
                         <FormGroup>
                             <Btn
@@ -427,17 +461,21 @@ class SignUpStart extends Component {
                         </FormGroup>
                         <FormGroup>
                         </FormGroup>
-                        <FormGroup>
-                            <h4 className="">Join With</h4>
-                            <div className="social-button text-center">
-                                <div className="form-group">
-                                    <BtnFacebook title="Join Up with Facebook" />
-                                </div>
-                                <div>
-                                    <BtnGoogle title="Join Up with Google" />
-                                </div>
-                            </div>
-                        </FormGroup>
+                        {
+                            this.state.gender === 'client'
+                            ?   <FormGroup>
+                                    <h4 className="">Join With</h4>
+                                    <div className="social-button text-center">
+                                        <div className="form-group">
+                                            <BtnFacebook title="Join Up with Facebook" onClick={this.facebookSignUp} />
+                                        </div>
+                                        <div>
+                                            <BtnGoogle title="Join Up with Google" onClick={this.googleSignUp} />
+                                        </div>
+                                    </div>
+                                </FormGroup>
+                            :   ''
+                        }
                     </Col>
                 </Row>
             </form>
