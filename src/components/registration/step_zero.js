@@ -134,7 +134,7 @@ class SignUpStart extends Component {
     googleSignUp = () => {
         window.gapi.load('auth2', () => {
             let auth2 = window.gapi.auth2.init({
-                'client_id': '614936763337-p55fs7mrcgtknam26o26g6766mdjlmgv.apps.googleusercontent.com',
+                'client_id': '567378795616-ng6a5sqd13t0ii0a9c5jcv8emrv3fc1g.apps.googleusercontent.com',
                 'cookiepolicy': 'single_host_origin',
                 'scope': 'profile email'
             });
