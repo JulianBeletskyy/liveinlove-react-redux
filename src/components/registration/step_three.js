@@ -61,18 +61,19 @@ class SignUpThree extends Component {
                                 placeholder="The one I would like to meet"
                                 label={true} />
                         </FormGroup>
+                        <div className="form-group" style={{fontSize: 12, opacity: 0.8}}>* Please do not post any contact details in your profile. We review each profile manually.</div>
                         <div><span className="font-bebas fs-18">Interests <span className="small-italic">(pick at least 5)</span></span></div>
                         <div className="form-group">
                             { interests.map((interest, i) => this.printInterest(interest, i)) }
                         </div>
                     </Col>
                     <Col sm={6}>
-                        <FormGroup>
+                        <FormGroup className="pt-15">
                             <TextField
                                 type="text"
                                 placeholder="Phone"
                                 inputRef={ref => { this.signup.mobile = ref }}
-                                description="* Please do not post any contact details in your profile. We review each profile manually."
+                                description="* Your phone number is visible only for administrator."
                                 value={data.mobile} />
                         </FormGroup>
                     </Col>
