@@ -284,7 +284,7 @@ class Member extends Component {
                                                         <span className="font-bebas fs-18">About Children: </span>
                                                     </div>
                                                     <div className="col-xs-7">
-                                                        <div>{member.about_children.map((item, i) => <div><span className="text-capitalize">{item.sex}</span> - {this.getAge(item.bith)}</div>)}</div>
+                                                        <div>{member.about_children.map((item, i) => <div><span className="text-capitalize">{item.sex}</span> - {this.getAge(item.birth)}</div>)}</div>
                                                     </div>
                                                 </div>
                                             :   ''
