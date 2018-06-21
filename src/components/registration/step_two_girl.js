@@ -121,8 +121,12 @@ class SignUpTwoGirl extends Component {
             })
         }
 
+        if (type === 'primary_language') {
+            temp = temp.filter(item => [15, 16, 29].indexOf(item.value) === -1)
+        }
+
         if (type === 'religions') {
-            temp = temp.filter(item => [1, 2, 8, 10, 11, 16, 17, 19].indexOf(item.value) === -1)
+            temp = temp.filter(item => [1, 2, 8, 10, 11, 16, 17, 19, 20].indexOf(item.value) === -1)
         }
 
         if (type === 'field_of_work') {
