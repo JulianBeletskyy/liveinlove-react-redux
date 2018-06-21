@@ -105,17 +105,26 @@ class SignUpStart extends Component {
     facebookSignUp = () => {
         window.FB.login((response) => {
             window.FB.api('/me', {fields: ['first_name, last_name, email, picture.width(2048), gender, locale']}, (response) => {
-
                 if (response.first_name) {
                     this.signup.first_name.value = response.first_name
                     this.signup.last_name.value = response.last_name
                     this.signup.email.value = response.email
                     this.role.female.checked = response.gender === 'female'
                     this.role.male.checked = response.gender === 'male'
-                    console.log(response.picture.data.url)
-                    store.dispatch(saveImage(response.picture.data.url))
-                    let file = new File([''], response.picture.data.url, {type: 'image'})
-                    store.dispatch(saveFile(file))
+
+                    fetch(response.picture.data.url)
+                    .then(res => {
+                        const result = res.blob()
+                        result.then(response => {
+                            let reader = new FileReader()
+                            reader.onloadend = () => {
+                                store.dispatch(saveImage(reader.result))
+                                let file = new File([''], reader.result, {type: 'image'})
+                                store.dispatch(saveFile(file))
+                            }
+                            reader.readAsDataURL(response);
+                        })
+                    })
 
                     const data = {
                         first_name: response.first_name,
