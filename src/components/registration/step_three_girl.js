@@ -107,11 +107,6 @@ class SignUpThreeGirl extends Component {
                                 placeholder="The one I would like to meet"
                                 label={true} />
                         </FormGroup>
-                        <div><span className="font-bebas fs-18">Interests <span className="small-italic">(pick at least 5)</span></span></div>
-                        { interests.map((interest, i) => this.printInterest(interest, i)) }
-                        
-                    </Col>
-                    <Col xs={12}>
                         <FormGroup>
                             <Row>
                                 <Col sm={4}>
@@ -137,6 +132,11 @@ class SignUpThreeGirl extends Component {
                                 </Col>
                             </Row>
                         </FormGroup>
+                        <div><span className="font-bebas fs-18">Interests <span className="small-italic">(pick at least 5)</span></span></div>
+                        { interests.map((interest, i) => this.printInterest(interest, i)) }
+                        
+                    </Col>
+                    <Col xs={12}>
                         <FormGroup>
                             <Textarea
                                 inputRef={ref => { this.signup.leisure_time = ref }}
