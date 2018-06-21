@@ -112,7 +112,7 @@ class SignUpStart extends Component {
                     this.signup.email.value = response.email
                     this.role.female.checked = response.gender === 'female'
                     this.role.male.checked = response.gender === 'male'
-
+                    console.log(response.picture.data.url)
                     store.dispatch(saveImage(response.picture.data.url))
                     let file = new File([''], response.picture.data.url, {type: 'image'})
                     store.dispatch(saveFile(file))
@@ -132,33 +132,38 @@ class SignUpStart extends Component {
     }
 
     googleSignUp = () => {
-        window.gapi.load('auth2', () => {
-            let auth2 = window.gapi.auth2.init({
-                'client_id': '567378795616-ng6a5sqd13t0ii0a9c5jcv8emrv3fc1g.apps.googleusercontent.com',
-                'cookiepolicy': 'single_host_origin',
-                'scope': 'profile email'
-            });
-            let element = document.getElementById('google')
-            console.log(element)
+        const script = document.createElement("script")
+        script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyConxWeoxhyeKMSr8737_UYFE3grEi2bH0&libraries=places&language=en";
 
-            auth2.attachClickHandler(element, {}, (googleUser) => {
+        script.onload = () => {
+            window.gapi.load('auth2', () => {
+                let auth2 = window.gapi.auth2.init({
+                    'client_id': '567378795616-ng6a5sqd13t0ii0a9c5jcv8emrv3fc1g.apps.googleusercontent.com',
+                    'cookiepolicy': 'single_host_origin',
+                    'scope': 'profile email'
+                });
+                let element = document.getElementById('google')
 
-                this.signup.first_name.value = googleUser.w3.ofa
-                this.signup.last_name.value = googleUser.w3.wea
-                this.signup.email.value = googleUser.w3.U3
-                const data = {
-                    first_name: googleUser.w3.ofa,
-                    last_name: googleUser.w3.wea,
-                    email: googleUser.w3.U3,
-                }
+                auth2.attachClickHandler(element, {}, (googleUser) => {
 
-                store.dispatch(saveImage(googleUser.w3.Paa))
-                let file = new File([''], googleUser.w3.Paa, {type: 'image'})
-                store.dispatch(saveFile(file))
-                store.dispatch(setSignUpData(data))
-                this.setState({social: true})
-            })
-       });
+                    this.signup.first_name.value = googleUser.w3.ofa
+                    this.signup.last_name.value = googleUser.w3.wea
+                    this.signup.email.value = googleUser.w3.U3
+                    const data = {
+                        first_name: googleUser.w3.ofa,
+                        last_name: googleUser.w3.wea,
+                        email: googleUser.w3.U3,
+                    }
+
+                    store.dispatch(saveImage(googleUser.w3.Paa))
+                    let file = new File([''], googleUser.w3.Paa, {type: 'image'})
+                    store.dispatch(saveFile(file))
+                    store.dispatch(setSignUpData(data))
+                    this.setState({social: true})
+                })
+           });
+        }
+        document.body.appendChild(script)
     }
 
     toggleRole = () => {
