@@ -115,14 +115,14 @@ class SignUpStart extends Component {
                     fetch(response.picture.data.url)
                     .then(res => {
                         const result = res.blob()
-                        result.then(response => {
+                        result.then(responseImg => {
                             let reader = new FileReader()
                             reader.onloadend = () => {
                                 store.dispatch(saveImage(reader.result))
                                 let file = new File([''], reader.result, {type: 'image'})
                                 store.dispatch(saveFile(file))
                             }
-                            reader.readAsDataURL(response);
+                            reader.readAsDataURL(responseImg);
                         })
                     })
 
