@@ -97,9 +97,9 @@ class SignUpTwo extends Component {
 
     onDrop = (picture) => {
         if (picture) {
-            store.dispatch(saveFile(picture[0]))
+            store.dispatch(saveFile(picture[picture.length - 1]))
             let reader = new FileReader();
-            reader.readAsDataURL(picture[0])
+            reader.readAsDataURL(picture[picture.length - 1])
             reader.onload = function() {
                 store.dispatch(saveImage(reader.result))
             }

@@ -25,7 +25,7 @@ class SignUpThree extends Component {
                 about_me: this.signup.about_me.value,
                 like_to_meet: this.signup.like_to_meet.value,
                 interest_id: this.props.signup.data.interest,
-                mobile: this.props.signup.mobile,
+                mobile: this.signup.mobile.value,
                 custom_remember_token: this.props.signup.custom_remember_token
             }
             store.dispatch(sendSignUpFour(data, 4))

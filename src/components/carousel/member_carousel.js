@@ -49,6 +49,7 @@ class MemberCarousel extends Component {
             infinite: true,
             arrows: true,
             autoplay: false,
+            adaptiveHeight: true,
             nextArrow: <NextArrow />,
             prevArrow: <PrevArrow />,
             responsive: [
@@ -66,7 +67,7 @@ class MemberCarousel extends Component {
         };
 		return (
 			<Slider {...settings}>
-                { this.props.items.map((item, i) => this.printItems(item, i))}
+                { this.props.items.map((item, i) => this.printItems(item, i)) }
             </Slider>
             )
 	}
