@@ -452,7 +452,7 @@
 
 .bg-gray {
 	background: #F7F7F7;
-	min-height: 300px;
+	min-height: 200px;
 }
 
 .bg-light {
@@ -685,6 +685,10 @@
 	clip: rect(0,80px,80px,40px);
 }
 
+.fs-12 {
+	font-size: 12px;
+}
+
 .loader-wrap {
 	position: absolute;
 	left: 0;
@@ -693,6 +697,12 @@
 	bottom: 0;
 	background: #fff;
 	opacity: 0.8;
+}
+
+@media(max-width: 520px) {
+	.credits-table {
+		font-size: 12px;
+	}
 }
 
 @-webkit-keyframes pace-animate1 {

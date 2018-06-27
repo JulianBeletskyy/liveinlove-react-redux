@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import store, { history } from 'store'
-import Block from './block.js'
 import { connect } from 'react-redux'
-import { Grid, Row, Col } from 'react-bootstrap'
+import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
 import TestimonialItem from 'components/home/testimonial_item.js'
 import { Registration, MainPanel } from 'components'
 import { toggleRegistration, getPublicMembers, setActiveMembers } from 'actions'
@@ -22,10 +21,6 @@ class Works extends Component {
         store.dispatch(setActiveMembers(type))
     }
 
-	printBlock = (item, i) => {
-		return <Col key={i} sm={4}><Block icon="far fa-heart fa-3x" title="MADE WITH LOVE" /></Col>
-	}
-
 	printTestimonials = (item, i) => {
         if (i > 2) { return false } 
         return  <Col sm={4} key={i}>
@@ -42,44 +37,107 @@ class Works extends Component {
                     <div className="bg-white p-15">
                         <h1 className="font-bebas">How It Works?</h1>
                         <hr />
-                        <h2 className="text-center form-group p-15 works-big-title">HIGHLY CREATIVE <span className="underline-text">WEBSITE SOLUTIONS</span></h2>
-                        <div className="text-center form-group p-15 mb-35 color-888">We craft beautiful and unique digital experiences. With more than ten years of knowledge and expertise we design and code clean awesome websites and apps, we build brands and help them succeed!</div>
-                        <Row>
-                        	{blocks.map((item, i) => this.printBlock(item, i))}
-                        </Row>
-                        <div className="bg-light p-15">
-                        	<Row>
-                        		<Col sm={6}>
-                        			<img src="http://mint.themes.tvda.pw/wp-content/uploads/2016/11/laptop-video.jpg" className="img-responsive" alt="" />
-                        		</Col>
-                        		<Col sm={6}>
-                        			<h3 className="works-title">UNIQUE, TRULY RESPONSIVE AND FUNCTIONAL WEBSITES THAT IMPRESS!</h3>
-                        			<div className="color-888">We craft unique digital experiences. With more than 10 years of knowledge and expertise we design and code clean websites and apps, we build brands and help them succeed!</div>
-                        			<h3 className="works-title">START YOUR BUSINESS TODAY</h3>
-                        			<div className="color-888">From startups to accounting firms to restaurateurs, we share a common goal with all our clients – to bring out the best in their brand.</div>
-                        		</Col>
-                        	</Row>
-                        	<hr />
-                        	<Row>
-                        		<Col sm={4}>
-                        			<div className="works-small-title">BRAND STRATEGY</div>
-                        			<div className="color-888">Technology and design are the core of success for real estate related businesses. Leverage our years of experience to reach your agency’s full potential.</div>
-                        		</Col>
-                        		<Col sm={4}>
-                        			<div className="works-small-title">BRAND STRATEGY</div>
-                        			<div className="color-888">Technology and design are the core of success for real estate related businesses. Leverage our years of experience to reach your agency’s full potential.</div>
-                        		</Col>
-                        		<Col sm={4}>
-                        			<div className="works-small-title">BRAND STRATEGY</div>
-                        			<div className="color-888">Technology and design are the core of success for real estate related businesses. Leverage our years of experience to reach your agency’s full potential.</div>
-                        		</Col>
-                        	</Row>
-                        	
-                            
+                        <div className="form-group">
+                            <Row>
+                                <Col sm={4}>
+                                    <div className="service-title-left">
+                                        <span className="underline-text">Life In Love</span> is pleased to present the crème de la crème of Ukrainian and Russian beauties.
+                                    </div>
+                                </Col>
+                                <Col sm={8} xsHidden className="form-group">
+                                    <div className="service-title-right">
+                                        The ladies in our portfolio have all been pre-screened to verify their background, marital status and their eligibility to enter a committed relationship. All ladies have been cleared and are 100% ready and available to enter a relationship with our clients.
+                                    </div>
+                                    <div className="color-888">
+                                        To connect with your future soul mate, you must take the first step by completing the questionnaire on this site. Once you’ve submitted your information, you may be granted access to view our active library of interested ladies. Each file provides statistical information and other details to help you select the lady that most closely fits your desire for the ideal partner. 
+                                        Are you ready to meet your Love? Follow the steps below:
+                                    </div>
+                                </Col>
+                            </Row>
                         </div>
+                        <FormGroup>
+                            <Row>
+                                <Col sm={4}>
+                                    <div className="bg-gray service-wrap-title">
+                                        <div className="service-number">01.</div>
+                                        <span className="title-service">COMPLETE YOUR PROFILE</span>
+                                    </div>
+                                </Col>
+                                <Col sm={8} xsHidden>
+                                    <div className="service-wrap-title">
+                                        Developing a sincere and honest relationship begins with transparency. We want to know the true you. The list of questions is provided to help our clients get to know you better. What are your likes? Your hobbies? How would you describe your personality? What do you do for work? The more honest your responses, the more likely it is that you’ll find a compatible match.
+                                    </div>
+                                </Col>
+                            </Row>
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Row>
+                                <Col sm={8} xsHidden>
+                                    <div className="service-wrap-title">
+                                        We want to see you! Our initial attraction to an individual, is almost exclusively based on appearance. It’s human nature. Within the first seconds of seeing someone, we decide if the person seems friendly, interesting, kind or fun. That’s why it’s imperative that you upload a profile picture. Statistics show that profiles without a photo have a lower chance of being viewed. To increase the likelihood of being selected, upload a recent (within the last 2 years), clear, photo of yourself. You must be the only person in the shot. Make sure the background is not distracting. Smile.
+                                        Your potential mate will be interested in learning more about your home life also. Include pictures of your family, your hobbies, pets, activities that you participate in, where you live, your work and other things that interest you. Upload as many pictures as you can.
+                                    </div>
+                                </Col>
+                                <Col sm={4}>
+                                    <div className="bg-gray service-wrap-title">
+                                        <div className="service-number">02.</div>
+                                        <span className="title-service">UPLOAD A PHOTO</span>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Row>
+                                <Col sm={4}>
+                                    <div className="bg-gray service-wrap-title">
+                                        <div className="service-number">03.</div>
+                                        <span className="title-service">CHOOSE A PACKAGE</span>
+                                    </div>
+                                </Col>
+                                <Col sm={8} xsHidden>
+                                    <div className="service-wrap-title">
+                                        Our goal at Life In Love, is to help you navigate the intricacies of communicating with your foreign connections. We want to simplify the process of finding lasting love. Since you’re checking out our site, we assume you’ve done your research and you’ve discovered that Life In Love is an ethical organization that’s made up of caring people who are genuinely interested in helping you find Love that Lasts. Maybe there are other areas that you need help with - such as the language and geographic barriers? We offer various services to assist with those needs. Please see further information under the “Services” tab.
+                                    </div>
+                                </Col>
+                            </Row>
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Row>
+                                <Col sm={8} xsHidden>
+                                    <div className="service-wrap-title">
+                                        You’re looking for the single female of your dreams - someone who is ready to build a real relationship and start a family. Our platform is just the right place to find her! We have tons of eligible ladies waiting to meet you. Select one of our Membership plans and start communicating with your potential mate.
+                                        When you find a lady that’s interested, and you want to set-up a personal meeting, Life in Love is ready to orchestrate the meeting of your dreams. Please see further information under the “Services” tab.
+                                    </div>
+                                </Col>
+                                <Col sm={4}>
+                                    <div className="bg-gray service-wrap-title">
+                                        <div className="service-number">04.</div>
+                                        <span className="title-service">THE LADY OF YOUR DREAMS AWAITS!</span>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Row>
+                                <Col sm={4}>
+                                    <div className="bg-gray service-wrap-title">
+                                        <div className="service-number">05.</div>
+                                        <span className="title-service">YOUR HAPPINESS IS OUR PRIORITY</span>
+                                    </div>
+                                </Col>
+                                <Col sm={8} xsHidden>
+                                    <div className="service-wrap-title">
+                                        The Life In Love team is focused on delivering exceptional customer service. We want to be sure you’re happy with your connections and satisfied with your experience. If you have any questions or concerns, please contact us immediately. You may message us via the contacts option provided on this site.
+                                    </div>
+                                </Col>
+                            </Row>
+                        </FormGroup>
+                        
                         <div className="works-member-block clearfix">
-                            <h2 className="text-center form-group p-15 works-big-title">WHAT CLIENTS SAY <span className="underline-text">ABOUT US</span></h2>
-                            <div className="text-center form-group p-15 mb-35 color-888">Award winning digital agency. We bring a personal and effective approach to every project we work on, which is why our clients love us and why they keep coming back. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis eros lobortis, vestibulum turpis ac, pulvinar odio. Praesent vulputate a elit ac mollis. In sit amet ipsum turpis.</div>
                             <div className="clearfix pt-15">
                                 { this.props.services.testimonials.list[0].list.map((item, i) => this.printTestimonials(item, i)) }
                             </div>
@@ -110,8 +168,14 @@ class Works extends Component {
                             title="Registration"
                             iconClass="fas fa-address-card"
                             body={<Registration />} />
+                        <hr />
+                        <div className="color-888 fs-12">
+                            Disclaimer:<br />
+                            Although all clients are properly vetted to ensure honest connections, Life in Love is not responsible for connections that do not result in a successful bond or a lasting relationship. The Life in Love staff will make every effort to assist our clients in securing genuine contacts; but clients are advised they enter into the contract at their own risk. Life In Love does not implicitly or explicitly guarantee clients will find their soul mate or lasting love using any marriage service.
+                        </div>
 	                </div>
 	            </Grid>
+
             </div>
 		)
     }
