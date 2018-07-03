@@ -151,7 +151,7 @@ class Member extends Component {
                                             :   ''
                                         }
                                     </Col>
-                                    <Col md={5} lg={4} className="nowrap">
+                                    <Col md={5} lg={4}>
                                         <div>
                                             <strong className={`font-bebas fs-36 ${member.role}-color`}>{member.first_name}</strong>
                                             <strong className="fs-18">,&nbsp;{member.age} (age)</strong>
