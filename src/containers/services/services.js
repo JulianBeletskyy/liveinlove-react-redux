@@ -1,8 +1,40 @@
 import React, { Component } from 'react'
+import store, { history } from 'store'
 import { Grid, Row, Col, FormGroup } from 'react-bootstrap'
+import BtnMain from 'components/form/buttons/main_button.js'
+import { connect } from 'react-redux'
+import { toggleModal, toggleRegistration } from 'actions'
+import MainModal from 'components/modal/modal.js'
+import Credits from 'components/membership/credits.js'
+import Plans from 'components/membership/plans.js'
+import Options from 'options'
+import { animateScroll as scroll } from 'react-scroll'
 
 class Services extends Component {
+    membership = () => {
+        if (this.props.user.token) {
+            store.dispatch(toggleModal(true, 'plans'))
+        } else {
+            Options.getAll()
+            store.dispatch(toggleRegistration(true))
+            scroll.scrollToTop({duration: 0});
+            history.push('/')
+        }
+    }
+
+    credits = () => {
+        if (this.props.user.token) {
+            store.dispatch(toggleModal(true, 'credits'))
+        } else {
+            Options.getAll()
+            store.dispatch(toggleRegistration(true))
+            scroll.scrollToTop({duration: 0});
+            history.push('/')
+        }
+    }
+
     render() {
+        const { plans, credits } = this.props.modals
         return (
             <div className="pt-100">
 	            <Grid>
@@ -121,6 +153,15 @@ class Services extends Component {
                                         </table>
                                     </div>
                                 </Col>
+                                <Col xs={12}>
+                                    <div className="form-group text-center">
+                                        <BtnMain
+                                            type="button"
+                                            bsStyle="success"
+                                            text="Choose membership"
+                                            onClick={this.membership} />
+                                    </div>
+                                </Col>
                                 <Col sm={12} className="form-group">
                                     <div className="service-title-right">
                                         Based on our experience we know that some clients prefer to whet their palate, before enjoying the full course benefits of membership. For these clients we offer a Sampler for $9.99 per use. With this option, you receive the following benefits:
@@ -135,9 +176,9 @@ class Services extends Component {
                                         Don’t forget you’ve got DIBS on all services we offer. Use your DIBS today!
                                     </div>
                                 </Col>
-                                <Col sm={10} smOffset={1}>
+                                <Col sm={8} smOffset={2}>
                                     <div className=" table-responsive">
-                                        <table class="table table-bordered credits-table">
+                                        <table class="table table-bordered credits-table table-striped">
                                             <tbody>
                                                 <tr>
                                                     <td>10 Dibs/$1.09 per Dib. - $10.99</td>
@@ -157,6 +198,15 @@ class Services extends Component {
                                                 </tr>
                                             </tbody>
                                         </table>
+                                    </div>
+                                </Col>
+                                <Col xs={12}>
+                                    <div className="form-group text-center">
+                                        <BtnMain
+                                            type="button"
+                                            bsStyle="success"
+                                            text="Buy credits"
+                                            onClick={this.credits} />
                                     </div>
                                 </Col>
                             </Row>
@@ -287,9 +337,34 @@ class Services extends Component {
                         </div>
 	                </div>
 	            </Grid>
+                <MainModal
+                    body={<Plans />}
+                    title="Membership"
+                    show={plans}
+                    keyModal="plans"
+                    size="lg" />
+                <MainModal
+                    body={<Credits />}
+                    title="Credits"
+                    show={credits}
+                    keyModal="credits" />
             </div>
         );
     }
 }
 
-export default Services
+const mapStateToProps = (state) => {
+    return {
+        user: {
+            token: state.user.token
+        },
+        modals: {
+            plans: state.modals.plans,
+            credits: state.modals.credits
+        }
+    } 
+}
+
+export default connect(
+    mapStateToProps
+)(Services)

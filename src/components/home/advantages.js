@@ -21,7 +21,9 @@ class Advantages extends Component {
 			for (let k in this.elements) {
 				this.delay += 50
 				window.setTimeout(() => {
-					this.elements[k].className = this.elements[k].className + ' slideInUp animated'
+					if (this.elements[k]) {
+						this.elements[k].className = this.elements[k].className + ' slideInUp animated'
+					}
 				}, this.delay)
 			}
 		}
