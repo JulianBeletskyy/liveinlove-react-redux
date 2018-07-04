@@ -11,22 +11,27 @@ import Textarea from 'components/form/inputs/textarea.js'
 import Options from 'options'
 import InputMask from 'react-input-mask'
 
+let state = {
+        languages: [],
+        childrens: [],
+        current_lang: '',
+        current_level: '',
+        children: '',
+        current_childSex: '',
+        current_childBirth: ''
+    }
+
 class SignUpTwoGirl extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            languages: [],
-            childrens: [],
-            current_lang: '',
-            current_level: '',
-            children: '',
-            current_childSex: '',
-            current_childBirth: ''
-        }
-
+        this.state = state
         this.signup = {
             child: {}
         }
+    }
+
+    componentWillUnmount() {
+        state = this.state;
     }
 
     getSignUpThree = (event) => {
@@ -326,7 +331,7 @@ class SignUpTwoGirl extends Component {
                                 componentClass="select"
                                 inputRef={ref => { this.signup.want_children = ref }}
                                 options={this.getArray('want_children')}
-                                value={data.want_children} />
+                                value={data.want_children_id} />
                         </FormGroup>
                         <FormGroup>
                             <SelectField
@@ -356,7 +361,7 @@ class SignUpTwoGirl extends Component {
                                 componentClass="select"
                                 inputRef={ref => { this.signup.religions = ref }}
                                 options={this.getArray('religions')}
-                                value={data.religions} />
+                                value={data.religion_id} />
                         </FormGroup>
                         <FormGroup>
                             <SelectField

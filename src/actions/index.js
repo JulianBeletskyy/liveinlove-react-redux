@@ -290,7 +290,6 @@ export function setSendEmail(value) {
 }
 
 export function setSignUpData(data) {
-    console.log(data)
     return {
         type: types.SET_SIGN_UP_DATA,
         data

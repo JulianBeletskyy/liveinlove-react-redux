@@ -41,7 +41,16 @@ const initialState = {
         facebook: '',
         vk: '',
         other_social: '',
-        languages: []
+        languages: [],
+        body_style: '',
+        eye_wear: '',
+        want_children: '',
+        about_family: '',
+        employment_status: '',
+        living_situation: '',
+        field_of_work: '',
+        future_goals: '',
+        children_yes_no: ''
     },
     send_email: '',
     custom_remember_token: '',
