@@ -48,7 +48,6 @@ class SignUpStart extends Component {
             password: this.signup.password.value,
         }
         store.dispatch(sendSignUpBefore(data))
-        console.log(data)
     }
 
     checkData = () => {
@@ -481,7 +480,7 @@ class SignUpStart extends Component {
                         <FormGroup>
                             <Btn
                                 type="button"
-                                bsStyle="success"
+                                bsStyle="success w-200"
                                 text="Join Us for Free"
                                 orientation="right"
                                 onClick={this.showRegistration} />
@@ -523,7 +522,10 @@ const mapStateToProps = (state) => {
                 country: state.signup.data.country,
                 city: state.signup.data.city,
                 terms: state.signup.data.terms,
-                mobile: state.signup.data.mobile
+                mobile: state.signup.data.mobile,
+                facebook: state.signup.data.facebook,
+                vk: state.signup.data.vk,
+                other_social: state.signup.data.other_social,
             },
             showRegistration: state.signup.showRegistration
         },

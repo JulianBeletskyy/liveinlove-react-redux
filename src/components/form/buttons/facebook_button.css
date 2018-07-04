@@ -24,7 +24,7 @@
     border: 0;
     position: relative;
     overflow: hidden;
-    width: 180px;
+    width: 200px;
 }
 
 :local(.button:hover) {
