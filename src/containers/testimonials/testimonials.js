@@ -18,17 +18,19 @@ class Testimonials extends Component {
         store.dispatch(getPublicMembers('popular'))
         this.state = {
             last_page: 2,
-            current_page: 1
+            current_page: 1,
+            testimonial_img: ''
         }
     }
 
     printTestimonials = (item, i) => {
         return  <Col sm={12} key={i}>
-                    <TestimonialBig onClick={this.showTestimonials} {...item} />
+                    <TestimonialBig onClick={this.showTestimonials(item)} {...item} />
                 </Col>
     }
 
-    showTestimonials = () => {
+    showTestimonials = item => e => {
+        this.setState({testimonial_img: item.text_img})
         store.dispatch(toggleModal(true, 'testimonials'))
     }
 
@@ -57,7 +59,6 @@ class Testimonials extends Component {
                                 <Row>
                                     { list.list[this.state.current_page - 1].list.map((item, i) => this.printTestimonials(item, i)) }
                                 </Row>
-                                <Pagination {...this.state} onClick={this.changePage} />
                             </Col>
                             <Col sm={3}>
                                 <FormGroup className="text-center">
@@ -79,7 +80,7 @@ class Testimonials extends Component {
                 <MainModal
                     body={  
                         <div>
-                            <img src="http://mint.themes.tvda.pw/wp-content/uploads/2016/11/profile04.jpg" className="img-responsive" alt="" />
+                            <img src={this.state.testimonial_img} className="img-responsive" alt="" />
                         </div>
                     }
                     title="Testimonials"

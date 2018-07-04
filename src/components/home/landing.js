@@ -23,13 +23,18 @@ class Landing extends Component {
         store.dispatch(getPublicMembers('new'))
         store.dispatch(getPublicMembers('popular'))
         store.dispatch(getStories())
+        this.state = {
+            testimonial_img: ''
+        }
     }
 
     showModal = () => {
         store.dispatch(toggleModal(true, 'login'))
     }
 
-    showTestimonials = () => {
+    showTestimonials = item => e => {
+        e.stopPropagation()
+        this.setState({testimonial_img: item.text_img})
         store.dispatch(toggleModal(true, 'testimonials'))
     }
 
@@ -75,7 +80,7 @@ class Landing extends Component {
 
     printTestimonials = (item, i) => {
         return  <Col sm={4} key={i}>
-                    <TestimonialItem onClick={this.showTestimonials} {...item} />
+                    <TestimonialItem onClick={this.showTestimonials(item)} {...item} />
                 </Col>
     }
 
@@ -168,7 +173,7 @@ class Landing extends Component {
                                 <div>
                                     <div>
                                         <h1 className="text-white main">
-                                            Premier Matchmaking agency to Find Your Ukrainian Lady
+                                            Premier Matchmaking company to Find Your Ukrainian Lady
                                         </h1>
                                         <h2 className="text-white text-center">
                                             We are not Gods to predict your future but we have something to make you closer to your dream come true.
@@ -245,7 +250,7 @@ class Landing extends Component {
                                     <div className={style.storyWrap}>
                                         <div className="row">
                                             <div className="col-sm-4">
-                                                <div className={style.succesMore}>More then 2000 couples</div>
+                                                <div className={style.succesMore}>So many people found their happiness here. Once made a step for luck. Ready to be Next? Read all successful Stories.</div>
                                             </div>
                                             <div className="col-sm-8">
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -337,7 +342,7 @@ class Landing extends Component {
                 <MainModal
                     body={  
                         <div>
-                            <img src="assets/img/testimonials-big.jpg" className="img-responsive" alt="" />
+                            <img src={this.state.testimonial_img} className="img-responsive" alt="" />
                             <div className="text-center font-bebas pt-15"><a href="javascript:;" onClick={this.goToTestimonials}>View All Testimonials</a></div>
                         </div>
                     }

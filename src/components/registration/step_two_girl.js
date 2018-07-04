@@ -87,7 +87,7 @@ class SignUpTwoGirl extends Component {
     }
 
     prevStep = () => {
-        store.dispatch(changeStep(1))
+        store.dispatch(changeStep(8))
     }
 
     skip = () => {
@@ -101,7 +101,7 @@ class SignUpTwoGirl extends Component {
             case 'children': name = 'About Children'; break;
             case 'want_children': name = 'Want Children'; break;
             case 'drink': name = 'Do You Drink?'; break;
-            case 'smoke': name = 'Do You Smoking?'; break;
+            case 'smoke': name = 'Do You Smoke?'; break;
             case 'religions': name = 'Religions'; break;
             case 'education': name = 'Education'; break;
             case 'living_situation': name = 'Living Situation'; break;

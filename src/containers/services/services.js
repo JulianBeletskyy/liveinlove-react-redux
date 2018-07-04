@@ -16,7 +16,7 @@ class Services extends Component {
                                        At <span className="underline-text">Life In Love,</span> our ultimate goal is to successfully create mutually compatible connections.
                                     </div>
                                 </Col>
-                                <Col sm={8} xsHidden className="form-group">
+                                <Col sm={8} className="form-group">
                                     <div className="service-title-right">
                                         Approaching an attractive, desirable lady for the first time isn’t always easy. Your heart rate increases while beads of sweat roll down your temple. Although this is a natural response, your nervousness can negatively affect the outcome of your initial interaction. This is even more challenging when you’re attempting to connect with someone from a foreign culture, who speaks a different language.
                                     </div>
@@ -123,11 +123,11 @@ class Services extends Component {
                                 </Col>
                                 <Col sm={12} className="form-group">
                                     <div className="service-title-right">
-                                        Based on our experience we know that some clients prefer to whet their palate, before enjoying the full course benefits of membership. For these clients we offer a Sampler for $9.99 per use. With this option, clients receive the following benefits:
+                                        Based on our experience we know that some clients prefer to whet their palate, before enjoying the full course benefits of membership. For these clients we offer a Sampler for $9.99 per use. With this option, you receive the following benefits:
                                         <ul>
-                                            <li>1 Translated Letter Free</li>
-                                            <li>Limited Expression of Interest</li>
-                                            <li>View 5 contact’s Videos & Photos in Profile</li>
+                                            <li>Access to additional photos/videos in profiles of 5 ladies you chose</li>
+                                            <li>Additional photo you may put to your profile</li>
+                                            <li>1 professionally translated letter for free</li>
                                         </ul>
                                     </div>
                                     <div className="color-888">
@@ -154,14 +154,6 @@ class Services extends Component {
                                                 <tr>
                                                     <td>100 Dibs/$0.89 per Dib. - $89.99</td>
                                                     <td>1 minute of Video Chat = 1 Dib</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>200 Dibs/$0.84 per Dib. - $169.99</td>
-                                                    <td>1 minute of Voice Video Chat = 3 Dibs</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>500 Dibs/$0.74 per Dib. - $374.99</td>
-                                                    <td>(Video Conference)</td>
                                                 </tr>
                                             </tbody>
                                         </table>
