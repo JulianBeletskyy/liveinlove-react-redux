@@ -232,6 +232,12 @@
     font-weight: bold;
 }
 
+@media (max-width: 768px) {
+	.service-title-left {
+		text-align: left;
+	}
+}
+
 .service-number {
     font-size: 32px;
     font-weight: bold;
@@ -548,7 +554,6 @@
 .fileUploader {
 	display: inline-block;
 	vertical-align: middle;
-	width: auto;
 }
 
 .fileContainer .chooseFileButton {
@@ -570,7 +575,7 @@
 
 .upload-btn-group {
 	margin: 0 auto;
-	max-width: 180px;
+	max-width: 200px;
 }
 
 .upload-btn-group button {

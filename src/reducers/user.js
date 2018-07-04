@@ -73,7 +73,9 @@ const initialState = {
         facebook: '',
         vk: '',
         other_social: '',
-        languages: []
+        languages: [],
+        count_interest: 0,
+        count_favorite: 0
     },
     countries: []
 }

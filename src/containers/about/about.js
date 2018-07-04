@@ -170,12 +170,6 @@ class About extends Component {
                         <h1 className="font-bebas">About Company</h1>
                         <hr />
 
-                        <div className="main-slider about-slider">
-                            <Slider {...mainSettings}>
-                                { this.getArray(3).map((item, i) => this.printMainSlider(item, i)) }
-                            </Slider>
-                        </div>
-
                         <h2 className="text-center form-group p-15 works-big-title fs-48">
                             <span className="text-uppercase"><span className="underline-text">Life In Love</span> has been in business for several years.</span>
                         </h2>
@@ -186,23 +180,7 @@ class About extends Component {
                                 </div>
                             </div>
                         </div>
-                        <Row>
-                            {/* this.getArray(6).map((item, i) => this.printBlock(item, i)) */}
-                        </Row>
-                        <div className="about-slider pt-50">
-                            <Slider {...settings}>
-                                { this.getArray(3).map((item, i) => this.printSlider(item, i)) }
-                            </Slider>
-                        </div>
-                        <div className="pt-50 pb-50" id="count-block">
-                            <Row>
-                                { 
-                                    this.state.count
-                                    ?   this.getArray(4).map((item, i) => this.printCount(item, i))
-                                    :   ''
-                                } 
-                            </Row>
-                        </div>
+                        
                         <hr />
 
                         <div className="pt-50">
@@ -231,20 +209,6 @@ class About extends Component {
                         </div>
 
                         <div className="pt-50 pb-50">
-                            {/*<Row>
-                                <Col sm={4}>
-                                    <div className="works-small-title lh-18 fs-16">WE ARE AWESOME</div>
-                                    <div className="color-888 pt-15 lh-18">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis eros lobortis, vestibulum turpis ac, pulvinar odio. Praesent vulputate a elit ac mollis. In sit amet ipsum turpis.</div>
-                                </Col>
-                                <Col sm={4}>
-                                    <div className="works-small-title lh-18 fs-16">WE ARE CREATIVE</div>
-                                    <div className="color-888 pt-15 lh-18">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis eros lobortis, vestibulum turpis ac, pulvinar odio. Praesent vulputate a elit ac mollis. In sit amet ipsum turpis.</div>
-                                </Col>
-                                <Col sm={4}>
-                                    <div className="works-small-title lh-18 fs-16">WE ARE PERFECT</div>
-                                    <div className="color-888 pt-15 lh-18">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis eros lobortis, vestibulum turpis ac, pulvinar odio. Praesent vulputate a elit ac mollis. In sit amet ipsum turpis.</div>
-                                </Col>
-                            </Row>*/}
                         </div>
 
                         <div className={style.backgroundGrey}>

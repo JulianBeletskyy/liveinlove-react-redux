@@ -420,6 +420,18 @@ export default {
         .then(responseHandler)
     },
 
+    signUpBefore(data) {
+        return fetch(config.API_URL + 'signup/before', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+    },
+
     signUpStart(data) {
         return fetch(config.API_URL + 'signup/start', {
             method: 'post',

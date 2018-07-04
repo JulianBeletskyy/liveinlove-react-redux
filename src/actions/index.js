@@ -146,6 +146,15 @@ export function getMyCountry() {
     }
 }
 
+export function sendSignUpBefore(data) {
+    return dispatch => {
+        return api.signUpBefore(data)
+        .then(json => {
+            
+        })
+    }
+}
+
 export function sendSignUpStart(data, step) {
     return dispatch => {
         return api.signUpStart(data)

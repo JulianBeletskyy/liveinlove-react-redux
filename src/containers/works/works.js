@@ -44,7 +44,7 @@ class Works extends Component {
                                         <span className="underline-text">Life In Love</span> is pleased to present the crème de la crème of Ukrainian and Russian beauties.
                                     </div>
                                 </Col>
-                                <Col sm={8} xsHidden className="form-group">
+                                <Col sm={8} className="form-group">
                                     <div className="service-title-right">
                                         The ladies in our portfolio have all been pre-screened to verify their background, marital status and their eligibility to enter a committed relationship. All ladies have been cleared and are 100% ready and available to enter a relationship with our clients.
                                     </div>
