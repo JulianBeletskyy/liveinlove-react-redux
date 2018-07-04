@@ -3,7 +3,7 @@ import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup, Col, Radio, Row } from 'react-bootstrap'
 import Validator from 'validate'
-import { sendSignUpStart, setSignUpData, saveImage, saveFile, setEmptyData, toggleRegistration, getMyCountry, changeStep } from 'actions'
+import { sendSignUpStart, setSignUpData, saveImage, saveFile, setEmptyData, toggleRegistration, getMyCountry, changeStep, sendSignUpBefore } from 'actions'
 import { TextField, SelectField, CheckboxField, Autocomplete } from 'components/form/inputs'
 import Btn from 'components/form/buttons/button.js'
 import BtnGoogle from 'components/form/buttons/button_google.js'
@@ -32,10 +32,23 @@ class SignUpStart extends Component {
             this.getSignUpOne()
         } else {
             store.dispatch(toggleRegistration(true))
+            this.sendPreSignUp()
             if (! this.checkData()) {
                 Options.getAll()
             }
         }
+    }
+
+    sendPreSignUp = () => {
+        const data = {
+            first_name: this.signup.first_name.value,
+            last_name: this.signup.last_name.value,
+            email: this.signup.email.value,
+            role: this.signup.role,
+            password: this.signup.password.value,
+        }
+        store.dispatch(sendSignUpBefore(data))
+        console.log(data)
     }
 
     checkData = () => {
@@ -332,7 +345,7 @@ class SignUpStart extends Component {
                                 value={password} />
                         </FormGroup>
                         {
-                            this.state.gender === 'girl'
+                            this.signup.role === 'girl'
                             ?   <div>
                                     <FormGroup>
                                         <Row>
@@ -424,7 +437,7 @@ class SignUpStart extends Component {
                                     value={city} />
                             </FormGroup>
                             {
-                                this.state.gender === 'girl'
+                                this.signup.role === 'girl'
                                 ?   <div>
                                         <FormGroup>
                                             <TextField
@@ -476,7 +489,7 @@ class SignUpStart extends Component {
                         <FormGroup>
                         </FormGroup>
                         {
-                            this.state.gender === 'client'
+                            this.signup.role === 'client'
                             ?   <FormGroup>
                                     <h4 className="">Join With</h4>
                                     <div className="social-button text-center">

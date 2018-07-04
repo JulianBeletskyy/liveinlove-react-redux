@@ -81,12 +81,12 @@ class SignUpOne extends Component {
     getArray = (type) => {
         let name = ''
         switch(type) {
-            case 'ethnicities': name = 'Your Ethnicities'; break;
+            case 'ethnicities': name = 'Ethnicity'; break;
             case 'hair_lengths': name = 'Hair Length'; break;
             case 'hair_colors': name = 'Hair Color'; break;
-            case 'eyes': name = 'Eyes Color'; break;
+            case 'eyes': name = 'Eye Color'; break;
             case 'marital_statuses': name = 'Marital Status'; break;
-            case 'religions': name = 'Religions'; break;
+            case 'religions': name = 'Religion'; break;
             case 'body_style': name = 'Body Style'; break;
             case 'eye_wear': name = 'Eye wear'; break;
             case 'children': name = 'Children'; break;

@@ -69,14 +69,6 @@ class PublicFooter extends Component {
                         <Col sm={4}>
                             <ul>
                                 <li>
-                                    <i className="fab fa-apple"></i>
-                                    <a href="javascript:;">iPhone Dating App</a>
-                                </li>
-                                <li>
-                                    <i className="fab fa-android"></i>
-                                    <a href="javascript:;">Android Dating App</a>
-                                </li>
-                                <li>
                                     <i className="fas fa-user-plus"></i>
                                     <a href="javascript:;" onClick={this.showSignUp}>Join Free</a>
                                 </li>                            

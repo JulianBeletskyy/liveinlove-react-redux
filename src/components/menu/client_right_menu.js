@@ -41,7 +41,6 @@ class ClientRightMenu extends Component {
 						keyName="ID:" />
 				</FormGroup>
 				<FormGroup>
-					<SmallDivider text="" />
 				</FormGroup>
 				<FormGroup>
 					<MiddleString
@@ -51,9 +50,22 @@ class ClientRightMenu extends Component {
 						onClick={this.showPlans} />
 				</FormGroup>
 				<FormGroup>
+					<SmallDivider text="Activity" />
+				</FormGroup>
+				<FormGroup>
 					<MiddleString
 						text={data.view_profile}
 						keyName="Profile viewed:" />
+				</FormGroup>
+				<FormGroup>
+					<MiddleString
+						text={data.count_interest}
+						keyName="Interests received:" />
+				</FormGroup>
+				<FormGroup>
+					<MiddleString
+						text={data.count_favorite}
+						keyName="Favorited me:" />
 				</FormGroup>
 				<FormGroup>
 					<SmallDivider text="Profile" />
@@ -117,7 +129,9 @@ const mapStateToProps = (state) => {
 				membership: state.user.data.membership,
 				credits: state.user.data.credits,
 				view_profile: state.user.data.view_profile,
-				profile_id: state.user.data.profile_id
+				profile_id: state.user.data.profile_id,
+				count_interest: state.user.data.count_interest,
+				count_favorite: state.user.data.count_favorite
 			}
 		},
 		modals: {
