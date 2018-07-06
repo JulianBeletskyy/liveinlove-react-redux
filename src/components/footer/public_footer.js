@@ -1,10 +1,12 @@
 /* eslint-disable */
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-bootstrap'
 import store, { history } from 'store'
 import { toggleModal, toggleRegistration } from 'actions'
 import { animateScroll as scroll, } from 'react-scroll'
 import style from './style.css'
+import Options from 'options'
 
 class PublicFooter extends Component {
     goTo = (url) => {
@@ -21,6 +23,18 @@ class PublicFooter extends Component {
         scroll.scrollToTop({duration: 0})
     }
 
+    membership = () => {
+
+        if (this.props.user.token) {
+            store.dispatch(toggleModal(true, 'plans'))
+        } else {
+            Options.getAll()
+            store.dispatch(toggleRegistration(true))
+            scroll.scrollToTop({duration: 0});
+            history.push('/')
+        }
+    }
+
     render() {
         return (
             <div className={style.footer} >
@@ -34,7 +48,7 @@ class PublicFooter extends Component {
                                 </li>
                                 <li>
                                     <i className="far fa-user"></i>
-                                    <a href="javascript:;">Membership</a>
+                                    <a href="javascript:;" onClick={this.membership}>Membership</a>
                                 </li>                            
                                 <li>
                                     <i className="fas fa-shield-alt"></i>
@@ -88,4 +102,18 @@ class PublicFooter extends Component {
     }
 }
 
-export default PublicFooter
+const mapStateToProps = (state) => {
+    return {
+        user: {
+            token: state.user.token
+        },
+        modals: {
+            plans: state.modals.plans,
+            credits: state.modals.credits
+        }
+    } 
+}
+
+export default connect(
+    mapStateToProps
+)(PublicFooter)
