@@ -21,7 +21,6 @@ class FullMail extends Component {
         if (props.match.params.id === 'new' && ! props.location.state) {
             history.push('/mail/main')
         } else if (props.match.params.id !== 'new') {
-            console.log('123')
             store.dispatch(getMail('message/' + props.match.params.id, 'message', props.user.token))
         }
     }
@@ -88,9 +87,9 @@ class FullMail extends Component {
            if (this.props.messages.message.original.indexOf('[$link]') + 1) {
                 const name = this.props.user.data.role === 'client' ? this.props.user.data.first_name : message.receiver_first_name
                 text = text.replace('[$link]', '<a href="/member/'+message.receiver_id+'">'+name+'</a>')
-            } 
+            }
+            text = text.replace(/(?:\r\n|\r|\n)/g, '<br />'); 
         }
-        console.log(this.props.messages.message.receiver_first_name)
         return (
             <div className="pt-15">
                 <div className="font-bebas pointer form-group" onClick={() => history.goBack()}>
