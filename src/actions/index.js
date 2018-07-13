@@ -50,8 +50,20 @@ export function activateUser(hash) {
         .then(json => {
             if (json.data) {
                 dispatch(setToken(json.data))
+                dispatch(getUserInfo(json.data))
                 dispatch(getFullInfo(json.data))
                 history.push('/')
+            }
+        })
+    }
+}
+
+export function resendEmail(email) {
+    return dispatch => {
+        return api.resendEmail(email)
+        .then(json => {
+            if (json.data) {
+                
             }
         })
     }
@@ -140,8 +152,8 @@ export function getMyCountry() {
     return dispatch => {
         return api.getMyCountry()
         .then(json => {
-            dispatch(setSignUpData({country: json.countryCode}))
-            dispatch(setCountry(json.countryCode))
+            dispatch(setSignUpData({country: json.country}))
+            dispatch(setCountry(json.country))
         })
     }
 }
@@ -341,6 +353,17 @@ export function getUserInfo(token) {
     }
 }
 
+export function getUnreadMessage(token) {
+    return dispatch => {
+        return api.getUnreadMessage(token)
+        .then(json => {
+            if (json.data) {
+                dispatch(setUnreadMessage(json.data.count))
+            }
+        })
+    }
+}
+
 export function updateUserProfile(data, token) {
     return dispatch => {
         return api.updateUserProfile(data, token)
@@ -356,6 +379,13 @@ export function setClientInfo(data) {
     return {
         type: types.SET_CLIENT_DATA,
         data
+    }
+}
+
+export function setUnreadMessage(value) {
+    return {
+        type: types.SET_UNREAD_MESSAGE,
+        value
     }
 }
 
@@ -852,6 +882,7 @@ export const getMail = (url, key, token) => dispatch => {
         .then(json => {
             if (json.data) {
                 dispatch(setMail(json.data, key))
+                dispatch(getUnreadMessage(token))
             }
         })
 }

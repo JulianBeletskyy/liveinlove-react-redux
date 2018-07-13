@@ -38,6 +38,7 @@ class GirlHeader extends Component {
                     title="Contacts" 
                     id="support-nav-dropdown">
                     <Link to="/contacts/favorite">Favorite</Link>
+                    <Link to="/contacts/interests">My interests</Link>
                 </NavDropdown>
 
                 <li role="presentation" className={url === 'services' ? style.active : ''}>

@@ -194,7 +194,7 @@ class Landing extends Component {
                     </Grid>
                 </div>
                 {
-                    !this.props.signup.showRegistration
+                    !this.props.signup.showRegistration && this.props.signup.country !== 'UA'
                     ? <div>
                         <Advantages />
                         <div className={style.secondPart}>
@@ -360,7 +360,8 @@ const mapStateToProps = (state) => {
     return {
         signup: {
             showRegistration: state.signup.showRegistration,
-            step: state.signup.step
+            step: state.signup.step,
+            country: state.signup.country
         },
         members: {
             public: {

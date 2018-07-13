@@ -75,7 +75,8 @@ const initialState = {
         other_social: '',
         languages: [],
         count_interest: 0,
-        count_favorite: 0
+        count_favorite: 0,
+        unread_message: 0
     },
     countries: []
 }
@@ -106,6 +107,11 @@ export default function user(user = initialState, action = {}) {
                     temp[k] = action.data[k]
                 }
             }
+            return Object.assign({}, user, {
+                data: temp
+            });
+        case types.SET_UNREAD_MESSAGE:
+            temp.unread_message = action.value
             return Object.assign({}, user, {
                 data: temp
             });

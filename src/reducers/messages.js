@@ -38,15 +38,12 @@ export default function messages(messages = initialState, action = {}) {
                 attach_message: action.value,
             });
         case SET_ATTACH:
-            let temp_dialog = Object.assign({}, messages.dialog);
-            temp_dialog.list.map((item) => {
-                if (item.id === action.id) {
-                    item.attachment = action.src
-                    item.attach_confirm = '1'
-                }
-            })
+            let temp_message = Object.assign({}, messages.message);
+            temp_message.attachment = action.src
+            temp_message.attach_confirm = '1'
+            
             return Object.assign({}, messages, {
-                dialog: temp_dialog
+                message: temp_message
             });
         case SET_MESSAGES:
             let temp =  Object.assign({}, messages.dialog);

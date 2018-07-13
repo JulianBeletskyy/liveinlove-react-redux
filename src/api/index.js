@@ -373,6 +373,29 @@ export default {
         .then(responseHandler)
     },
 
+    resendEmail(email) {
+        return fetch(config.API_URL + 'resend/' + email, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
+    getUnreadMessage(token) {
+        return fetch(config.API_URL + 'user/all-unread-message', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        })
+        .then(responseHandler)
+    },
+
     sendRecovery(data) {
         return fetch(config.API_URL + 'recovery', {
             method: 'post',
@@ -411,7 +434,7 @@ export default {
     },
 
     getMyCountry() {
-        return fetch('http://ip-api.com/json', {
+        return fetch('https://ipinfo.io', { //https://ip-api.com/json
             method: 'get',
             headers: {
                 'Accept': 'application/json',

@@ -9,6 +9,15 @@ class AboutMe extends Component {
     editProfile = () => {
         history.push('edit')
     }
+
+    getAge = date => {
+        const [d,m,y] = date.split('/')
+        const birthday = new Date(`${y}-${m}-${d}`)
+        const ageDifMs = Date.now() - birthday.getTime()
+        const ageDate = new Date(ageDifMs)
+        return `${Math.abs(ageDate.getUTCFullYear() - 1970)} age`
+    }
+
     render() {
         const { data } = this.props.user
         let classRole = data.role === 'client' ? 'client' : 'girl'
@@ -112,12 +121,14 @@ class AboutMe extends Component {
                                     <span className="small-italic">{data.children.value}</span>
                                 </FormGroup>
                                 {
-                                    data.role === 'girl'
+                                    data.role === 'girl' && data.about_children.length
                                     ? <FormGroup>
                                         <div>
                                             <span className={style.middleTitle + ' title'}>About Children</span>
                                         </div>
-                                        <span className="small-italic">{data.about_children}</span>
+                                        {
+                                            <div className="small-italic">{data.about_children.map((item, i) => <div><span className="text-capitalize">{item.sex}</span> - {this.getAge(item.birth)}</div>)}</div>
+                                        }
                                     </FormGroup>
                                     : ''
                                 }
@@ -165,37 +176,13 @@ class AboutMe extends Component {
                                             </div>
                                             <span className="small-italic">{data.education.value}</span>
                                         </FormGroup>
-                                        <FormGroup>
-                                            <div>
-                                                <span className={style.middleTitle + ' title'}>Ocupation</span>
-                                            </div>
-                                            <span className="small-italic">{data.occupation}</span>
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <div>
-                                                <span className={style.middleTitle + ' title'}>Profession</span>
-                                            </div>
-                                            <span className="small-italic">{data.profession}</span>
-                                        </FormGroup>
                                     </Col>
                                     <Col sm={6}>
                                         <FormGroup>
                                             <div>
-                                                <span className={style.middleTitle + ' title'}>Primary Language</span>
+                                                <span className={style.middleTitle + ' title'}>Languages</span>
                                             </div>
-                                            <span className="small-italic">{data.primary_language.value}</span>
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <div>
-                                                <span className={style.middleTitle + ' title'}>Russian Language</span>
-                                            </div>
-                                            <span className="small-italic">{data.russian_language.value}</span>
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <div>
-                                                <span className={style.middleTitle + ' title'}>English Language</span>
-                                            </div>
-                                            <span className="small-italic">{data.english_language.value}</span>
+                                            <div className="small-italic">{data.languages.map((item, i) => <div key={i}>{item.name} - {item.level_value}</div>)}</div>
                                         </FormGroup>
                                     </Col>
                                 </Row>
