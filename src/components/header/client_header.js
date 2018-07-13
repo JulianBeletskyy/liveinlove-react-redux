@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { NavDropdown } from 'react-bootstrap'
 import style from './style.css'
 import { Link } from 'react-router-dom'
-import { toggleModal, logout } from 'actions'
+import { toggleModal, logout, getUnreadMessage } from 'actions'
 
 class ClientHeader extends Component {
     constructor(props) {
@@ -14,6 +14,7 @@ class ClientHeader extends Component {
         const first = history.location.pathname.replace('/', '')
         store.dispatch(setSegment(first))
         store.dispatch(setCart(this.getCart()))
+        store.dispatch(getUnreadMessage(props.user.token))
     }
 
     getCart = () => {
@@ -47,6 +48,11 @@ class ClientHeader extends Component {
            <ul className={style.navBar + " nav navbar-nav navbar-right"}>
                 <li role="presentation" className={url === 'mail' ? style.active : ''}>
                     <Link to="/mail/main">Mail</Link>
+                    {
+                        this.props.user.data.unread_message
+                        ?   <span className="badge-message">{this.props.user.data.unread_message}</span>
+                        :   ''
+                    }
                 </li>
 
                 <li role="presentation" className={url === 'profile' ? style.active : ''}>
@@ -96,6 +102,12 @@ const mapStateToProps = (state) => {
         segments: state.segments,
         shop: {
             cart: state.shop.cart
+        },
+        user: {
+            token: state.user.token,
+            data: {
+                unread_message: state.user.data.unread_message
+            }
         }
     }
 }

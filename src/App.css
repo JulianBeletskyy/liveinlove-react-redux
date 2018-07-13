@@ -52,6 +52,17 @@
     justify-content: center;
 }
 
+.badge-message {
+    position: absolute;
+    background-color: #fc3a3a;
+    top: 5px;
+    right: 0;
+    border-radius: 50%;
+    color: #fff;
+    padding: 0px 5px;
+    font-size: 12px;
+}
+
 .pac-container {
 	box-shadow: unset !important;
 	border: 1px solid #828282 !important;

@@ -55,14 +55,15 @@ class MessageBlock extends Component {
                 <FormGroup>
                     <BtnMain
                         type="button"
+                        bsStyle="success "
+                        text="Save to drats"
+                        onClick = {this.saveDraft} />
+                    &nbsp;
+                    <BtnMain
+                        type="button"
                         bsStyle="success"
                         text="Send"
                         onClick = {this.send} />
-                    <BtnMain
-                            type="button"
-                            bsStyle="success"
-                            text="Save to drats"
-                            onClick = {this.saveDraft} />
                     <LinkButton  />
                 </FormGroup>
             </div>

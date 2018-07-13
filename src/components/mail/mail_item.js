@@ -13,7 +13,10 @@ class MailItem extends Component {
         }
     }
 
-    getDescription = () => this.props.original.length >= 50 ? this.props.original.slice(0, 50) + '...' : this.props.original
+    getDescription = (text) => {
+        text = text.replace('[$link]', '<a href="/member/'+this.props.sender_id+'">'+this.props.sender_first_name+'</a>')
+        return text.length >= 50 ? text.slice(0, 50) + '...' : text
+    }
 
     getMessage = () => {
         this.props.type != 'drafts' ? history.push(`/mail/main/${this.props.id}`) : history.push(`/mail/main/drafts/${this.props.id}`)
@@ -63,7 +66,7 @@ class MailItem extends Component {
                             :   ''
                         }
                             
-                        <div className="form-group"><strong>Message: </strong>{this.getDescription()}</div>
+                        <div className="form-group"><strong>Message: </strong><span dangerouslySetInnerHTML={{__html: this.getDescription(this.props.original)}} /></div>
                         <BtnMain
                             type="submit"
                             bsStyle="success"

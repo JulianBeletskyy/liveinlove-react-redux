@@ -15,9 +15,12 @@ class PlanItem extends Component {
         }
 
         if (value.month !== 1) {
-            return (<div key={i} className={priceClass + ' ' + style.priceItem}>
+            const opacity = value.month_payment ? 1 : 0
+            return (<div key={i} className={priceClass + ' ' + style.priceItem} style={{opacity: opacity}}>
                         <span className={style.price}>{value.month_payment ? '$' + value.month_payment : ''}</span>
-                        <span className="ult_price_term ult-responsive">{value.month_payment ? ' / ' + value.month + ' month' : <span>&nbsp;</span>}</span>
+                        <span className="ult_price_term ult-responsive"> per month</span>
+                        <div className="fs-12" style={{opacity: 0.8}}>billed in one payment ${value.one_payment}</div>
+                        <div>({value.month} month)</div>
                     </div>)
         }
     }
@@ -38,9 +41,9 @@ class PlanItem extends Component {
     }
 
     printPriceButton(value, i) {
-        if (value.month !== 1) {
+        if (value.month_payment) {
             return (<div key={i} className={style.btnValues}>
-                        <a href="javascript:;" onClick={() => { this.setPlan(value) }} className={style.buttonBottom}>${value.month_payment} / {value.month} month</a>
+                        <a href="javascript:;" onClick={() => { this.setPlan(value) }} className={style.buttonBottom}>${value.month_payment} / {value.month} month {value.month === 1 ? '( Trial )' : ''}</a>
                     </div>)
         }
     }
@@ -49,7 +52,6 @@ class PlanItem extends Component {
         const { active_btn } = this.props.memberships
         const { id } = this.props.user.data.membership
         const classBtn = active_btn === this.props.options.id ? style.active : ''
-        
         return (
             <div className={style.padding}>
                 <div className={style.table + ' text-center'}>

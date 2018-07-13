@@ -71,7 +71,7 @@
     left: 0;
     right: 0;
     width: 100%;
-    bottom: -200px;
+    bottom: -100%;
     transition: all .3s;
 }
 

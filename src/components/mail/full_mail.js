@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store, { history } from 'store'
-import { getMail, sendMessage, saveDraft, toggleLightBox } from 'actions'
+import { getMail, sendMessage, saveDraft, toggleLightBox, showAttach } from 'actions'
 import Textarea from 'components/form/inputs/textarea.js'
 import BtnMain from 'components/form/buttons/main_button.js'
 import LinkButton from 'components/list/link_button.js'
@@ -16,14 +16,19 @@ class FullMail extends Component {
 
     constructor(props) {
         super(props)
-
         this.message = ''
         this.attachment = ''
         if (props.match.params.id === 'new' && ! props.location.state) {
             history.push('/mail/main')
         } else if (props.match.params.id !== 'new') {
+            console.log('123')
             store.dispatch(getMail('message/' + props.match.params.id, 'message', props.user.token))
         }
+    }
+
+    showAttach = () => {
+        const dialog_id = history.location.pathname.split('/').pop() * 1
+        store.dispatch(showAttach(this.props.messages.message.id, this.props.user.token, dialog_id))
     }
 
     closeLightbox = () => {
@@ -32,7 +37,6 @@ class FullMail extends Component {
 
     showPhoto = (e) => {
         e.stopPropagation()
-        console.log(this.props.messages.message)
         if (this.props.messages.message.attach_confirm === '1') {
             this.attachment = this.props.messages.message.attachment
             store.dispatch(toggleLightBox('message', 0))
@@ -86,7 +90,7 @@ class FullMail extends Component {
                 text = text.replace('[$link]', '<a href="/member/'+message.receiver_id+'">'+name+'</a>')
             } 
         }
-        
+        console.log(this.props.messages.message.receiver_first_name)
         return (
             <div className="pt-15">
                 <div className="font-bebas pointer form-group" onClick={() => history.goBack()}>
@@ -99,6 +103,14 @@ class FullMail extends Component {
                     {
                         ! this.state.new
                         ?   <div className="col-sm-10">
+                                <div className="row form-group">
+                                    <div className="col-sm-2">
+                                        <strong>Name:</strong>
+                                    </div>
+                                    <div className="col-sm-10">
+                                        {this.props.messages.message.receiver_first_name}
+                                    </div>
+                                </div>
                                 <div className="row form-group">
                                     <div className="col-sm-2">
                                         <strong>Date:</strong>
