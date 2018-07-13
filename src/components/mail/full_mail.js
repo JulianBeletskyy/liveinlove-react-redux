@@ -90,6 +90,12 @@ class FullMail extends Component {
             }
             text = text.replace(/(?:\r\n|\r|\n)/g, '<br />'); 
         }
+
+        let translate = ''
+        if (this.props.messages.message.translation) {
+            translate = this.props.messages.message.translation.replace(/(?:\r\n|\r|\n)/g, '<br />')
+        }
+        
         return (
             <div className="pt-15">
                 <div className="font-bebas pointer form-group" onClick={() => history.goBack()}>
@@ -131,7 +137,7 @@ class FullMail extends Component {
                                         <strong>Translate:</strong>
                                     </div>
                                     <div className="col-sm-10">
-                                        {this.props.messages.message.translation}
+                                        <span dangerouslySetInnerHTML={{__html: translate}} />
                                     </div>
                                 </div>
                                 <div className="row form-group">
