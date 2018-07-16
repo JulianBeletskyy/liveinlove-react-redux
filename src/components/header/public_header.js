@@ -38,37 +38,43 @@ class PublicHeader extends Component {
                 {
                     this.props.signup.country === 'UA'
                     ?   ''
-                    :   <div>
-                            <NavDropdown role="presentation" title="About" id="dropdown">
-                                <Link to="/about">About Company</Link>
-                                <Link to="/how-it-works">How it works?</Link>
-                                <Link to="/testimonials">Testimonials</Link>
-                                <Link to="success-stories">Success stories</Link>
-                            </NavDropdown>
-
-                            <li role="presentation" className={url === 'girls' ? style.active : ''}>
-                                <Link to="/girls">Girls</Link>
-                            </li>
-
-                            <li role="presentation" className={url === 'services' ? style.active : ''}>
-                                <Link to="/services">Services</Link>
-                            </li>
-
-                            <li role="presentation" className={url === 'success-stories' ? style.active : ''}>
-                                <Link to="/success-stories">Success Stories</Link>
-                            </li>
-
-                            <li role="presentation" className={url === 'blogs' ? style.active : ''}>
-                                <Link to="/blogs">Blog</Link>
-                            </li>
-
-                            <li role="presentation" className={url === 'how-it-works' ? style.active : ''}>
-                                <Link to="/how-it-works">How it works?</Link>
-                            </li>
-                        </div>
+                    :   <NavDropdown role="presentation" title="About" id="dropdown">
+                            <Link to="/about">About Company</Link>
+                            <Link to="/how-it-works">How it works?</Link>
+                            <Link to="/testimonials">Testimonials</Link>
+                            <Link to="success-stories">Success stories</Link>
+                        </NavDropdown>
+                } {
+                    this.props.signup.country === 'UA'
+                    ?   ''
+                    :   <li role="presentation" className={url === 'girls' ? style.active : ''}>
+                            <Link to="/girls">Girls</Link>
+                        </li>
+                } {
+                    this.props.signup.country === 'UA'
+                    ?   ''
+                    :   <li role="presentation" className={url === 'services' ? style.active : ''}>
+                            <Link to="/services">Services</Link>
+                        </li>
+                } {
+                    this.props.signup.country === 'UA'
+                    ?   ''
+                    :   <li role="presentation" className={url === 'success-stories' ? style.active : ''}>
+                            <Link to="/success-stories">Success Stories</Link>
+                        </li>
+                } {
+                    this.props.signup.country === 'UA'
+                    ?   ''
+                    :   <li role="presentation" className={url === 'blogs' ? style.active : ''}>
+                            <Link to="/blogs">Blog</Link>
+                        </li>
+                } {
+                    this.props.signup.country === 'UA'
+                    ?   ''
+                    :   <li role="presentation" className={url === 'how-it-works' ? style.active : ''}>
+                            <Link to="/how-it-works">How it works?</Link>
+                        </li>
                 }
-                    
-
                 <NavDropdown 
                     role="presentation"
                     eventKey={2}

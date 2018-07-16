@@ -36,7 +36,7 @@ class FullMail extends Component {
 
     showPhoto = (e) => {
         e.stopPropagation()
-        if (this.props.messages.message.attach_confirm === '1') {
+        if (this.props.messages.message.attach_confirm === '1' || this.props.user.data.role === 'girl') {
             this.attachment = this.props.messages.message.attachment
             store.dispatch(toggleLightBox('message', 0))
         }
