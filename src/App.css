@@ -52,6 +52,14 @@
     justify-content: center;
 }
 
+
+
+@media (min-width: 768px) {
+	.plans-modal .modal-lg {
+		width: 70%;
+	}
+}
+
 .badge-message {
     position: absolute;
     background-color: #fc3a3a;

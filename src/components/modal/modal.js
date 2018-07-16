@@ -12,7 +12,8 @@ class MainModal extends Component {
     
     render() {
         return (
-            <Modal 
+            <Modal
+                className={this.props.className}
                 show={this.props.show} 
                 onHide={this.closeModal}
                 bsSize={this.props.size} >
