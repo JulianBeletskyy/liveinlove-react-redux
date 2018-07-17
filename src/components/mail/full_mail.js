@@ -88,7 +88,7 @@ class FullMail extends Component {
                 const name = this.props.user.data.role === 'client' ? this.props.user.data.first_name : message.receiver_first_name
                 text = text.replace('[$link]', '<a href="/member/'+message.receiver_id+'">'+name+'</a>')
             }
-            text = text.replace(/(?:\r\n|\r|\n)/g, '<br />'); 
+            text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
         }
 
         let translate = ''
@@ -129,7 +129,7 @@ class FullMail extends Component {
                                         <strong>Message:</strong>
                                     </div>
                                     <div className="col-sm-10">
-                                        <div><span dangerouslySetInnerHTML={{__html: text}} /></div>
+                                        <pre dangerouslySetInnerHTML={{__html: text}} />
                                     </div>
                                 </div>
                                 <div className="row form-group">

@@ -43,7 +43,7 @@ class PlanItem extends Component {
     printPriceButton(value, i) {
         if (value.month_payment) {
             return (<div key={i} className={style.btnValues}>
-                        <a href="javascript:;" onClick={() => { this.setPlan(value) }} className={style.buttonBottom}>${value.month_payment} / {value.month} month {value.month === 1 ? '( Trial )' : ''}</a>
+                        <a href="javascript:;" onClick={() => { this.setPlan(value) }} className={style.buttonBottom}>${value.month_payment} / {value.month} month {value.month === 1 ? (<div>( Trial )</div>) : ''}</a>
                     </div>)
         }
     }

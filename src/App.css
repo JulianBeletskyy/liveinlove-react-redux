@@ -3,6 +3,20 @@
 	src: url(./assets/fonts/bebasneue_regular-webfont.woff);
 }
 
+pre {
+    display: block;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    word-break: unset;
+    word-wrap: unset;
+    background-color: unset;
+    border: unset;
+    border-radius: 0;
+    white-space: pre-wrap;
+    font-size: inherit;
+}
+
 .App {
 	position: relative;
 	background-image: url('/assets/img/image.jpg');
