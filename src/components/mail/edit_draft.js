@@ -73,11 +73,13 @@ class EditDraft extends Component {
 		                            bsStyle="success"
 		                            text="Send"
 		                            onClick={this.send} />
+                                &nbsp;
 	                            <BtnMain
                                     type="submit"
                                     bsStyle="success"
                                     onClick={this.save}
                                     text="Save message" />
+                                &nbsp;
 	                            <BtnMain
                                     type="submit"
                                     bsStyle="success"

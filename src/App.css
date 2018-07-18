@@ -40,6 +40,10 @@ pre {
 	width: 200px;
 }
 
+.mb-5 {
+	margin-bottom: 5px;
+}
+
 .pointer {
 	cursor: pointer;
 }

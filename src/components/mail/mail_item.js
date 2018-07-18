@@ -30,14 +30,16 @@ class MailItem extends Component {
         let data = {
             fromTo: 'From',
             avatar: this.props.senderr_avatar,
-            oponent: this.props.sender_first_name
+            oponent: this.props.sender_first_name,
+            member_id: this.props.sender_id
         }
 
         if (this.props.type == 'sent') {
             data = {
                 fromTo: 'To',
                 avatar: this.props.receiver_avatar,
-                oponent: this.props.receiver_first_name
+                oponent: this.props.receiver_first_name,
+                member_id: this.props.receiver_id
             }
         }
 
@@ -45,15 +47,15 @@ class MailItem extends Component {
             data = {
                 fromTo: 'To',
                 avatar: this.props.receiver_first_avatar,
-                oponent: this.props.receiver_first_name
+                oponent: this.props.receiver_first_name,
+                member_id: this.props.receiver_id
             }
         }
-
         return (
             <div className="p-15">
                 <div className="row">
                     <div className="col-sm-2">
-                        <img src={data.avatar} alt="" className="img-responsive" />
+                        <img src={data.avatar} alt="" className="img-responsive pointer" onClick={() => history.push('/member/' + data.member_id)} />
                     </div>
                     <div className="col-sm-10">
                         <div><strong>{data.fromTo}: </strong>{data.oponent}</div>
@@ -72,6 +74,7 @@ class MailItem extends Component {
                             bsStyle="success"
                             onClick={this.getMessage}
                             text="Read Message" />
+                        &nbsp;
                         {
                             this.props.type == 'drafts'
                             ?   <BtnMain
