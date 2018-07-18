@@ -31,6 +31,7 @@ class Header extends Component {
                     <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse id="collapse" className={style.collapse}>
+                    {console.log(data.role)}
                     {
                         token
                         ? data.role === 'client'

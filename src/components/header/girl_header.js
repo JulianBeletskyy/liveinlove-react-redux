@@ -41,10 +41,6 @@ class GirlHeader extends Component {
                     <Link to="/contacts/interests">My interests</Link>
                 </NavDropdown>
 
-                <li role="presentation" className={url === 'services' ? style.active : ''}>
-                    <Link to="/services">Services</Link>
-                </li>
-
                 <li role="presentation" className={url === 'blogs' ? style.active : ''}>
                     <Link to="/blogs">Blog</Link>
                 </li>

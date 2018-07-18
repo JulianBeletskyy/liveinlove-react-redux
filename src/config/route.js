@@ -103,9 +103,6 @@ export default {
             'path': '/blogs/:id',
             'component': 'Blog'
         }, {
-            'path': '/services',
-            'component': 'Services'
-        }, {
             'path': '*',
             'component': 'NotFound'
         }
