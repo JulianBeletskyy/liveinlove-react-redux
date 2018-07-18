@@ -44,7 +44,7 @@ class ClientRightMenu extends Component {
 				</FormGroup>
 				<FormGroup>
 					<MiddleString
-						text={data.membership.value.month == 1 ? data.membership.name + ' (Trial)' : data.membership.name}
+						text={data.membership.value.month == 1 && data.membership.value.month_payment != 0 ? data.membership.name + ' (Trial)' : data.membership.name}
 						keyName="Membership:"
 						link={true}
 						onClick={this.showPlans} />
