@@ -180,6 +180,7 @@ class FullMail extends Component {
                             bsStyle="success"
                             text={this.props.messages.message.my || this.state.new ? 'Send' : 'Reply'}
                             onClick = {this.send} />
+                        &nbsp;
                         <BtnMain
                             type="button"
                             bsStyle="success"

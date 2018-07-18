@@ -19,6 +19,7 @@ class SignUpConfirm extends Component {
                         <strong>{this.props.signup.send_email}</strong>. 
                             To activate your account please check your email and click on the confirmation link.
                         </p>
+                        <p>Please, check ALL your folders as sometimes confirmation letters may appear in junk folder.</p>
                         <p>Didn’t get the link? Click <a href="javascript:;" onClick={this.resend}>here</a> to resend.</p>
                     </FormGroup>
                 </Col>
