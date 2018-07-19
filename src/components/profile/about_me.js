@@ -50,7 +50,7 @@ class AboutMe extends Component {
                             <div>
                                 <span className={style.middleTitle + ' title'}>Personal message</span>
                             </div>
-                            <span className="small-italic">{data.message}</span>
+                            <span className="small-italic">{data.about_me}</span>
                         </FormGroup>
                     </Col>
 
@@ -118,7 +118,7 @@ class AboutMe extends Component {
                                     <div>
                                         <span className={style.middleTitle + ' title'}>Have Children</span>
                                     </div>
-                                    <span className="small-italic">{data.children.value}</span>
+                                    <span className="small-italic">{data.want_children.value}</span>
                                 </FormGroup>
                                 {
                                     data.role === 'girl' && data.about_children.length

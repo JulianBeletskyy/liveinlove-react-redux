@@ -30,7 +30,7 @@ class SearchBlock extends Component {
             hair_color_id: this.search.hair_color.value
         }
         
-        store.dispatch(getSearch(data)) //, this.props.user.token
+        store.dispatch(getSearch(data, this.props.user.token)) //, this.props.user.token
     }
 
     getNumArray = (type, from, to) => {

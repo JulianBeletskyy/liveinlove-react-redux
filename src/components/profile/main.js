@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { FormGroup, Col, Row } from 'react-bootstrap'
-import { getNewMembers, getMembers, getPopularMembers, getSearchProfileId, getMoreMembers } from 'actions'
+import { getNewMembers, getMembers, getPopularMembers, getSearchProfileId, getMoreMembers, setActiveTab } from 'actions'
 import MemberBlock from 'components/members/member_block.js'
 import store from 'store'
 import Tabs from 'components/tabs'
@@ -22,6 +22,7 @@ class MainProfile extends Component {
         let error = 1
         error *= Validator.check(this.profile_id.value, ['required'], 'Profile ID')
         if (error) {
+            store.dispatch(setActiveTab("girls", "main"))
             store.dispatch(getSearchProfileId(this.profile_id.value, this.props.user.token))
         }
     }
@@ -75,7 +76,7 @@ class MainProfile extends Component {
                                         </div>
                         }
                     ]}
-                    activeKey="popular"
+                    activeKey="girls"
                     tabKey="main" />
             </div>
 		);

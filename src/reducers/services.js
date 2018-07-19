@@ -5,7 +5,7 @@ const initialState = {
 		member_profile: 'info',
 		main: 'popular',
         mail: 'inbox'
-	},
+    },
     gallery: {
         show_light_box: '',
         img_light_box: 0
@@ -69,6 +69,7 @@ export default function services(services = initialState, action = {}) {
     switch (action.type) {
         case SET_ACTIVE_TAB:
             let tabs = Object.assign([], services.tabs)
+            console.log(tabs);
             tabs[action.key] = action.value
             return Object.assign({}, services, {
                 tabs: tabs

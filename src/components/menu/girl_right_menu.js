@@ -46,11 +46,11 @@ class GirlRightMenu extends Component {
 						icon="fas fa-cog"
 						link="/profile/edit/info"
 						role="girl" />
-					<MiddleItem
+					{/* <MiddleItem
 						text="Change password"
 						icon="fas fa-unlock-alt"
 						link="/profile/edit/password"
-						role="girl" />
+						role="girl" /> */}
 				</FormGroup>
 			</div>
 		);

@@ -8,7 +8,7 @@ import style from './style.css'
 class CustomTabs extends Component {
 
     handleSelect = (key) => {
-    	switch (key) {
+		switch (key) {
     		case 'inbox':
     			store.dispatch(getMail('incoming', 'inbox', this.props.user.token))
     			break
@@ -17,9 +17,7 @@ class CustomTabs extends Component {
 				break
 			case 'drafts':
 				store.dispatch(getMail('draft', 'drafts', this.props.user.token))
-
     	}
-
 
     	if (key.indexOf('link') + 1) {
     		let temp = key.split('-')
@@ -35,9 +33,10 @@ class CustomTabs extends Component {
 
 	render() {
 		const tabs = this.props.services.tabs
+		
 		return (
 			<div className={style.wrapTab}>
-				<Tabs id="tab" activeKey={tabs[this.props.activeKey]} onSelect={this.handleSelect}>
+				<Tabs id="tab" activeKey={tabs[this.props.tabKey]} onSelect={this.handleSelect}>
 				{
 					this.props.tabs.map((tab, i) => this.printTabs(tab, i))
 				}	
