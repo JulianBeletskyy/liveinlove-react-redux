@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Row, Col, FormGroup } from 'react-bootstrap'
 import store from 'store/'
-import { updateUserProfile } from 'actions'
+import { updateUserProfile, setAlert } from 'actions'
 import { SelectField, TextField, Autocomplete }  from 'components/form/inputs'
 import BtnMain from 'components/form/buttons/main_button.js'
 import BlockSmall from 'components/blocks/block_small.js'
 import SmallDivider from 'components/divider/small_divider.js'
 import Validator from 'validate'
 import style from './edit_profile.css'
+import InputMask from 'react-input-mask'
+
 
 class EditProfile extends Component {
    	constructor(props) {
@@ -17,16 +19,38 @@ class EditProfile extends Component {
 			birth: {},
             match: {}
 		}
-        console.log(props.user.data.languages)
+        //console.log(props.user.data.languages)
+        console.log(props.user.data.children)
+        console.log(props.user.data.about_children)
         this.state = {
             languages: props.user.data.languages,
             current_lang: '',
-            current_level: ''
+            current_level: '',
+            childrens: props.user.data.about_children,
+            children: props.user.data.children,
+            current_childSex: '',
+            current_childBirth: '',
+        }
+        this.member = {
+            child: {}
+          
         }
   	}
-
+     
   	save = () => {
         let error = 1
+        
+        if (this.state.children === 1) {
+            error *= Validator.check(this.member.children.value, ['required'], 'Children')
+            if (this.state.childrens.length < 1 && error) {
+                store.dispatch(setAlert('About Children is requared', 'error'))
+                error = 0
+            }
+        } else if (this.state.children !== 2) {
+            store.dispatch(setAlert('About Children is requared', 'error'))
+            error = 0
+        }
+
         for (var k in this.user.birth) {
             if (error) {
                 error *= Validator.check(this.user.birth[k].value, ['required'], 'Birthday')
@@ -56,7 +80,7 @@ class EditProfile extends Component {
             error *= Validator.check(this.user.religion.value, ['required'], 'Religion')
             error *= Validator.check(this.user.smoke.value, ['required'], 'Smoke')
             error *= Validator.check(this.user.drink.value, ['required'], 'Drink')
-            error *= Validator.check(this.user.children.value, ['required'], 'About Children')
+            //error *= Validator.check(this.user.children.value, ['required'], 'Children')
             error *= Validator.check(this.user.want_children.value, ['required'], 'Want Children')
             error *= Validator.check(this.user.education.value, ['required'], 'Education')
             error *= Validator.check(this.user.living_situation.value, ['required'], 'Living Situation')
@@ -88,7 +112,8 @@ class EditProfile extends Component {
                 religion_id: this.user.religion.value,
                 smoke_id: this.user.smoke.value,
                 drink_id: this.user.drink.value,
-                children: this.user.children.value,
+                children: this.state.children === 2 ? this.state.children : this.member.children.value,
+                about_children: this.state.childrens,
                 want_children_id: this.user.want_children.value,
                 languages: this.state.languages,
                 match: {
@@ -101,7 +126,6 @@ class EditProfile extends Component {
                 employment_status: this.user.employment_status.value,
                 interest_id: this.props.user.data.interests,
             }
-
             store.dispatch(updateUserProfile(data, this.props.user.token))
         }
   	}
@@ -227,6 +251,11 @@ class EditProfile extends Component {
                 'name': this.props.options[type][k].value
             })
         }
+
+        if (type === 'children') {
+            temp = temp.filter(item => item.value !== 2)
+        }
+
         return temp
     }
 
@@ -276,7 +305,50 @@ class EditProfile extends Component {
             this.addLanguage({lang: this.state.current_lang, level: val})
         }
     }
-  
+
+    setChildren = val => {
+        this.setState({children: val * 1})
+        console.log(this.state.children)
+    }
+
+    changeChildSex = val => {
+        this.setState({current_childSex: val})
+    }
+
+    removeChildrens = index => e => {
+        const childrens = this.state.childrens.filter((item, i) => i !== index)
+        this.setState({childrens})
+    }
+
+    printChildrens = (item, i) => {
+        return  <div key={i} className="position-relative font-bebas">
+                    <div className="row">
+                        <div className="col-xs-6">
+                            <span className="text-capitalize">{item.sex}</span>
+                        </div>
+                        <div className="col-xs-6">
+                            <span>{item.birth}</span>
+                        </div>
+                    </div>
+                    <i className="fas fa-times pull-right remove-languages" onClick={this.removeChildrens(i)}></i>
+                    <hr style={{marginTop: 5}} />
+                </div>
+    }
+
+    changeChildBirth = e => {
+        this.setState({current_childBirth: e.target.value})
+        const digits = e.target.value.match(/\d/g)
+        if (digits && digits.length > 7) {
+            this.setState({
+                childrens: [...this.state.childrens, {sex: this.state.current_childSex, birth: e.target.value}],
+                current_childSex: '',
+                current_childBirth: ''
+            })
+
+            this.member.childSex.value = ''
+        }
+    }
+    
 	render() {
         const { data } = this.props.user
   		const { interests } = this.props.options
@@ -503,15 +575,59 @@ class EditProfile extends Component {
                                     </FormGroup>
                                 </Col>
                                 <Col sm={6}>
-                                    <FormGroup>
-                                        <SelectField
-                                            componentClass="select"
-                                            inputRef={ref => { this.user.children = ref }}
-                                            options={this.getArray('children')}
-                                            value={data.children.id}
-                                            label={true}
-                                            placeholder="Children" />
+                                <FormGroup>
+                                <SelectField
+                                    label={true}
+                                    placeholder="Children" 
+                                    componentClass="select"
+                                    inputRef={ref => { this.member.children_yes_no = ref }}
+                                    options={[{value: '', name: 'Do you have children?'}, {value: 1, name: 'Yes'}, {value: 2, name: 'No'}]}
+                                    name="children"
+                                    onChange={this.setChildren}
+                                    value={this.state.children} />
                                     </FormGroup>
+                                    {
+                                        this.state.children === 1
+                                        ?   <div>
+                                                <FormGroup>
+                                                    <SelectField  
+                                                        componentClass="select"
+                                                        inputRef={ref => { this.member.children = ref }}
+                                                        options={this.getArray('children')}
+                                                        value={data.children} />
+                                                </FormGroup>
+                                                <FormGroup>
+                                                    {this.state.childrens.map((item, i) => this.printChildrens(item, i))}
+                                                </FormGroup>
+                                                    {
+                                                        this.state.childrens.length < 3
+                                                        ?   <FormGroup>
+                                                                <Row style={{marginBottom: -8}}>
+                                                                    <Col sm={6}>
+                                                                        <SelectField
+                                                                            componentClass="select"
+                                                                            inputRef={ref => { this.member.childSex = ref }}
+                                                                            onChange={this.changeChildSex}
+                                                                            name="children"
+                                                                            options={[{value: '', name: 'Sex'}, {value: 'male', name: 'Male'}, {value: 'female', name: 'Female'}]}
+                                                                            value={this.state.current_childSex} />
+                                                                    </Col>
+                                                                    <Col sm={6}>
+                                                                        <InputMask 
+                                                                            mask="99/99/9999" 
+                                                                            disabled={this.state.current_childSex === ''}
+                                                                            placeholder="DD/MM/YYYY" 
+                                                                            onChange={this.changeChildBirth}
+                                                                            value={this.state.current_childBirth}
+                                                                            className="form-control masked-input" />
+                                                                    </Col>
+                                                                </Row>
+                                                            </FormGroup>
+                                                        :   ''
+                                                    }
+                                            </div>
+                                        :   ''
+                                    }
                                     <FormGroup>
                                         <Row>
                                             <Col sm={6}>
