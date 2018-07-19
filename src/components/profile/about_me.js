@@ -20,8 +20,8 @@ class AboutMe extends Component {
 
     render() {
         const { data } = this.props.user
-        let classRole = data.role === 'client' ? 'client' : 'girl'
         console.log(data)
+        let classRole = data.role === 'client' ? 'client' : 'girl'
        	return (
        		<div className={style.wrapper + ' ' + classRole}>
                 <Row>
