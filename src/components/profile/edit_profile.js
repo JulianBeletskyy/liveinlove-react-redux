@@ -21,11 +21,12 @@ class EditProfile extends Component {
 		}
         //console.log(props.user.data.languages)
         console.log(props.user.data.children)
+        console.log(props.user.data.about_children)
         this.state = {
             languages: props.user.data.languages,
             current_lang: '',
             current_level: '',
-            childrens: [],
+            childrens: props.user.data.about_children,
             children: props.user.data.children,
             current_childSex: '',
             current_childBirth: '',
@@ -112,6 +113,7 @@ class EditProfile extends Component {
                 smoke_id: this.user.smoke.value,
                 drink_id: this.user.drink.value,
                 children: this.state.children === 2 ? this.state.children : this.member.children.value,
+                about_children: this.state.childrens,
                 want_children_id: this.user.want_children.value,
                 languages: this.state.languages,
                 match: {
@@ -249,6 +251,11 @@ class EditProfile extends Component {
                 'name': this.props.options[type][k].value
             })
         }
+
+        if (type === 'children') {
+            temp = temp.filter(item => item.value !== 2)
+        }
+
         return temp
     }
 

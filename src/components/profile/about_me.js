@@ -296,7 +296,7 @@ class AboutMe extends Component {
                                 </FormGroup>
                             </Col>
 
-                    <Col sm={12}>
+                    <Col sm={(data.role === 'client' ? 12 : 6)}>
                         <FormGroup>
                             <SmallDivider text={'I am looking for a ' + (data.role === 'client' ? 'woman' : 'man')} />
                         </FormGroup>
