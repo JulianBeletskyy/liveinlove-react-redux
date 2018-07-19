@@ -29,6 +29,7 @@ class AboutMe extends Component {
                         <FormGroup>
                             <SmallDivider text="Main Information" />
                         </FormGroup>
+                        <Col sm={6}>
                         <FormGroup>
                             <div>
                                 <span className={style.middleTitle + ' title'}>First Name</span>
@@ -77,6 +78,11 @@ class AboutMe extends Component {
                             </div>
                             <span className="small-italic">{data.mobile}</span>
                         </FormGroup>
+                        </Col>
+                        {
+                        data.role === 'girl'
+                        ?
+                        <Col sm={6}>
                         <FormGroup>
                             <div>
                                 <span className={style.middleTitle + ' title'}>Facebook</span>
@@ -95,6 +101,8 @@ class AboutMe extends Component {
                             </div>
                             <span className="small-italic">{data.other_social}</span>
                         </FormGroup>
+                        </Col>
+                        :''}
                     </Col>
 
                     <Col sm={6}>
@@ -155,6 +163,7 @@ class AboutMe extends Component {
                                 <FormGroup>
                                     <SmallDivider text="Lifestyle" />
                                 </FormGroup>
+                                <Col sm={6}>
                                 <FormGroup>
                                     <div>
                                         <span className={style.middleTitle + ' title'}>Marital Status</span>
@@ -178,7 +187,9 @@ class AboutMe extends Component {
                                         <span className={style.middleTitle + ' title'}>Drink</span>
                                     </div>
                                     <span className="small-italic">{data.drink.value}</span>
-                                </FormGroup>                      
+                                </FormGroup>
+                                </Col>
+                                <Col sm={6}>                      
                                 <FormGroup>
                                     <div>
                                         <span className={style.middleTitle + ' title'}>Children</span>
@@ -197,6 +208,7 @@ class AboutMe extends Component {
                                     </div>
                                     <span className="small-italic">From {data.match.from} to {data.match.to} </span>
                                 </FormGroup>
+                                </Col>
                             </Col>
 
                             <Col sm={6}>
@@ -253,6 +265,9 @@ class AboutMe extends Component {
                                     </div>
                                     <span className="small-italic">{data.about_me}</span>
                                 </FormGroup>
+                                {
+                                data.role === 'girl'
+                                ? <div>
                                 <FormGroup>
                                     <div>
                                         <span className={style.middleTitle + ' title'}>About my family</span>
@@ -270,7 +285,9 @@ class AboutMe extends Component {
                                         <span className={style.middleTitle + ' title'}>My future goals</span>
                                     </div>
                                     <span className="small-italic">{data.future_goals}</span>
-                                </FormGroup>                      
+                                </FormGroup>
+                                </div>
+                            : ""}                      
                                 <FormGroup>
                                     <div>
                                         <span className={style.middleTitle + ' title'}>The one I would like to meet</span>
@@ -279,7 +296,7 @@ class AboutMe extends Component {
                                 </FormGroup>
                             </Col>
 
-                    <Col sm={6}>
+                    <Col sm={12}>
                         <FormGroup>
                             <SmallDivider text={'I am looking for a ' + (data.role === 'client' ? 'woman' : 'man')} />
                         </FormGroup>
@@ -290,7 +307,7 @@ class AboutMe extends Component {
                             <span className="small-italic">from {data.match.from} to {data.match.to}</span>
                         </FormGroup>
                         {
-                            data.role === 'client'
+                            data.role === 'girl'
                             ? <FormGroup>
                                 <div>
                                     <span className={style.middleTitle + ' title'}>Ethnicity</span>
