@@ -342,6 +342,7 @@ class Services extends Component {
                     title="Membership"
                     show={plans}
                     keyModal="plans"
+                    className="plans-modal"
                     size="lg" />
                 <MainModal
                     body={<Credits />}

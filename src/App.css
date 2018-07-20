@@ -123,6 +123,10 @@ pre {
 	.navbar-right {
 		margin-right: -20px;
 	}
+
+	.navbar-nav > li > a {
+		padding-left: 10px;
+	}
 }
 
 .slick-dots.slick-thumb {
