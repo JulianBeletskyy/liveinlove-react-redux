@@ -14,7 +14,9 @@ pre {
     border: unset;
     border-radius: 0;
     white-space: pre-wrap;
-    font-size: inherit;
+	font-size: inherit;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .App {

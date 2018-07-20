@@ -17,7 +17,7 @@ class MembershipInfo extends Component {
 				<FormGroup>
 					<div>
 						<span className="font-bebas">Current plan: </span>
-						<strong>{ membership.name }</strong>
+						<strong>{ membership.name + ( membership.value.id == 13 ? '(Trial)' : '' ) }</strong>
 					</div>
 					<div>
 						<span className="font-bebas">Expression of Interest: </span>

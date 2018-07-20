@@ -32,7 +32,7 @@ class MemberPreview extends Component {
 		                		<strong className={style.infoName}>{member.first_name}</strong>
 		            		</div>
 		                	<div>{member.age + ' years'}</div>
-		                	<div>{member.country + ', ' + member.city}</div>
+		                	<div className="ellipsis" title={member.country + ', ' + member.city}>{member.country + ', ' + member.city}</div>
 		                </div>
 	                </div>
                     {
