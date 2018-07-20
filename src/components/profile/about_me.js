@@ -209,7 +209,7 @@ class AboutMe extends Component {
                                         <span className="small-italic">{data.children.value}</span>
                                     </FormGroup>
                                     {
-                                    data.role === 'girl' && data.children.value === "Yes"
+                                    data.children.value === "Yes"
                                     ?
                                     <FormGroup>
                                         <div>

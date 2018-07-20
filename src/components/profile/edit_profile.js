@@ -575,22 +575,8 @@ class EditProfile extends Component {
                                     </FormGroup>
                                 </Col>
                                 <Col sm={6}>
-                                {
-                                    data.role === 'client'
-                                    ?   <FormGroup>
-                                            <SelectField  
-                                                label={true}
-                                                placeholder="Children"
-                                                componentClass="select"
-                                                inputRef={ref => { this.member.children = ref }}
-                                                options={this.getArray('children')}
-                                                value={data.children.id} />
-                                        </FormGroup>
-                                    :   ''
-                                }
-                                {
-                                    data.role === 'girl'
-                                    ?   <FormGroup>
+                                
+                                   <FormGroup>
                                             <SelectField
                                                 label={true}
                                                 placeholder="Children" 
@@ -601,10 +587,9 @@ class EditProfile extends Component {
                                                 onChange={this.setChildren}
                                                 value={data.children.id !== 2 ? 1 : 2} />
                                         </FormGroup>
-                                    :   ''
-                                }
+                               
                                     {
-                                        this.state.children === 1 && data.role === 'girl'
+                                        this.state.children === 1
                                         ?   <div>
                                                 <FormGroup>
                                                     <SelectField  
