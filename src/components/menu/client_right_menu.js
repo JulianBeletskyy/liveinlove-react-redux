@@ -33,9 +33,9 @@ class ClientRightMenu extends Component {
 					<Avatar src={data.avatar.croped} />
 				</FormGroup>
 				<FormGroup className={style.name + " text-center"}>
-					<h2>
+					<h3>
 						<strong>{data.first_name + ' ' + data.last_name}</strong>
-					</h2>
+					</h3>
 					<MiddleString
 						text={data.profile_id}
 						keyName="ID:" />

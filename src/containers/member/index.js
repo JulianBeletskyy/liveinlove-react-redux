@@ -278,7 +278,7 @@ class Member extends Component {
                                             </div>
                                         </div>
                                         {
-                                            this.props.user.data.role === 'client' && member.about_children.length
+                                            member.about_children.length
                                             ?   <div className="row">
                                                     <div className="col-xs-5">
                                                         <span className="font-bebas fs-18">About Children: </span>
