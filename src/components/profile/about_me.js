@@ -20,7 +20,6 @@ class AboutMe extends Component {
 
     render() {
         const { data } = this.props.user
-        console.log(data)
         let classRole = data.role === 'client' ? 'client' : 'girl'
        	return (
        		<div className={style.wrapper + ' ' + classRole}>
@@ -209,7 +208,7 @@ class AboutMe extends Component {
                                         <span className="small-italic">{data.children.value}</span>
                                     </FormGroup>
                                     {
-                                    data.children.value === "Yes"
+                                    data.about_children.length && data.children.id != 2
                                     ?
                                     <FormGroup>
                                         <div>

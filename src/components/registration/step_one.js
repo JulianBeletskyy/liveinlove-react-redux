@@ -36,17 +36,6 @@ class SignUpOne extends Component {
     getSignUpTwo = (event) => {
         event.preventDefault()
         let error = 1
-        
-        if (this.state.children === 1) {
-            error *= Validator.check(this.signup.children.value, ['required'], 'About Children')
-            if (this.state.childrens.length < 1 && error) {
-                store.dispatch(setAlert('About Children is requared', 'error'))
-                error = 0
-            }
-        } else if (this.state.children !== 2) {
-            store.dispatch(setAlert('About Children is requared', 'error'))
-            error = 0
-        }
 
         if (error) {
             const data = {

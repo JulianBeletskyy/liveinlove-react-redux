@@ -78,6 +78,10 @@ class FullMail extends Component {
         }
     }
 
+    goToMember = () => {
+        history.push('/member/' + this.props.messages.message.receiver_id)
+    }
+
     render() {
         const avatar = this.state.new ? this.props.location.state.avatar : this.props.messages.message.receiver_avatar
         const { message } = this.props.messages
@@ -95,6 +99,8 @@ class FullMail extends Component {
         if (this.props.messages.message.translation) {
             translate = this.props.messages.message.translation.replace(/(?:\r\n|\r|\n)/g, '<br />')
         }
+
+        console.log(this.props.messages.message.receiver_id)
         
         return (
             <div className="pt-15">
@@ -103,7 +109,7 @@ class FullMail extends Component {
                 </div>
                 <div className="row form-group">
                     <div className="col-sm-2">
-                        <img src={avatar} alt="" className="img-responsive" />
+                        <img src={avatar} alt="" className="img-responsive pointer" onClick={this.goToMember} />
                     </div>
                     {
                         ! this.state.new
@@ -113,7 +119,7 @@ class FullMail extends Component {
                                         <strong>Name:</strong>
                                     </div>
                                     <div className="col-sm-10">
-                                        {this.props.messages.message.receiver_first_name}
+                                        <span className="pointer" onClick={this.goToMember}>{this.props.messages.message.receiver_first_name}</span>
                                     </div>
                                 </div>
                                 <div className="row form-group">

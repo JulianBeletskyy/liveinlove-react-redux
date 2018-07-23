@@ -2,10 +2,10 @@
 	letter-spacing: 0.5px;
 }
 
-:local(.name h2) {
+:local(.name h3) {
     font-family: bebas_neue;
     letter-spacing: 1px;
-    font-size: 36px;
+    font-size: 31px;
     color: #fff;
 }
 
