@@ -45,7 +45,7 @@ class InfoProfile extends Component {
 	render() {
 		const { second } = this.props.segments
 		const { role } = this.props.user.data
-		
+		console.log(this.props.user.credits)
 		return (
 			<div className={style.wrapTab}>
 				<Tabs id="info" activeKey={second} onSelect={this.handleSelect}>
@@ -106,7 +106,9 @@ class InfoProfile extends Component {
 						?	<Tab 
 								eventKey={'credits'} 
 								title="Credits & Bonuses">
-								Credits & Bonuses
+								<div className="pt-15">
+									<span className="font-bebas">Credits: </span><strong>{this.props.user.data.credits}</strong>
+								</div>
 							</Tab>	
 						: ''
 					}
@@ -122,11 +124,7 @@ const mapStateToProps = (state) => {
 			second: state.segments.second
 		},
 		user: {
-			data: {
-				role: state.user.data.role,
-				images: state.user.data.images,
-				video: state.user.data.video
-			},
+			data: state.user.data,
 			token: state.user.token
 		},
 		services: {
