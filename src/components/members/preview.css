@@ -23,6 +23,7 @@
 :local(.imgWrap) {
 	position: relative;
 	overflow: hidden;
+	max-height: 200px;
 }
 
 :local(.wrap i) {
