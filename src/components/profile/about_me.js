@@ -214,7 +214,7 @@ class AboutMe extends Component {
                                         <div>
                                             <span className={style.middleTitle + ' title'}>About Children</span>
                                         </div>
-                                        <span className="small-italic">{data.about_children.map((item, i) => <div key={i}>{item.sex} - {this.getAge(item.birth)}</div>)}</span>
+                                        <span className="small-italic">{data.about_children.map((item, i) => <div className="small-italic" key={i}>{item.sex} - {this.getAge(item.birth)}</div>)}</span>
                                     </FormGroup>
                                     :""}
                                     <FormGroup>
