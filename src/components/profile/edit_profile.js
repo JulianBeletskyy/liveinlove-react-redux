@@ -19,9 +19,7 @@ class EditProfile extends Component {
 			birth: {},
             match: {}
 		}
-        //console.log(props.user.data.languages)
-        console.log(props.user.data.children)
-        console.log(props.user.data.about_children)
+
         this.state = {
             languages: props.user.data.languages,
             current_lang: '',
@@ -39,6 +37,7 @@ class EditProfile extends Component {
      
   	save = () => {
         let error = 1
+        console.log('client')
         
         if (this.state.children === 1 && this.props.user.data.role === 'girl') {
             error *= Validator.check(this.member.children.value, ['required'], 'Children')

@@ -53,7 +53,9 @@ const initialState = {
         drink_id: '',
         credits: 0,
         view_profile: 0,
-        membership: {},
+        membership: {
+            value: {}
+        },
         active_gallery: 'main',
         selected_img: [],
         images: [],

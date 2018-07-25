@@ -28,7 +28,7 @@ class Edit extends Component {
 			<div className={style.wrapTab}>
 				<Tabs id="edit" activeKey={third} onSelect={this.handleSelect}>
 					<Tab eventKey={'info'} title="Edit" >
-					 	<EditProfile />
+						<EditProfile />
 					</Tab>
 					<Tab eventKey={'other'} title="Other Information" >
 						<EditProfileOther />
