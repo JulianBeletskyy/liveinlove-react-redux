@@ -96,7 +96,7 @@ class AboutMe extends Component {
                                 <div>
                                     <span className={style.middleTitle + ' title'}>VK</span>
                                 </div>
-                                <span className="small-italic">{data.mobile}</span>
+                                <span className="small-italic">{data.vk}</span>
                             </FormGroup>
                             <FormGroup>
                                 <div>

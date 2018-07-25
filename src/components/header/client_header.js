@@ -87,7 +87,7 @@ class ClientHeader extends Component {
                     <Link to="/about" target="_blank">About Company</Link>
                     <Link to="/how-it-works" target="_blank">How it works?</Link>
                     <Link to="/testimonials" target="_blank">Testimonials</Link>
-                    <Link to="success-stories" target="_blank">Success stories</Link>
+                    <Link to="/success-stories" target="_blank">Success stories</Link>
                 </NavDropdown>
 
                 <li role="presentation">

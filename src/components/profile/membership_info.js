@@ -12,6 +12,7 @@ class MembershipInfo extends Component {
 
 	render() {
 		const { membership } = this.props.user.data
+		console.log(membership)
 		return (
 			<div className="pt-15">
 				<FormGroup>
