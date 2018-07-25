@@ -43,6 +43,21 @@ export default {
             'path': '/',
             'component': 'Home'
         }, {
+            'path': '/about',
+            'component': 'About'
+        }, {
+            'path': '/how-it-works',
+            'component': 'Works'
+        }, {
+            'path': '/testimonials',
+            'component': 'Testimonials'
+        }, {
+            'path': '/success-stories',
+            'component': 'SuccessStories'
+        }, {
+            'path': '/success-stories/:id',
+            'component': 'SuccessStories'
+        }, {
             'path': '/profile/*',
             'component': 'Home'
         }, {

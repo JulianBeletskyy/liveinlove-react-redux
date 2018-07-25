@@ -22,6 +22,7 @@ class StoriesList extends Component {
         return (
             <div>
                 <h1 className="font-bebas">Success Stories</h1>
+                <p>Note: <span className="small-italic">We are glad to share great successful love stories with you, although most of couples prefer to keep Happiness in Silence. With that we post only some of those couples who gave us personal permission.</span></p>
                 <hr />
             	<Row>
                     { stories.map((story, i) => this.printStories(story, i)) }

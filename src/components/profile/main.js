@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { FormGroup, Col, Row } from 'react-bootstrap'
-import { getNewMembers, getMembers, getPopularMembers, getSearchProfileId, getMoreMembers, setActiveTab } from 'actions'
+import { getNewMembers, getMostViewedMembers, getMembers, getPopularMembers, getSearchProfileId, getMoreMembers, setActiveTab } from 'actions'
 import MemberBlock from 'components/members/member_block.js'
 import store from 'store'
 import Tabs from 'components/tabs'
@@ -13,6 +13,7 @@ import Validator from 'validate'
 class MainProfile extends Component {
     constructor(props) {
         super(props)
+        store.dispatch(getMostViewedMembers(props.user.token))
         store.dispatch(getNewMembers(props.user.token))
         store.dispatch(getPopularMembers(props.user.token))
         store.dispatch(getMembers(props.user.token))
@@ -32,7 +33,7 @@ class MainProfile extends Component {
     }
 
 	render() {
-        const { new_list, popular_list, search_list } = this.props.members
+        const { new_list, popular_list, search_list, viewed_list } = this.props.members
         const more = this.props.members.current_page < this.props.members.last_page
 		return (
             <div className="pt-15">
@@ -60,6 +61,10 @@ class MainProfile extends Component {
                 <Tabs 
                     tabs={[
                         {
+                            eventKey: 'all', 
+                            title: 'All', 
+                            content: <MemberBlock like={true} list={viewed_list} />
+                        }, {
                             eventKey: 'popular', 
                             title: 'Popular', 
                             content: <MemberBlock like={true} list={popular_list} />
@@ -88,6 +93,7 @@ const mapStateToProps = (state) => {
         members: {
             new_list: state.members.new_list,
             popular_list: state.members.popular_list,
+            viewed_list: state.members.viewed_list,
             search_list: state.members.search_list,
             current_page: state.members.current_page,
             last_page: state.members.last_page,

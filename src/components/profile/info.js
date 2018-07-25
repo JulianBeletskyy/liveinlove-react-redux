@@ -45,7 +45,6 @@ class InfoProfile extends Component {
 	render() {
 		const { second } = this.props.segments
 		const { role } = this.props.user.data
-		console.log(this.props.user.credits)
 		return (
 			<div className={style.wrapTab}>
 				<Tabs id="info" activeKey={second} onSelect={this.handleSelect}>

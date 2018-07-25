@@ -220,7 +220,13 @@ class Landing extends Component {
                                             </Col>
                                         </Row>
                                     </div>
-                                    <MemberBlock like={false} onClickItem={this.getRegistration} list={list} />
+                                    <MemberBlock 
+                                        like={false} 
+                                        onClickItem={e => {
+                                            e.preventDefault()
+                                            this.getRegistration()}
+                                        } 
+                                        list={list} />
                                 </Grid>
                             </div>
                         </div>
