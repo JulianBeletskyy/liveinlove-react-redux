@@ -4,6 +4,7 @@ const initialState = {
     list: [],
     new_list: [],
     popular_list: [],
+    viewed_list: [],
     favorite_list: [],
     interest_list: [],
     active_list: [],

@@ -80,9 +80,15 @@ class ClientHeader extends Component {
                     <Link to="/blogs">Blog</Link>
                 </li>
 
-                <li role="presentation" className={url === 'shop' ? style.active : ''}>
+                {/*<li role="presentation" className={url === 'shop' ? style.active : ''}>
                     <Link to="/shop">Shop</Link>
-                </li>
+                </li>*/}
+                <NavDropdown role="presentation" title="About" id="dropdown">
+                    <Link to="/about" target="_blank">About Company</Link>
+                    <Link to="/how-it-works" target="_blank">How it works?</Link>
+                    <Link to="/testimonials" target="_blank">Testimonials</Link>
+                    <Link to="success-stories" target="_blank">Success stories</Link>
+                </NavDropdown>
 
                 <li role="presentation">
                     <a href="javascript:;"onClick={this.goToCart}><i className="fas fa-shopping-cart"></i></a>

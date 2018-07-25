@@ -82,6 +82,18 @@ export default {
         .then(responseHandler)
     },
 
+    getMostViewedMembers(token) {
+        return fetch(config.API_URL + 'user/members/viewed', {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
     getPublicMembers(type) {
         return fetch(config.API_URL + 'members/' + type, {
             method: 'get',

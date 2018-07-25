@@ -194,7 +194,13 @@ class Services extends Component {
                                                 </tr>
                                                 <tr>
                                                     <td>100 Dibs/$0.89 per Dib. - $89.99</td>
-                                                    <td>1 minute of Video Chat = 1 Dib</td>
+                                                    <td rowspan="3"></td>
+                                                </tr>
+                                                 <tr>
+                                                    <td>200 Dibs/$0.84 per Dib. - $169.99</td>
+                                                </tr>
+                                                 <tr>
+                                                    <td>500 Dibs/$0.74 per Dib. - $374.99</td>
                                                 </tr>
                                             </tbody>
                                         </table>

@@ -7,6 +7,11 @@
     overflow: hidden;
 }
 
+:local(.wrap) a {
+	text-decoration: none;
+	color: unset;
+}
+
 .ellipsis {
 	overflow: hidden;
 	text-overflow: ellipsis;

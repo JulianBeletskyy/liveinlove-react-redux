@@ -3,7 +3,7 @@ import { FILTER_BLOGS, SET_ACTIVE_TAB, TOGGLE_LIGHT_BOX, SET_UPLOAD, NEXT_IMG, P
 const initialState = {
 	tabs: {
 		member_profile: 'info',
-		main: 'popular',
+		main: 'all',
         mail: 'inbox'
     },
     gallery: {

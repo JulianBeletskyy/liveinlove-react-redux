@@ -416,6 +416,17 @@ export function getMembers(token) {
     }
 }
 
+export function getMostViewedMembers(token) {
+    return dispatch => {
+        return api.getMostViewedMembers(token)
+        .then(json => {
+            if (json.data) {
+                dispatch(setMembers(json.data, 'viewed_list'))
+            }
+        })
+    }
+}
+
 export function getMoreMembers(link, token) {
     return dispatch => {
         return api.getMoreMembers(link, token)
