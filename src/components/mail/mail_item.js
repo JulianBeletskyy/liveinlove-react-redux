@@ -19,7 +19,7 @@ class MailItem extends Component {
     }
 
     getMessage = () => {
-        this.props.type != 'drafts' ? history.push(`/mail/main/${this.props.id}`) : history.push(`/mail/main/drafts/${this.props.id}`)
+        this.props.type != 'drafts' ? history.push(`/mail/main/${this.props.id}/${this.props.type}`) : history.push(`/mail/main/drafts/${this.props.id}`)
     }
 
     removeDraft = () => {

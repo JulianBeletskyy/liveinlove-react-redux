@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Tabs from 'components/tabs'
-import { getDialogs, getContacts, getMail } from 'actions'
+import { getDialogs, getContacts, getMail, setActiveTab } from 'actions'
 import { connect } from 'react-redux'
 import store from 'store'
 import MessagesBlock from './messages_block.js'
@@ -10,8 +10,15 @@ import MessagesList from './messages_list.js'
 class Mail extends Component {
     constructor(props) {
         super(props)
-        store.dispatch(getMail('incoming', 'inbox', this.props.user.token))
+        
         store.dispatch(getContacts(props.user.token))
+        console.log(props.location.state)
+        if (props.location.state) {
+            store.dispatch(getMail('outgoing', props.location.state.active, this.props.user.token))
+            store.dispatch(setActiveTab('sent', 'mail'))
+        } else {
+            store.dispatch(getMail('incoming', 'inbox', this.props.user.token))
+        }
     }
     
     render() {

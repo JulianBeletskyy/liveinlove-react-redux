@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { FormGroup } from 'react-bootstrap'
-import store from 'store'
+import store, { history } from 'store'
 import { sendMessage, saveDraft } from 'actions'
 import { connect } from 'react-redux'
 import Textarea from 'components/form/inputs/textarea.js'
@@ -24,7 +24,13 @@ class MessageBlock extends Component {
                 attachment: this.props.messages.attach_message.src || this.props.messages.attach_message
             }
             store.dispatch(sendMessage(data, this.props.user.token))
-            this.message.value = ''
+            .then(res => {
+                if (res) {
+                    this.message.value = ''
+                    history.push('/mail/main', {active: 'sent'})
+                }
+            })
+            
         }
     }
 

@@ -25,7 +25,7 @@ class EditProfile extends Component {
             current_lang: '',
             current_level: '',
             childrens: props.user.data.about_children,
-            children: props.user.data.children.id !== 2 ? 1 : false,
+            children: props.user.data.children.id === 2 ? 2 : (props.user.data.children.id ? 1 : ''),
             current_childSex: '',
             current_childBirth: '',
         }
@@ -37,10 +37,15 @@ class EditProfile extends Component {
      
   	save = () => {
         let error = 1
-        console.log('client')
         
-        if (this.state.children === 1 && this.props.user.data.role === 'girl') {
-            error *= Validator.check(this.member.children.value, ['required'], 'Children')
+        if (this.state.children !== 2 && this.props.user.data.role === 'girl') {
+            if (this.user.children) {
+                error *= Validator.check(this.user.children.value, ['required'], 'Children')
+            } else {
+                store.dispatch(setAlert('About Children is requared', 'error'))
+                error = 0
+            }
+            
             if (this.state.childrens.length < 1 && error) {
                 store.dispatch(setAlert('About Children is requared', 'error'))
                 error = 0
@@ -89,6 +94,7 @@ class EditProfile extends Component {
         }
 
         if (error) {
+
             const data = {
                 first_name: this.user.first_name.value,
                 last_name: this.user.last_name.value,
@@ -111,7 +117,7 @@ class EditProfile extends Component {
                 religion_id: this.user.religion.value,
                 smoke_id: this.user.smoke.value,
                 drink_id: this.user.drink.value,
-                children: this.state.children === 2 ? this.state.children : this.member.children.value,
+                children: this.state.children === 2 ? this.state.children : (this.user.children ? this.user.children.value : ''),
                 about_children: this.state.childrens,
                 want_children_id: this.user.want_children.value,
                 languages: this.state.languages,
@@ -251,7 +257,7 @@ class EditProfile extends Component {
             })
         }
 
-        if (type === 'children' && this.props.user.data.role === 'girl') {
+        if (type === 'children') {
             temp = temp.filter(item => item.value !== 2)
         }
 
@@ -307,7 +313,6 @@ class EditProfile extends Component {
 
     setChildren = val => {
         this.setState({children: val * 1})
-        console.log(this.state.children)
     }
 
     changeChildSex = val => {
@@ -580,11 +585,11 @@ class EditProfile extends Component {
                                                 label={true}
                                                 placeholder="Children" 
                                                 componentClass="select"
-                                                inputRef={ref => { this.member.children_yes_no = ref }}
+                                                inputRef={ref => { this.user.children_yes_no = ref }}
                                                 options={[{value: '', name: 'Do you have children?'}, {value: 1, name: 'Yes'}, {value: 2, name: 'No'}]}
                                                 name="children"
                                                 onChange={this.setChildren}
-                                                value={data.children.id !== 2 ? 1 : 2} />
+                                                value={data.children.id === 2 ? 2 : (data.children.id ? 1 : '')} />
                                         </FormGroup>
                                
                                     {
@@ -593,14 +598,12 @@ class EditProfile extends Component {
                                                 <FormGroup>
                                                     <SelectField  
                                                         componentClass="select"
-                                                        inputRef={ref => { this.member.children = ref }}
+                                                        inputRef={ref => { this.user.children = ref }}
                                                         options={this.getArray('children')}
                                                         value={data.children.id} />
                                                 </FormGroup>
                                                 <FormGroup>
-                                                    {this.state.childrens.map((item, i) => this.printChildrens(item, i))}
-                                                    {console.log(this.state.childrens)}
-                                                </FormGroup>
+                                                    {this.state.childrens.map((item, i) => this.printChildrens(item, i))}                                                </FormGroup>
                                                     {
                                                         this.state.childrens.length < 3
                                                         ?   <FormGroup>

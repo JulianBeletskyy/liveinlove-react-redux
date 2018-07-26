@@ -53,9 +53,10 @@ class FullMail extends Component {
         let error = 1
         error *= Validator.check(this.message.value, ['required'], 'Message')
         if (error) {
+            const receiver_id = this.props.match.params.type === 'inbox' ? this.props.messages.message.sender_id : this.props.messages.message.receiver_id
             const data = {
                 original: this.message.value,
-                receiver_id: this.props.messages.message.receiver_id,
+                receiver_id: receiver_id,
                 attachment: this.props.messages.attach_message.src || this.props.messages.attach_message
             }
             store.dispatch(sendMessage(data, this.props.user.token))
@@ -100,7 +101,16 @@ class FullMail extends Component {
             translate = this.props.messages.message.translation.replace(/(?:\r\n|\r|\n)/g, '<br />')
         }
 
-        console.log(this.props.messages.message.receiver_id)
+
+        const user = {
+            name: this.props.messages.message.receiver_first_name,
+            avatar: avatar
+        }
+
+        if (this.props.match.params.type === 'inbox') {
+            user.name = this.props.messages.message.sender_first_name
+            user.avatar = this.props.messages.message.sender_avatar
+        }
         
         return (
             <div className="pt-15">
@@ -109,7 +119,7 @@ class FullMail extends Component {
                 </div>
                 <div className="row form-group">
                     <div className="col-sm-2">
-                        <img src={avatar} alt="" className="img-responsive pointer" onClick={this.goToMember} />
+                        <img src={user.avatar} alt="" className="img-responsive pointer" onClick={this.goToMember} />
                     </div>
                     {
                         ! this.state.new
@@ -119,7 +129,7 @@ class FullMail extends Component {
                                         <strong>Name:</strong>
                                     </div>
                                     <div className="col-sm-10">
-                                        <span className="pointer" onClick={this.goToMember}>{this.props.messages.message.receiver_first_name}</span>
+                                        <span className="pointer" onClick={this.goToMember}>{user.name}</span>
                                     </div>
                                 </div>
                                 <div className="row form-group">
