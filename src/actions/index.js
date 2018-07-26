@@ -1019,6 +1019,7 @@ export function sendMessage(data, token) {
             .then(json => {
                 if (json.data) {
                     dispatch(setAttachMessage(false))
+                    return true
                 }
             })
     }

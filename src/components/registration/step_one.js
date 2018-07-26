@@ -48,7 +48,7 @@ class SignUpOne extends Component {
                 hair_length_id: this.signup.hair_length.value,
                 ethnicity_id: this.signup.ethnicity.value,
                 marital_status_id: this.signup.marital.value,
-                children: this.state.children === 2 ? this.state.children : this.signup.children.value,
+                children: this.state.children === 2 ? this.state.children : (this.signup.children ? this.signup.children.value : ''),
                 about_children: this.state.childrens,
                 smoke_id: this.signup.smoke.value,
                 drink_id: this.signup.drink.value,

@@ -28,7 +28,7 @@ class GirlHome extends Component {
                                 <Route path="/" exact component={MainPofile} />
                                 <Route path="/men" exact component={MainPofile} />
                                 <Route path="/mail/main/drafts/:id" exact component={EditDraft} />
-                                <Route path="/mail/main/:id" exact component={FullMail} />
+                                <Route path="/mail/main/:id/:type" exact component={FullMail} />
                                 <Route path="/mail/main" exact component={Mail} />
                                 <Route path="/mail/:id" exact component={Dialog} />
                                 <Route path="/contacts/:tab" exact component={Contacts} />
