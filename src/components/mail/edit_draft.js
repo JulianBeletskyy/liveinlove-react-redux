@@ -26,8 +26,12 @@ class EditDraft extends Component {
                 draft_id: this.props.match.params.id
             }
             store.dispatch(sendMessage(data, this.props.user.token))
-            this.message.value = ''
-            history.push('/mail/main')
+            .then(res => {
+                if (res) {
+                    this.message.value = ''
+                    history.push('/mail/main', {active: 'sent'})
+                }
+            })
         }
 	}
 

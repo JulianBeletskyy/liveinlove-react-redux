@@ -12,7 +12,6 @@ class Mail extends Component {
         super(props)
         
         store.dispatch(getContacts(props.user.token))
-        console.log(props.location.state)
         if (props.location.state) {
             store.dispatch(getMail('outgoing', props.location.state.active, this.props.user.token))
             store.dispatch(setActiveTab('sent', 'mail'))

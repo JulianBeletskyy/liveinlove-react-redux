@@ -47,12 +47,13 @@ class ClientHeader extends Component {
         return (
            <ul className={style.navBar + " nav navbar-nav navbar-right"}>
                 <li role="presentation" className={url === 'mail' ? style.active : ''}>
-                    <Link to="/mail/main">Mail</Link>
-                    {
-                        this.props.user.data.unread_message
-                        ?   <span className="badge-message">{this.props.user.data.unread_message}</span>
-                        :   ''
-                    }
+                    <Link to="/mail/main">Mail
+                        {
+                            this.props.user.data.unread_message
+                            ?   <span className="badge-message">{this.props.user.data.unread_message}</span>
+                            :   ''
+                        }
+                    </Link>
                 </li>
 
                 <li role="presentation" className={url === 'profile' ? style.active : ''}>

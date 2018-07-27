@@ -22,7 +22,7 @@ class ContactsBlock extends Component {
 
     getMessage = (e, contact) => {
         e.stopPropagation()
-        history.push('/mail/main/new', contact)
+        history.push('/mail/main/new/sent', contact)
     }
     
     render() {

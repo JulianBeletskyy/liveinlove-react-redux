@@ -8,6 +8,7 @@ import LinkButton from 'components/list/link_button.js'
 import Validator from 'validate'
 import style from './style.css'
 import Lightbox from 'react-images'
+import { Link } from 'react-router-dom'
 
 class FullMail extends Component {
     state = {
@@ -53,14 +54,19 @@ class FullMail extends Component {
         let error = 1
         error *= Validator.check(this.message.value, ['required'], 'Message')
         if (error) {
-            const receiver_id = this.props.match.params.type === 'inbox' ? this.props.messages.message.sender_id : this.props.messages.message.receiver_id
+            const receiver_id = this.props.match.params.type === 'inbox' ? this.props.messages.message.sender_id : (this.props.messages.message.receiver_id ? this.props.messages.message.receiver_id : this.props.location.state.id)
             const data = {
                 original: this.message.value,
                 receiver_id: receiver_id,
                 attachment: this.props.messages.attach_message.src || this.props.messages.attach_message
             }
             store.dispatch(sendMessage(data, this.props.user.token))
-            this.message.value = ''
+            .then(res => {
+                if (res) {
+                    this.message.value = ''
+                    history.push('/mail/main', {active: 'sent'})
+                }
+            })
         }
     }
 
@@ -129,7 +135,9 @@ class FullMail extends Component {
                                         <strong>Name:</strong>
                                     </div>
                                     <div className="col-sm-10">
-                                        <span className="pointer" onClick={this.goToMember}>{user.name}</span>
+                                        <Link to={'/member/' + this.props.messages.message.receiver_id}  style={{textDecoration: 'unset'}}>
+                                            <strong className={this.props.user.data.role === 'client' ? 'color-girl' : 'color-client'}>{user.name}</strong>
+                                        </Link>
                                     </div>
                                 </div>
                                 <div className="row form-group">

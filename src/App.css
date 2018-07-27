@@ -27,6 +27,14 @@ pre {
 	background-attachment: fixed;
 }
 
+.color-client {
+	color: #27C2D3;
+}
+
+.color-girl {
+	color: #F9006E;
+}
+
 .App:after {
 	
 	position: absolute;
@@ -44,6 +52,10 @@ pre {
 
 .mb-5 {
 	margin-bottom: 5px;
+}
+
+.border-bottom-danger {
+	border-bottom-color: #a94442;
 }
 
 .pointer {
