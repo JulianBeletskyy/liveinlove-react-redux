@@ -21,7 +21,10 @@ export function login(data) {
                     dispatch(setToken(json.data))
                     dispatch(closeNav())
                     Options.getAll()
+
+                    return true
                 }
+                return json.message
             }
         })
     }

@@ -254,17 +254,7 @@ class Landing extends Component {
                             <div className={style.carouselWrap}>
                                 <Grid>
                                     <div className={style.storyWrap}>
-                                        <div className="row">
-                                            <div className="col-sm-4">
-                                                <div className={style.succesMore}>So many people found their happiness here. Once made a step for luck. Ready to be Next? Read all successful Stories.</div>
-                                            </div>
-                                            <div className="col-sm-8">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                                consequat. Duis aute irur
-                                            </div>
-                                        </div>
+                                        <div className={style.succesMore}>So many people found their happiness here. Once made a step for luck. Ready to be Next? Read all successful Stories.</div>
                                     </div>
                                     <div className="form-group">
                                         { this.props.services.stories.list.map((story, i) => this.printStories(story, i)) }

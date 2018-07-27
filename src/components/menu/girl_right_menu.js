@@ -25,12 +25,22 @@ class GirlRightMenu extends Component {
 						keyName="ID:" />
 				</FormGroup>
 				<FormGroup>
-					<SmallDivider text="" />
+					<SmallDivider text="Activity" />
 				</FormGroup>
 				<FormGroup>
 					<MiddleString
 						text={data.view_profile}
 						keyName="Profile viewed:" />
+				</FormGroup>
+				<FormGroup>
+					<MiddleString
+						text={data.count_interest}
+						keyName="Interests received:" />
+				</FormGroup>
+				<FormGroup>
+					<MiddleString
+						text={data.count_favorite}
+						keyName="Favorited me:" />
 				</FormGroup>
 				<FormGroup>
 					<SmallDivider text="Profile" />
@@ -46,11 +56,6 @@ class GirlRightMenu extends Component {
 						icon="fas fa-cog"
 						link="/profile/edit/info"
 						role="girl" />
-					{/* <MiddleItem
-						text="Change password"
-						icon="fas fa-unlock-alt"
-						link="/profile/edit/password"
-						role="girl" /> */}
 				</FormGroup>
 			</div>
 		);
@@ -65,7 +70,9 @@ const mapStateToProps = (state) => {
 				first_name: state.user.data.first_name,
 				last_name: state.user.data.last_name,
 				view_profile: state.user.data.view_profile,
-				profile_id: state.user.data.profile_id
+				count_interest: state.user.data.count_interest,
+				count_favorite: state.user.data.count_favorite,
+				profile_id: state.user.data.profile_id,
 			}
 		}
 	}

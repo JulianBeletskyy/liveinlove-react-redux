@@ -40,7 +40,7 @@ class TextField extends Component {
                     type={this.props.type}
                     inputRef={this.thisRef}
                     name={this.props.name}
-                    className={style.style}
+                    className={`${style.style} ${this.props.className}`}
                     onChange={this.handleChange}
                     defaultValue={this.props.value} />
                 {this.props.label ? '' : <div className={className}>{this.props.placeholder}</div>}
