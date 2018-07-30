@@ -1024,6 +1024,19 @@ export function sendMessage(data, token) {
                     dispatch(setAttachMessage(false))
                     return true
                 }
+                return json
+            })
+    }
+}
+
+export function buyMessage(data, token) {
+    return dispatch => {
+        return api.buyMessage(data, token)
+            .then(json => {
+                if (json.data) {
+                    dispatch(getUserInfo(token))
+                    return true
+                }
             })
     }
 }

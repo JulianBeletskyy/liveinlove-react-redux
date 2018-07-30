@@ -147,7 +147,7 @@ class Member extends Component {
                                         </div>
                                         {
                                             this.props.members.data.gallery.length
-                                            ?   <MemberGallery list={this.props.members.data.gallery} onClick={this.openMemberImages} />
+                                            ?   <MemberGallery list={[...this.props.members.data.gallery, ...this.props.members.data.video]} onClick={this.openMemberImages} />
                                             :   ''
                                         }
                                     </Col>
@@ -370,9 +370,9 @@ class Member extends Component {
                                                     color="#27C2D3"
                                                     icon="fas fa-envelope" />
                                             </div>
-                                            <div className="col-sm-6 col-lg-6 col-md-12">
+                                            {/*<div className="col-sm-6 col-lg-6 col-md-12">
                                                 <LinkIcon text="Invite to Video-Chat" icon="fas fa-comment" color="#FF0000" />
-                                            </div>
+                                            </div>*/}
                                             {
                                                 this.props.user.data.role === 'client'
                                                 ?   <div>

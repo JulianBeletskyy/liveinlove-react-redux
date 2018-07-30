@@ -44,17 +44,9 @@ class PublicFooter extends Component {
                             <Col sm={4}>
                                 <ul>
                                     <li>
-                                        <i className="far fa-comments"></i>
-                                        <a href="javascript:;">Live Chat</a>
-                                    </li>
-                                    <li>
                                         <i className="far fa-user"></i>
-                                        <a href="javascript:;" onClick={this.membership}>Membership</a>
-                                    </li>                            
-                                    <li>
-                                        <i className="fas fa-shield-alt"></i>
-                                        <a href="javascript:;">Online Safety</a>
-                                    </li>
+                                        <a href="javascript:;" onClick={() => this.goTo('/services')}>Membership</a>
+                                    </li>   
                                     <li>
                                         <i className="fas fa-question-circle"></i>
                                         <a href="javascript:;" onClick={() => this.goTo('/how-it-works')}>How it works</a>
