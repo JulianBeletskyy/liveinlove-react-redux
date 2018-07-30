@@ -9,7 +9,7 @@ const responseHandler = (response) => {
         return
     }*/
     let promise = response.json()
-
+    
     let ok = response.ok
     
     promise.then(response => {
@@ -716,6 +716,26 @@ export default {
             formData.append('draft_id', data.draft_id)
         }
         return fetch(config.API_URL + 'user/message/send', {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            },
+            body: formData
+        })
+        .then(responseHandler)
+    },
+
+    buyMessage(data, token) {
+        let formData = new FormData()
+        if (data.attachment) {
+            formData.append('attachment', data.attachment)
+        }
+        formData.append('original', data.original)
+        formData.append('receiver_id', data.receiver_id)
+        if (data.draft_id) {
+            formData.append('draft_id', data.draft_id)
+        }
+        return fetch(config.API_URL + 'user/message/buy', {
             method: 'post',
             headers: {
                 'Authorization': 'Bearer ' + token,

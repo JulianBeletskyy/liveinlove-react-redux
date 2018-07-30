@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store, { history } from 'store'
-import { getMail, sendMessage, saveDraft, toggleLightBox, showAttach } from 'actions'
+import { getMail, sendMessage, saveDraft, toggleLightBox, showAttach, buyMessage } from 'actions'
 import Textarea from 'components/form/inputs/textarea.js'
 import BtnMain from 'components/form/buttons/main_button.js'
 import LinkButton from 'components/list/link_button.js'
@@ -9,6 +9,7 @@ import Validator from 'validate'
 import style from './style.css'
 import Lightbox from 'react-images'
 import { Link } from 'react-router-dom'
+import { confirmAlert } from 'react-confirm-alert'
 
 class FullMail extends Component {
     state = {
@@ -62,9 +63,32 @@ class FullMail extends Component {
             }
             store.dispatch(sendMessage(data, this.props.user.token))
             .then(res => {
-                if (res) {
+                if (res === true) {
                     this.message.value = ''
                     history.push('/mail/main', {active: 'sent'})
+                } else {
+                    if (res.message.indexOf('messages a day')) {
+                        confirmAlert({
+                            title: '',
+                            message: 'You can\'t send message',
+                            buttons: [
+                                {
+                                    label: 'Cancel'
+                                }, {
+                                    label: 'Use Credits',
+                                    onClick: () => {
+                                        store.dispatch(buyMessage(data, this.props.user.token))
+                                        .then(res => {
+                                            if (res) {
+                                                this.message.value = ''
+                                                history.push('/mail/main', {active: 'sent'})
+                                            }
+                                        })
+                                    }
+                                }
+                            ]
+                        })
+                    }
                 }
             })
         }
@@ -202,14 +226,14 @@ class FullMail extends Component {
                         <BtnMain
                             type="button"
                             bsStyle="success"
-                            text={this.props.messages.message.my || this.state.new ? 'Send' : 'Reply'}
-                            onClick = {this.send} />
+                            text="Save to drats"
+                            onClick = {this.saveDraft} />
                         &nbsp;
                         <BtnMain
                             type="button"
                             bsStyle="success"
-                            text="Save to drats"
-                            onClick = {this.saveDraft} />
+                            text={this.props.messages.message.my || this.state.new ? 'Send' : 'Reply'}
+                            onClick = {this.send} />
                         <LinkButton  />
                     </div>
                 </div>

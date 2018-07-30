@@ -31,6 +31,10 @@ pre {
 	color: #27C2D3;
 }
 
+.react-confirm-alert-overlay {
+	z-index: 1099;
+}
+
 .color-girl {
 	color: #F9006E;
 }
