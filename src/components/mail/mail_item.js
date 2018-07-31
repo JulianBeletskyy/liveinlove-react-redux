@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import store, { history } from 'store'
 import { connect } from 'react-redux'
 import BtnMain from 'components/form/buttons/main_button.js'
-import { removeDraft } from 'actions'
+import { removeDraft, removeMessage } from 'actions'
 
 class MailItem extends Component {
     getDate = type => {
@@ -24,6 +24,10 @@ class MailItem extends Component {
 
     removeDraft = () => {
         store.dispatch(removeDraft(this.props.id, this.props.user.token))
+    }
+
+    removeMessage = () => {
+        store.dispatch(removeMessage(this.props.id, this.props.user.token, this.props.type))
     }
 
     render() {
@@ -75,15 +79,11 @@ class MailItem extends Component {
                             onClick={this.getMessage}
                             text="Read Message" />
                         &nbsp;
-                        {
-                            this.props.type == 'drafts'
-                            ?   <BtnMain
-                                    type="submit"
-                                    bsStyle="success"
-                                    onClick={this.removeDraft}
-                                    text="Remove message" />
-                            :  ''
-                        }
+                        <BtnMain
+                            type="submit"
+                            bsStyle="success"
+                            onClick={this.props.type === 'drafts' ? this.removeDraft : this.removeMessage}
+                            text="Remove message" />
                     </div>
                 </div>
                 <hr />

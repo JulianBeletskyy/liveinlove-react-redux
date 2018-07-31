@@ -918,6 +918,16 @@ export const removeDraft = (id, token) => dispatch => {
         })
 }
 
+export const removeMessage = (id, token, type) => dispatch => {
+    return api.removeMessage(id, token)
+        .then(json => {
+            if (json.data) {
+                const key = type === 'inbox' ? 'incoming' : 'outgoing'
+                dispatch(getMail(key, type, token))
+            }
+        })
+}
+
 export function setMail(data, key) {
     return {
         type: types.SET_MAIL,
