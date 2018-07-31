@@ -17,11 +17,15 @@ import { LinkIcon } from 'components/form/buttons'
 import MessageBlock from 'components/members/message_block.js'
 import { MainModal } from 'components'
 import VideoBlock from 'components/gallery/video_block.js'
+import FullScreenSlider from 'components/gallery/full_screen_slider.js'
 
 class Member extends Component {
     constructor(props) {
         super(props)
         store.dispatch(getMemberInfo(props.user.token, props.match.params.id))
+        this.state = {
+            showSlider: false
+        }
     }
 
     openLightBox = () => {
@@ -100,7 +104,12 @@ class Member extends Component {
     }
 
     openMemberImages = i => e => {
-         store.dispatch(toggleLightBox('member', i))
+        this.setState({showSlider: true, initialSlide: i})
+        //store.dispatch(toggleLightBox('member', i))
+    }
+
+    closeSlider = () => {
+        this.setState({showSlider: false})
     }
 
     gotoPrevious = () => {
@@ -151,10 +160,14 @@ class Member extends Component {
                                             ?   <div className="form-group"><MemberGallery list={[...this.props.members.data.gallery, ...this.props.members.data.video]} onClick={this.openMemberImages} /></div>
                                             :   ''
                                         }
-                                        <div>
-                                            <div className="font-bebas">Video</div>
-                                            <VideoBlock memberId={member.id} video={member.video} />
-                                        </div>
+                                        {
+                                            member.video.length
+                                            ?   <div>
+                                                    <div className="font-bebas">Video</div>
+                                                    <VideoBlock memberId={member.id} video={member.video} />
+                                                </div>
+                                            :   ''
+                                        }
                                     </Col>
                                     <Col md={5} lg={4}>
                                         <div>
@@ -465,6 +478,12 @@ class Member extends Component {
                     title="Send Message"
                     show={message}
                     keyModal="message" />
+                    {
+                        this.state.showSlider
+                        ?   <FullScreenSlider backDrop={this.closeSlider} initialSlide={this.state.initialSlide} memberId={this.props.members.data.id} list={this.props.members.data.gallery} />
+                        :   ''
+                    }
+                
             </div>
         );
     }

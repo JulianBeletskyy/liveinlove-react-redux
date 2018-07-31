@@ -30,14 +30,16 @@
 :local(.wrpaVideoPreview) {
     position: relative;
     overflow: hidden;
+    height: 100px;
 }
 
 :local(.imgVideo) {
     margin-left: 0px;
     margin-top: 0px;
-    height: unset;
+    height: 100%;
     padding: 1px;
     width: 100%;
+    object-fit: cover;
 }
 
 :local(.hiddenVideo) {
