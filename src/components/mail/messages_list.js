@@ -8,7 +8,13 @@ class MessagesList extends Component {
 
     render() {
         const list = this.props.messages[this.props.type]
-        return list.map((item, i) => this.printMessages(item, i))
+        return list.filter(item => {
+            if (item.remove_for_user) {
+                return ! item.remove_for_user.split(',').includes(this.props.user.data.id.toString())
+            }
+            return true
+            
+        }).map((item, i) => this.printMessages(item, i))
     }
 }
 
@@ -18,6 +24,11 @@ const mapStateToProps = state => {
             inbox: state.messages.inbox,
             sent: state.messages.sent,
             drafts: state.messages.drafts
+        },
+        user: {
+            data: {
+                id: state.user.data.id
+            }
         }
     }
 }

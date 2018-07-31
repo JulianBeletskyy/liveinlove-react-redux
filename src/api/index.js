@@ -796,6 +796,18 @@ export default {
         .then(responseHandler)
     },
 
+    removeMessage(id, token) {
+        return fetch(config.API_URL + `user/message/${id}/remove`, {
+            method: 'delete',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
     saveDraft(data, token, id) {
         let formData = new FormData()
         if (data.attachment) {
