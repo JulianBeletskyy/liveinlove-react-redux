@@ -9,6 +9,37 @@ import { confirmAlert } from 'react-confirm-alert'
 import Plans from 'components/membership/plans.js'
 import MainModal from 'components/modal/modal.js'
 import Credits from 'components/membership/credits.js'
+import Slider from 'react-slick'
+
+
+const NextArrow = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <div className={className} onClick={onClick}>
+        <i className="fas fa-chevron-right" style={{ ...style, 
+                                                    position: "absolute", 
+                                                    transform: "translateY(-50%)", 
+                                                    top: "50%",
+                                                    fontSize: "14px",
+                                                    color: "initial" }}></i>
+    </div>
+  );
+}
+
+const PrevArrow = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <div className={className} onClick={onClick}>
+        <i className="fas fa-chevron-left" style={{ ...style, 
+                                                    position: "absolute", 
+                                                    transform: "translateY(-50%)", 
+                                                    top: "50%",
+                                                    fontSize: "14px",
+                                                    color: "initial",
+                                                    right: '0' }}></i>
+    </div>
+  );
+}
 
 class VideoBlock extends Component {
     constructor(props) {
@@ -17,7 +48,11 @@ class VideoBlock extends Component {
     }
 
     printVideo = (video, i) => {
-        return <VideoPreview key={i} video={video} info={this.props.info} profile={this.props.profile} {...this.props.user.data.membership} onClick={(video) => this.showVideo(video)} />
+        return <div className={style.wrap}><VideoPreview key={i} video={video} info={this.props.info} profile={this.props.profile} {...this.props.user.data.membership} onClick={(video) => this.showVideo(video)} /></div>
+    }
+
+    printTest = (video, i) => {
+        return <div key={i}><VideoPreview key={i} video={video} info={this.props.info} profile={this.props.profile} {...this.props.user.data.membership} onClick={(video) => this.showVideo(video)} /></div>
     }
 
     showVideo = (video) => {
@@ -60,9 +95,31 @@ class VideoBlock extends Component {
 
     render() {
         const { plans, credits } = this.props.modals
+        const arrayLength = this.props.video.length <= 3 ? 3 - this.props.video.length : 0
+        const fakeList = Array.apply(null, Array(arrayLength))
+
+        const settings = {
+            slidesToShow: 3,
+            dots: false,
+            infinite: true,
+            autoplay: false,
+            adaptiveHeight: false,
+            nextArrow: <NextArrow />,
+            prevArrow: <PrevArrow />,
+        };
+
+        console.log(this.props.profile)
         return (
-            <div className={style.galleryWrap}>
-                { this.props.video.map((video, i) => this.printVideo(video, i)) }
+            <div className="video-gallery">
+                {
+                    this.props.profile
+                    ?   <div className={style.galleryWrap}>{ this.props.video.map((video, i) => this.printVideo(video, i)) }</div>
+                    :   <Slider {...settings}>
+                            { this.props.video.map((video, i) => this.printTest(video, i)) }
+                            {fakeList.map((item, i) => <div key={i}></div>)}
+                        </Slider>
+                }
+                
                 <VideoModal 
                     body={<video controlsList="nodownload" src={this.videoSrc} controls></video>}
                     show={this.props.modals.video} />
@@ -94,6 +151,7 @@ const mapStateToProps = (state) => {
             data: {
                 membership: state.user.data.membership,
                 credits: state.user.data.credits,
+                role: state.user.data.role
             }
         }
     }
