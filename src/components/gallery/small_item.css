@@ -27,17 +27,22 @@
 	height: 200px;
 }
 
+:local(.wrpaVideoPreview) {
+    position: relative;
+    overflow: hidden;
+}
+
 :local(.imgVideo) {
     margin-left: 0px;
     margin-top: 0px;
-    object-fit: cover;
-    height: 200px;
+    height: unset;
     padding: 1px;
     width: 100%;
 }
 
 :local(.hiddenVideo) {
     filter: blur(5px);
+    margin: -5px 0px -1px 0px;
 }
 
 :local(.img:hover + .icon) {

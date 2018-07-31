@@ -43,13 +43,21 @@ class PublicFooter extends Component {
                         <Row className="title">
                             <Col sm={4}>
                                 <ul>
-                                    <li>
-                                        <i className="far fa-user"></i>
-                                        <a href="javascript:;" onClick={() => this.goTo('/services')}>Membership</a>
-                                    </li>   
+                                {
+                                    this.props.user.token && this.props.user.data.role === 'girl'
+                                    ?   ''
+                                    :   <li>
+                                            <i className="far fa-user"></i>
+                                            <a href="javascript:;" onClick={() => this.goTo('/services')}>Membership</a>
+                                        </li> 
+                                }   
                                     <li>
                                         <i className="fas fa-question-circle"></i>
                                         <a href="javascript:;" onClick={() => this.goTo('/how-it-works')}>How it works</a>
+                                    </li>
+                                    <li>
+                                        <i className="fas fa-briefcase"></i>
+                                        <a href="javascript:;" onClick={() => this.goTo('/faq')}>FAQ</a>
                                     </li>
                                 </ul>
                             </Col>
@@ -58,10 +66,6 @@ class PublicFooter extends Component {
                                     <li>
                                         <i className="fas fa-info-circle"></i>
                                         <a href="javascript:;" onClick={() => this.goTo('/about')}>About Us</a>
-                                    </li>
-                                    <li>
-                                        <i className="fas fa-briefcase"></i>
-                                        <a href="javascript:;" onClick={() => this.goTo('/faq')}>FAQ</a>
                                     </li>
                                     <li>
                                         <i className="far fa-heart"></i>
@@ -99,7 +103,10 @@ class PublicFooter extends Component {
 const mapStateToProps = (state) => {
     return {
         user: {
-            token: state.user.token
+            token: state.user.token,
+            data: {
+                role: state.user.data.role
+            }
         },
         modals: {
             plans: state.modals.plans,

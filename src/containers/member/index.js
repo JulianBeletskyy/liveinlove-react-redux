@@ -16,6 +16,7 @@ import { MONTH } from 'config'
 import { LinkIcon } from 'components/form/buttons'
 import MessageBlock from 'components/members/message_block.js'
 import { MainModal } from 'components'
+import VideoBlock from 'components/gallery/video_block.js'
 
 class Member extends Component {
     constructor(props) {
@@ -147,9 +148,13 @@ class Member extends Component {
                                         </div>
                                         {
                                             this.props.members.data.gallery.length
-                                            ?   <MemberGallery list={[...this.props.members.data.gallery, ...this.props.members.data.video]} onClick={this.openMemberImages} />
+                                            ?   <div className="form-group"><MemberGallery list={[...this.props.members.data.gallery, ...this.props.members.data.video]} onClick={this.openMemberImages} /></div>
                                             :   ''
                                         }
+                                        <div>
+                                            <div className="font-bebas">Video</div>
+                                            <VideoBlock memberId={member.id} video={member.video} />
+                                        </div>
                                     </Col>
                                     <Col md={5} lg={4}>
                                         <div>

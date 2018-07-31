@@ -189,7 +189,8 @@ pre {
     z-index: 1;
 }
 
-.member-gallery .slick-prev:before, .slick-next:before {
+.member-gallery .slick-prev:before, .slick-next:before,
+.video-gallery .slick-prev:before, .slick-next:before {
 	color: transparent;
 }
 
