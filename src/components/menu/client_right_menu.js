@@ -14,6 +14,7 @@ import Credits from 'components/membership/credits.js'
 import Plans from 'components/membership/plans.js'
 import PlansTable from 'components/membership/plans_table.js'
 import Subscription from 'components/membership/subscription.js'
+import { Link } from 'react-router-dom'
 
 class ClientRightMenu extends Component {
 	showPlans = () => {
@@ -59,7 +60,7 @@ class ClientRightMenu extends Component {
 				</FormGroup>
 				<FormGroup>
 					<MiddleString
-						text={data.count_interest}
+						text={<Link style={{color: '#fff'}} to={{pathname: "/mail/main", state: { active: 'inbox' }}}>{data.count_interest}</Link>}
 						keyName="Interests received:" />
 				</FormGroup>
 				<FormGroup>
