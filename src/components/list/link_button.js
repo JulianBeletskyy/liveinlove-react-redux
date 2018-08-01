@@ -82,7 +82,7 @@ class LinkButton extends Component {
                 <br />
                 {   
                     this.props.messages.attach_message
-                    ?   <span>
+                    ?   <span style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
                             <span className={style.name}>{this.createName(this.props.messages.attach_message)}</span>
                             <i onClick={this.clearAttach} className={style.close + " fas fa-times text-danger"}></i>
                         </span>

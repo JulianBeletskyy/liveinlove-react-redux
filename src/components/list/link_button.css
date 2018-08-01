@@ -53,7 +53,8 @@
 }
 
 :local(.name) {
-    
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 :local(.close) {
