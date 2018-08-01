@@ -20,8 +20,8 @@ class MemberBlock extends Component {
                 {
                     this.props.more
                     ?   <Col xs={12}>
-                            <FormGroup className="font-bebas text-center">
-                                <a href="javascript:;" onClick={this.props.onClick}><span>see more</span></a>
+                            <FormGroup className="font-bebas text-center fs-18">
+                                <a href="javascript:;" onClick={this.props.onClick}><strong>see more</strong></a>
                             </FormGroup>
                         </Col>
                     : ''

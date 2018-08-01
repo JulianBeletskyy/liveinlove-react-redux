@@ -411,8 +411,8 @@ export function getMembers(token) {
         return api.getMembers(token)
         .then(json => {
             if (json.data) {
-                dispatch(setMembers(json.data, 'list'))
-                dispatch(setMembers(json.data, 'search_list'))
+                dispatch(setMembersMain(json.data, 'list'))
+                dispatch(setMembersMain(json.data, 'search_list'))
                 dispatch(setPages(json))
             }
         })
@@ -424,7 +424,7 @@ export function getMostViewedMembers(token) {
         return api.getMostViewedMembers(token)
         .then(json => {
             if (json.data) {
-                dispatch(setMembers(json.data, 'viewed_list'))
+                dispatch(setMembers(json, 'viewed_list'))
             }
         })
     }
@@ -442,12 +442,23 @@ export function getMoreMembers(link, token) {
     }
 }
 
+export function seeMoreMembers(link, type, token) {
+    return dispatch => {
+        return api.seeMoreMembers(link, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(addMoreMembers(json, type))
+            }
+        })
+    }
+}
+
 export function getNewMembers(token) {
     return dispatch => {
         return api.getNewMembers(token)
         .then(json => {
             if (json.data) {
-                dispatch(setMembers(json.data, 'new_list'))
+                dispatch(setMembers(json, 'new_list'))
             }
         })
     }
@@ -458,7 +469,7 @@ export function getPopularMembers(token) {
         return api.getPopularMembers(token)
         .then(json => {
             if (json.data) {
-                dispatch(setMembers(json.data, 'popular_list'))
+                dispatch(setMembers(json, 'popular_list'))
             }
         })
     }
@@ -469,7 +480,7 @@ export function getFavoriteMembers(token) {
         return api.getFavoriteMembers(token)
         .then(json => {
             if (json.data) {
-                dispatch(setMembers(json.data, 'favorite_list'))
+                dispatch(setMembersMain(json.data, 'favorite_list'))
             }
         })
     }
@@ -480,7 +491,7 @@ export function getInterestsMembers(token) {
         return api.getInterestsMembers(token)
         .then(json => {
             if (json.data) {
-                dispatch(setMembers(json.data, 'interest_list'))
+                dispatch(setMembersMain(json.data, 'interest_list'))
             }
         })
     }
@@ -559,6 +570,14 @@ export function addMembers(value) {
     }
 }
 
+export function addMoreMembers(data, key) {
+    return {
+        type: types.ADD_MORE_MEMBERS,
+        data,
+        key
+    }
+}
+
 export function toggleLightBox(value, key) {
     return {
         type: types.TOGGLE_LIGHT_BOX,
@@ -582,12 +601,21 @@ export function setMembers(data, key) {
     }
 }
 
+export function setMembersMain(data, key) {
+    return {
+        type: types.SET_MEMBERS_MAIN,
+        data,
+        key
+    }
+}
+
 export function addToFavorite(id, token) {
     return dispatch => {
         return api.addToFavorite(id, token)
         .then(json => {
             if (json.data) {
                 dispatch(setFavorite(id, true))
+                return true
             }
         })
     }
@@ -609,6 +637,7 @@ export function removeFromFavorite(id, token) {
             if (json.data) {
                 dispatch(setFavorite(id, false))
                 dispatch(getFavoriteMembers(token))
+                return true
             }
         })
     }
@@ -821,6 +850,7 @@ export function buyVideo(id, token, member_id) {
         .then(json => {
             if (json.data) {
                 dispatch(getMemberInfo(token, member_id))
+                dispatch(getUserInfo(token))
             }
         })
     }
@@ -832,6 +862,7 @@ export function buyPhoto(id, token, member_id) {
         .then(json => {
             if (json.data) {
                 dispatch(getMemberInfo(token, member_id))
+                dispatch(getUserInfo(token))
             }
         })
     }
@@ -847,11 +878,12 @@ export function setMembershipsData(value, key) {
 
 //ALERT
 
-export function setAlert(text, level) {
+export function setAlert(text, level, timeout = 5000) {
     return {
         type: types.SHOW_ALERT,
         text,
-        level
+        level,
+        timeout
     }
 }
 
@@ -868,7 +900,7 @@ export function getSearchProfileId(profile_id, token) {
         return api.getSearchProfileId(profile_id, token)
             .then(json => {
                 if (json.data) {
-                    dispatch(setMembers([json.data], 'search_list'))
+                    dispatch(setMembersMain([json.data], 'search_list'))
                 }
             })
     }
@@ -880,7 +912,7 @@ export function getSearch(data, token) {
             .then(json => {
                 if (json.data) {
                     if (token) {
-                        dispatch(setMembers(json.data, 'search_list'))
+                        dispatch(setMembersMain(json.data, 'search_list'))
                     } else {
                         dispatch(setPublicMembers(json.data, 'all'))
                     }

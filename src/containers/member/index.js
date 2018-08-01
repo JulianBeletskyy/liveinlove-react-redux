@@ -26,6 +26,22 @@ class Member extends Component {
         this.state = {
             showSlider: false
         }
+
+        document.oncontextmenu = this.disabledSave
+    }
+
+    disabledSave = e => {
+        if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
+            return false
+        }
+    }
+
+    activateSave = () => {
+        return true
+    }
+
+    componentWillUnmount() {
+        document.oncontextmenu = this.activateSave
     }
 
     openLightBox = () => {

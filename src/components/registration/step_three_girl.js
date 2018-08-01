@@ -10,6 +10,7 @@ import Validator from 'validate'
 import BlockSmall from 'components/blocks/block_small.js'
 import { SelectField, CheckboxField } from 'components/form/inputs'
 import Options from 'options'
+import { Link } from 'react-router-dom'
 
 class SignUpThreeGirl extends Component {
     constructor(props) {
@@ -148,7 +149,7 @@ class SignUpThreeGirl extends Component {
                     <Col xs={12} className="text-center">
                         <CheckboxField
                             inputRef={ref => { this.signup.terms = ref }}
-                            text='By clicking "Join Us for Free" above you agree to "Terms of Use" & "Privacy Policy"'
+                            text={<span>By clicking "Join Us for Free" above you agree to <Link to="/terms" target="_blank">"Terms of Use" & "Privacy Policy"</Link></span>}
                             value={false} />
                         <div className="position-relative">
                             <Btn

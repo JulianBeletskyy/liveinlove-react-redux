@@ -10,6 +10,7 @@ import BtnGoogle from 'components/form/buttons/button_google.js'
 import BtnFacebook from 'components/form/buttons/button_facebook.js'
 import style from './step_zero.css'
 import Options from 'options'
+import { Link } from 'react-router-dom'
 
 class SignUpStart extends Component {
     constructor(props) {
@@ -471,7 +472,7 @@ class SignUpStart extends Component {
                                 this.signup.role === 'client'
                                 ?   <CheckboxField
                                         inputRef={ref => { this.signup.terms = ref }}
-                                        text='By clicking "Join Us for Free" above you agree to "Terms of Use" & "Privacy Policy"'
+                                        text={<span>By clicking "Join Us for Free" above you agree to <Link to="/terms" target="_blank">"Terms of Use" & "Privacy Policy"</Link></span>}
                                         value={terms} />
                                 :   ''
                             }

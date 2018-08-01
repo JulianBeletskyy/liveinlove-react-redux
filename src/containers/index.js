@@ -13,4 +13,5 @@ import Girls from './girls/girls.js'
 import Testimonials from './testimonials/testimonials.js'
 import Faq from './faq/faq.js'
 import Works from './works/works.js'
-export { NotFound, Home, About, Services, SuccessStories, Blog, Loader, Member, Contacts, Shop, Girls, Testimonials, Faq, Works }
+import Terms from './terms/terms.js'
+export { NotFound, Home, About, Services, SuccessStories, Blog, Loader, Member, Contacts, Shop, Girls, Testimonials, Faq, Works, Terms }

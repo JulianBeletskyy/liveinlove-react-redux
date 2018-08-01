@@ -19,7 +19,7 @@ class Alert extends Component {
 
     showMessages = (messages) => {
         for (let message of messages) {
-            this.container[message.level](message.text, '', { closeButton: true })
+            this.container[message.level](message.text, '', { closeButton: true, timeOut: message.timeout })
         }
         store.dispatch(removeAlert())
     }

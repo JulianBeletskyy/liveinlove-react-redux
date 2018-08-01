@@ -8,6 +8,7 @@ import routing from './config/route.js'
 import Header from './containers/header/header.js'
 import PublicFooter from './components/footer/public_footer.js'
 import Home from 'containers/home/home.js'
+import Terms from 'containers/terms/terms.js'
 import { Alert } from './components'
 import style from './App.css'
 import { Auth, MainModal, Recovery } from 'components'
@@ -59,31 +60,37 @@ class App extends Component {
         const routes = routing[key]
         const { login, recovery, support } = this.props.modals
         return (
-            <div className="App">
-                <Header />
-                    <Switch>
-                        <Route path="/activate/:activate_hash" exact component={Home} />
-                        <Route path="/recovery/:hash" exact component={Home} />
-                        { routes.map((route, i) => this.printRoutes(route, i)) }
-                    </Switch>
-                <PublicFooter />
-                <MainModal
-                    body={<Auth />}
-                    title="Log In"
-                    show={login}
-                    keyModal="login" />
-                <MainModal
-                    body={<Recovery />}
-                    title="Recovery"
-                    show={recovery}
-                    keyModal="recovery" />
-                <MainModal
-                    body={<Support />}
-                    title="Send Request"
-                    show={support}
-                    keyModal="support" />
-                <Alert />
-            </div>
+            <Switch>
+                <Route path="/terms" exact component={Terms} />
+                <Route render={() => {
+                    return  <div className="App">
+                                <Header />
+                                    <Switch>
+                                        <Route path="/activate/:activate_hash" exact component={Home} />
+                                        <Route path="/recovery/:hash" exact component={Home} />
+                                        { routes.map((route, i) => this.printRoutes(route, i)) }
+                                    </Switch>
+                                <PublicFooter />
+                                <MainModal
+                                    body={<Auth />}
+                                    title="Log In"
+                                    show={login}
+                                    keyModal="login" />
+                                <MainModal
+                                    body={<Recovery />}
+                                    title="Recovery"
+                                    show={recovery}
+                                    keyModal="recovery" />
+                                <MainModal
+                                    body={<Support />}
+                                    title="Send Request"
+                                    show={support}
+                                    keyModal="support" />
+                                <Alert />
+                            </div>
+                }} />
+            </Switch>
+            
         );
     }
 }

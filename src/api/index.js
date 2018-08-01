@@ -9,6 +9,10 @@ const responseHandler = (response) => {
         return
     }*/
     let promise = response.json()
+    let timeout = 5000
+    if (response.status === 426) {
+        timeout = 20000
+    }
     
     let ok = response.ok
     
@@ -22,7 +26,8 @@ const responseHandler = (response) => {
         }
 
         if (response.message && (! response.validate || response.validate == null)) {
-            store.dispatch(setAlert(response.message, ok ? 'success' : 'error'))
+
+            store.dispatch(setAlert(response.message, ok ? 'success' : 'error', timeout))
         }
 
         if (response.errors) {
@@ -153,6 +158,18 @@ export default {
     },
 
     getMoreMembers(link, token) {
+        return fetch(link, {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
+    seeMoreMembers(link, token) {
         return fetch(link, {
             method: 'get',
             headers: {

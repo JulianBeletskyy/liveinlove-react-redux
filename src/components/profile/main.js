@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { FormGroup, Col, Row } from 'react-bootstrap'
-import { getNewMembers, getMostViewedMembers, getMembers, getPopularMembers, getSearchProfileId, getMoreMembers, setActiveTab } from 'actions'
+import { getNewMembers, getMostViewedMembers, getMembers, getPopularMembers, getSearchProfileId, getMoreMembers, setActiveTab, seeMoreMembers } from 'actions'
 import MemberBlock from 'components/members/member_block.js'
 import store from 'store'
 import Tabs from 'components/tabs'
@@ -32,9 +32,17 @@ class MainProfile extends Component {
         store.dispatch(getMoreMembers(this.props.members.next_link, this.props.user.token))
     }
 
+    seeMoreMembers = type => {
+        store.dispatch(seeMoreMembers(this.props.members[type].next_link, type, this.props.user.token))
+    }
+
 	render() {
         const { new_list, popular_list, search_list, viewed_list } = this.props.members
         const more = this.props.members.current_page < this.props.members.last_page
+
+        const more_viwed = viewed_list.current_page < viewed_list.last_page
+        const more_popular = popular_list.current_page < popular_list.last_page
+        const more_new = new_list.current_page < new_list.last_page
 		return (
             <div className="pt-15">
                 <Row>
@@ -63,15 +71,15 @@ class MainProfile extends Component {
                         {
                             eventKey: 'all', 
                             title: 'All', 
-                            content: <MemberBlock like={true} list={viewed_list} />
+                            content: <MemberBlock like={true} more={more_viwed} list={viewed_list.list} onClick={() => this.seeMoreMembers('viewed_list')} />
                         }, {
                             eventKey: 'popular', 
                             title: 'Popular', 
-                            content: <MemberBlock like={true} list={popular_list} />
+                            content: <MemberBlock like={true} more={more_popular} list={popular_list.list} onClick={() => this.seeMoreMembers('popular_list')} />
                         }, {
                             eventKey: 'new', 
                             title: 'New', 
-                            content: <MemberBlock like={true} list={new_list} />
+                            content: <MemberBlock like={true} more={more_new} list={new_list.list} onClick={() => this.seeMoreMembers('new_list')} />
                         }, {
                             eventKey: 'girls', 
                             title: 'Advanced Search', 
