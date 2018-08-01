@@ -1,6 +1,5 @@
 :local(.wrap) {
 	padding: 0 5px;
-	float: right;
 	position: relative;
     text-align: right;
 }

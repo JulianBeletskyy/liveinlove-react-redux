@@ -111,28 +111,21 @@ export default function members(members = initialState, action = {}) {
                 public: temp_public
             });
         case SET_FAVORITE:
-            let temp_lists = {
+            /*let temp_lists = {
                 list: Object.assign([], members.list),
                 new_list: Object.assign([], members.new_list),
                 popular_list: Object.assign([], members.popular_list),
-                favorite_list: Object.assign([], members.favorite_list)
-            }
-
-            for (let k in temp_lists) {
-                for (let j in temp_lists[k]) {
-                    if (temp_lists[k][j].id === action.id) {
-                        temp_lists[k][j].favorite = action.value
-                    }
-                }
-            }
+                favorite_list: Object.assign([], members.favorite_list),
+                viewed_list: Object.assign([], members.viewed_list),
+            }*/
 
             if (temp.id === action.id) {
                 temp.favorite = action.value
             }
             return Object.assign({}, members, {
-                list: temp_lists.list,
-                new_list: temp_lists.new_list,
-                popular_list: temp_lists.popular_list,
+                //list: temp_lists.list,
+                //new_list: temp_lists.new_list,
+                //popular_list: temp_lists.popular_list,
                 data: temp
             });
         case SET_INTEREST:
