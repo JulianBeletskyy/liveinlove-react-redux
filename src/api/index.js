@@ -11,7 +11,7 @@ const responseHandler = (response) => {
     let promise = response.json()
     let timeout = 5000
     if (response.status === 426) {
-        timeout = 60000
+        timeout = 0
     }
     
     let ok = response.ok
