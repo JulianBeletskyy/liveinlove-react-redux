@@ -32,6 +32,9 @@ class Girls extends Component {
 	            		<Col sm={12}>
 	                		<SearchBlock />
 	                		<MemberBlock like={false} onClickItem={this.getRegistration} list={this.props.members.public.all} />
+                            <div className="font-bebas text-center form-group fs-18">
+                                <a href="javascript:;" onClick={this.getRegistration}><strong>see more</strong></a>
+                            </div>
 	                	</Col>
 	                </Row>
                 </div>

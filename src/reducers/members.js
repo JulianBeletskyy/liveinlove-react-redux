@@ -1,10 +1,25 @@
-import { SET_MEMBERS, SET_MEMBER_INFO, SET_FAVORITE, SET_PAGES, ADD_MEMBERS, SET_PUBLIC_MEMBERS, SET_ACTIVE_MEMBERS, SET_INTEREST } from 'actions/types.js'
+import { SET_MEMBERS, SET_MEMBER_INFO, SET_FAVORITE, SET_PAGES, ADD_MEMBERS, SET_PUBLIC_MEMBERS, SET_ACTIVE_MEMBERS, SET_INTEREST, ADD_MORE_MEMBERS, SET_MEMBERS_MAIN } from 'actions/types.js'
 
 const initialState = {
     list: [],
-    new_list: [],
-    popular_list: [],
-    viewed_list: [],
+    new_list: {
+        list: [],
+        current_page: 1,
+        last_page: 1,
+        next_link: '',
+    },
+    popular_list: {
+        list: [],
+        current_page: 1,
+        last_page: 1,
+        next_link: '',
+    },
+    viewed_list: {
+        list: [],
+        current_page: 1,
+        last_page: 1,
+        next_link: '',
+    },
     favorite_list: [],
     interest_list: [],
     active_list: [],
@@ -18,9 +33,11 @@ const initialState = {
         }
     },
     search_list: [],
+
     current_page: 1,
     last_page: 1,
     next_link: '',
+
     data: {
         avatar: {},
         birthday: {},
@@ -44,10 +61,29 @@ export default function members(members = initialState, action = {}) {
                 last_page: action.value.meta.last_page,
                 next_link: action.value.links.next
             });
-        case SET_MEMBERS:
+        case SET_MEMBERS_MAIN:
             return Object.assign({}, members, {
                 [action.key]: action.data,
                 active_list: action.data
+            });
+        case SET_MEMBERS:
+            return Object.assign({}, members, {
+                [action.key]: {
+                    list: action.data.data,
+                    current_page: action.data.meta.current_page,
+                    last_page: action.data.meta.last_page,
+                    next_link: action.data.links.next,
+                },
+                //active_list: action.data
+            });
+        case ADD_MORE_MEMBERS:
+            return Object.assign({}, members, {
+                [action.key]: {
+                    list: [...members[action.key].list, ...action.data.data],
+                    current_page: action.data.meta.current_page,
+                    last_page: action.data.meta.last_page,
+                    next_link: action.data.links.next,
+                }
             });
         case SET_PUBLIC_MEMBERS:
             temp_public[action.key] = action.value

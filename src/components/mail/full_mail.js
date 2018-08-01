@@ -67,7 +67,7 @@ class FullMail extends Component {
                     this.message.value = ''
                     history.push('/mail/main', {active: 'sent'})
                 } else {
-                    if (res.message.indexOf('messages a day')) {
+                    if (res.message.indexOf('messages a day') + 1) {
                         confirmAlert({
                             title: '',
                             message: 'You can\'t send message',

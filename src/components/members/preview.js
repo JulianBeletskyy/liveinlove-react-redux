@@ -3,21 +3,53 @@ import style from './preview.css'
 import store from 'store'
 import { connect } from 'react-redux'
 import { history } from 'store'
-import { addToFavorite, removeFromFavorite } from 'actions'
+import { addToFavorite, removeFromFavorite, getMostViewedMembers, getNewMembers, getPopularMembers, getMembers } from 'actions'
 import { Link } from 'react-router-dom'
 
 class MemberPreview extends Component {
 	goToMember = e => {
         e.preventDefault()
-        history.push('/member/' + this.props.options.id.toString())
+        if (e.target.id !== 'heart') {
+            history.push('/member/' + this.props.options.id.toString())
+        }
     }
 
-    addToFavorite = () => {
+    addToFavorite = e => {
+        e.preventDefault()
     	store.dispatch(addToFavorite(this.props.options.id, this.props.user.token))
+        .then(res => {
+            if (res) {
+                this.getMembers(this.props.services.tabs.main)
+            }
+        })
     }
 
-    removeFromFavorite = () => {
+    removeFromFavorite = e => {
+        e.preventDefault()
         store.dispatch(removeFromFavorite(this.props.options.id, this.props.user.token))
+        .then(res => {
+            if (res) {
+                this.getMembers(this.props.services.tabs.main)
+            }
+        })
+    }
+
+    getMembers = type => {
+        switch (type) {
+            case 'all':
+                store.dispatch(getMostViewedMembers(this.props.user.token))
+                break
+            case 'new':
+                store.dispatch(getNewMembers(this.props.user.token))
+                break
+            case 'popular':
+                store.dispatch(getPopularMembers(this.props.user.token))
+                break
+            case 'girls':
+                store.dispatch(getMembers(this.props.user.token))
+                break
+            default: return
+        }
     }
 
     render() {
@@ -42,8 +74,8 @@ class MemberPreview extends Component {
                         {
                             this.props.like
                             ?   member.favorite
-                                ? <i className="fas fa-heart" onClick={this.removeFromFavorite}></i>
-                                : <i className="far fa-heart" onClick={this.addToFavorite}></i>
+                                ? <i className="fas fa-star" id="heart" onClick={this.removeFromFavorite}></i>
+                                : <i className="far fa-star" id="heart" onClick={this.addToFavorite}></i>
                             : ''
                         }
                     </Link>
@@ -57,6 +89,9 @@ const mapStateToProps = (state) => {
     return {
         user: {
             token: state.user.token
+        },
+        services: {
+            tabs: state.services.tabs
         }
     }
 }
