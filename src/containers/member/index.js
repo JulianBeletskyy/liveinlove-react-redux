@@ -120,7 +120,7 @@ class Member extends Component {
     }
 
     openMemberImages = i => e => {
-        this.setState({showSlider: true, initialSlide: i})
+        this.setState({showSlider: true, initialSlide: i+1})
         //store.dispatch(toggleLightBox('member', i))
     }
 
@@ -169,7 +169,7 @@ class Member extends Component {
                                             <AvatarMember
                                                 className="margin-auto"
                                                 src={this.props.members.data.avatar.croped} 
-                                                onClick={this.openLightBox} />
+                                                onClick={this.openMemberImages(-1)} />
                                         </div>
                                         {
                                             this.props.members.data.gallery.length
@@ -496,7 +496,7 @@ class Member extends Component {
                     keyModal="message" />
                     {
                         this.state.showSlider
-                        ?   <FullScreenSlider backDrop={this.closeSlider} initialSlide={this.state.initialSlide} memberId={this.props.members.data.id} list={this.props.members.data.gallery} />
+                        ?   <FullScreenSlider backDrop={this.closeSlider} initialSlide={this.state.initialSlide} memberId={this.props.members.data.id} list={[{src: this.props.members.data.avatar.original}, ...this.props.members.data.gallery]} />
                         :   ''
                     }
                 
