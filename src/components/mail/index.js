@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Tabs from 'components/tabs'
 import { getDialogs, getContacts, getMail, setActiveTab } from 'actions'
 import { connect } from 'react-redux'
-import store from 'store'
+import store, { history } from 'store'
 import MessagesBlock from './messages_block.js'
 import ContactsBlock from './contacts_block.js'
 import MessagesList from './messages_list.js'
@@ -12,13 +12,29 @@ class Mail extends Component {
         super(props)
         
         store.dispatch(getContacts(props.user.token))
-        if (props.location.state) {
-            store.dispatch(getMail('outgoing', props.location.state.active, this.props.user.token))
-            store.dispatch(setActiveTab('sent', 'mail'))
+        if (props.location.state && props.location.state.active) {
+
+            const type = props.location.state === 'sent' ? 'outgoing' : 'incoming'
+            store.dispatch(getMail(type, props.location.state.active, this.props.user.token))
+            store.dispatch(setActiveTab(props.location.state.active, 'mail'))
         } else {
             store.dispatch(getMail('incoming', 'inbox', this.props.user.token))
+            store.dispatch(setActiveTab('inbox', 'mail'))
         }
     }
+
+    /*shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.location.state) {
+            if (!this.props.location.state || nextProps.location.state.active !== this.props.location.state.active || nextProps.location.state.active !== this.props.services.tabs.mail) {
+                const type = nextProps.location.state === 'sent' ? 'outgoing' : 'incoming'
+                store.dispatch(getMail(type, nextProps.location.state.active, this.props.user.token))
+                store.dispatch(setActiveTab(nextProps.location.state.active, 'mail'))
+                history.push('/mail/main', {active: ''})
+            }
+        }
+        
+        return true
+    }*/
     
     render() {
         return (
@@ -53,6 +69,11 @@ const mapStateToProps = (state) => {
     return {
         user: {
             token: state.user.token
+        },
+        services: {
+            tabs: {
+                mail: state.services.tabs.mail
+            }
         }
     }
 }
