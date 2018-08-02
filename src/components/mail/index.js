@@ -10,17 +10,30 @@ import MessagesList from './messages_list.js'
 class Mail extends Component {
     constructor(props) {
         super(props)
-        
+        console.log(props.services.tabs.mail)
         store.dispatch(getContacts(props.user.token))
-        if (props.location.state && props.location.state.active) {
 
-            const type = props.location.state === 'sent' ? 'outgoing' : 'incoming'
-            store.dispatch(getMail(type, props.location.state.active, this.props.user.token))
-            store.dispatch(setActiveTab(props.location.state.active, 'mail'))
+        switch (props.services.tabs.mail) {
+            case 'inbox':
+                store.dispatch(getMail('incoming', 'inbox', props.user.token))
+                store.dispatch(setActiveTab('inbox', 'mail'))
+                break
+            case 'sent':
+                store.dispatch(getMail('outgoing', 'sent', props.user.token))
+                store.dispatch(setActiveTab('sent', 'mail'))
+                break
+            default: return
+        }
+
+        /*if (props.location.state && props.location.state.active) {
+            
+            //const type = props.location.state === 'sent' ? 'outgoing' : 'incoming'
+            //store.dispatch(getMail(type, props.location.state.active, this.props.user.token))
+            //store.dispatch(setActiveTab(props.location.state.active, 'mail'))
         } else {
             store.dispatch(getMail('incoming', 'inbox', this.props.user.token))
             store.dispatch(setActiveTab('inbox', 'mail'))
-        }
+        }*/
     }
     
     render() {
