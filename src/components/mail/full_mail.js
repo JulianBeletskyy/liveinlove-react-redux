@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store, { history } from 'store'
-import { getMail, sendMessage, saveDraft, toggleLightBox, showAttach, buyMessage } from 'actions'
+import { getMail, sendMessage, saveDraft, toggleLightBox, showAttach, buyMessage, setActiveTab } from 'actions'
 import Textarea from 'components/form/inputs/textarea.js'
 import BtnMain from 'components/form/buttons/main_button.js'
 import LinkButton from 'components/list/link_button.js'
@@ -38,7 +38,7 @@ class FullMail extends Component {
 
     showPhoto = (e) => {
         e.stopPropagation()
-        if (this.props.messages.message.attach_confirm === '1' || this.props.user.data.role === 'girl') {
+        if (this.props.messages.message.attach_confirm === '1' || this.props.user.data.role === 'girl' || this.props.messages.message.my) {
             this.attachment = this.props.messages.message.attachment
             store.dispatch(toggleLightBox('message', 0))
         }
@@ -65,7 +65,8 @@ class FullMail extends Component {
             .then(res => {
                 if (res === true) {
                     this.message.value = ''
-                    history.push('/mail/main', {active: 'sent'})
+                    store.dispatch(setActiveTab('sent', 'mail'))
+                    history.push('/mail/main')
                 } else {
                     if (res.message.indexOf('messages a day') + 1) {
                         confirmAlert({
@@ -81,7 +82,8 @@ class FullMail extends Component {
                                         .then(res => {
                                             if (res) {
                                                 this.message.value = ''
-                                                history.push('/mail/main', {active: 'sent'})
+                                                store.dispatch(setActiveTab('sent', 'mail'))
+                                                history.push('/mail/main')
                                             }
                                         })
                                     }

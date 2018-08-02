@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { FormGroup } from 'react-bootstrap'
 import store, { history } from 'store'
-import { sendMessage, saveDraft, buyMessage } from 'actions'
+import { sendMessage, saveDraft, buyMessage, getMail, setActiveTab } from 'actions'
 import { connect } from 'react-redux'
 import Textarea from 'components/form/inputs/textarea.js'
 import BtnMain from 'components/form/buttons/main_button.js'
@@ -28,6 +28,7 @@ class MessageBlock extends Component {
             .then(res => {
                 if (res === true) {
                     this.message.value = ''
+                    store.dispatch(setActiveTab('sent', 'mail'))
                     history.push('/mail/main', {active: 'sent'})
                 } else {
                     if (res.message.indexOf('messages a day') + 1) {
@@ -44,6 +45,7 @@ class MessageBlock extends Component {
                                         .then(res => {
                                             if (res) {
                                                 this.message.value = ''
+                                                store.dispatch(setActiveTab('sent', 'mail'))
                                                 history.push('/mail/main', {active: 'sent'})
                                             }
                                         })
