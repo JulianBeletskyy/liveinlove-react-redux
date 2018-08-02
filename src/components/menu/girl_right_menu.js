@@ -1,14 +1,22 @@
 /* eslint-disable */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import store from 'store'
+import { getMail, setActiveTab } from 'actions'
 import { FormGroup } from 'react-bootstrap'
 import style from './right_menu.css'
 import SmallDivider from 'components/divider/small_divider.js'
 import MiddleItem from 'components/list/middle_item.js'
 import MiddleString from 'components/list/middle_string.js'
 import Avatar from 'components/gallery/avatar.js'
+import { Link } from 'react-router-dom'
 
 class GirlRightMenu extends Component {
+	goToInbox = () => {
+		store.dispatch(getMail('incoming', 'inbox', this.props.user.token))
+        store.dispatch(setActiveTab('inbox', 'mail'))
+	}
+
 	render() {
 		const { data } = this.props.user
 		return (
@@ -34,7 +42,7 @@ class GirlRightMenu extends Component {
 				</FormGroup>
 				<FormGroup>
 					<MiddleString
-						text={data.count_interest}
+						text={<Link style={{color: '#fff'}} to={{pathname: "/mail/main"}} onClick={this.goToInbox}>{data.count_interest}</Link>}
 						keyName="Interests received:" />
 				</FormGroup>
 				<FormGroup>
@@ -73,7 +81,8 @@ const mapStateToProps = (state) => {
 				count_interest: state.user.data.count_interest,
 				count_favorite: state.user.data.count_favorite,
 				profile_id: state.user.data.profile_id,
-			}
+			},
+			token: state.user.token
 		}
 	}
 }

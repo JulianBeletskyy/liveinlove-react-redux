@@ -22,19 +22,6 @@ class Mail extends Component {
             store.dispatch(setActiveTab('inbox', 'mail'))
         }
     }
-
-    /*shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.location.state) {
-            if (!this.props.location.state || nextProps.location.state.active !== this.props.location.state.active || nextProps.location.state.active !== this.props.services.tabs.mail) {
-                const type = nextProps.location.state === 'sent' ? 'outgoing' : 'incoming'
-                store.dispatch(getMail(type, nextProps.location.state.active, this.props.user.token))
-                store.dispatch(setActiveTab(nextProps.location.state.active, 'mail'))
-                history.push('/mail/main', {active: ''})
-            }
-        }
-        
-        return true
-    }*/
     
     render() {
         return (
