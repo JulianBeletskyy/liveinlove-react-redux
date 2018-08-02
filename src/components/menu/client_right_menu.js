@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
-import { toggleModal } from 'actions'
+import { toggleModal, getMail, setActiveTab } from 'actions'
 import { FormGroup } from 'react-bootstrap'
 import style from './right_menu.css'
 import SmallDivider from 'components/divider/small_divider.js'
@@ -23,6 +23,11 @@ class ClientRightMenu extends Component {
 
 	showAddCredits = () => {
 		store.dispatch(toggleModal(true, 'credits'))
+	}
+
+	goToInbox = () => {
+		store.dispatch(getMail('incoming', 'inbox', this.props.user.token))
+        store.dispatch(setActiveTab('inbox', 'mail'))
 	}
 
 	render() {
@@ -60,7 +65,7 @@ class ClientRightMenu extends Component {
 				</FormGroup>
 				<FormGroup>
 					<MiddleString
-						text={<Link style={{color: '#fff'}} to={{pathname: "/mail/main", state: { active: 'inbox' }}}>{data.count_interest}</Link>}
+						text={<Link style={{color: '#fff'}} to={{pathname: "/mail/main"}} onClick={this.goToInbox}>{data.count_interest}</Link>}
 						keyName="Interests received:" />
 				</FormGroup>
 				<FormGroup>
@@ -134,7 +139,8 @@ const mapStateToProps = (state) => {
 				profile_id: state.user.data.profile_id,
 				count_interest: state.user.data.count_interest,
 				count_favorite: state.user.data.count_favorite
-			}
+			},
+			token: state.user.token
 		},
 		modals: {
 			plans: state.modals.plans,
