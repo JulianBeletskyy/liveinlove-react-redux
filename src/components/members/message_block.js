@@ -31,7 +31,7 @@ class MessageBlock extends Component {
                     store.dispatch(setActiveTab('sent', 'mail'))
                     history.push('/mail/main', {active: 'sent'})
                 } else {
-                    if (res.message.indexOf('messages a day') + 1) {
+                    if (res.message.indexOf('one free letter') + 1) {
                         confirmAlert({
                             title: '',
                             message: 'You can\'t send message',
@@ -39,7 +39,7 @@ class MessageBlock extends Component {
                                 {
                                     label: 'Cancel'
                                 }, {
-                                    label: 'Use Credits',
+                                    label: 'Buy Dibs',
                                     onClick: () => {
                                         store.dispatch(buyMessage(data, this.props.user.token))
                                         .then(res => {

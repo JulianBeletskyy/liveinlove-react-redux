@@ -14,8 +14,7 @@ class MailItem extends Component {
     }
 
     getDescription = (text) => {
-        text = text.replace('[$link]', '<a href="/member/'+this.props.sender_id+'">'+this.props.sender_first_name+'</a>')
-        return text.length >= 50 ? text.slice(0, 50) + '...' : text
+        return text && text.length >= 50 ? text.slice(0, 50) + '...' : text
     }
 
     getMessage = () => {
@@ -55,9 +54,13 @@ class MailItem extends Component {
                 member_id: this.props.receiver_id
             }
         }
+
+        const text = this.props.type === 'inbox' && this.props.user.data.role === 'client' ? this.props.translation : this.props.original
+        const unreadClass = ! this.props.read && this.props.type === 'inbox' ? 'unread-message' : ''
+
         return (
             <div className="p-15">
-                <div className="row">
+                <div className={`row ${unreadClass} ${this.props.user.data.role}`}>
                     <div className="col-sm-2">
                         <img src={data.avatar} alt="" className="img-responsive pointer" onClick={() => history.push('/member/' + data.member_id)} />
                     </div>
@@ -72,7 +75,7 @@ class MailItem extends Component {
                             :   ''
                         }
                             
-                        <div className="form-group"><strong>Message: </strong><span dangerouslySetInnerHTML={{__html: this.getDescription(this.props.original)}} /></div>
+                        <div className="form-group"><strong>Message: </strong><span dangerouslySetInnerHTML={{__html: this.getDescription(text)}} /></div>
                         <BtnMain
                             type="submit"
                             bsStyle="success"
@@ -95,7 +98,10 @@ class MailItem extends Component {
 const mapStateToProps = (state) => {
     return {
         user: {
-            token: state.user.token
+            token: state.user.token,
+            data: {
+                role: state.user.data.role
+            }
         }
     }
 }

@@ -163,8 +163,8 @@ class Services extends Component {
                                     </div>
                                 </Col>
                                 <Col sm={12} className="form-group">
-                                    <div className="service-title-right">
-                                        Based on our experience we know that some clients prefer to whet their palate, before enjoying the full course benefits of membership. For these clients we offer a Sampler for $9.99 per use. With this option, you receive the following benefits:
+                                    <div className="service-title-right fs-20">
+                                        Based on our experience we know that some clients prefer to whet their palate, before enjoying the full course benefits of membership. For these clients we offer a Sampler for <strong>$9.99</strong> per use. With this option, you receive the following benefits:
                                         <ul>
                                             <li>Access to additional photos/videos in profiles of 5 ladies you chose</li>
                                             <li>Additional photo you may put to your profile</li>

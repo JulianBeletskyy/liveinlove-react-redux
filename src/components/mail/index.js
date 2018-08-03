@@ -10,7 +10,6 @@ import MessagesList from './messages_list.js'
 class Mail extends Component {
     constructor(props) {
         super(props)
-        console.log(props.services.tabs.mail)
         store.dispatch(getContacts(props.user.token))
 
         switch (props.services.tabs.mail) {

@@ -7,10 +7,10 @@ import { toggleModal, toggleRegistration } from 'actions'
 import { animateScroll as scroll, } from 'react-scroll'
 import style from './style.css'
 import Options from 'options'
+import { Link } from 'react-router-dom'
 
 class PublicFooter extends Component {
-    goTo = (url) => {
-        history.push(url)
+    goTo = () => {
         scroll.scrollToTop({duration: 0})
     }
 
@@ -48,16 +48,16 @@ class PublicFooter extends Component {
                                     ?   ''
                                     :   <li>
                                             <i className="far fa-user"></i>
-                                            <a href="javascript:;" onClick={() => this.goTo('/services')}>Membership</a>
+                                            <Link to="/services" onClick={() => this.goTo()}>Membership</Link>
                                         </li> 
                                 }   
                                     <li>
                                         <i className="fas fa-question-circle"></i>
-                                        <a href="javascript:;" onClick={() => this.goTo('/how-it-works')}>How it works</a>
+                                        <Link to="/how-it-works" onClick={() => this.goTo()}>How it works</Link>
                                     </li>
                                     <li>
                                         <i className="fas fa-briefcase"></i>
-                                        <a href="javascript:;" onClick={() => this.goTo('/faq')}>FAQ</a>
+                                        <Link to="/faq" onClick={() => this.goTo()}>FAQ</Link>
                                     </li>
                                 </ul>
                             </Col>
@@ -65,15 +65,15 @@ class PublicFooter extends Component {
                                 <ul>
                                     <li>
                                         <i className="fas fa-info-circle"></i>
-                                        <a href="javascript:;" onClick={() => this.goTo('/about')}>About Us</a>
+                                        <Link to="/about" onClick={() => this.goTo()}>About Us</Link>
                                     </li>
                                     <li>
                                         <i className="far fa-heart"></i>
-                                        <a href="javascript:;" onClick={() => this.goTo('/success-stories')}>Success Stories</a>
+                                        <Link to="/success-stories" onClick={() => this.goTo()}>Success Stories</Link>
                                     </li>
                                     <li>
                                         <i className="fas fa-globe"></i>
-                                        <a href="javascript:;" onClick={() => this.goTo('/blogs')}>Blogs</a>
+                                        <Link to="/blogs" onClick={() => this.goTo()}>Blogs</Link>
                                     </li>
                                 </ul>
                             </Col>
