@@ -68,7 +68,7 @@ class FullMail extends Component {
                     store.dispatch(setActiveTab('sent', 'mail'))
                     history.push('/mail/main')
                 } else {
-                    if (res.message.indexOf('messages a day') + 1) {
+                    if (res.message.indexOf('one free letter') + 1) {
                         confirmAlert({
                             title: '',
                             message: 'You can\'t send message',
@@ -76,7 +76,7 @@ class FullMail extends Component {
                                 {
                                     label: 'Cancel'
                                 }, {
-                                    label: 'Use Credits',
+                                    label: 'Buy Dibs',
                                     onClick: () => {
                                         store.dispatch(buyMessage(data, this.props.user.token))
                                         .then(res => {
@@ -143,6 +143,10 @@ class FullMail extends Component {
             user.name = this.props.messages.message.sender_first_name
             user.avatar = this.props.messages.message.sender_avatar
         }
+
+        if (this.props.match.params.type === 'inbox' && this.props.user.data.role === 'client') {
+            text = translate
+        }
         
         return (
             <div className="pt-15">
@@ -182,14 +186,18 @@ class FullMail extends Component {
                                         <pre dangerouslySetInnerHTML={{__html: text}} />
                                     </div>
                                 </div>
-                                <div className="row form-group">
-                                    <div className="col-sm-2">
-                                        <strong>Translate:</strong>
-                                    </div>
-                                    <div className="col-sm-10">
-                                        <span dangerouslySetInnerHTML={{__html: translate}} />
-                                    </div>
-                                </div>
+                                {
+                                    this.props.match.params.type === 'inbox' && this.props.user.data.role === 'client'
+                                    ?   null
+                                    :   <div className="row form-group">
+                                            <div className="col-sm-2">
+                                                <strong>Translate:</strong>
+                                            </div>
+                                            <div className="col-sm-10">
+                                                <span dangerouslySetInnerHTML={{__html: translate}} />
+                                            </div>
+                                        </div>
+                                }
                                 <div className="row form-group">
                                     <div className="col-sm-2">
                                         <strong>Attachment:</strong>

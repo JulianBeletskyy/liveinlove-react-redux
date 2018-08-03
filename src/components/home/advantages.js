@@ -64,7 +64,7 @@ class Advantages extends Component {
 					</Col>*/}
 					<Col xs={12} sm={4}>
 						<div ref={(ref) => this.elements.fifth = ref} className={style.advantItem}>
-							<span><i className="fas fa-clipboard-list fa-3x"></i><br />Help in making Your dating in real with the lady You chose</span>
+							<span><i className="fas fa-clipboard-list fa-3x"></i><br />Verify your profile and get opportunity to share direct contact with ladies</span>
 						</div>
 					</Col>
 					<Col xs={12} sm={4}>

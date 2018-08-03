@@ -29,6 +29,8 @@ class MessageItem extends Component {
             text = text.replace('[$link]', '<a href="/member/'+message.receiver_id+'">'+name+'</a>')
         }
 
+        console.log(this.props.user.data.role)
+
         return (
             <div className={style.messageRow + ' ' + 'clearfix'}>
                 <div className={style.messageWrap + ' ' + classRight}>
