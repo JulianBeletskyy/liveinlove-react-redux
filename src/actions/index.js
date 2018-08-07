@@ -1001,12 +1001,12 @@ export function getContacts(token) {
     }
 }
 
-export function showAttach(id, token, dialog_id) {
+export function showAttach(data, token) {
     return dispatch => {
-        return api.showAttach(id, token)
+        return api.showAttach(data, token)
             .then(json => {
                 if (json.data) {
-                    dispatch(setAttach(id, json.data, dialog_id))
+                    dispatch(setMail(json.data, 'message'))
                 }
             })
     }
@@ -1033,6 +1033,13 @@ export function setAttachMessage(value) {
     return {
         type: types.SET_ATTACH_MESSAGE,
         value
+    }
+}
+
+export function clearAttach(index) {
+    return {
+        type: types.CLEAR_ATTACH,
+        index
     }
 }
 
@@ -1063,7 +1070,7 @@ export function sendMessage(data, token) {
         return api.sendMessage(data, token)
             .then(json => {
                 if (json.data) {
-                    dispatch(setAttachMessage(false))
+                    dispatch(setAttachMessage([]))
                     return true
                 }
                 return json

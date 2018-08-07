@@ -723,9 +723,12 @@ export default {
     },
 
     sendMessage(data, token) {
+        console.log(data.attachment)
         let formData = new FormData()
-        if (data.attachment) {
-            formData.append('attachment', data.attachment)
+        if (data.attachment.length) {
+            data.attachment.forEach(item => {
+                formData.append('attachment[]', item)
+            })
         }
         formData.append('original', data.original)
         formData.append('receiver_id', data.receiver_id)
@@ -858,7 +861,7 @@ export default {
         .then(responseHandler)
     },
 
-    showAttach(id, token) {
+    showAttach(data, token) {
         return fetch(config.API_URL + 'user/message/attachment/see', {
             method: 'post',
             headers: {
@@ -866,7 +869,7 @@ export default {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({message_id: id})
+            body: JSON.stringify(data)
         })
         .then(responseHandler)
     },
