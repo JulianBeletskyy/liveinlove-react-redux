@@ -22,7 +22,9 @@ class MessageBlock extends Component {
             const data = {
                 original: this.message.value,
                 receiver_id: this.props.memberId,
-                attachment: this.props.messages.attach_message.src || this.props.messages.attach_message
+                attachment: this.props.messages.attach_message.map(item => {
+                    return item.src ? item.src : item
+                })
             }
             store.dispatch(sendMessage(data, this.props.user.token))
             .then(res => {

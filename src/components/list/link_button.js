@@ -3,7 +3,7 @@ import style from './link_button.css'
 import MainModal from 'components/modal/modal.js'
 import { connect } from 'react-redux'
 import store from 'store'
-import { toggleModal, setAttachMessage } from 'actions'
+import { toggleModal, setAttachMessage, clearAttach } from 'actions'
 import CustomGallery from 'components/gallery/custom_gallery.js'
 
 class LinkButton extends Component {
@@ -25,9 +25,9 @@ class LinkButton extends Component {
         el.click()
     }
 
-    clearAttach = (e) => {
+    clearAttach = (index) => (e) => {
         e.stopPropagation()
-        store.dispatch(setAttachMessage(false))
+        store.dispatch(clearAttach(index))
     }
 
     showModal = () => {
@@ -35,14 +35,14 @@ class LinkButton extends Component {
     }
 
     choosePhoto = (e) => {
-        store.dispatch(setAttachMessage(e))
+        store.dispatch(setAttachMessage([e]))
         store.dispatch(toggleModal(false, 'gallery'))
         this.setState({active: ! this.state.active})
     }
 
     onChange = (e) => {
         if (e) {
-            store.dispatch(setAttachMessage(e.target.files[0]))
+            store.dispatch(setAttachMessage(e.target.files))
             this.setState({active: ! this.state.active})
         }
     }
@@ -66,7 +66,7 @@ class LinkButton extends Component {
                         <li onClick={this.showModal} className={style.menuItem + ' ' + 'font-bebas'}>Choose from gallery</li>
                         <li onClick={this.upload} className={style.menuItem + ' ' + 'font-bebas'}>Upload photo</li>
                     </ul>
-                    <input type="file" id="upload" onChange={this.onChange} className={style.uploadField} />
+                    <input type="file" id="upload" multiple onChange={this.onChange} className={style.uploadField} />
                     <MainModal
                         body={<CustomGallery 
                                 images={this.props.user.data.images}
@@ -81,11 +81,14 @@ class LinkButton extends Component {
             	</span>
                 <br />
                 {   
-                    this.props.messages.attach_message
-                    ?   <span style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
-                            <span className={style.name}>{this.createName(this.props.messages.attach_message)}</span>
-                            <i onClick={this.clearAttach} className={style.close + " fas fa-times text-danger"}></i>
-                        </span>
+                    this.props.messages.attach_message.length
+                    ?   this.props.messages.attach_message.map((item, i) => {
+                        return  <span key={i} style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
+                                    <span className={style.name}>{this.createName(item)}</span>
+                                    <i onClick={this.clearAttach(i)} className={style.close + " fas fa-times text-danger"}></i>
+                                </span>
+                    })
+                            
                     : ''
                 }
             </div>

@@ -27,20 +27,26 @@ class FullMail extends Component {
         }
     }
 
-    showAttach = () => {
-        const dialog_id = history.location.pathname.split('/').pop() * 1
-        store.dispatch(showAttach(this.props.messages.message.id, this.props.user.token, dialog_id))
+    showAttach = attach_id => e => {
+        const data = {
+            message_id: this.props.messages.message.id,
+            attachment_id: attach_id
+        }
+        store.dispatch(showAttach(data, this.props.user.token))
     }
 
     closeLightbox = () => {
         store.dispatch(toggleLightBox(''))
     }
 
-    showPhoto = (e) => {
+    showPhoto = (item, i) => e => {
         e.stopPropagation()
-        if (this.props.messages.message.attach_confirm === '1' || this.props.user.data.role === 'girl' || this.props.messages.message.my) {
-            this.attachment = this.props.messages.message.attachment
-            store.dispatch(toggleLightBox('message', 0))
+        if (item.confirm === '1' || this.props.user.data.role === 'girl' || this.props.messages.message.my) {
+            const temp = this.props.messages.message.attachment.find((item, index) => index === i)
+            if (temp) {
+                this.attachment = temp.img
+                store.dispatch(toggleLightBox('message', 0))
+            }
         }
     } 
 
@@ -59,7 +65,9 @@ class FullMail extends Component {
             const data = {
                 original: this.message.value,
                 receiver_id: receiver_id,
-                attachment: this.props.messages.attach_message.src || this.props.messages.attach_message
+                attachment: this.props.messages.attach_message.map(item => {
+                    return item.src ? item.src : item
+                })
             }
             store.dispatch(sendMessage(data, this.props.user.token))
             .then(res => {
@@ -187,7 +195,7 @@ class FullMail extends Component {
                                     </div>
                                 </div>
                                 {
-                                    this.props.match.params.type === 'inbox' && this.props.user.data.role === 'client'
+                                    this.props.user.data.role === 'client'
                                     ?   null
                                     :   <div className="row form-group">
                                             <div className="col-sm-2">
@@ -202,20 +210,29 @@ class FullMail extends Component {
                                     <div className="col-sm-2">
                                         <strong>Attachment:</strong>
                                     </div>
-                                    <div className="col-sm-4">
-                                        <div className={style.attachmentWrap}>
+                                    <div className="col-sm-10">
+                                        <div className="row">
                                             {
-                                                message.attach_confirm !== '1' && message.attachment && ! message.my && this.props.user.data.role === 'client'
-                                                ?   <span className={style.attachBtnWrap}>
-                                                        <BtnMain
-                                                            type="button"
-                                                            bsStyle="success"
-                                                            text="View"
-                                                            onClick = {this.showAttach} />
-                                                    </span>
-                                                : ''
+                                                message.attachment && message.attachment.length
+                                                ?   message.attachment.map((item, key) => {
+                                                        return  <div className="col-sm-6"><div className={style.attachmentWrap}>
+                                                                    {
+                                                                        item.confirm !== '1' && ! message.my && this.props.user.data.role === 'client'
+                                                                        ?   <span className={style.attachBtnWrap}>
+                                                                                <BtnMain
+                                                                                    type="button"
+                                                                                    bsStyle="success"
+                                                                                    text="View"
+                                                                                    onClick = {this.showAttach(item.id)} />
+                                                                            </span>
+                                                                        :   null
+                                                                    }
+                                                                    <img onClick={this.showPhoto(item, key)} className="img-responsive" src={item.img} alt="" />
+                                                                </div></div>
+                                                    })
+                                                :   null
                                             }
-                                            <img onClick={this.showPhoto} className="img-responsive" src={message.attachment} alt="" />
+                                           
                                         </div>
                                     </div>
                                 </div>
