@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store, { history } from 'store'
-import { getMail, sendMessage, saveDraft, toggleLightBox, showAttach, buyMessage, setActiveTab } from 'actions'
+import { getMail, sendMessage, saveDraft, toggleLightBox, showAttach, buyMessage, setActiveTab, toggleModal } from 'actions'
 import Textarea from 'components/form/inputs/textarea.js'
 import BtnMain from 'components/form/buttons/main_button.js'
 import LinkButton from 'components/list/link_button.js'
@@ -55,6 +55,21 @@ class FullMail extends Component {
             this.setState({new: true})
         }  
     }
+
+    resolveMessage = (data) => {
+        if (this.props.user.data.credits >= 6) {
+            store.dispatch(buyMessage(data, this.props.user.token))
+            .then(res => {
+                if (res) {
+                    this.message.value = ''
+                    store.dispatch(setActiveTab('sent', 'mail'))
+                    history.push('/mail/main')
+                }
+            })
+        } else {
+            store.dispatch(toggleModal(true, 'credits'))
+        }
+    }
     
 
     send = () => {
@@ -76,6 +91,7 @@ class FullMail extends Component {
                     store.dispatch(setActiveTab('sent', 'mail'))
                     history.push('/mail/main')
                 } else {
+
                     if (res.message.indexOf('one free letter') + 1) {
                         confirmAlert({
                             title: '',
@@ -84,16 +100,9 @@ class FullMail extends Component {
                                 {
                                     label: 'Cancel'
                                 }, {
-                                    label: 'Buy Dibs',
+                                    label: this.props.user.data.credits >= 6 ? 'Use Dibs' : 'Buy Dibs',
                                     onClick: () => {
-                                        store.dispatch(buyMessage(data, this.props.user.token))
-                                        .then(res => {
-                                            if (res) {
-                                                this.message.value = ''
-                                                store.dispatch(setActiveTab('sent', 'mail'))
-                                                history.push('/mail/main')
-                                            }
-                                        })
+                                        this.resolveMessage(data)
                                     }
                                 }
                             ]
@@ -112,7 +121,9 @@ class FullMail extends Component {
             const data = {
                 original: this.message.value,
                 receiver_id: this.state.new ? this.props.location.state.id : this.props.messages.message.receiver_id,
-                attachment: this.props.messages.attach_message.src || this.props.messages.attach_message
+                attachment: this.props.messages.attach_message.map(item => {
+                    return item.src ? item.src : item
+                })
             }
             store.dispatch(saveDraft(data, this.props.user.token))
             this.message.value = ''

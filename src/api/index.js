@@ -723,7 +723,6 @@ export default {
     },
 
     sendMessage(data, token) {
-        console.log(data.attachment)
         let formData = new FormData()
         if (data.attachment.length) {
             data.attachment.forEach(item => {
@@ -747,14 +746,13 @@ export default {
 
     buyMessage(data, token) {
         let formData = new FormData()
-        if (data.attachment) {
-            formData.append('attachment', data.attachment)
+        if (data.attachment.length) {
+            data.attachment.forEach(item => {
+                formData.append('attachment[]', item)
+            })
         }
         formData.append('original', data.original)
         formData.append('receiver_id', data.receiver_id)
-        if (data.draft_id) {
-            formData.append('draft_id', data.draft_id)
-        }
         return fetch(config.API_URL + 'user/message/buy', {
             method: 'post',
             headers: {
@@ -830,11 +828,14 @@ export default {
 
     saveDraft(data, token, id) {
         let formData = new FormData()
-        if (data.attachment) {
-            formData.append('attachment', data.attachment)
+        if (data.attachment.length) {
+            data.attachment.forEach(item => {
+                formData.append('attachment[]', item)
+            })
         }
         formData.append('original', data.original)
         formData.append('receiver_id', data.receiver_id)
+
         const url = id ? ('user/message/draft/' + id) : 'user/message/draft'
 
         return fetch(config.API_URL + url, {
