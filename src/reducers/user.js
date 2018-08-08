@@ -56,6 +56,7 @@ const initialState = {
         membership: {
             value: {}
         },
+        membership_count: {},
         active_gallery: 'main',
         selected_img: [],
         images: [],

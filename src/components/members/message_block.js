@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { FormGroup } from 'react-bootstrap'
 import store, { history } from 'store'
-import { sendMessage, saveDraft, buyMessage, getMail, setActiveTab } from 'actions'
+import { sendMessage, saveDraft, buyMessage, getMail, setActiveTab, toggleModal } from 'actions'
 import { connect } from 'react-redux'
 import Textarea from 'components/form/inputs/textarea.js'
 import BtnMain from 'components/form/buttons/main_button.js'
@@ -13,6 +13,21 @@ class MessageBlock extends Component {
     constructor(props) {
         super(props)
         this.message = ''
+    }
+
+    resolveMessage = (data) => {
+        if (this.props.user.data.credits >= 6) {
+            store.dispatch(buyMessage(data, this.props.user.token))
+            .then(res => {
+                if (res) {
+                    this.message.value = ''
+                    store.dispatch(setActiveTab('sent', 'mail'))
+                    history.push('/mail/main', {active: 'sent'})
+                }
+            })
+        } else {
+            store.dispatch(toggleModal(true, 'credits'))
+        }
     }
 
     send = () => {
@@ -41,16 +56,10 @@ class MessageBlock extends Component {
                                 {
                                     label: 'Cancel'
                                 }, {
-                                    label: 'Buy Dibs',
+                                    label: this.props.user.data.credits >= 6 ? 'Use Dibs' : 'Buy Dibs',
                                     onClick: () => {
-                                        store.dispatch(buyMessage(data, this.props.user.token))
-                                        .then(res => {
-                                            if (res) {
-                                                this.message.value = ''
-                                                store.dispatch(setActiveTab('sent', 'mail'))
-                                                history.push('/mail/main', {active: 'sent'})
-                                            }
-                                        })
+                                        this.resolveMessage(data)
+                                        
                                     }
                                 }
                             ]
@@ -108,7 +117,10 @@ class MessageBlock extends Component {
 const mapStateToProps = (state) => {
     return {
         user: {
-            token: state.user.token
+            token: state.user.token,
+            data: {
+                credits: state.user.data.credits
+            }
         },
         messages: {
             attach_message: state.messages.attach_message

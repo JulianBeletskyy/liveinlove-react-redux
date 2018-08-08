@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {Tabs, Tab, Row, Col, FormGroup } from 'react-bootstrap'
 import store, { history } from 'store'
-import { setSegment, addToGallery, setAlert, getVideo } from 'actions'
+import { setSegment, addToGallery, setAlert, getVideo, getUserInfo } from 'actions'
 import AboutMe from './about_me.js'
 import style from './style.css'
 import CustomGallery from 'components/gallery/custom_gallery.js'
@@ -21,7 +21,10 @@ class InfoProfile extends Component {
         }
     }
 
-    handleSelect(key) {
+    handleSelect = (key) => {
+    	if (key === 'credits') {
+    		store.dispatch(getUserInfo(this.props.user.token))
+    	}
     	history.push(key)
   	}
 
@@ -40,6 +43,45 @@ class InfoProfile extends Component {
     	}
     	let el = document.getElementById('upload')
     	el.click()
+    }
+
+    getCreditsInfo = () => {
+    	const { membership, membership_count } = this.props.user.data
+    	return 	<div>
+    				<span className="font-bebas">Credits: </span><strong>{this.props.user.data.credits}</strong>
+    				<div>
+    					<span className="font-bebas">Send 1st free letter to any girl: </span>
+    					<strong>{membership_count.free_letter} / {membership.free_leter}</strong>
+					</div>
+    				<div>
+    					<span className="font-bebas">Accept/send private photos: </span>
+    					<strong>{membership_count.private_photo} / {membership.private_photo}</strong>
+					</div>
+					<div>
+    					<span className="font-bebas">Set photos in your profile: </span>
+    					<strong>{membership_count.my_photo} / {membership.my_photo}</strong>
+					</div>
+					<div>
+    					<span className="font-bebas">View photos in profiles: </span>
+    					<strong>{membership_count.view_photo}</strong>
+					</div>
+					<div>
+    					<span className="font-bebas">View videos in profiles: </span>
+    					<strong>{membership_count.view_video}</strong>
+					</div>
+					<div>
+    					<span className="font-bebas">Expression of Interest: </span>
+    					<strong>{membership_count.likes}</strong>
+					</div>
+					<div>
+    					<span className="font-bebas">Discount on ALL services: </span>
+    					<strong>{membership.discount} %</strong>
+					</div>
+					<div>
+    					<span className="font-bebas">Share contact details: </span>
+    					<strong>{membership_count.contact_details} / {membership.contact_details}</strong>
+					</div>
+				</div>
     }
 
 	render() {
@@ -106,7 +148,7 @@ class InfoProfile extends Component {
 								eventKey={'credits'} 
 								title="Credits & Bonuses">
 								<div className="pt-15">
-									<span className="font-bebas">Credits: </span><strong>{this.props.user.data.credits}</strong>
+									{this.getCreditsInfo()}
 								</div>
 							</Tab>	
 						: ''
