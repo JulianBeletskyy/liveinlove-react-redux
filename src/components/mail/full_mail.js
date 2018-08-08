@@ -227,6 +227,7 @@ class FullMail extends Component {
                                                 message.attachment && message.attachment.length
                                                 ?   message.attachment.map((item, key) => {
                                                         return  <div className="col-xs-6"><div className={style.attachmentWrap}>
+                                                                    <img onClick={this.showPhoto(item, key)} className="img-responsive" src={item.img} alt="" />
                                                                     {
                                                                         item.confirm !== '1' && ! message.my && this.props.user.data.role === 'client'
                                                                         ?   <span className={style.attachBtnWrap}>
@@ -236,9 +237,9 @@ class FullMail extends Component {
                                                                                     text="View"
                                                                                     onClick = {this.showAttach(item.id)} />
                                                                             </span>
-                                                                        :   null
+                                                                        : null
                                                                     }
-                                                                    <img onClick={this.showPhoto(item, key)} className="img-responsive" src={item.img} alt="" />
+                                                                    
                                                                 </div></div>
                                                     })
                                                 :   null
