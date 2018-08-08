@@ -117,10 +117,17 @@
 
 :local(.attachmentWrap) {
 	position: relative;
+    height: 200px;
+    overflow: hidden;
+    margin-bottom: 15px;
 }
 
 :local(.attachmentWrap img) {
 	cursor: pointer;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 } 
 
 :local(.attachBtnWrap) {

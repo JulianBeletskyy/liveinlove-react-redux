@@ -226,7 +226,7 @@ class FullMail extends Component {
                                             {
                                                 message.attachment && message.attachment.length
                                                 ?   message.attachment.map((item, key) => {
-                                                        return  <div className="col-sm-6"><div className={style.attachmentWrap}>
+                                                        return  <div className="col-xs-6"><div className={style.attachmentWrap}>
                                                                     {
                                                                         item.confirm !== '1' && ! message.my && this.props.user.data.role === 'client'
                                                                         ?   <span className={style.attachBtnWrap}>
