@@ -48,7 +48,14 @@ class InfoProfile extends Component {
     getCreditsInfo = () => {
     	const { membership, membership_count } = this.props.user.data
     	return 	<div>
-    				<span className="font-bebas">Credits: </span><strong>{this.props.user.data.credits}</strong>
+    				<div>
+	    				<span className="font-bebas">Credits: </span>
+	    				<strong>{this.props.user.data.credits}</strong>
+    				</div>
+    				<div>
+    					<span className="font-bebas">Current plan: </span>
+    					<strong>{ membership.name + ( membership.value.id == 13 ? '(Trial)' : '' ) + ' (' + membership.value.month + ' month)'}</strong>
+    				</div>
     				<div>
     					<span className="font-bebas">Send 1st free letter to any girl: </span>
     					<strong>{membership_count.free_letter} / {membership.free_leter}</strong>
