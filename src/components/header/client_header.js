@@ -81,9 +81,9 @@ class ClientHeader extends Component {
                     <Link to="/blogs">Blog</Link>
                 </li>
 
-                {/*<li role="presentation" className={url === 'shop' ? style.active : ''}>
+                <li role="presentation" className={url === 'shop' ? style.active : ''}>
                     <Link to="/shop">Shop</Link>
-                </li>*/}
+                </li>
                 <NavDropdown role="presentation" title="About" id="dropdown">
                     <Link to="/about" target="_blank">About Company</Link>
                     <Link to="/how-it-works" target="_blank">How it works?</Link>
