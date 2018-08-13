@@ -4,9 +4,14 @@ import { connect } from 'react-redux'
 import { NavDropdown } from 'react-bootstrap'
 import style from './style.css'
 import { Link } from 'react-router-dom'
-import { toggleModal, logout } from 'actions'
+import { toggleModal, logout, getUnreadMessage } from 'actions'
 
 class GirlHeader extends Component {
+
+    constructor(props) {
+        super(props)
+        store.dispatch(getUnreadMessage(props.user.token))
+    }
 
     showLogIn = () => {
         store.dispatch(toggleModal(true, 'login'))
@@ -21,7 +26,13 @@ class GirlHeader extends Component {
         return (
            <ul className={style.navBar + " nav navbar-nav navbar-right"}>
                 <li role="presentation" className={url === 'mail' ? style.active : ''}>
-                    <Link to="/mail/main">Mail</Link>
+                    <Link to="/mail/main">Mail
+                    {
+                        this.props.user.data.unread_message
+                        ?   <span className="badge-message">{this.props.user.data.unread_message}</span>
+                        :   null
+                    }
+                    </Link>
                 </li>
 
                 <li role="presentation" className={url === 'profile' ? style.active : ''}>
@@ -55,7 +66,13 @@ class GirlHeader extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        segments: state.segments
+        segments: state.segments,
+        user: {
+            token: state.user.token,
+            data: {
+                unread_message: state.user.data.unread_message
+            }
+        }
     }
 }
 
