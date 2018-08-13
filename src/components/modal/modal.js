@@ -5,6 +5,7 @@ import { toggleModal } from 'actions'
 import style from './modal.css'
 import BtnMain from 'components/form/buttons/main_button.js'
 
+
 class MainModal extends Component {
     closeModal = () => {
         store.dispatch(toggleModal(false, this.props.keyModal))
@@ -30,6 +31,11 @@ class MainModal extends Component {
                 {
                     this.props.footer
                     ? (<Modal.Footer bsClass={style.headerModal + ' modal-footer'}>
+                        {
+                            this.props.upload
+                            ?   <div style={{float: 'left'}}>{this.props.upload}</div>
+                            :   null
+                        }
                         <BtnMain
                             type="button"
                             bsStyle="success"
@@ -41,7 +47,7 @@ class MainModal extends Component {
                             text={'Save'}
                             onClick={this.props.onSave} />
                     </Modal.Footer>)
-                    : ''
+                    : null
                 }
             </Modal>
         );

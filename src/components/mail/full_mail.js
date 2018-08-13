@@ -70,7 +70,6 @@ class FullMail extends Component {
             store.dispatch(toggleModal(true, 'credits'))
         }
     }
-    
 
     send = () => {
         let error = 1
@@ -239,7 +238,6 @@ class FullMail extends Component {
                                                                             </span>
                                                                         : null
                                                                     }
-                                                                    
                                                                 </div></div>
                                                     })
                                                 :   null
@@ -288,7 +286,7 @@ class FullMail extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         user: {
             token: state.user.token,

@@ -67,7 +67,6 @@ class MessageBlock extends Component {
                     }
                 }
             })
-            
         }
     }
 
