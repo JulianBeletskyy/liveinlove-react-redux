@@ -211,7 +211,7 @@ class Services extends Component {
                                         <BtnMain
                                             type="button"
                                             bsStyle="success"
-                                            text="Buy credits"
+                                            text="Buy Dibs"
                                             onClick={this.credits} />
                                     </div>
                                 </Col>
@@ -352,7 +352,7 @@ class Services extends Component {
                     size="lg" />
                 <MainModal
                     body={<Credits />}
-                    title="Credits"
+                    title="Dibs"
                     show={credits}
                     keyModal="credits" />
             </div>

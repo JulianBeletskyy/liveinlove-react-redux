@@ -93,7 +93,7 @@ class ClientRightMenu extends Component {
 						link="/profile/edit/password"
 						role="client" />
 					<MiddleItem
-						text="Add Credits"
+						text="Add Dibs"
 						icon="fas fa-credit-card"
 						onClick={this.showAddCredits}
 						role="client" />
@@ -118,7 +118,7 @@ class ClientRightMenu extends Component {
                     size="lg" />
                 <MainModal
                     body={<Credits />}
-                    title="Credits"
+                    title="Dibs"
                     show={credits}
                     keyModal="credits" />
 			</div>
