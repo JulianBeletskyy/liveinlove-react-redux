@@ -51,7 +51,7 @@ class ClientHeader extends Component {
                         {
                             this.props.user.data.unread_message
                             ?   <span className="badge-message">{this.props.user.data.unread_message}</span>
-                            :   ''
+                            :   null
                         }
                     </Link>
                 </li>
