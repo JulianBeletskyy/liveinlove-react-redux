@@ -49,7 +49,7 @@ class InfoProfile extends Component {
     	const { membership, membership_count } = this.props.user.data
     	return 	<div>
     				<div>
-	    				<span className="font-bebas">Credits: </span>
+	    				<span className="font-bebas">Dibs: </span>
 	    				<strong>{this.props.user.data.credits}</strong>
     				</div>
     				<div>
@@ -153,7 +153,7 @@ class InfoProfile extends Component {
 						role === 'client'
 						?	<Tab 
 								eventKey={'credits'} 
-								title="Credits & Bonuses">
+								title="Dibs & Bonuses">
 								<div className="pt-15">
 									{this.getCreditsInfo()}
 								</div>

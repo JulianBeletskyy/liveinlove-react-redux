@@ -56,8 +56,8 @@ class FullMail extends Component {
         }  
     }
 
-    resolveMessage = (data) => {
-        if (this.props.user.data.credits >= 6) {
+    resolveMessage = (data, letterPrice) => {
+        if (this.props.user.data.credits >= letterPrice) {
             store.dispatch(buyMessage(data, this.props.user.token))
             .then(res => {
                 if (res) {
@@ -90,8 +90,9 @@ class FullMail extends Component {
                     store.dispatch(setActiveTab('sent', 'mail'))
                     history.push('/mail/main')
                 } else {
+                    if (res.message.indexOf('free letter') + 1) {
+                        let letterPrice = 6 + (this.props.messages.attach_message.length * 3);
 
-                    if (res.message.indexOf('one free letter') + 1) {
                         confirmAlert({
                             title: '',
                             message: 'You can\'t send message',
@@ -99,9 +100,9 @@ class FullMail extends Component {
                                 {
                                     label: 'Cancel'
                                 }, {
-                                    label: this.props.user.data.credits >= 6 ? 'Use Dibs' : 'Buy Dibs',
+                                    label: this.props.user.data.credits >= letterPrice ? 'Use Dibs' : 'Buy Dibs',
                                     onClick: () => {
-                                        this.resolveMessage(data)
+                                        this.resolveMessage(data, letterPrice)
                                     }
                                 }
                             ]

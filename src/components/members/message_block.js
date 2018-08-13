@@ -15,8 +15,8 @@ class MessageBlock extends Component {
         this.message = ''
     }
 
-    resolveMessage = (data) => {
-        if (this.props.user.data.credits >= 6) {
+    resolveMessage = (data, letterPrice) => {
+        if (this.props.user.data.credits >= letterPrice) {
             store.dispatch(buyMessage(data, this.props.user.token))
             .then(res => {
                 if (res) {
@@ -48,7 +48,8 @@ class MessageBlock extends Component {
                     store.dispatch(setActiveTab('sent', 'mail'))
                     history.push('/mail/main', {active: 'sent'})
                 } else {
-                    if (res.message.indexOf('one free letter') + 1) {
+                    if (res.message.indexOf('free letter') + 1) {
+                        let letterPrice = 6 + (this.props.messages.attach_message.length * 3);
                         confirmAlert({
                             title: '',
                             message: 'You can\'t send message',
@@ -56,9 +57,9 @@ class MessageBlock extends Component {
                                 {
                                     label: 'Cancel'
                                 }, {
-                                    label: this.props.user.data.credits >= 6 ? 'Use Dibs' : 'Buy Dibs',
+                                    label: this.props.user.data.credits >= letterPrice ? 'Use Dibs' : 'Buy Dibs',
                                     onClick: () => {
-                                        this.resolveMessage(data)
+                                        this.resolveMessage(data, letterPrice)
                                         
                                     }
                                 }
