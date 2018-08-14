@@ -13,6 +13,7 @@ const initialState = {
     inbox: [],
     sent: [],
     drafts: [],
+    deleted: [],
     message: {},
     draft: {}
 

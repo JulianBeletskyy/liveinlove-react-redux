@@ -23,16 +23,6 @@ class Mail extends Component {
                 break
             default: return
         }
-
-        /*if (props.location.state && props.location.state.active) {
-            
-            //const type = props.location.state === 'sent' ? 'outgoing' : 'incoming'
-            //store.dispatch(getMail(type, props.location.state.active, this.props.user.token))
-            //store.dispatch(setActiveTab(props.location.state.active, 'mail'))
-        } else {
-            store.dispatch(getMail('incoming', 'inbox', this.props.user.token))
-            store.dispatch(setActiveTab('inbox', 'mail'))
-        }*/
     }
     
     render() {
@@ -52,6 +42,10 @@ class Mail extends Component {
                         eventKey: 'drafts', 
                         title: 'Drafts', 
                         content: <MessagesList type="drafts" />
+                    }, {
+                        eventKey: 'deleted', 
+                        title: 'Deleted messages', 
+                        content: <MessagesList type="deleted" />
                     }, {
                         eventKey: 'contacts', 
                         title: 'Contacts', 

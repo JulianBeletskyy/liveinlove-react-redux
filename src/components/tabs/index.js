@@ -17,6 +17,9 @@ class CustomTabs extends Component {
 				break
 			case 'drafts':
 				store.dispatch(getMail('draft', 'drafts', this.props.user.token))
+				break
+			case 'deleted':
+				store.dispatch(getMail('deleted', 'deleted', this.props.user.token))
     	}
 
     	if (key.indexOf('link') + 1) {
