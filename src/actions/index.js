@@ -960,6 +960,15 @@ export const removeMessage = (id, token, type) => dispatch => {
         })
 }
 
+export const removeMessagePermanent = (id, token, type) => dispatch => {
+    return api.removeMessagePermanent(id, token)
+        .then(json => {
+            if (json.data) {
+                dispatch(getMail(type, type, token))
+            }
+        })
+}
+
 export function setMail(data, key) {
     return {
         type: types.SET_MAIL,

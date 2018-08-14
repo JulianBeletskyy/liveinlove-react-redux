@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import store, { history } from 'store'
 import { connect } from 'react-redux'
 import BtnMain from 'components/form/buttons/main_button.js'
-import { removeDraft, removeMessage } from 'actions'
+import { removeDraft, removeMessage, removeMessagePermanent } from 'actions'
 
 class MailItem extends Component {
     getDate = type => {
@@ -27,6 +27,10 @@ class MailItem extends Component {
 
     removeMessage = () => {
         store.dispatch(removeMessage(this.props.id, this.props.user.token, this.props.type))
+    }
+
+    removePermanent = () => {
+        store.dispatch(removeMessagePermanent(this.props.id, this.props.user.token, this.props.type))
     }
 
     render() {
@@ -55,6 +59,15 @@ class MailItem extends Component {
             }
         }
 
+        if (this.props.type == 'deleted') {
+            data = {
+                fromTo: this.props.user.data.id === this.props.sender_id ? 'To' : 'From',
+                avatar: this.props.receiver_avatar,
+                oponent: this.props.receiver_first_name,
+                member_id: this.props.receiver_id
+            }
+        }
+
         const text = this.props.type === 'inbox' && this.props.user.data.role === 'client' ? this.props.translation : this.props.original
         const unreadClass = ! this.props.read && this.props.type === 'inbox' ? 'unread-message' : ''
 
@@ -72,7 +85,7 @@ class MailItem extends Component {
                                     <div><strong>Date: </strong>{this.getDate('date')}</div>
                                     <div><strong>Time: </strong>{this.getDate('time')}</div>
                                 </div>
-                            :   ''
+                            :   null
                         }
                             
                         <div className="form-group"><strong>Message: </strong><span dangerouslySetInnerHTML={{__html: this.getDescription(text)}} /></div>
@@ -85,7 +98,7 @@ class MailItem extends Component {
                         <BtnMain
                             type="submit"
                             bsStyle="success"
-                            onClick={this.props.type === 'drafts' ? this.removeDraft : this.removeMessage}
+                            onClick={this.props.type === 'drafts' ? this.removeDraft : (this.props.type === 'deleted' ? this.removePermanent : this.removeMessage)}
                             text="Remove message" />
                     </div>
                 </div>
@@ -100,7 +113,8 @@ const mapStateToProps = (state) => {
         user: {
             token: state.user.token,
             data: {
-                role: state.user.data.role
+                role: state.user.data.role,
+                id: state.user.data.id
             }
         }
     }
