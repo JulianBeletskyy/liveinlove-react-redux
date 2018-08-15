@@ -113,7 +113,7 @@ class EditDraft extends Component {
 
 	render() {
 		const { draft } = this.props.messages
-        console.log(draft)
+
 		return (
             <div className="pt-15">
             	{

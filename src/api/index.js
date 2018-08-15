@@ -924,13 +924,25 @@ export default {
         .then(responseHandler)
     },
 
-    getProducts(id, token) {
+    getProducts(id, token, data) {
         if (id == 0) {
             id = ''
         } else {
             id = '/' + id
         }
         return fetch(config.API_URL + 'client/shop/product/category' + id, {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
+    getMoreProducts(link, token) {
+        return fetch(link, {
             method: 'get',
             headers: {
                 'Authorization': 'Bearer ' + token,

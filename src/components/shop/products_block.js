@@ -15,9 +15,18 @@ class ProductsBlock extends Component {
 
     render() {
         return (
-            <Row>
-               {this.props.products.map((product, i) => this.printProducts(product, i))}
-            </Row>
+            <div>
+                <Row>
+                   {this.props.products.map((product, i) => this.printProducts(product, i))}
+                </Row>
+                {
+                    this.props.more
+                    ?   <div className="form-group font-bebas text-center fs-18">
+                            <a href="javascript:;" onClick={this.props.seeMore}><strong>see more</strong></a>
+                        </div>
+                    :   null
+                }
+            </div>
         );
     }
 }

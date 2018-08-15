@@ -1140,17 +1140,28 @@ export function getCategories(token) {
     }
 }
 
-export function getProducts(id, token) {
+export function getProducts(id, token, data) {
     return dispatch => {
-        return api.getProducts(id, token)
+        return api.getProducts(id, token, {page: 1})
             .then(json => {
                 if (json.data) {
-                    //dispatch(setActiveCategory(id))
-                    dispatch(setProducts(json.data))
+                    dispatch(setProducts(json))
                 }
             })
     }
 }
+
+export function getMoreProducts(link, token) {
+    return dispatch => {
+        return api.getMoreProducts(link, token)
+            .then(json => {
+                if (json.data) {
+                    dispatch(addProducts(json))
+                }
+            })
+    }
+}
+
 
 export function getProduct(id, token) {
     return dispatch => {
@@ -1181,6 +1192,13 @@ export function setProducts(value) {
     return {
         type: types.SET_PRODUCTS,
         value
+    }
+}
+
+export function addProducts(data) {
+    return {
+        type: types.ADD_PRODUCTS,
+        data
     }
 }
 

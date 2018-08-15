@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store, { history } from 'store'
 import { Row, Col } from 'react-bootstrap'
-import { setCart, getCategories, getProducts, setActiveCategory } from 'actions'
+import { setCart, getCategories, getProducts, setActiveCategory, getMoreProducts } from 'actions'
 import ProductsBlock from 'components/shop/products_block.js'
 import ProductInfo from 'components/shop/product_info.js'
 import { Route, Switch } from 'react-router-dom'
@@ -68,7 +68,13 @@ class Shop extends Component {
         store.dispatch(setCart(this.getCart()))
     }
 
+    seeMore = () => {
+        store.dispatch(getMoreProducts(this.props.shop.products.next_link, this.props.user.token))
+    }
+
 	render() {
+        const {list, last_page, current_page} = this.props.shop.products
+
         return (
             <Row>
                 <Col sm={3}>
@@ -76,7 +82,7 @@ class Shop extends Component {
                 </Col>
                 <Col sm={9}>
                     <Switch>
-                        <Route path="/shop" exact render={() => <ProductsBlock products={this.props.shop.products_list} addToCart={(e) => this.addToCart(e)} />} />
+                        <Route path="/shop" exact render={() => <ProductsBlock more={current_page < last_page} seeMore={this.seeMore} products={list} addToCart={(e) => this.addToCart(e)} />} />
                         <Route path="/shop/:prodId" exact render={(props) => <ProductInfo {...props} addToCart={(e) => this.addToCart(e)} />} />
                     </Switch>
                 </Col>
@@ -89,7 +95,7 @@ const mapStateToProps = (state) => {
     return {
         shop: {
             categories_list: state.shop.categories_list,
-            products_list: state.shop.products_list,
+            products: state.shop.products,
             active_category: state.shop.active_category
         },
         user: {
