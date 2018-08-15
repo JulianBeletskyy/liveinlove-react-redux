@@ -937,6 +937,8 @@ export const saveDraft = (data, token, id) => dispatch => {
     return api.saveDraft(data, token, id)
         .then(json => {
             if (json.data) {
+                dispatch(getMail('draft', 'drafts', token))
+                return true
             }
         })
 }
@@ -956,6 +958,18 @@ export const removeMessage = (id, token, type) => dispatch => {
             if (json.data) {
                 const key = type === 'inbox' ? 'incoming' : 'outgoing'
                 dispatch(getMail(key, type, token))
+            }
+        })
+}
+
+export const restoreMessage = (id, token, type) => dispatch => {
+    return api.restoreMessage(id, token)
+        .then(json => {
+            if (json.data) {
+                //dispatch(getMail('deleted', 'deleted', token))
+                const key = type === 'inbox' ? 'incoming' : 'outgoing'
+                dispatch(getMail(key, type, token))
+                return true
             }
         })
 }

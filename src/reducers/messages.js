@@ -39,9 +39,14 @@ export default function messages(messages = initialState, action = {}) {
                 attach_message: [...messages.attach_message, ...action.value],
             });
         case CLEAR_ATTACH:
+            let temp_draft = messages.draft
+            if (temp_draft.attachment.length) {
+                temp_draft.attachment = temp_draft.attachment.filter((item, i) => i !== action.index)
+            }
 
             return Object.assign({}, messages, {
                 attach_message: messages.attach_message.filter((item, i) => i !== action.index),
+                draft: temp_draft
             });
         case SET_ATTACH:
             let temp_message = Object.assign({}, messages.message);
@@ -61,10 +66,7 @@ export default function messages(messages = initialState, action = {}) {
         case SET_MAIL:
             let attach_message = []
             if (action.key == 'draft' && action.data.attachment) {
-                attach_message = {
-                    src: action.data.attachment,
-                    id: action.data.receiver_id
-                }
+                attach_message = action.data.attachment
             }
             
             return Object.assign({}, messages, {

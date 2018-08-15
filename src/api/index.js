@@ -826,6 +826,18 @@ export default {
         .then(responseHandler)
     },
 
+    restoreMessage(id, token) {
+        return fetch(config.API_URL + `user/message/${id}/restore`, {
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(responseHandler)
+    },
+
     removeMessagePermanent(id, token) {
         return fetch(config.API_URL + `user/message/${id}/removepermanent`, {
             method: 'delete',

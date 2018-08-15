@@ -71,11 +71,10 @@ class FullMail extends Component {
         }
     }
 
-    send = () => {
+    send = (receiver_id) => (e) => {
         let error = 1
         error *= Validator.check(this.message.value, ['required'], 'Message')
         if (error) {
-            const receiver_id = this.props.match.params.type === 'inbox' ? this.props.messages.message.sender_id : (this.props.messages.message.receiver_id ? this.props.messages.message.receiver_id : this.props.location.state.id)
             const data = {
                 original: this.message.value,
                 receiver_id: receiver_id,
@@ -113,58 +112,83 @@ class FullMail extends Component {
         }
     }
 
-    saveDraft = () => {
+    saveDraft = (receiver_id) => e => {
         let error = 1
         error *= Validator.check(this.message.value, ['required'], 'Message')
         if (error) {
             
             const data = {
                 original: this.message.value,
-                receiver_id: this.state.new ? this.props.location.state.id : this.props.messages.message.receiver_id,
+                receiver_id: this.state.new ? this.props.location.state.id : receiver_id,
                 attachment: this.props.messages.attach_message.map(item => {
                     return item.src ? item.src : item
                 })
             }
             store.dispatch(saveDraft(data, this.props.user.token))
+            .then(res => {
+                if (res) {
+                    store.dispatch(setActiveTab('drafts', 'mail'))
+                    history.push('/mail/main')
+                }
+            })
             this.message.value = ''
         }
     }
 
-    goToMember = () => {
-        history.push('/member/' + this.props.messages.message.receiver_id)
+    goToMember = (member_id) => (e) => {
+        history.push(`/member/${member_id}`)
+    }
+
+    isMy = () => {
+        return this.props.messages.message.sender_id == this.props.user.data.id
     }
 
     render() {
-        const avatar = this.state.new ? this.props.location.state.avatar : this.props.messages.message.receiver_avatar
         const { message } = this.props.messages
+        let data = {}
 
-        let text = message.original
+        /*let text = message.original
         if (this.props.messages.message.original) {
-           if (this.props.messages.message.original.indexOf('[$link]') + 1) {
-                const name = this.props.user.data.role === 'client' ? this.props.user.data.first_name : message.receiver_first_name
-                text = text.replace('[$link]', '<a href="/member/'+message.receiver_id+'">'+name+'</a>')
-            }
             text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
-        }
+        }*/
 
-        let translate = ''
-        if (this.props.messages.message.translation) {
-            translate = this.props.messages.message.translation.replace(/(?:\r\n|\r|\n)/g, '<br />')
-        }
-
-
-        const user = {
-            name: this.props.messages.message.receiver_first_name,
-            avatar: avatar
-        }
-
-        if (this.props.match.params.type === 'inbox') {
-            user.name = this.props.messages.message.sender_first_name
-            user.avatar = this.props.messages.message.sender_avatar
-        }
-
-        if (this.props.match.params.type === 'inbox' && this.props.user.data.role === 'client') {
-            text = translate
+        switch(this.props.match.params.type) {
+            case 'sent':
+                data = {
+                    fromTo: 'To',
+                    avatar: this.state.new ? this.props.location.state.avatar : message.receiver_avatar,
+                    oponent: this.state.new ? this.props.location.state.first_name : message.receiver_first_name,
+                    member_id: this.state.new ? this.props.location.state.id : message.receiver_id,
+                    text: this.state.new ? '' : message.original
+                }
+                break
+            case 'drafts':
+                data = {
+                    fromTo: 'To',
+                    avatar: message.receiver_first_avatar,
+                    oponent: message.receiver_first_name,
+                    member_id: message.receiver_id,
+                    text: message.original
+                }
+                break
+            case 'deleted':
+                data = {
+                    fromTo: this.isMy() ? 'To' : 'From',
+                    avatar: this.isMy() ? message.receiver_avatar : message.sender_avatar,
+                    oponent: this.isMy() ? message.receiver_first_name : message.sender_first_name,
+                    member_id: this.isMy() ? message.receiver_id : message.sender_id,
+                    text: this.isMy() ? message.original : (this.props.user.data.role === 'client' ? message.translation : message.original)
+                }
+                break
+            default: 
+                data = {
+                    fromTo: 'From',
+                    avatar: message.sender_avatar,
+                    oponent: message.sender_first_name,
+                    member_id: message.sender_id,
+                    text: this.props.user.data.role === 'client' ? message.translation : message.original
+                }
+                break
         }
         
         return (
@@ -174,7 +198,7 @@ class FullMail extends Component {
                 </div>
                 <div className="row form-group">
                     <div className="col-sm-2">
-                        <img src={user.avatar} alt="" className="img-responsive pointer" onClick={this.goToMember} />
+                        <img src={data.avatar} alt="" className="img-responsive pointer" onClick={this.goToMember(data.member_id)} />
                     </div>
                     {
                         ! this.state.new
@@ -184,8 +208,8 @@ class FullMail extends Component {
                                         <strong>Name:</strong>
                                     </div>
                                     <div className="col-sm-10">
-                                        <Link to={'/member/' + this.props.messages.message.receiver_id}  style={{textDecoration: 'unset'}}>
-                                            <strong className={this.props.user.data.role === 'client' ? 'color-girl' : 'color-client'}>{user.name}</strong>
+                                        <Link to={`/member/${data.member_id}`}  style={{textDecoration: 'unset'}}>
+                                            <strong className={this.props.user.data.role === 'client' ? 'color-girl' : 'color-client'}>{data.oponent}</strong>
                                         </Link>
                                     </div>
                                 </div>
@@ -202,7 +226,7 @@ class FullMail extends Component {
                                         <strong>Message:</strong>
                                     </div>
                                     <div className="col-sm-10">
-                                        <pre dangerouslySetInnerHTML={{__html: text}} />
+                                        <pre dangerouslySetInnerHTML={{__html: data.text}} />
                                     </div>
                                 </div>
                                 {
@@ -213,7 +237,7 @@ class FullMail extends Component {
                                                 <strong>Translate:</strong>
                                             </div>
                                             <div className="col-sm-10">
-                                                <span dangerouslySetInnerHTML={{__html: translate}} />
+                                                <span dangerouslySetInnerHTML={{__html: message.translation}} />
                                             </div>
                                         </div>
                                 }
@@ -265,13 +289,13 @@ class FullMail extends Component {
                             type="button"
                             bsStyle="success"
                             text="Save to drats"
-                            onClick = {this.saveDraft} />
+                            onClick={this.saveDraft(data.member_id)} />
                         &nbsp;
                         <BtnMain
                             type="button"
                             bsStyle="success"
                             text={this.props.messages.message.my || this.state.new ? 'Send' : 'Reply'}
-                            onClick = {this.send} />
+                            onClick = {this.send(data.member_id)} />
                         <LinkButton  />
                     </div>
                 </div>

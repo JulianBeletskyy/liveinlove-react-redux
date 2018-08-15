@@ -20,6 +20,7 @@ class CustomTabs extends Component {
 				break
 			case 'deleted':
 				store.dispatch(getMail('deleted', 'deleted', this.props.user.token))
+				break
     	}
 
     	if (key.indexOf('link') + 1) {
