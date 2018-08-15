@@ -8,6 +8,8 @@ import BtnMain from 'components/form/buttons/main_button.js'
 import Validator from 'validate'
 import LinkButton from 'components/list/link_button.js'
 import { confirmAlert } from 'react-confirm-alert'
+import MainModal from 'components/modal/modal.js'
+import Credits from 'components/membership/credits.js'
 
 class MessageBlock extends Component {
     constructor(props) {
@@ -79,7 +81,9 @@ class MessageBlock extends Component {
             const data = {
                 original: this.message.value,
                 receiver_id: this.props.memberId,
-                attachment: this.props.messages.attach_message.src || this.props.messages.attach_message
+                attachment: this.props.messages.attach_message.map(item => {
+                    return item.src ? item.src : item
+                })
             }
             store.dispatch(saveDraft(data, this.props.user.token))
             this.message.value = ''
@@ -109,6 +113,11 @@ class MessageBlock extends Component {
                         onClick = {this.send} />
                     <LinkButton  />
                 </FormGroup>
+                <MainModal
+                    body={<Credits />}
+                    title="Dibs"
+                    show={this.props.modals.credits}
+                    keyModal="credits" />
             </div>
         );
     }
@@ -124,6 +133,9 @@ const mapStateToProps = (state) => {
         },
         messages: {
             attach_message: state.messages.attach_message
+        },
+        modals: {
+            credits: state.modals.credits
         }
     }
 }
