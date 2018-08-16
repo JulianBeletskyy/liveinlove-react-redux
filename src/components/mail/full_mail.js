@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store, { history } from 'store'
-import { getMail, sendMessage, saveDraft, toggleLightBox, showAttach, buyMessage, setActiveTab, toggleModal } from 'actions'
+import { getMail, sendMessage, saveDraft, toggleLightBox, showAttach, buyMessage, setActiveTab, toggleModal, setSendingMessage } from 'actions'
 import Textarea from 'components/form/inputs/textarea.js'
 import BtnMain from 'components/form/buttons/main_button.js'
 import LinkButton from 'components/list/link_button.js'
@@ -68,6 +68,7 @@ class FullMail extends Component {
             })
         } else {
             store.dispatch(toggleModal(true, 'credits'))
+            store.dispatch(setSendingMessage({...data, letterPrice}))
         }
     }
 

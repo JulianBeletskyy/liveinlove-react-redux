@@ -828,6 +828,7 @@ export function buyPackage(data, token) {
         .then(json => {
             if (json.data) {
                 dispatch(getUserInfo(token))
+                return true
             }
         })
     }
@@ -988,6 +989,13 @@ export function setMail(data, key) {
         type: types.SET_MAIL,
         data,
         key
+    }
+}
+
+export function setSendingMessage(data) {
+    return {
+        type: types.SET_SENDING_MESSAGE,
+        data,
     }
 }
 
