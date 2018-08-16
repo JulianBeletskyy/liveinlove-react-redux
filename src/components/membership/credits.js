@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import store from 'store'
+import store, { history } from 'store'
 import { connect } from 'react-redux'
-import { toggleModal, getPackages, setMembershipsData, buyPackage } from 'actions'
+import { toggleModal, getPackages, setMembershipsData, buyPackage, setSendingMessage, setActiveTab, buyMessage } from 'actions'
 import { FormGroup } from 'react-bootstrap'
 import PackageItem from './package_item.js'
 
@@ -54,6 +54,20 @@ class Credits extends Component {
                         package_id: this.props.memberships.active_package.id
                     }
                     store.dispatch(buyPackage(mas, this.props.user.token))
+                    .then(res => {
+                        if (Object.keys(this.props.messages.sendingMessage).length && res) {
+                            const totalCredits = this.props.memberships.packages.find(item => item.id === mas.package_id).credits + this.props.user.data.credits
+                            if (totalCredits >= this.props.messages.sendingMessage.letterPrice) {
+                                store.dispatch(buyMessage(this.props.messages.sendingMessage, this.props.user.token))
+                                .then(res => {
+                                    store.dispatch(setActiveTab('sent', 'mail'))
+                                    store.dispatch(toggleModal(false, 'credits'))
+                                    history.push('/mail/main')
+                                })
+                                return
+                            }
+                        }
+                    })
                     store.dispatch(toggleModal(false, 'credits'))
                 });
             }
@@ -62,6 +76,7 @@ class Credits extends Component {
 
     componentWillUnmount() {
         store.dispatch(setMembershipsData({id: 0, price: ''}, 'active_package'))
+        store.dispatch(setSendingMessage({}))
     }
     
     componentDidMount() {
@@ -94,8 +109,12 @@ const mapStateToProps = (state) => {
         user: {
             token: state.user.token,
             data: {
-                membership: state.user.data.membership
+                membership: state.user.data.membership,
+                credits: state.user.data.credits,
             }
+        },
+        messages: {
+            sendingMessage: state.messages.sendingMessage
         }
     }
 }

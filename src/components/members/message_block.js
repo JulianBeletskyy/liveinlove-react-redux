@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import { FormGroup } from 'react-bootstrap'
 import store, { history } from 'store'
-import { sendMessage, saveDraft, buyMessage, getMail, setActiveTab, toggleModal } from 'actions'
+import { sendMessage, saveDraft, buyMessage, getMail, setActiveTab, toggleModal, setSendingMessage } from 'actions'
 import { connect } from 'react-redux'
 import Textarea from 'components/form/inputs/textarea.js'
 import BtnMain from 'components/form/buttons/main_button.js'
 import Validator from 'validate'
 import LinkButton from 'components/list/link_button.js'
 import { confirmAlert } from 'react-confirm-alert'
-import MainModal from 'components/modal/modal.js'
-import Credits from 'components/membership/credits.js'
 
 class MessageBlock extends Component {
     constructor(props) {
@@ -29,6 +27,7 @@ class MessageBlock extends Component {
             })
         } else {
             store.dispatch(toggleModal(true, 'credits'))
+            store.dispatch(setSendingMessage({...data, letterPrice}))
         }
     }
 
@@ -113,11 +112,7 @@ class MessageBlock extends Component {
                         onClick = {this.send} />
                     <LinkButton  />
                 </FormGroup>
-                <MainModal
-                    body={<Credits />}
-                    title="Dibs"
-                    show={this.props.modals.credits}
-                    keyModal="credits" />
+                
             </div>
         );
     }

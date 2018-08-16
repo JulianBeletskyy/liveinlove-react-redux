@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-bootstrap'
 import ClientRightMenu from 'components/menu/client_right_menu.js'
 import ClientMobileMenu from 'components/menu/client_mobile_menu.js'
@@ -11,6 +12,8 @@ import Mail from 'components/mail'
 import Dialog from 'components/mail/dialog.js'
 import FullMail from 'components/mail/full_mail.js'
 import EditDraft from 'components/mail/edit_draft.js'
+import MainModal from 'components/modal/modal.js'
+import Credits from 'components/membership/credits.js'
 
 class ClientHome extends Component {
     componentDidUpdate() {
@@ -44,9 +47,24 @@ class ClientHome extends Component {
                     </Row>
                 </Grid>
                 <ClientMobileMenu client={true} />
+                <MainModal
+                    body={<Credits />}
+                    title="Dibs"
+                    show={this.props.modals.credits}
+                    keyModal="credits" />
             </div>
         );
     }
 }
 
-export default ClientHome
+const mapStateToProps = (state) => {
+    return {
+        modals: {
+            credits: state.modals.credits
+        }
+    }
+}
+
+export default connect(
+    mapStateToProps
+)(ClientHome)

@@ -1,4 +1,4 @@
-import { SET_DIALOGS_LIST, SET_MESSAGES, SET_RECEIVER, SET_CONTACTS, SET_ATTACH_MESSAGE, SET_ATTACH, SET_MAIL, CLEAR_ATTACH } from 'actions/types.js'
+import { SET_DIALOGS_LIST, SET_MESSAGES, SET_RECEIVER, SET_CONTACTS, SET_ATTACH_MESSAGE, SET_ATTACH, SET_MAIL, CLEAR_ATTACH, SET_SENDING_MESSAGE } from 'actions/types.js'
 
 const initialState = {
 	list: [],
@@ -15,7 +15,8 @@ const initialState = {
     drafts: [],
     deleted: [],
     message: {},
-    draft: {}
+    draft: {},
+    sendingMessage: {}
 
 }
 
@@ -68,12 +69,15 @@ export default function messages(messages = initialState, action = {}) {
             if (action.key == 'draft' && action.data.attachment) {
                 attach_message = action.data.attachment
             }
-            
             return Object.assign({}, messages, {
                 [action.key]: action.data,
                 attach_message: attach_message
 
             });
+        case SET_SENDING_MESSAGE:
+            return Object.assign({}, messages, {
+                    sendingMessage: action.data
+                });
         default:
             return messages;
     }

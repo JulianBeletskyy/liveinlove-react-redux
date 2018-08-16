@@ -116,11 +116,7 @@ class ClientRightMenu extends Component {
                     keyModal="plans"
                     className="plans-modal"
                     size="lg" />
-                <MainModal
-                    body={<Credits />}
-                    title="Dibs"
-                    show={credits}
-                    keyModal="credits" />
+                
 			</div>
 		);
 	}
