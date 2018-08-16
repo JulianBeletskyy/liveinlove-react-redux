@@ -41,7 +41,7 @@ export default function messages(messages = initialState, action = {}) {
             });
         case CLEAR_ATTACH:
             let temp_draft = messages.draft
-            if (temp_draft.attachment.length) {
+            if (temp_draft.attachment && temp_draft.attachment.length) {
                 temp_draft.attachment = temp_draft.attachment.filter((item, i) => i !== action.index)
             }
 
