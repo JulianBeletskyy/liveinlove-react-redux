@@ -53,10 +53,13 @@ class MessageBlock extends Component {
                         let letterPrice = 6 + (this.props.messages.attach_message.length * 3);
                         confirmAlert({
                             title: '',
-                            message: 'You can\'t send message',
+                            message: 'You do not have enough dibs to send message. Click Buy Dibs to chose the package.',
                             buttons: [
                                 {
-                                    label: 'Cancel'
+                                    label: 'Cancel',
+                                    onClick: () => {
+                                        store.dispatch(setSendingMessage({}))
+                                    }
                                 }, {
                                     label: this.props.user.data.credits >= letterPrice ? 'Use Dibs' : 'Buy Dibs',
                                     onClick: () => {

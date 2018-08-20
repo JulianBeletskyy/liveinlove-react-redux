@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { toggleModal, getPackages, setMembershipsData, buyPackage, setSendingMessage, setActiveTab, buyMessage } from 'actions'
 import { FormGroup } from 'react-bootstrap'
 import PackageItem from './package_item.js'
+import { confirmAlert } from 'react-confirm-alert'
 
 class Credits extends Component {
     constructor(props) {
@@ -60,11 +61,30 @@ class Credits extends Component {
                             if (totalCredits >= this.props.messages.sendingMessage.letterPrice) {
                                 store.dispatch(buyMessage(this.props.messages.sendingMessage, this.props.user.token))
                                 .then(res => {
+                                    store.dispatch(setSendingMessage({}))
                                     store.dispatch(setActiveTab('sent', 'mail'))
                                     store.dispatch(toggleModal(false, 'credits'))
                                     history.push('/mail/main')
                                 })
                                 return
+                            } else {
+                                confirmAlert({
+                                    title: '',
+                                    message: 'You do not have enough dibs to send message. Click Buy Dibs to chose the package.',
+                                    buttons: [
+                                        {
+                                            label: 'Cancel',
+                                            onClick: () => {
+                                                store.dispatch(setSendingMessage({}))
+                                            }
+                                        }, {
+                                            label: 'Buy Dibs',
+                                            onClick: () => {
+                                                store.dispatch(toggleModal(true, 'credits'))
+                                            }
+                                        }
+                                    ]
+                                })
                             }
                         }
                     })
@@ -76,7 +96,6 @@ class Credits extends Component {
 
     componentWillUnmount() {
         store.dispatch(setMembershipsData({id: 0, price: ''}, 'active_package'))
-        store.dispatch(setSendingMessage({}))
     }
     
     componentDidMount() {
