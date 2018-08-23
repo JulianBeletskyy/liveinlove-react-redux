@@ -1,4 +1,4 @@
-import { SET_DIALOGS_LIST, SET_MESSAGES, SET_RECEIVER, SET_CONTACTS, SET_ATTACH_MESSAGE, SET_ATTACH, SET_MAIL, CLEAR_ATTACH, SET_SENDING_MESSAGE } from 'actions/types.js'
+import { SET_DIALOGS_LIST, SET_MESSAGES, SET_RECEIVER, SET_CONTACTS, SET_ATTACH_MESSAGE, SET_ATTACH, SET_MAIL, CLEAR_ATTACH, SET_SENDING_MESSAGE, SET_BUYING_ATTACH } from 'actions/types.js'
 
 const initialState = {
 	list: [],
@@ -16,7 +16,8 @@ const initialState = {
     deleted: [],
     message: {},
     draft: {},
-    sendingMessage: {}
+    sendingMessage: {},
+    buyingAttach: {},
 
 }
 
@@ -77,6 +78,10 @@ export default function messages(messages = initialState, action = {}) {
         case SET_SENDING_MESSAGE:
             return Object.assign({}, messages, {
                     sendingMessage: action.data
+                });
+        case SET_BUYING_ATTACH:
+            return Object.assign({}, messages, {
+                    buyingAttach: action.data
                 });
         default:
             return messages;

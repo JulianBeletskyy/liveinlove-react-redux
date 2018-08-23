@@ -1010,6 +1010,13 @@ export function setSendingMessage(data) {
     }
 }
 
+export function setBuyingAttach(data) {
+    return {
+        type: types.SET_BUYING_ATTACH,
+        data,
+    }
+}
+
 export function getDialogs(token) {
     return dispatch => {
         return api.getDialogs(token)
@@ -1049,6 +1056,21 @@ export function showAttach(data, token) {
             .then(json => {
                 if (json.data) {
                     dispatch(setMail(json.data, 'message'))
+                    return true
+                } else {
+                    return json.mssage
+                }
+            })
+    }
+}
+
+export function buyAttach(data, token) {
+    return dispatch => {
+        return api.buyAttach(data, token)
+            .then(json => {
+                if (json.data) {
+                    dispatch(setMail(json.data, 'message'))
+                    dispatch(getUserInfo(token))
                 }
             })
     }

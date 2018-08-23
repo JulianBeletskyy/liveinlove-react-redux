@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import store, { history } from 'store'
 import { connect } from 'react-redux'
-import { toggleModal, getPackages, setMembershipsData, buyPackage, setSendingMessage, setActiveTab, buyMessage } from 'actions'
+import { toggleModal, getPackages, setMembershipsData, buyPackage, setSendingMessage, setActiveTab, buyMessage, buyAttach, setBuyingAttach } from 'actions'
 import { FormGroup } from 'react-bootstrap'
 import PackageItem from './package_item.js'
 import { confirmAlert } from 'react-confirm-alert'
@@ -86,6 +86,10 @@ class Credits extends Component {
                                     ]
                                 })
                             }
+                        } else if (Object.keys(this.props.messages.buyingAttach).length && res) {
+                            store.dispatch(buyAttach(this.props.messages.buyingAttach, this.props.user.token))
+                            store.dispatch(setBuyingAttach({}))
+                            store.dispatch(toggleModal(false, 'credits'))
                         }
                     })
                     store.dispatch(toggleModal(false, 'credits'))
@@ -133,7 +137,8 @@ const mapStateToProps = (state) => {
             }
         },
         messages: {
-            sendingMessage: state.messages.sendingMessage
+            sendingMessage: state.messages.sendingMessage,
+            buyingAttach: state.messages.buyingAttach,
         }
     }
 }

@@ -912,6 +912,19 @@ export default {
         .then(responseHandler)
     },
 
+    buyAttach(data, token) {
+        return fetch(config.API_URL + 'user/message/attachment/buy', {
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(responseHandler)
+    },
+
     getContacts(token) {
         return fetch(config.API_URL + 'user/message/contacts', {
             method: 'get',

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store, { history } from 'store'
-import { getMail, sendMessage, saveDraft, toggleLightBox, showAttach, buyMessage, setActiveTab, toggleModal, setSendingMessage } from 'actions'
+import { getMail, sendMessage, saveDraft, toggleLightBox, showAttach, buyMessage, setActiveTab, toggleModal, setSendingMessage, buyAttach, setBuyingAttach } from 'actions'
 import Textarea from 'components/form/inputs/textarea.js'
 import BtnMain from 'components/form/buttons/main_button.js'
 import LinkButton from 'components/list/link_button.js'
@@ -27,12 +27,43 @@ class FullMail extends Component {
         }
     }
 
+    resolveAttach = (data) => {
+        if (this.props.user.data.credits >= 3) {
+            store.dispatch(buyAttach(data, this.props.user.token))
+        } else {
+            store.dispatch(toggleModal(true, 'credits'))
+            store.dispatch(setBuyingAttach(data))
+        }
+        
+    }
+
     showAttach = attach_id => e => {
         const data = {
             message_id: this.props.messages.message.id,
             attachment_id: attach_id
         }
         store.dispatch(showAttach(data, this.props.user.token))
+        .then(res => {
+            if (res !== true) {
+                confirmAlert({
+                    title: '',
+                    message: 'You can\'t see this attachment.',
+                    buttons: [
+                        {
+                            label: 'Cancel',
+                            onClick: () => {
+                                return
+                            }
+                        }, {
+                            label: this.props.user.data.credits >= 3 ? 'Use Dibs' : 'Buy Dibs',
+                            onClick: () => {
+                                this.resolveAttach(data)
+                            }
+                        }
+                    ]
+                })
+            }
+        })
     }
 
     closeLightbox = () => {
