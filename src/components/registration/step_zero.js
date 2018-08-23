@@ -84,6 +84,7 @@ class SignUpStart extends Component {
         }
         
         if (error) {
+            
             let data = {
                 first_name: this.signup.first_name.value,
                 last_name: this.signup.last_name.value,
@@ -97,6 +98,10 @@ class SignUpStart extends Component {
                 city: this.signup.city.value,
                 email: this.signup.email.value,
                 password: this.signup.password.value,
+            }
+
+            if (this.props.signup.custom_remember_token) {
+                data.custom_remember_token = this.props.signup.custom_remember_token
             }
 
             if (this.signup.role === 'client') {
@@ -528,6 +533,7 @@ const mapStateToProps = (state) => {
                 vk: state.signup.data.vk,
                 other_social: state.signup.data.other_social,
             },
+            custom_remember_token: state.signup.custom_remember_token,
             showRegistration: state.signup.showRegistration
         },
         options: state.options

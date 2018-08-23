@@ -165,7 +165,9 @@ export function sendSignUpBefore(data) {
     return dispatch => {
         return api.signUpBefore(data)
         .then(json => {
-            
+            if (json.data) {
+                dispatch(setTempToken(json.data))
+            }
         })
     }
 }
