@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
-import { changeStep, sendSignUpTwo, saveImage,  saveFile, sendSignUpThree} from 'actions'
+import { changeStep, sendSignUpTwo, saveImage,  saveFile, sendSignUpThree, skipStep} from 'actions'
 import { FormGroup, Row, Col } from 'react-bootstrap'
 import Btn from 'components/form/buttons/button.js'
 import BtnFacebook from 'components/form/buttons/button_facebook.js'
@@ -49,6 +49,7 @@ class SignUpTwo extends Component {
 
     skip = () => {
         const step = this.props.signup.data.role === 'client' ? 3 : 6
+        store.dispatch(skipStep(4, this.props.signup.custom_remember_token))
         store.dispatch(changeStep(step))
     }
 

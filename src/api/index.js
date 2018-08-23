@@ -484,6 +484,18 @@ export default {
         .then(responseHandler)
     },
 
+    skipStep(step, token) {
+        return fetch(config.API_URL + 'signup/skip/' + step, {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({custom_remember_token: token})
+        })
+        .then(responseHandler)
+    },
+
     signUpStart(data) {
         return fetch(config.API_URL + 'signup/start', {
             method: 'post',

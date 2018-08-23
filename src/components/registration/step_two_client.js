@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup, Row, Col } from 'react-bootstrap'
-import { changeStep, sendSignUpOne, sendSignUpTwo } from 'actions'
+import { changeStep, sendSignUpOne, sendSignUpTwo, skipStep } from 'actions'
 import { SelectField } from 'components/form/inputs'
 import Btn from 'components/form/buttons/button.js'
 import BlockSmall from 'components/blocks/block_small.js'
@@ -44,6 +44,7 @@ class SignUpTwoClient extends Component {
 
     skip = () => {
         const step = this.props.signup.data.role === 'client' ? 2 : 5
+        store.dispatch(skipStep(3, this.props.signup.custom_remember_token))
         store.dispatch(changeStep(step))
     }
 

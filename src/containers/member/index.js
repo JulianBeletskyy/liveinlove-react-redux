@@ -145,7 +145,7 @@ class Member extends Component {
         const birthday = new Date(`${y}-${m}-${d}`)
         const ageDifMs = Date.now() - birthday.getTime()
         const ageDate = new Date(ageDifMs)
-        return `${Math.abs(ageDate.getUTCFullYear() - 1970)} age`
+        return `${Math.abs(ageDate.getUTCFullYear() - 1970)} y.o.`
     }
 
     getImages = () =>
@@ -279,14 +279,20 @@ class Member extends Component {
                                                 <div>{member.hair_length}</div>
                                             </div>
                                         </div>
-                                        <div className="row">
-                                            <div className="col-xs-5">
-                                                <span className="font-bebas fs-18">Ethnicity: </span>
-                                            </div>
-                                            <div className="col-xs-7">
-                                                <div>{member.ethnicity || 'N/A'}</div>
-                                            </div>
-                                        </div>
+                                        
+                                            {
+                                                this.props.user.data.role === 'client'
+                                                ?   null
+                                                :   <div className="row">
+                                                        <div className="col-xs-5">
+                                                            <span className="font-bebas fs-18">Ethnicity: </span>
+                                                        </div>
+                                                        <div className="col-xs-7">
+                                                            <div>{member.ethnicity || 'N/A'}</div>
+                                                        </div>
+                                                    </div>
+                                            }
+                                            
                                         <div className="row">
                                             <div className="col-xs-5">
                                                 <span className="font-bebas fs-18">Religion: </span>

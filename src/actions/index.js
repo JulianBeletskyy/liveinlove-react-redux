@@ -170,6 +170,15 @@ export function sendSignUpBefore(data) {
     }
 }
 
+export function skipStep(step, token) {
+    return dispatch => {
+        return api.skipStep(step, token)
+        .then(json => {
+            
+        })
+    }
+}
+
 export function sendSignUpStart(data, step) {
     return dispatch => {
         return api.signUpStart(data)

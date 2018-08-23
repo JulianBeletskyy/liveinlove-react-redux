@@ -15,7 +15,7 @@ class AboutMe extends Component {
         const birthday = new Date(`${y}-${m}-${d}`)
         const ageDifMs = Date.now() - birthday.getTime()
         const ageDate = new Date(ageDifMs)
-        return `${Math.abs(ageDate.getUTCFullYear() - 1970)} age`
+        return `${Math.abs(ageDate.getUTCFullYear() - 1970)} y.o.`
     }
 
     render() {

@@ -104,7 +104,7 @@ class ClientRightMenu extends Component {
 				<FormGroup>
 					<MiddleString
 						text={data.credits}
-						keyName="Money Balance:" />
+						keyName="Dibs Balance:" />
 				</FormGroup>
 				<FormGroup>
 				<MiddleString text="0" keyName="Bonus Balance:" />
