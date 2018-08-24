@@ -1,5 +1,4 @@
 import NotFound from './404/404.js'
-//import Member from './member/member.js'
 import Member from './member'
 import Contacts from './contacts'
 import Home from './home/home.js'
