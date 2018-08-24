@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import store from 'store'
 import style from './plans.css'
-import { setMembershipsData, setPlan, toggleModal } from 'actions'
+import { setMembershipsData, toggleModal } from 'actions'
 
 class PlanItem extends Component {
 
@@ -35,7 +35,6 @@ class PlanItem extends Component {
 
     setPlan = (val) => {
         this.props.onChoose(val)
-        //store.dispatch(setPlan(this.props.options.id, val.id, this.props.user.token))
         this.hideValues()
         store.dispatch(toggleModal(false, 'plans'))
     }

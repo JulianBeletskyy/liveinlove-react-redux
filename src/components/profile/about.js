@@ -3,10 +3,6 @@ import { connect } from 'react-redux'
 import { MONTH } from 'config'
 
 class About extends Component {
-    
-    constructor(props) {
-        super(props);
-    }
 
     getBirthday = date => {
         return `${date.day} ${MONTH[date.month - 1]}`

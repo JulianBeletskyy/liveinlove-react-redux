@@ -41,7 +41,7 @@ class Edit extends Component {
 						? 	<Tab eventKey={'password'} title="Password" >
 								<PasswordProfile />
 							</Tab>
-						: 	''
+						: 	null
 					}
 				</Tabs>
 			</div>

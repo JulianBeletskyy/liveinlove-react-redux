@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { FormGroup } from 'react-bootstrap'
 import store, { history } from 'store'
-import { sendMessage, saveDraft, buyMessage, getMail, setActiveTab, toggleModal, setSendingMessage } from 'actions'
+import { sendMessage, saveDraft, buyMessage, setActiveTab, toggleModal, setSendingMessage } from 'actions'
 import { connect } from 'react-redux'
 import Textarea from 'components/form/inputs/textarea.js'
 import BtnMain from 'components/form/buttons/main_button.js'

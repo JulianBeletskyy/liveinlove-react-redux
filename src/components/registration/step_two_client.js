@@ -2,11 +2,9 @@ import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup, Row, Col } from 'react-bootstrap'
-import { changeStep, sendSignUpOne, sendSignUpTwo, skipStep } from 'actions'
+import { changeStep, sendSignUpTwo, skipStep } from 'actions'
 import { SelectField } from 'components/form/inputs'
 import Btn from 'components/form/buttons/button.js'
-import BlockSmall from 'components/blocks/block_small.js'
-import Validator from 'validate'
 
 class SignUpTwoClient extends Component {
     constructor(props) {

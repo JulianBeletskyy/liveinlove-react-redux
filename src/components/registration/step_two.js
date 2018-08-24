@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
-import { changeStep, sendSignUpTwo, saveImage,  saveFile, sendSignUpThree, skipStep} from 'actions'
+import { changeStep, saveImage,  saveFile, sendSignUpThree, skipStep} from 'actions'
 import { FormGroup, Row, Col } from 'react-bootstrap'
 import Btn from 'components/form/buttons/button.js'
 import BtnFacebook from 'components/form/buttons/button_facebook.js'
@@ -9,7 +9,6 @@ import BtnGoogle from 'components/form/buttons/button_google.js'
 import BtnUpload from 'components/form/buttons/button_upload.js'
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
-import Validator from 'validate'
 
 class SignUpTwo extends Component {
     constructor(props) {

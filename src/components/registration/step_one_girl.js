@@ -5,7 +5,6 @@ import { FormGroup, Row, Col } from 'react-bootstrap'
 import { changeStep, sendSignUpOne } from 'actions'
 import { SelectField } from 'components/form/inputs'
 import Btn from 'components/form/buttons/button.js'
-import BlockSmall from 'components/blocks/block_small.js'
 import Validator from 'validate'
 
 class SignUpOneGirl extends Component {
@@ -88,7 +87,6 @@ class SignUpOneGirl extends Component {
             case 'children': name = 'Children'; break;
             case 'smoke': name = 'Smoke'; break;
             case 'drink': name = 'Drink'; break;
-            case 'want_children': name = 'Want Children'; break;
             default: name = ''; break;
         }
         let temp = [{ 'value': '', 'name': name }]
@@ -120,7 +118,6 @@ class SignUpOneGirl extends Component {
 
     render() {
         const { data } = this.props.signup
-        const { ethnicities } = this.props.options
         return (
             <form onSubmit={this.getSignUpTwo} noValidate={true}>
                 <Row>

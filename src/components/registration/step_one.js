@@ -2,11 +2,9 @@ import React, { Component } from 'react'
 import store from 'store/'
 import { connect } from 'react-redux'
 import { FormGroup, Row, Col } from 'react-bootstrap'
-import { changeStep, sendSignUpOne, sendSignUpTwoGirl, sendSignUpTwo, setAlert, skipStep } from 'actions'
+import { changeStep, sendSignUpOne, skipStep } from 'actions'
 import { SelectField } from 'components/form/inputs'
 import Btn from 'components/form/buttons/button.js'
-import BlockSmall from 'components/blocks/block_small.js'
-import Validator from 'validate'
 import InputMask from 'react-input-mask'
 
 
@@ -188,7 +186,6 @@ class SignUpOne extends Component {
 
     render() {
         const { data } = this.props.signup
-        const { ethnicities } = this.props.options
         return (
             <form onSubmit={this.getSignUpTwo} noValidate={true}>
                 <Row>

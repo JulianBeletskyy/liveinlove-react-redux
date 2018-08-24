@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import Tabs from 'components/tabs'
-import { getDialogs, getContacts, getMail, setActiveTab } from 'actions'
+import { getContacts, getMail, setActiveTab } from 'actions'
 import { connect } from 'react-redux'
-import store, { history } from 'store'
-import MessagesBlock from './messages_block.js'
+import store from 'store'
 import ContactsBlock from './contacts_block.js'
 import MessagesList from './messages_list.js'
 

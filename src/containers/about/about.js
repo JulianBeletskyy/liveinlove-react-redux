@@ -129,23 +129,6 @@ class About extends Component {
     }
 
     render() {
-        const settings = {
-            slidesToShow: 1,
-            accessibility: false,
-            dots: false,
-            infinite: true,
-            autoplay: true,
-        }
-
-        const mainSettings = {
-            slidesToShow: 1,
-            accessibility: false,
-            dots: false,
-            infinite: true,
-            autoplay: true,
-            afterChange: this.addFadeClass
-        }
-
         const testimonialsSettings = {
             slidesToShow: 3,
             dots: false,
