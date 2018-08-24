@@ -34,7 +34,6 @@ class FullMail extends Component {
             store.dispatch(toggleModal(true, 'credits'))
             store.dispatch(setBuyingAttach(data))
         }
-        
     }
 
     showAttach = attach_id => e => {
@@ -51,9 +50,7 @@ class FullMail extends Component {
                     buttons: [
                         {
                             label: 'Cancel',
-                            onClick: () => {
-                                return
-                            }
+                            onClick: () => {return}
                         }, {
                             label: this.props.user.data.credits >= 3 ? 'Use Dibs' : 'Buy Dibs',
                             onClick: () => {

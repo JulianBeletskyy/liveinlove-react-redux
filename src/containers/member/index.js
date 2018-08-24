@@ -121,7 +121,6 @@ class Member extends Component {
 
     openMemberImages = i => e => {
         this.setState({showSlider: true, initialSlide: i+1})
-        //store.dispatch(toggleLightBox('member', i))
     }
 
     closeSlider = () => {
@@ -148,10 +147,8 @@ class Member extends Component {
         return `${Math.abs(ageDate.getUTCFullYear() - 1970)} y.o.`
     }
 
-    getImages = () =>
-        (this.props.members.data.gallery.map(item => {
-            return {src: item.src}
-        }))
+    getImages = () => this.props.members.data.gallery.map(item => {src: item.src})
+
 
     render() {
         const member = this.props.members.data
@@ -174,7 +171,7 @@ class Member extends Component {
                                         {
                                             this.props.members.data.gallery.length
                                             ?   <div className="form-group"><MemberGallery list={[...this.props.members.data.gallery, ...this.props.members.data.video]} onClick={this.openMemberImages} /></div>
-                                            :   ''
+                                            :   null
                                         }
                                         {
                                             member.video.length
@@ -182,7 +179,7 @@ class Member extends Component {
                                                     <div className="font-bebas">Video</div>
                                                     <VideoBlock memberId={member.id} video={member.video} />
                                                 </div>
-                                            :   ''
+                                            :   null
                                         }
                                     </Col>
                                     <Col md={5} lg={4}>
@@ -327,7 +324,7 @@ class Member extends Component {
                                                         <div>{member.about_children.map((item, i) => <div><span className="text-capitalize">{item.sex}</span> - {this.getAge(item.birth)}</div>)}</div>
                                                     </div>
                                                 </div>
-                                            :   ''
+                                            :   null
                                         }
                                             
                                         <div className="row">
@@ -378,14 +375,18 @@ class Member extends Component {
                                                 <div>{member.drink}</div>
                                             </div>
                                         </div>
-                                        <div className="row">
-                                            <div className="col-xs-5">
-                                                <span className="font-bebas fs-18">Languages: </span>
-                                            </div>
-                                            <div className="col-xs-7">
-                                                <div>{member.languages.map((item, i) => <div key={i}>{item.name} - {item.level_value}</div>)}</div>
-                                            </div>
-                                        </div>
+                                        {
+                                            member.languages.length
+                                            ?   <div className="row">
+                                                    <div className="col-xs-5">
+                                                        <span className="font-bebas fs-18">Languages: </span>
+                                                    </div>
+                                                    <div className="col-xs-7">
+                                                        <div>{member.languages.map((item, i) => <div key={i}>{item.name} - {item.level_value}</div>)}</div>
+                                                    </div>
+                                                </div>
+                                            :   null
+                                        }
                                     </Col>
                                     <Col md={4}>
                                         <div className="row">
@@ -431,7 +432,7 @@ class Member extends Component {
                                                                 icon="fas fa-gift" />
                                                         </div>
                                                     </div>
-                                                :   ''
+                                                :   null
                                             }
                                         </div>
                                         <hr />
@@ -473,7 +474,7 @@ class Member extends Component {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            :   ''
+                                            :   null
                                         }
                                     </Col>
                                 </Row>
@@ -503,7 +504,7 @@ class Member extends Component {
                     {
                         this.state.showSlider
                         ?   <FullScreenSlider backDrop={this.closeSlider} initialSlide={this.state.initialSlide} memberId={this.props.members.data.id} list={[{src: this.props.members.data.avatar.original}, ...this.props.members.data.gallery]} />
-                        :   ''
+                        :   null
                     }
                 
             </div>

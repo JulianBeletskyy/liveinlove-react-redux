@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 import {Tabs, Tab, Row, Col, FormGroup } from 'react-bootstrap'
 import store, { history } from 'store'
 import { setSegment, addToGallery, setAlert, getVideo, getUserInfo } from 'actions'
-import AboutMe from './about_me.js'
+
+import About from './about.js'
+
 import style from './style.css'
 import CustomGallery from 'components/gallery/custom_gallery.js'
 import MembershipInfo from './membership_info.js'
@@ -100,7 +102,7 @@ class InfoProfile extends Component {
 					<Tab 
 						eventKey={'info'} 
 						title="Info" >
-						<AboutMe />
+						<About />
 					</Tab>
 					<Tab 
 						eventKey={'gallery'} 
