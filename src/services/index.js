@@ -24,7 +24,6 @@ export default class Services {
 					}
 				}
 			}).catch((error) => {
-				console.log('ERROR')
 				store.dispatch(logout())
 			})
         }, 0)

@@ -80,7 +80,6 @@ export default function signup(signup = initialState, action = {}) {
                 send_email: action.value
             });
         case types.SET_EMPTY_SIGNUP_DATA:
-            console.log(signup.empty_data)
             return Object.assign({}, signup, {
                 data: Object.assign({}, signup.empty_data, {})
             });

@@ -288,7 +288,6 @@ class SignUpOne extends Component {
                                 name="children"
                                 onChange={this.setChildren}
                                 value={this.state.children} />
-                                {console.log(this.state.children)}
                         </FormGroup>
                         {
                             this.state.children === 1
@@ -327,13 +326,11 @@ class SignUpOne extends Component {
                                                         </Col>
                                                     </Row>
                                                 </FormGroup>
-                                            :   ''
+                                            :   null
                                         }
                                 </div>
-                            :   ''
+                            :   null
                         }
-                            
-                        
 
                     </Col>
                     <Col xs={12} md={6}>

@@ -69,7 +69,6 @@ export default function services(services = initialState, action = {}) {
     switch (action.type) {
         case SET_ACTIVE_TAB:
             let tabs = Object.assign([], services.tabs)
-            console.log(action.value);
             tabs[action.key] = action.value
             return Object.assign({}, services, {
                 tabs: tabs

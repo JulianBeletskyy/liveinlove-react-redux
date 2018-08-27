@@ -109,7 +109,6 @@ class Faq extends Component {
     }
 
     render() {
-        console.log(this.props.members)
         return (
             <div className="pt-100">
 	            <Grid>

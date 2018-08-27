@@ -76,7 +76,7 @@ class EditProfile extends Component {
             error *= Validator.check(this.user.height.value, ['required'], 'Height')
             error *= Validator.check(this.user.weight.value, ['required'], 'Weight')
             error *= Validator.check(this.user.body_style.value, ['required'], 'Body Style')
-            error *= Validator.check(this.user.ethnicity.value, ['required'], 'Ethnicity')
+            //error *= Validator.check(this.user.ethnicity.value, ['required'], 'Ethnicity')
             error *= Validator.check(this.user.hair_color.value, ['required'], 'Hair Color')
             error *= Validator.check(this.user.hair_length.value, ['required'], 'Hair Length')
             error *= Validator.check(this.user.eye_wear.value, ['required'], 'Eye Wear')
@@ -108,7 +108,7 @@ class EditProfile extends Component {
                 height_id: this.user.height.value,
                 weight_id: this.user.weight.value,
                 body_style: this.user.body_style.value,
-                ethnicity_id: this.user.ethnicity.value,
+                ethnicity_id: this.props.user.data.role === 'client' ? this.user.ethnicity.value : '',
                 hair_color_id: this.user.hair_color.value,
                 hair_length_id: this.user.hair_length.value,
                 eyes_id: this.user.eyes.value,
@@ -483,15 +483,19 @@ class EditProfile extends Component {
                                             label={true}
                                             placeholder="Body style" />
                                     </FormGroup>
-                                    <FormGroup>
-                                        <SelectField
-                                            componentClass="select"
-                                            inputRef={ref => { this.user.ethnicity = ref }}
-                                            options={this.getArray('ethnicities')}
-                                            value={data.ethnicity.id}
-                                            label={true}
-                                            placeholder="Ethnicity" />
-                                    </FormGroup>
+                                    {
+                                        this.props.user.data.role === 'client'
+                                        ?   <FormGroup>
+                                                <SelectField
+                                                    componentClass="select"
+                                                    inputRef={ref => { this.user.ethnicity = ref }}
+                                                    options={this.getArray('ethnicities')}
+                                                    value={data.ethnicity.id}
+                                                    label={true}
+                                                    placeholder="Ethnicity" />
+                                            </FormGroup>
+                                        :   null
+                                    }
                                 </Col>
                                 <Col sm={6}>
                                     <FormGroup>
@@ -631,7 +635,7 @@ class EditProfile extends Component {
                                                         : ''
                                                     }
                                             </div>
-                                        :   ''
+                                        :   null
                                     }
                                     <FormGroup>
                                         <Row>
@@ -718,7 +722,7 @@ class EditProfile extends Component {
                                                     </Col>
                                                 </Row>
                                             </FormGroup>
-                                        :   ''
+                                        :   null
                                     } 
                                 </Col>
                                 <Col sm={6}>

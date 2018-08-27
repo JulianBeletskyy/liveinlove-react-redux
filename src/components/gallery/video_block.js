@@ -108,7 +108,6 @@ class VideoBlock extends Component {
             prevArrow: <PrevArrow />,
         };
 
-        console.log(this.props.profile)
         return (
             <div className="video-gallery">
                 {
